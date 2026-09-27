@@ -254,6 +254,8 @@ Specific:
 
 **Notes:** The hardware list is the one thing to do *before* opening Gemini. Everything else follows from it.
 
+Worth saying out loud for anyone installing tonight: during the first Gradle sync, Android Studio pops up three things. Accept the Gradle Daemon JVM toolchain migration. **Decline** the Gradle/AGP upgrade — that one breaks the FTC project. On Windows, accept the Defender exclusion or builds crawl. Checkpoint 0 in the guide has screenshots of all three.
+
 ---
 
 ## 14. Close (1 slide)

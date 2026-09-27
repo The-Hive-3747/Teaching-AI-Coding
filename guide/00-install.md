@@ -38,10 +38,36 @@ Either way, Android Studio will now run a **Gradle sync**. Wait for the progress
 
 `[SCREENSHOT: Gradle sync progress bar at the bottom of the window]`
 
+### Three pop-ups you'll see — and what to click
+
+Android Studio will show a few notifications during or right after the first sync. Two you accept, one you decline. Getting these wrong is the most common reason a fresh install won't build.
+
+| Pop-up | What it says (roughly) | Click |
+|---|---|---|
+| **Gradle Daemon JVM toolchain** | "Migrate to Gradle Daemon JVM criteria" / "Gradle JDK configuration has changed" | **Accept / Migrate.** This tells Gradle which Java to use and is harmless. Declining leaves you with JDK-mismatch errors later. |
+| **Gradle / Android Gradle Plugin upgrade** | "A newer version of Gradle / AGP is available. Upgrade?" or the **Upgrade Assistant** | **Decline / Don't ask again.** The FTC project pins the versions it's tested with. Upgrading breaks the build, and the fix is re-cloning. |
+| **Windows Defender** (Windows only) | "Windows Defender might be impacting your build performance" | **Accept the automatic exclusion.** Defender scanning every file Gradle touches makes builds 2–5× slower. |
+
+`[SCREENSHOT: the Daemon JVM toolchain migration prompt, with the accept button highlighted]`
+`[SCREENSHOT: the Gradle upgrade prompt, with the decline button highlighted]`
+`[SCREENSHOT: the Windows Defender notification with "Automatically exclude" highlighted]`
+
+If you missed the Defender notification, add the exclusions by hand: **Windows Security → Virus & threat protection → Manage settings → Exclusions → Add**. Add these folders:
+- your project folder (where you cloned FtcRobotController)
+- `C:\Users\<you>\.gradle`
+- `C:\Users\<you>\AppData\Local\Android\Sdk`
+- the Android Studio install folder (usually `C:\Program Files\Android\Android Studio`)
+
+Mac users can skip the Defender step.
+
+> **Ben:** confirm the exact wording of the toolchain prompt from the version you record with, and whether Android Studio's automatic exclusion covered all four folders or you had to add some by hand.
+
 **If it's wrong:**
 - *Sync fails with a network error* — check the laptop is online; school Wi-Fi sometimes blocks Gradle downloads. Try a phone hotspot once to get the initial download done.
 - *Missing SDK component* — click the blue link in the error message; Android Studio offers to install it.
-- *Android Studio offers to "upgrade" Gradle or the Android Gradle Plugin* — **say no.** The FTC project pins the versions it needs. Upgrading them can break the build.
+- *You clicked "Upgrade" by accident* — the simplest recovery is to delete the project folder and clone again (Option A above). It's faster than untangling it.
+- *JDK / "invalid Java home" / toolchain errors* — you probably declined the Daemon JVM toolchain migration. **File → Settings → Build, Execution, Deployment → Build Tools → Gradle**, set **Gradle JDK** to the embedded JDK (usually labeled "jbr"), and sync again.
+- *Builds are very slow on Windows* — Defender exclusions aren't in place. See above.
 
 ## 0.3 Find your way around the project
 
@@ -109,6 +135,7 @@ Prove the whole chain works with FIRST's code before you add your own.
 
 - [ ] Android Studio is open with no red errors in the bottom panel
 - [ ] Gradle sync finished
+- [ ] Toolchain migration accepted, Gradle upgrade declined, Defender exclusions in place (Windows)
 - [ ] `.aiexclude` exists and lists the samples folder
 - [ ] Gemini panel is signed in
 - [ ] Run ▶ deploys to the Control Hub with "Install successfully finished"

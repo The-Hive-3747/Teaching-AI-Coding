@@ -38,6 +38,26 @@ Pick a folder you'll remember and click Clone. Using Git this way means you can 
 
 Now it syncs. Another wait — sped up again. If this fails with a network error, school Wi-Fi is usually the reason. A phone hotspot for this one step gets you past it.
 
+**[SCREEN: the three pop-ups, shown one at a time as they appear]**
+
+While it syncs, you'll get three pop-ups. Two yes, one no. Watch carefully, because getting these wrong is the number one reason a fresh install won't build.
+
+**[SCREEN: Daemon JVM toolchain migration prompt — pause on it]**
+
+First: "Migrate to the Gradle Daemon JVM toolchain." Yes. Accept it. This just tells Gradle which Java to use.
+
+**[SCREEN: Gradle / AGP upgrade prompt — pause on it, red X overlay]**
+
+Second: "A newer version of Gradle is available. Upgrade?" **No.** Never. The FTC project is pinned to the versions it's tested with. If you click Upgrade, the build breaks and the fastest fix is to delete everything and clone again. Click "Don't ask again" if it offers.
+
+**[SCREEN: Windows Defender notification — pause on it]**
+
+Third, Windows only: "Windows Defender might be impacting your build performance." Yes — click the automatic exclusion. Without it, Defender scans every file Gradle touches and your builds take two to five times longer. If you missed it, the guide has the four folders to add by hand under Windows Security.
+
+**[TEXT CARD: "Toolchain: YES · Gradle upgrade: NO · Defender exclusion: YES" — hold 4 s]**
+
+Toolchain yes. Upgrade no. Defender yes.
+
 **[SCREEN: Project panel, Android view, two modules visible]**
 
 When the sync finishes, look at the Project panel on the left. Two modules. FtcRobotController is FIRST's code — we never edit it. TeamCode is ours. Every OpMode we write goes in here.
@@ -88,7 +108,7 @@ On the Driver Hub, the robot controller restarts and reconnects. The OpMode list
 
 **[TEXT CARD: Checkpoint 0 checklist, 5 items]**
 
-Checkpoint zero: Android Studio open, sync finished, dot-a-i-exclude in place, Gemini signed in, one successful deploy. Five checks. If they're all green, you're ready.
+Checkpoint zero: Android Studio open, sync finished, the three pop-ups answered right, dot-a-i-exclude in place, Gemini signed in, one successful deploy. Six checks. If they're all green, you're ready.
 
 **[END CARD: "Next: Episode 2 — Describe your robot" + repo URL]**
 
@@ -101,6 +121,7 @@ Checkpoint zero: Android Studio open, sync finished, dot-a-i-exclude in place, G
 - [ ] Welcome screen
 - [ ] Get from VCS dialog
 - [ ] Gradle sync (time-lapse)
+- [ ] The three pop-ups: toolchain migration, Gradle upgrade, Defender (pause on each)
 - [ ] Project panel, Android view
 - [ ] Project panel, Project view, creating `.aiexclude`
 - [ ] Gemini sign-in flow

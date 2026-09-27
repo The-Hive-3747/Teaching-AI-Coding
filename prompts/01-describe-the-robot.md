@@ -1,0 +1,25 @@
+# Checkpoint 1 — the one-time robot description
+
+Guide page: `../guide/01-describe-the-robot.md`
+
+## Prompt (as actually used)
+
+> _TODO — paste from Gemini history_
+
+**Who typed it:** _coordinator / mechanical team_
+
+## What it produced
+
+_One line._
+
+## What went wrong
+
+_Symptom, in the words the team used._
+
+## The fix prompt
+
+> _TODO_
+
+## Repeat as needed
+
+_Add a "What went wrong / fix" pair for each trip around the loop._

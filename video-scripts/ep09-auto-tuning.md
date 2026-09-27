@@ -16,7 +16,7 @@ Last episode. The auto works. Now it has to work every time, and it has to be do
 
 **[TEXT CARD: the state duration table, summing to a total — hold 5 s]**
 
-First, add it up. Every state has a time. Leave wall, spin up, three pulses, turn, drive. Ours totals about six and a half seconds. The period is thirty. We're fine on time, so this episode is mostly about *reliability*.
+First, add it up. Every state has a time. Leave wall, spin up, three pulses, turn, drive. Ours totals about seven seconds. The period is thirty. We're fine on time, so this episode is mostly about *reliability*.
 
 If you're closer to thirty, the guide has a section on where to save time. The biggest one: start the flywheels while you're still driving off the wall, so spin-up overlaps.
 

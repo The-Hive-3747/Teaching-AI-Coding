@@ -102,7 +102,7 @@ This is the team's tuning history. It's also what you'll show a judge who asks h
 
 Commit after every kept change. Message = the prompt, roughly.
 
-> **Ben:** link the refined version → `../example-code/05-TeleOp-refined.java`
+**Compare with:** [`../example-code/05-refine/HiveTeleOp.java`](../example-code/05-refine/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## Checkpoint 5 test
 

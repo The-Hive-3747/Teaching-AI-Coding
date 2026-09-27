@@ -43,14 +43,17 @@ Describe it as a sequence and Gemini will write it as one. The names in the boxe
 >   1. Run both flywheels at 0.8 power.
 >   2. Wait 1.5 seconds for them to spin up. During this wait, don't run the intake.
 >   3. After that, pulse the intake forward: 0.3 seconds on at full power, 0.2 seconds off, repeating for as long as the trigger is held.
-> - When the trigger is released, stop the flywheels and the intake immediately.
-> - The bumper intake controls from before should still work when the trigger isn't held.
+> - When the trigger is released — at any point, even during spin-up — stop the flywheels and the intake immediately and go back to IDLE.
+> - The bumper intake controls from before should still work when the shooter is IDLE. While it's spinning up or feeding, ignore the bumpers.
+> - Let the flywheels coast to a stop (float) rather than brake.
 > - Use `ElapsedTime` for the timing, not `sleep()` — the drive must keep responding while the shooter is spinning up.
 > - Show the shooter state (idle / spinning up / feeding) and the flywheel power on telemetry.
 
 `[SCREENSHOT: Gemini panel with the shooter prompt and its reply summarizing the state logic]`
 
 The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during spin-up and you can't drive. If you don't know what that means, that's fine — just include the line.
+
+The "released at any point" and "ignore the bumpers while shooting" lines are there because without them Gemini has to guess, and both guesses have caused surprises: a trigger tap that leaves the flywheels running, or a bumper press mid-shot that fights the feed pulse.
 
 ## 4.3 Read what it wrote
 
@@ -60,7 +63,7 @@ This one's longer. Find:
 3. The pulse — a timer that flips the intake between on and off every 0.3 / 0.2 seconds.
 4. The trigger release — something that sets both flywheels and the intake to zero and resets the state.
 
-> **Ben:** link the known-good version → `../example-code/04-TeleOp-with-Shooter.java`
+**Compare with:** [`../example-code/04-shooter/HiveTeleOp.java`](../example-code/04-shooter/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## 4.4 Build, deploy, test
 

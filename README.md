@@ -30,12 +30,13 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 
 ## Status
 
-- [ ] Real prompts added to `prompts/`
-- [ ] Known-good code added to `example-code/`
+- [x] Simulated prompts and reference code in `prompts/` and `example-code/` (worked through against SDK v12.0; compiled, not yet run on a robot)
+- [ ] Real prompts from the build swapped in to `prompts/`
+- [ ] Real OpModes swapped in to `example-code/`, built once in Android Studio
 - [ ] Screenshots captured (see `[SCREENSHOT: ...]` callouts in `guide/`)
 - [ ] Kickoff deck built from `slides/kickoff-outline.md`
 - [ ] Videos recorded
 
 ## Season note
 
-This guide is written for the 2026–27 season robot: mecanum drive, intake, flywheel shooter, time-based autonomous (no odometry). The prompting method carries over; the hardware details will not.
+This guide is written for the 2026–27 (BIOBUZZ) season robot, against FtcRobotController SDK v12.0: mecanum drive, intake, flywheel shooter, time-based autonomous (no odometry). The prompting method carries over; the hardware details will not.

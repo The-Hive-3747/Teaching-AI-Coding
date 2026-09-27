@@ -45,16 +45,16 @@ Start a **new** Gemini conversation for the autonomous, and paste your robot des
 >
 > Implement it as a state machine using an enum and `ElapsedTime`. The states are:
 >
-> 1. `LEAVE_WALL` — all four drive motors forward at 0.5 power for 0.9 seconds. Then stop the drive motors.
-> 2. `SPIN_UP` — flywheels at 0.8 power. Wait 1.5 seconds. Intake off.
-> 3. `SHOOT` — keep flywheels at 0.8. Pulse the intake: 0.3 seconds on at full power, 0.2 seconds off. Do this 3 times.
+> 1. `LEAVE_WALL` — the robot starts with its back against the wall, facing the field. All four drive motors forward at 0.5 power for 0.9 seconds. Then stop the drive motors.
+> 2. `SPIN_UP` — flywheels on. Wait for the spin-up time. Intake off.
+> 3. `SHOOT` — keep flywheels on. Pulse the intake with the same on/off timing as TeleOp. Do this 3 times.
 > 4. `DONE` — everything off. Stay here.
 >
 > Reset the timer every time the state changes. Show the current state and the timer on telemetry. Don't use `sleep()` — use the timer so telemetry keeps updating.
 >
 > Start with these exact numbers; I'll tune them after testing.
 
-The numbers in the prompt (0.8 power, 1.5 s spin-up, 0.3/0.2 pulse) are the starting values from Checkpoint 4. If you tuned them in Checkpoints 4–5, use your tuned numbers here instead.
+"Same as TeleOp" is deliberate: you tuned those numbers in Checkpoints 4–5, and telling Gemini to read them from `HiveTeleOp` means you can't forget to carry one over. The "starts with its back against the wall" line is there because "forward" only means something once Gemini knows which way the robot is facing.
 
 `[SCREENSHOT: Gemini panel showing the generated state machine with the enum and switch visible]`
 
@@ -68,7 +68,7 @@ Find:
 
 Ask the Reader: "How does the robot get from LEAVE_WALL to SPIN_UP?" The answer is the timer check. If they can say that, they understand state machines.
 
-> **Ben:** link the known-good version → `../example-code/06-Auto-Shoot.java`
+**Compare with:** [`../example-code/06-auto-shoot/HiveAutoShoot.java`](../example-code/06-auto-shoot/HiveAutoShoot.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## 6.4 Test
 

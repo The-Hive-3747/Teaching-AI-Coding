@@ -18,6 +18,7 @@ Same Gemini conversation as Checkpoint 1.
 > - Reverse `frontLeft` and `backLeft`.
 > - Left stick Y is forward/back (remember the gamepad Y axis is negative when pushed forward). Left stick X is strafe. Right stick X is rotation.
 > - Use standard mecanum mixing and scale the powers so no motor is asked for more than 1.0.
+> - Set the drive motors to brake when their power is zero, so the robot stops instead of coasting.
 > - Show each motor's power on telemetry so I can see what's happening.
 >
 > Use the `@TeleOp` annotation so it shows up on the Driver Hub.
@@ -35,7 +36,7 @@ Open `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/HiveTeleOp.java`. Yo
 
 If any of the four is missing, ask: "I don't see where you reverse the left motors. Add it."
 
-> **Ben:** link or paste the known-good version here → `../example-code/02-MecanumTeleOp.java`
+**Compare with:** [`../example-code/02-mecanum-drive/HiveTeleOp.java`](../example-code/02-mecanum-drive/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## 2.3 Build and deploy
 

@@ -64,7 +64,7 @@ Find:
 3. Flywheels get set to 0 at the start of `TURN_TO_PARK`.
 4. `DRIVE_TO_PARK` transitions to `DONE`.
 
-> **Ben:** link the known-good version → `../example-code/07-Auto-Shoot-Park.java`
+**Compare with:** [`../example-code/07-auto-park/HiveAutoShoot.java`](../example-code/07-auto-park/HiveAutoShoot.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## 7.5 Test
 

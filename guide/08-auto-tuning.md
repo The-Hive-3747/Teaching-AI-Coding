@@ -13,11 +13,11 @@ Write down the duration of every state and total them:
 | State | Duration (s) |
 |---|---|
 | LEAVE_WALL | 0.9 |
-| SPIN_UP | 1.5 |
+| SPIN_UP | 2.0 (after Checkpoint 5 tuning) |
 | SHOOT (3 × 0.5) | 1.5 |
 | TURN_TO_PARK | 0.6 |
 | DRIVE_TO_PARK | 2.0 |
-| **Total** | **6.5** |
+| **Total** | **7.0** |
 
 If you're under 30 with margin, you're fine and this checkpoint is about *reliability*, not speed. Most teams doing this will be well under. If you're close to 30, the fixes are below.
 
@@ -87,7 +87,7 @@ Commit: "Auto final — 5/5 reliable, X seconds."
 
 In Git, also tag it: **Git → New Tag**, name it `auto-v1` or `week1-final`. When you start adding odometry or changing the robot later, you can always get this version back.
 
-> **Ben:** link the final version → `../example-code/08-Auto-Final.java`
+**Compare with:** [`../example-code/08-auto-tuning/HiveAutoShoot.java`](../example-code/08-auto-tuning/HiveAutoShoot.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## Checkpoint 8 test
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  EXAMPLE Robot Controller configuration matching the OpModes in this folder.
+  Illustrative only. Your real config lives on the Control Hub and is edited on the
+  Driver Hub (Configure Robot). The device NAMES are what matter — they must match
+  the strings in hardwareMap.get(...) exactly. Ports and motor types are placeholders.
+
+  Ben: replace with The Hive's actual config (Driver Hub → Configure Robot → ... → the
+  XML is in /sdcard/FIRST/ on the Control Hub, or export it via the RC web interface).
+-->
+<Robot type="FirstInspires-FTC">
+    <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
+        <LynxModule name="Control Hub" port="173">
+            <goBILDA5202SeriesMotor name="frontLeft"  port="0" />
+            <goBILDA5202SeriesMotor name="frontRight" port="1" />
+            <goBILDA5202SeriesMotor name="backLeft"   port="2" />
+            <goBILDA5202SeriesMotor name="backRight"  port="3" />
+        </LynxModule>
+        <LynxModule name="Expansion Hub 2" port="2">
+            <goBILDA5202SeriesMotor name="intake"        port="0" />
+            <goBILDA5202SeriesMotor name="flywheelLeft"  port="1" />
+            <goBILDA5202SeriesMotor name="flywheelRight" port="2" />
+        </LynxModule>
+    </LynxUsbDevice>
+</Robot>

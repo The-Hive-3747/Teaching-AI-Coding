@@ -30,7 +30,7 @@ Find:
 
 Ask the Reader: "What happens if I hold both bumpers?" The answer depends on which `if` comes first. That's fine — just know the answer.
 
-> **Ben:** link the known-good version → `../example-code/03-TeleOp-with-Intake.java`
+**Compare with:** [`../example-code/03-intake/HiveTeleOp.java`](../example-code/03-intake/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
 
 ## 3.3 Build, deploy, test
 

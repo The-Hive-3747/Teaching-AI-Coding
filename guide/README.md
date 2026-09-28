@@ -19,15 +19,18 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 |---|---|---|
 | 0 | [00-install.md](00-install.md) | Android Studio open, FtcRobotController project loaded, Gemini signed in |
 | 1 | [01-describe-the-robot.md](01-describe-the-robot.md) | A written description of every motor and servo that Gemini has read |
-| 2 | [02-mecanum-drive.md](02-mecanum-drive.md) | A TeleOp that drives |
-| 3 | [03-intake.md](03-intake.md) | ...and runs the intake |
-| 4 | [04-shooter.md](04-shooter.md) | ...and shoots |
-| 5 | [05-refine.md](05-refine.md) | Everything spinning the right way at the right time |
-| 6 | [06-auto-shoot.md](06-auto-shoot.md) | An autonomous that leaves the wall and shoots |
-| 7 | [07-auto-park.md](07-auto-park.md) | ...and parks |
-| 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...in under 30 seconds |
+| 2 | [02-mecanum-drive.md](02-mecanum-drive.md) | A TeleOp that drives (tank + strafe, D-pad precision) |
+| 3 | [03-intake.md](03-intake.md) | ...and collects / rejects balls |
+| 4 | [04-shooter.md](04-shooter.md) | ...and runs the flywheel startup sequence and pulse-feeds |
+| 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical team's words (the fifth, the strafe fix, is in Checkpoint 2) |
+| 6 | [06-auto-shoot.md](06-auto-shoot.md) | An autonomous that backs off the wall and shoots |
+| 7 | [07-auto-park.md](07-auto-park.md) | ...split into Shoot First and Shoot Delayed, which parks |
+| 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...inside 30 seconds, with the non-contact park bonus |
+| 9 | [09-extras.md](09-extras.md) | LEDs, endgame rumble, the 4-ball experiment, next season |
 
 Also: [the-loop.md](the-loop.md) — the describe → generate → test → refine method, on one page. Read it first if you only read one thing.
+
+The robot in this guide is The Hive's (FTC #3747) robot-in-one-week robot: mecanum drive, one flywheel, an intake with two rollers, goBILDA LEDs. The code it ended up with is in [`example-code/final/`](../example-code/final/), verbatim, and the prompts quoted in Checkpoints 2, 5 and 8 are the ones the mechanical team actually typed.
 
 ## Before you start
 

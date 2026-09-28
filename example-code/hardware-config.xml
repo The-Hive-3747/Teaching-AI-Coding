@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  EXAMPLE Robot Controller configuration matching the OpModes in this folder.
-  Illustrative only. Your real config lives on the Control Hub and is edited on the
-  Driver Hub (Configure Robot). The device NAMES are what matter — they must match
-  the strings in hardwareMap.get(...) exactly. Ports and motor types are placeholders.
+  Robot Controller configuration for The Hive's robot-in-one-week robot, RECONSTRUCTED
+  from the device names and ports in the TeamCode source. Motor ports and motor types
+  are placeholders (the code doesn't say); servo ports are the ones the code comments give.
 
-  Ben: replace with The Hive's actual config (Driver Hub → Configure Robot → ... → the
-  XML is in /sdcard/FIRST/ on the Control Hub, or export it via the RC web interface).
+  The device NAMES are what matter: they must match the strings in hardwareMap.get(...) exactly.
+  The real config lives on the Control Hub (Driver Hub -> Configure Robot). Ben: swap this for
+  the exported XML from the Control Hub when convenient.
 -->
 <Robot type="FirstInspires-FTC">
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
         <LynxModule name="Control Hub" port="173">
-            <goBILDA5202SeriesMotor name="frontLeft"  port="0" />
-            <goBILDA5202SeriesMotor name="frontRight" port="1" />
-            <goBILDA5202SeriesMotor name="backLeft"   port="2" />
-            <goBILDA5202SeriesMotor name="backRight"  port="3" />
+            <!-- motor ports: placeholders -->
+            <goBILDA5202SeriesMotor name="front_left_drive"  port="0" />
+            <goBILDA5202SeriesMotor name="front_right_drive" port="1" />
+            <goBILDA5202SeriesMotor name="back_left_drive"   port="2" />
+            <goBILDA5202SeriesMotor name="back_right_drive"  port="3" />
+            <!-- servo ports: from the source comments -->
+            <ContinuousRotationServo name="intake_servo_left" port="1" />
+            <Servo                   name="led_left"          port="3" />
+            <ContinuousRotationServo name="firewheel_left"    port="5" />  <!-- unused by TeleOp -->
         </LynxModule>
         <LynxModule name="Expansion Hub 2" port="2">
-            <goBILDA5202SeriesMotor name="intake"        port="0" />
-            <goBILDA5202SeriesMotor name="flywheelLeft"  port="1" />
-            <goBILDA5202SeriesMotor name="flywheelRight" port="2" />
+            <!-- motor ports: placeholders -->
+            <goBILDA5202SeriesMotor name="flywheel" port="0" />
+            <goBILDA5202SeriesMotor name="intake"   port="1" />
+            <!-- servo ports: from the source comments -->
+            <ContinuousRotationServo name="firewheel_right"    port="1" />  <!-- unused by TeleOp -->
+            <Servo                   name="led_right"          port="3" />
+            <ContinuousRotationServo name="intake_servo_right" port="5" />
         </LynxModule>
     </LynxUsbDevice>
 </Robot>

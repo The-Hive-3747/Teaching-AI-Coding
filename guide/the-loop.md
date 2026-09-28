@@ -21,11 +21,11 @@ Tell Gemini what you want in plain English. A good description has five things:
 
 | | What it means | Example |
 |---|---|---|
-| **Names** | The exact names from your hardware config | `frontLeft`, `intake`, `flywheelLeft` |
-| **Purpose** | What the part does for the robot | "the intake pulls game pieces into the robot" |
+| **Names** | The exact names from your hardware config | `front_left_drive`, `intake`, `flywheel` |
+| **Purpose** | What the part does for the robot | "the intake pulls balls in and also feeds them into the flywheel" |
 | **Direction** | Which way is forward; which motors are mounted mirrored | "the left-side motors are mounted backwards" |
-| **Control** | Which button or stick; what happens on press, hold, release | "hold right bumper to run intake; release to stop" |
-| **Timing and order** | What happens before what, for how long | "spin up for 1.5 s, then pulse the intake 0.3 s on, 0.2 s off" |
+| **Control** | Which button or stick; toggle or hold; what happens on release | "A toggles collect; hold right bumper to feed, release to stop" |
+| **Timing and order** | What happens before what, for how long | "reverse 200 ms, stop 300 ms, then run; feed pulses 100 ms on / 200 ms off" |
 
 If any of these is missing, Gemini will guess. Guesses are usually wrong.
 
@@ -36,17 +36,17 @@ Gemini writes or edits the OpMode. Read what it wrote. You don't need to underst
 - where it reads the gamepad
 - where it sets motor power
 
-If Gemini asks a clarifying question, answer it. If it makes an assumption out loud ("I'll assume the flywheels spin the same direction"), check it.
+If Gemini asks a clarifying question, answer it. If it makes an assumption out loud ("I'll assume the flywheel spins forward"), check it.
 
 ## Test
 
 Deploy to the robot. Run the OpMode. Try the specific thing you just added. Write down exactly what happened, in words a teammate would understand:
 
-- "Strafe left goes right."
-- "Intake runs but never stops."
-- "Flywheel starts, but the feed pulses immediately instead of waiting."
+- "hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"
+- "what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"
+- "I thought gamepad 1 dpad was slow mode, not tuning the flywheel."
 
-Exact observations become exact refinements.
+Those are three of The Hive's actual prompts, exactly as typed. Exact observations become exact refinements.
 
 ## Refine
 
@@ -54,9 +54,9 @@ Turn the observation into a description of what was missing:
 
 | You saw | You say |
 |---|---|
-| Strafe left goes right | "Strafing is mirrored. Flip the sign on the strafe term." |
-| Intake never stops | "When the right bumper is released, stop the intake motor." |
-| Feed pulses too early | "Wait 1.5 seconds after the flywheel starts before the first intake pulse." |
+| Strafe is mirrored | "holding both joysticks left made the robot strafe right, and vice versa. please fix" |
+| Ball pops out when the flywheel starts | "what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it" |
+| Intake resumes after the bump and jams | "…I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)." |
 | Gemini rewrote the drive code and broke it | "Only change the intake section. Leave the drive code exactly as it is." |
 
 Then back to Generate.

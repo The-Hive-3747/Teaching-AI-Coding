@@ -1,42 +1,34 @@
-# Checkpoint 8 — under 30 seconds
+# Checkpoint 8 — under 30 seconds; the non-contact park
 
-> **SIMULATED** — the guide's prompt, not yet The Hive's original. Replace when recovered.
+> **RECONSTRUCTED prompts, VERBATIM park prompt** — see the README for what that means.
 
 Guide page: `../guide/08-auto-tuning.md`
-Produces: `../example-code/08-auto-tuning/HiveAutoShoot.java`
 
-Same conversation as Checkpoints 6–7.
+## Prompts (as used in the guide)
 
-## Prompt 1 — check the math
+> **Prompt:**
+>
+> In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else.
 
-> Add up the total duration of all states in `HiveAutoShoot` and tell me the worst-case run time.
+> **Prompt:**
+>
+> The delayed auto totals more than 30 seconds and the period is 30. Reduce the delayed shoot duration from 8.3 to 6.5 seconds so the whole run finishes with a full second to spare.
 
-**Produced:** 0.9 + 2.0 + 3 × 0.5 + 0.6 + 2.0 = **7.0 s**. Well under 30. So this checkpoint is about reliability, not speed.
+> **Prompt:**
+>
+> Add a safety timeout to `BaseAuto`. Use the existing `totalAutoTimer`. If it ever passes 29.5 seconds, regardless of the current state, set all drive motors to zero, stop the flywheel and intake, and go to `STATE_6_ALL_STOP`. Show the total elapsed time on telemetry (it may already be there).
 
-**Who typed it:** mechanical team
+## The real prompt: non-contact park
 
-## Prompt 2 — safety timeout
+> **VERBATIM:** *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
 
-> Add a safety timeout to `HiveAutoShoot`. Use a separate `ElapsedTime` that starts when the OpMode starts. If it ever passes 28 seconds, regardless of the current state, stop all motors and go to DONE. Show the total elapsed time on telemetry. Don't change any of the existing states.
+**Changed:** new `STATE_5C_PARK_BACK_OFF_WALL` — all four motors at −0.5 for 100 ms — between the park drive and ALL_STOP (Gemini's transcript, Session Iteration 5).
+**Style:** explains the rule. Because the prompt says *why* ("we get points for not touching the wall"), Gemini knew "a backup" meant a nudge, not a retreat.
 
-**Produced:** a `runTimer`, reset right after `waitForStart()`, and a check at the top of the loop before the `switch`. One new constant. Nothing else touched.
+## The arithmetic
 
-## Prompt 3 — only if reliability runs show drift
+Shoot Delayed as it left Checkpoint 7 totals 32.3 s. The 8.3 s shoot duration in the final code brings it to 30.6, and the back-off step makes it 30.7 — still over the 30.0 s period. The guide's Checkpoint 8 walks through finding this and fixing it with one more number. *(Ben: what happened on the field?)*
 
-Five runs from the same spot. If the park distance varies:
+## Compare
 
-> DRIVE_TO_PARK ends in a different spot each run. Change it to 0.35 power for 2.8 seconds so it's slower and more consistent.
-
-If it's worse on a low battery:
-
-> Read the battery voltage from the hardware map's voltage sensor at the start of each state. Scale the drive powers in LEAVE_WALL, TURN_TO_PARK and DRIVE_TO_PARK by 12.5 divided by the current voltage, so the robot moves the same distance on a low battery. Cap the scaled power at 1.0.
-
-(This one is real SDK code Gemini knows: `hardwareMap.voltageSensor.iterator().next().getVoltage()`. Ask it to explain the line if the team wants to know what it does.)
-
-## What went wrong
-
-**Nothing in the simulation** — the example code only adds the timeout. On a real robot, expect Prompt 3 to be needed on at least one of the two axes (turn or drive).
-
-## Final commit and tag
-
-Commit message: "Auto final — 5/5, 7 s." Tag: `week1-final`.
+`../example-code/08-auto-tuning/` — final `BaseAuto.java` minus LEDs.

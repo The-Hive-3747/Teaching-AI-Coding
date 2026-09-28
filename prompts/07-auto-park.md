@@ -1,43 +1,34 @@
-# Checkpoint 7 — autonomous: park
+# Checkpoint 7 — two autos; the delayed one parks
 
-> **SIMULATED** — the guide's prompt, not yet The Hive's original. Replace when recovered. The park path (turn right ~90°, drive ~4 ft) is a placeholder for The Hive's real path.
+> **RECONSTRUCTED** — see the README for what that means.
 
 Guide page: `../guide/07-auto-park.md`
-Produces: `../example-code/07-auto-park/HiveAutoShoot.java`
 
-Same conversation as Checkpoint 6.
+## Prompt (as used in the guide)
 
-## Prompt (as used)
-
-> Add parking to `HiveAutoShoot`. Don't change LEAVE_WALL, SPIN_UP, or SHOOT — they work.
+> **Prompt:**
 >
-> Insert two new states between SHOOT and DONE:
+> Refactor `AutoShootFirst` into a base class plus two OpModes. Don't change the behavior of the existing states.
 >
-> - `TURN_TO_PARK` — turn off the flywheels and intake. Rotate the robot clockwise in place: left motors at +0.5, right motors at −0.5, for 0.6 seconds.
-> - `DRIVE_TO_PARK` — all four drive motors forward at 0.5 for 2.0 seconds. Then stop the drive motors.
->
-> Then go to DONE as before. Reset the timer on each state change, same as the others. Add the new states to the telemetry.
-
-**Who typed it:** mechanical team
+> - Move everything into an abstract class `BaseAuto extends OpMode` with an abstract method `getInitialDelaySeconds()`.
+> - Add a `DELAY` state at the start that waits `getInitialDelaySeconds()` before going to `STATE_1_BACK_UP`.
+> - `AutoShootFirst extends BaseAuto` returns 0.0 and keeps its `@Autonomous(name = "Auto: Shoot First")`. `AutoShootDelayed extends BaseAuto` returns 15.0, annotated `@Autonomous(name = "Auto: Shoot Delayed (15s)")`.
+> - Add a method `shouldParkTurnAndDrive()` that returns true only when the delay is greater than 0. After `STATE_4_STOP_SHOOTING`, if it's true go to the park states below; otherwise go to `STATE_6_ALL_STOP` as before.
+> - Park states, in order:
+>   - `STATE_4B_PARK_BACK_UP` — all four drive motors at −0.3 for 0.45 seconds.
+>   - `STATE_5_PARK_TURN_LEFT` — turn left in place: left motors −0.5, right motors +0.5, both scaled by the 0.8 drive cap, for 0.55 seconds.
+>   - `STATE_5B_PARK_DRIVE_FORWARD` — all four at 0.4 scaled by 0.8, for 3.0 seconds.
+>   - then `STATE_6_ALL_STOP`.
+> - Same timer reset on every transition. Add the new states to telemetry.
 
 ## What it produced
 
-Two new enum values, SHOOT's exit changed from DONE to TURN_TO_PARK, a second `setDrive(left, right)` overload for the turn, and the two new `case` blocks. Earlier states untouched.
+`BaseAuto.java` (abstract, holds the state machine, `DELAY` state, `getInitialDelaySeconds()`, `shouldParkTurnAndDrive()`, three park states) plus `AutoShootFirst.java` and `AutoShootDelayed.java`, each ~12 lines. Compare `../example-code/07-auto-park/`.
 
-## What to expect on the first runs
+## Likely first-test failures
 
-The two things most likely to be off, and the one-line prompt for each. (The example code keeps the starting numbers; yours will change.)
-
-**Turns the wrong way.** "Clockwise" in the prompt is unambiguous, but which motors are "left" depends on where you stand. Watch from above.
-
-> TURN_TO_PARK rotates the wrong way. Swap the signs: left motors −0.5, right motors +0.5. Nothing else changes.
-
-**Overshoots or undershoots the zone.**
-
-> Change DRIVE_TO_PARK from 2.0 to 1.7 seconds.
-
-One change, then three runs. Commit when three in a row end in the zone.
-
-## Note on time-based turns
-
-A 0.6-second turn at 0.5 power varies with battery voltage and floor. If the angle drifts between runs, slow it down and lengthen it — 0.35 power for 0.9 seconds is more repeatable than 0.5 for 0.6. Encoders or an IMU heading fix this properly; that's a later checkpoint.
+| Symptom | Prompt |
+|---|---|
+| Turns the wrong way | "STATE_5_PARK_TURN_LEFT turns right. Swap the signs: left motors +0.5, right motors −0.5." |
+| Overshoots the zone | "Change STATE_5B_PARK_DRIVE_FORWARD from 3.0 to 2.5 seconds." |
+| Shoot First parks too | "`shouldParkTurnAndDrive()` should return false when the delay is 0." |

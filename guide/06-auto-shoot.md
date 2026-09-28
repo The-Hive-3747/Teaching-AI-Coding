@@ -1,6 +1,6 @@
-# Checkpoint 6 — Autonomous: Move Off the Wall and Shoot
+# Checkpoint 6 — Autonomous: Back Off the Wall and Shoot
 
-**At the end of this checkpoint:** An autonomous OpMode that drives forward off the wall, spins up, shoots the preloaded pieces, and stops. No parking yet.
+**At the end of this checkpoint:** An autonomous OpMode that backs away from the wall to shooting distance, settles, spools the flywheel, pulse-shoots the preloaded balls, and stops. No parking yet.
 
 **Time:** 30–45 minutes.
 
@@ -8,114 +8,132 @@
 
 ## 6.1 Autonomous without sensors
 
-You don't need odometry or encoders to score in autonomous. Time-based driving ("go forward at 0.5 power for 0.9 seconds") is repeatable enough for a first week, as long as the battery is charged and the wheels are clean.
+You don't need odometry or encoders to score in autonomous. Time-based driving ("backward at 0.3 power for 0.3 seconds") is repeatable enough for a first week, as long as the battery is charged and the wheels are clean.
 
-The autonomous is a **state machine**: a list of steps, each with a condition for moving to the next. For this checkpoint:
+The autonomous is a **state machine**: a list of steps, each with a condition for moving to the next. This is The Hive's:
 
 ```
   START
     │
     ▼
-┌──────────────┐  all four drive motors forward at 0.5 power
-│  LEAVE_WALL  │  for 0.9 s
-└──────┬───────┘
-       ▼
-┌──────────────┐  drive motors stop; flywheels on at 0.8
-│   SPIN_UP    │  wait 1.5 s
-└──────┬───────┘
-       ▼
-┌──────────────┐  intake pulses 0.3 s on / 0.2 s off
-│    SHOOT     │  for 3 pulses (1.5 s)
-└──────┬───────┘
-       ▼
-┌──────────────┐  everything off
-│     DONE     │
-└──────────────┘
+┌──────────────────────┐  all four motors at -0.3 for 0.30 s
+│   STATE_1_BACK_UP    │  (robot starts against the wall; backs to shooting distance)
+└──────────┬───────────┘
+           ▼
+┌──────────────────────┐  motors stopped, 1.0 s
+│STATE_1B_SETTLE_1000MS│  (let the robot stop rocking before shooting)
+└──────────┬───────────┘
+           ▼
+┌──────────────────────┐  flywheel straight to target power, 2.0 s
+│ STATE_2_START_FLYWHEEL│ (NO reverse bump — balls are preloaded and it would spit them out)
+└──────────┬───────────┘
+           ▼
+┌──────────────────────┐  "hold right bumper": intake pulses 100 on / 200 off
+│ STATE_3_PULSE_SHOOTING│ for 10 s
+└──────────┬───────────┘
+           ▼
+┌──────────────────────┐  flywheel and intake off
+│ STATE_4_STOP_SHOOTING │
+└──────────┬───────────┘
+           ▼
+┌──────────────────────┐  everything off, stay here
+│   STATE_6_ALL_STOP   │
+└──────────────────────┘
 ```
 
 Each box is a state. Each arrow is "when the timer passes N seconds, go to the next state." That's all a state machine is.
 
-## 6.2 Ask for it
+Two details that came from testing, not planning: the **settle** state (the robot rocks after braking, and the first shots went wild) and **no reverse bump in auto** (Gemini's log: "Reversing intake while preloaded with balls will eject them"). Both are in the prompt below because The Hive found them the hard way.
+
+## 6.2 Reuse the subsystems
+
+The autonomous drives the flywheel and intake through the same `Flywheel` and `Intake` classes TeleOp uses. It does that by creating a **simulated gamepad** — a `Gamepad` object nobody is holding — and setting `autoGamepad.right_bumper = true` when it wants to feed. The subsystem code doesn't know the difference. That's the payoff of the "own class" choice in Checkpoint 3: the pulse timing, the phase logic, everything you tuned in Checkpoint 5 comes along for free.
+
+## 6.3 Ask for it
 
 Start a **new** Gemini conversation for the autonomous, and paste your robot description from Checkpoint 1 first. Then:
 
 > **Prompt:**
 >
-> Create a new Autonomous OpMode in TeamCode called `HiveAutoShoot`. Use the `@Autonomous` annotation. It uses the same hardware as `HiveTeleOp` — same motor names and exactly the same motor reversals as `HiveTeleOp` has now (check that file). Use the same flywheel power, spin-up time, and pulse timing that `HiveTeleOp` uses.
+> Create an Autonomous OpMode in TeamCode called `AutoShootFirst`, iterative `OpMode` style like `MecanumTeleOp`. Annotate it `@Autonomous(name = "Auto: Shoot First")`. Same four drive motors, same reversals and brake settings as `MecanumTeleOp` — read them from that file. Reuse the existing `Flywheel` and `Intake` classes; don't modify them.
 >
-> Implement it as a state machine using an enum and `ElapsedTime`. The states are:
+> The robot starts with the shooter facing the goal and its back against the wall. Preloaded balls are already in the intake.
 >
-> 1. `LEAVE_WALL` — the robot starts with its back against the wall, facing the field. All four drive motors forward at 0.5 power for 0.9 seconds. Then stop the drive motors.
-> 2. `SPIN_UP` — flywheels on. Wait for the spin-up time. Intake off.
-> 3. `SHOOT` — keep flywheels on. Pulse the intake with the same on/off timing as TeleOp. Do this 3 times.
-> 4. `DONE` — everything off. Stay here.
+> Implement a state machine with an enum and `ElapsedTime`:
 >
-> Reset the timer every time the state changes. Show the current state and the timer on telemetry. Don't use `sleep()` — use the timer so telemetry keeps updating.
+> 1. `STATE_1_BACK_UP` — all four drive motors at −0.3 for 0.30 seconds, to back away from the wall to shooting distance.
+> 2. `STATE_1B_SETTLE_1000MS` — drive motors at 0 for 1.0 second so the robot stops rocking.
+> 3. `STATE_2_START_FLYWHEEL` — add a `startDirect()` method to `Flywheel` that goes straight to RUNNING at target power, skipping the reverse bump (balls are preloaded; reversing would eject them). Call it, and wait 2.0 seconds.
+> 4. `STATE_3_PULSE_SHOOTING` — create a `Gamepad` object in the OpMode as a simulated gamepad. In this state set its `right_bumper` to true and pass it to `intake.update(...)` so the intake pulses exactly as in TeleOp. Stay here 10 seconds.
+> 5. `STATE_4_STOP_SHOOTING` — `flywheel.stop()`, `intake.stop()`.
+> 6. `STATE_6_ALL_STOP` — everything at zero. Stay here.
 >
-> Start with these exact numbers; I'll tune them after testing.
-
-"Same as TeleOp" is deliberate: you tuned those numbers in Checkpoints 4–5, and telling Gemini to read them from `HiveTeleOp` means you can't forget to carry one over. The "starts with its back against the wall" line is there because "forward" only means something once Gemini knows which way the robot is facing.
+> Reset the state timer on every transition. Call `flywheel.update(autoGamepad, false)` and `intake.update(...)` every loop, after the switch, so the subsystems run their own state machines. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
 
 `[SCREENSHOT: Gemini panel showing the generated state machine with the enum and switch visible]`
 
-## 6.3 Read what it wrote
+(The state numbering with a gap — no STATE_5 — is The Hive's. STATE_5 is the park sequence, added in Checkpoint 7. Leaving the gap now means the names won't shift later.)
+
+## 6.4 Read what it wrote
 
 Find:
-1. `enum State { LEAVE_WALL, SPIN_UP, SHOOT, DONE }` (or similar).
-2. A `switch (state)` inside the loop, with a `case` for each state.
-3. In each case, a check like `if (timer.seconds() > 0.9) { state = State.SPIN_UP; timer.reset(); }`.
-4. A pulse counter in `SHOOT`.
+1. `enum AutoState { STATE_1_BACK_UP, STATE_1B_SETTLE_1000MS, STATE_2_START_FLYWHEEL, STATE_3_PULSE_SHOOTING, STATE_4_STOP_SHOOTING, STATE_6_ALL_STOP }`.
+2. A `switch (currentState)` inside `loop()`, with a `case` for each state.
+3. In each case, a check like `if (stateTime >= 0.30) { currentState = AutoState.STATE_1B_SETTLE_1000MS; stateTimer.reset(); }`.
+4. `autoGamepad.right_bumper = true;` inside STATE_3, and the `autoGamepad.right_bumper = false;` reset at the top of `loop()`.
+5. The new `startDirect()` in `Flywheel.java`.
 
-Ask the Reader: "How does the robot get from LEAVE_WALL to SPIN_UP?" The answer is the timer check. If they can say that, they understand state machines.
+Ask the Reader: "How does the robot get from BACK_UP to SETTLE?" The answer is the timer check. If they can say that, they understand state machines.
 
-**Compare with:** [`../example-code/06-auto-shoot/HiveAutoShoot.java`](../example-code/06-auto-shoot/HiveAutoShoot.java) — a reference version written against the same prompt (simulated until the real one replaces it).
+**Compare with:** [`../example-code/06-auto-shoot/`](../example-code/06-auto-shoot/) — derived from The Hive's `BaseAuto.java` with the delay, park, and LEDs removed.
 
-## 6.4 Test
+## 6.5 Test
 
-**Setup:** Robot against the wall in its starting position, pieces preloaded, field clear.
+**Setup:** Robot against the wall in its starting position, balls preloaded, field clear.
 
-On the Driver Hub: `HiveAutoShoot` from the Autonomous list → Init → ▶.
+On the Driver Hub: `Auto: Shoot First` from the Autonomous list → Init → ▶.
 
 Watch and write down:
 
 | Step | Expected | Actual |
 |---|---|---|
-| Leaves the wall | Drives forward roughly the right distance, stops | |
-| Spins up | Flywheels audibly at speed before feeding starts | |
-| Shoots | Pieces launch, one per pulse | |
+| Backs off the wall | Short backward move, stops | |
+| Settles | A full second of nothing | |
+| Spools | Flywheel audibly at speed before feeding starts; telemetry says RUNNING | |
+| Shoots | Balls launch one per pulse; all preloaded balls gone well before 10 s is up | |
 | Done | Everything stops | |
-| Total time | Under 10 seconds | |
+| Total time | About 13.3 s | |
 
 Run it **three times**. Time-based auto varies; you want to see the variation.
 
-## 6.5 If it's wrong
+## 6.6 If it's wrong
 
 | Symptom | Prompt |
 |---|---|
-| Drives backward off the wall | "LEAVE_WALL drives backward. Negate the drive power (or reverse it) so the robot moves away from the wall." |
-| Drives too far / not far enough | "Change LEAVE_WALL duration from 0.9 to 0.7 seconds." (or up) One change per run. |
-| Drifts sideways while leaving | Mecanum wheels aren't all equal. "Add a small correction: run the right-side motors at 0.55 and the left at 0.5." Tune. |
-| Shoots weak | Same as Checkpoint 4: longer spin-up or more power. |
-| Pieces don't feed | "Lengthen the SHOOT pulse to 0.4 s on." |
-| Only 2 of 3 pieces launch | "Add a fourth pulse to SHOOT." or "Add a 0.5 s pause before the first pulse." |
-| Never reaches DONE / keeps pulsing | Pulse counter bug. "SHOOT never exits. After 3 complete pulses, move to DONE." |
-| Doesn't move at all | Check the state actually changes on telemetry. If it's stuck in LEAVE_WALL with the timer counting, the drive motors aren't getting power. "In LEAVE_WALL, I don't see the motors getting power. Show me where setPower is called." |
+| Drives *toward* the wall | "STATE_1_BACK_UP is driving the wrong way. The robot starts with its back to the wall and should move away from it — negate the drive power." |
+| Backs off too far / not far enough | "Change STATE_1_BACK_UP from 0.30 to 0.40 seconds." (or down) One change per run. |
+| First shot wild | Settle too short, or it's rocking. "Increase the settle from 1.0 to 1.5 seconds." |
+| A ball pops out the front when the flywheel starts | The reverse bump ran. "STATE_2 must call `startDirect()`, not the normal startup — it's running the reverse bump." |
+| Balls dribble | "Increase STATE_2_START_FLYWHEEL from 2.0 to 2.5 seconds." Or the target is low — check `Flywheel`'s default. |
+| Doesn't feed | The simulated gamepad isn't reaching the intake. "In STATE_3, I don't see `autoGamepad.right_bumper` being set, or `intake.update` isn't being called with `autoGamepad`. Show me." |
+| Never reaches ALL_STOP | "STATE_3 never exits. After 10 seconds move to STATE_4_STOP_SHOOTING." |
+| Shooting takes forever with balls gone | "Reduce STATE_3_PULSE_SHOOTING from 10 to 6 seconds." (Careful: Checkpoint 8 is where you tune this against the 30-second limit.) |
 
 Keep the tuning table:
 
-| LEAVE_WALL (s) | Power | SPIN_UP (s) | Pulses | Result |
-|---|---|---|---|---|
-| 0.9 | 0.5 | 1.5 | 3 | |
-| | | | | |
+| BACK_UP (s) | Power | SETTLE (s) | SPOOL (s) | SHOOT (s) | Result |
+|---|---|---|---|---|---|
+| 0.30 | −0.3 | 1.0 | 2.0 | 10.0 | |
+| | | | | | |
 
-## 6.6 Save it
+## 6.7 Save it
 
 Commit: "Auto shoots from the wall."
 
 ## Checkpoint 6 test
 
-- [ ] Three runs in a row: leaves the wall, spins up, launches all preloaded pieces, stops
-- [ ] Reader can explain how the state machine moves between states
+- [ ] Three runs in a row: backs off, settles, spools, launches all preloaded balls, stops
+- [ ] Reader can explain how the state machine moves between states, and what the simulated gamepad is for
 - [ ] Tuning numbers written down
 - [ ] Saved
 

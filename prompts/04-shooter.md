@@ -1,48 +1,39 @@
-# Checkpoint 4 — shooter and intake → flywheel timing
+# Checkpoint 4 — flywheel startup sequence and pulse feed
 
-> **SIMULATED** — the guide's prompt, not yet The Hive's original. Replace when recovered.
+> **RECONSTRUCTED** — see the README for what that means.
 
 Guide page: `../guide/04-shooter.md`
-Produces: `../example-code/04-shooter/HiveTeleOp.java`
 
-## Prompt (as used)
+## Prompt (as used in the guide)
 
-> Add the shooter to `HiveTeleOp`. Don't change the drive or intake code.
+> **Prompt:**
 >
-> - Map two motors named `flywheelLeft` and `flywheelRight`, one on each side of the launch path. For now leave both un-reversed; I'll tell you which one to reverse after testing.
-> - Use an enum with the states IDLE, SPINNING_UP, and FEEDING.
-> - While the right trigger is held past 0.5:
->   1. Run both flywheels at 0.8 power.
->   2. Wait 1.5 seconds for them to spin up. During this wait, don't run the intake.
->   3. After that, pulse the intake forward: 0.3 seconds on at full power, 0.2 seconds off, repeating for as long as the trigger is held.
-> - When the trigger is released — at any point, even during spin-up — stop the flywheels and the intake immediately and go back to IDLE.
-> - The bumper intake controls from before should still work when the shooter is IDLE. While it's spinning up or feeding, ignore the bumpers.
-> - Let the flywheels coast to a stop (float) rather than brake.
-> - Use `ElapsedTime` for the timing, not `sleep()` — the drive must keep responding while the shooter is spinning up.
-> - Show the shooter state (idle / spinning up / feeding) and the flywheel power on telemetry.
-
-**Who typed it:** mechanical team, with the coordinator watching
+> Add the flywheel to `MecanumTeleOp`. Don't change the drive or intake code.
+>
+> - Put it in its own class, `Flywheel`, like `Intake`: `init(hardwareMap)`, `update(gamepad, isReversed)`, `stop()`.
+> - One motor named `flywheel`, reversed, brake at zero power.
+> - Use an enum with the states IDLE, REVERSE_BUMP, PAUSE, RUNNING.
+> - Pressing B (edge-detected) when IDLE starts the sequence: REVERSE_BUMP runs the flywheel at −0.5 for 200 ms; PAUSE stops it for 300 ms; RUNNING sets it to the target power, 1.0, and stays there. Pressing B in any other state stops the flywheel and returns to IDLE.
+> - D-pad up/down adjusts the target power by ±0.05, capped at 0 and 1.
+> - The intake needs to know the flywheel's state. Give `Flywheel` methods `isReversing()`, `isPausing()`, `isOn()`, and change `Intake.update` to take those three booleans:
+>   - While the flywheel is in REVERSE_BUMP, the intake also runs at −0.5.
+>   - While it's in PAUSE, the intake stops.
+>   - While it's RUNNING and right bumper is held, pulse the intake: 100 ms on at 0.5, 200 ms off, repeating. Reset the pulse timer when the bumper is first pressed.
+>   - Otherwise the intake behaves as before (collect / reject / off).
+> - Reject mode (LB/X) also runs the flywheel at −0.5.
+> - All timing with `ElapsedTime`, no `sleep()` — the drive must keep responding through the whole sequence.
+> - Telemetry: flywheel phase, target power, intake power, whether feeding is active.
 
 ## What it produced
 
-A `ShooterState` enum, two `ElapsedTime` timers (one for time-in-state, one for the pulse phase), a `switch` on the state inside the loop, and a `pulseOn` boolean that flips when its timer passes 0.3 / 0.2 s. The bumper block is wrapped in `if (shooterState == IDLE)`. ~170 lines total.
+New `Flywheel.java` with `enum StartPhase { IDLE, REVERSE_BUMP, PAUSE, RUNNING }`, B edge-detect, two timed transitions, D-pad tuning; `Intake.update` gains the three flywheel-state parameters and the 100/200 ms pulse. Compare `../example-code/04-shooter/` (pre-refinement: 200 ms bump, 1.0 target, tuning on gamepad 1).
 
-## What went wrong (first test, no pieces)
+## What went wrong
 
-**`flywheelRight` pulling backward.** Visible immediately when the trigger is held: one wheel pushes toward the exit, the other pulls away.
+Three things, each fixed in Checkpoint 5 with a verbatim prompt:
 
-## The fix prompt
+1. The 200 ms reverse bump spat balls out the front → *"it is spitting balls out, so i would like to shorten it"*
+2. D-pad tuning collided with D-pad precision drive → *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."*
+3. Collect resumed after the bump and jammed the spool-up → *"But then I don't want the intake to resume."*
 
-> `flywheelRight` spins the wrong way. Reverse it. Don't change anything else.
-
-## What went wrong (second test, with pieces)
-
-**First shot weak, later ones fine.** 1.5 s isn't enough for these wheels from a standstill.
-
-> Increase the spin-up wait from 1.5 to 2.0 seconds.
-
-## Other things this prompt prevents (that the first draft didn't)
-
-- Without "released at any point, even during spin-up," some generated versions only checked the trigger in FEEDING — a quick tap left the flywheels running.
-- Without "ignore the bumpers while spinning up or feeding," a bumper press mid-shot overrode the pulse and jammed a piece.
-- Without "use ElapsedTime, not sleep()," a `sleep(1500)` in the spin-up froze the drive for a second and a half every shot.
+See `05-refine.md`.

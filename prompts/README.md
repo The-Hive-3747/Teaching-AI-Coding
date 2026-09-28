@@ -1,46 +1,47 @@
 # Prompts
 
-The prompts that build the robot code, in the order they're used. Each checkpoint has:
+The prompts that built The Hive's robot code, mapped to the guide's checkpoints.
 
-- **The prompt** — what was typed into Gemini in Android Studio
-- **What it produced** — one line on the result
-- **What went wrong** — and the follow-up prompt that fixed it
+## Two kinds of prompt in here
 
-The follow-up prompts are the most important part. Teams will get the first version wrong in the same ways we did (a motor spinning backwards, an intake that never stops, a flywheel that fires before it spins up). Seeing the clarification that fixed it is what makes the method teachable.
+**Verbatim** — six prompts the mechanical team actually typed, recovered from Gemini's own summary of the build ([`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md)). These are marked `VERBATIM` and quoted exactly, typos and all. They are the most valuable thing in this repo: they show what "describe the change in plain words" looks like when a non-programmer does it.
 
-## Status: simulated
+**Reconstructed** — the first two sessions (the initial build and the first autonomous) weren't saved as prompts; the transcript only summarizes the developer's intent. For those, and for the checkpoint-by-checkpoint prompts the guide uses, the prompts here are written to produce the code the team ended up with. Marked `RECONSTRUCTED`.
 
-The Hive's original Gemini prompts are saved on a local machine and haven't been recovered yet. Until they are, these files hold a **simulated run**: the guide's prompts, worked through in order against FtcRobotController SDK v12.0, with the code that each one produces in `../example-code/` and the failures that are most likely on a first test. Every file says `SIMULATED` at the top. When the real prompts arrive, they replace the simulated ones and the marker comes off.
+## The six verbatim prompts
+
+| # | Prompt | Checkpoint | What changed |
+|---|---|---|---|
+| 3 | *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"* | 2 | Strafe signs in the mecanum mix |
+| 4 | *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* | 5 | Reverse bump 200 → 100 ms |
+| 5 | *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?"* | 8 | New `STATE_5C_PARK_BACK_OFF_WALL` |
+| 6 | *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* | 5 | Flywheel tuning moved to gamepad 2 |
+| 7 | *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* | 5 | `isCollectOn = false` during the bump |
+| 8 | *"Let's set the default speed to 0.95"* | 5 | Default flywheel target |
+
+(Numbers are Gemini's "Session Iteration" numbers from the transcript.)
+
+## What they have in common
+
+- **None mention code.** No variable names, no files, no Java.
+- **All name the symptom** in the words a driver would use: "spitting balls out," "strafe right," "I don't want the intake to resume."
+- **Two ask before changing** ("what is the current time…"; "Can we add…"). Asking first got the team an explanation *and* the change.
+- **One explains the rule** ("we get points for not touching the wall"). That's why Gemini knew "a backup" meant 100 ms, not a return to the shooting spot.
+- **One states an expectation** ("I thought gamepad 1 dpad was slow mode"). Stating what you expected is a complete bug report.
 
 ## Files
 
 | File | Checkpoint |
 |---|---|
-| `01-describe-the-robot.md` | Checkpoint 1 — the one-time description of the robot: hardware, names, purposes, controls |
-| `02-mecanum-drive.md` | First TeleOp |
+| `01-describe-the-robot.md` | Checkpoint 1 — the one-time description of the robot: hardware, names, purposes, controls, sequences |
+| `02-mecanum-drive.md` | First TeleOp; the strafe fix |
 | `03-intake.md` | Adding the intake |
-| `04-shooter.md` | Adding the flywheel and the intake → flywheel timing |
-| `05-refine.md` | Direction, timing, pulsing fixes |
-| `06-auto-shoot.md` | Move off the wall and shoot |
-| `07-auto-park.md` | Add the park |
-| `08-auto-tuning.md` | Getting under 30 seconds |
-
-## What the simulation taught us about the prompts
-
-Working through them as Gemini would, these were the places the original drafts left something to guess. Each has been added to the guide's prompt:
-
-| Checkpoint | Gap | Line added |
-|---|---|---|
-| 2 | Brake vs. coast when sticks are released | "Set the drive motors to brake when their power is zero." |
-| 4 | What happens if the trigger is released *during* spin-up | "When the trigger is released — at any point, even during spin-up — ... go back to IDLE." |
-| 4 | Whether bumpers work mid-shot | "While it's spinning up or feeding, ignore the bumpers." |
-| 4 | Flywheel stop behavior | "Let the flywheels coast to a stop (float) rather than brake." |
-| 6 | Which numbers to use after Checkpoint 5 tuning | "Use the same flywheel power, spin-up time, and pulse timing that `HiveTeleOp` uses." |
-| 6 | Which motors are reversed after Checkpoint 4/5 fixes | "Exactly the same motor reversals as `HiveTeleOp` has now (check that file)." |
-
-The pattern: every gap was a **what-happens-when** question (a release, an overlap, a carry-over from earlier work). Those are the ones to think through before prompting.
+| `04-shooter.md` | Adding the flywheel startup sequence and pulse feed |
+| `05-refine.md` | The four refinement prompts |
+| `06-auto-shoot.md` | Back off the wall and shoot |
+| `07-auto-park.md` | Two autos, delayed one parks |
+| `08-auto-tuning.md` | Under 30 seconds; the non-contact park prompt |
 
 ## TODO
 
-- [ ] Replace simulated content with the real prompts from the build (Ben)
-- [ ] Note which prompts came from the mechanical team vs. the coordinator
+- [ ] If the original Session 1 and Session 2 prompts turn up in Gemini's history, replace the reconstructions (Ben)

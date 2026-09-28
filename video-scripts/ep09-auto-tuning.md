@@ -12,49 +12,87 @@
 
 **[TITLE CARD: Episode 9 — Under 30 Seconds]**
 
-Last episode. The auto works. Now it has to work every time, and it has to be done before the buzzer.
+Last episode. The autos work. Now they have to work every time, and they have to be done before the buzzer.
 
-**[TEXT CARD: the state duration table, summing to a total — hold 5 s]**
+**[TEXT CARD: the two state-duration tables, each summing to a total — hold 5 s]**
 
-First, add it up. Every state has a time. Leave wall, spin up, three pulses, turn, drive. Ours totals about seven seconds. The period is thirty. We're fine on time, so this episode is mostly about *reliability*.
+First, add it up. Every state has a time. Shoot First: back up 0.3, settle 1.0, spool 2.0, shoot 10. Thirteen point three. Fine.
 
-If you're closer to thirty, the guide has a section on where to save time. The biggest one: start the flywheels while you're still driving off the wall, so spin-up overlaps.
+Shoot Delayed: 15 seconds of delay, then the same 13.3, then back up 0.45, turn 0.55, drive 3.0. Thirty-two point three.
+
+**[TEXT CARD zoom: "32.3 s — OVER"]**
+
+Over. The Driver Station kills the OpMode at thirty, so this robot gets cut off in the middle of the park drive. Every match. Nothing in testing tells you that. You have to add it up.
 
 **[SCREEN: Gemini prompt]**
 
-Either way, add a safety timer. Even if you're nowhere near thirty.
+Where's the slack? Shooting. Ten seconds to launch three balls is generous. So the delayed auto gets a shorter shoot, and Shoot First keeps its ten:
 
-**[TEXT CARD: the safety-timeout prompt — hold 5 s]**
+**[TEXT CARD: "In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else." — hold 5 s]**
 
-A second ElapsedTime that starts at the beginning. If it ever passes 28 seconds, whatever state we're in: stop everything, go to DONE. The Driver Station will cut you off at thirty anyway, but this stops the robot cleanly from your own code, and it covers practice runs where nobody set a timer.
+That's 30.6. Still over. Hold that thought — there's one more thing to add first.
+
+**[ROBOT: end of a Delayed run — robot pressed against the wall in the park zone]**
+
+Look where it ends: pushed up against the wall. That scores the park. But the game gives *more* points for parking without touching the wall. So here's the prompt I typed — word for word:
+
+**[TEXT CARD: "On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?" — hold 5 s]**
+
+Notice it explains the *rule* — "we get points for not touching the wall." That's how Gemini knew "a backup" meant a small one, not a drive back to the shooting spot. It added STATE_5C_PARK_BACK_OFF_WALL: all four motors at minus 0.5 for 100 milliseconds, between the park drive and ALL_STOP.
+
+**[SCREEN: the STATE_5C case in BaseAuto.java]**
+
+**[TEXT CARD: "30.6 + 0.1 = 30.7 s — still over"]**
+
+Which brings the delayed auto to 30.7. Our final code shipped exactly like that — 30.7 — so on the field the Driver Station was probably stopping us somewhere in the last second of the park drive.
+
+> **Ben:** the guide asks you to confirm what actually happened on the field with the 30.7 s auto. Say it here.
+
+The fix is one more number:
+
+**[TEXT CARD: "The delayed auto totals more than 30 seconds and the period is 30. Reduce the delayed shoot duration from 8.3 to 6.5 seconds so the whole run finishes with a full second to spare." — hold 5 s]**
+
+Or shorten the delay itself, if your partner doesn't need the full fifteen. Either way, re-add the column until it's under 29.
+
+**[TEXT CARD: "15 + 0.3 + 1.0 + 2.0 + 6.5 + 0.45 + 0.55 + 3.0 + 0.1 = 28.9 s"]**
+
+Twenty-eight point nine. Under.
+
+**[SCREEN: Gemini prompt]**
+
+Whatever your total, add a safety timer.
+
+**[TEXT CARD: "Add a safety timeout to `BaseAuto`. Use the existing `totalAutoTimer`. If it ever passes 29.5 seconds, regardless of the current state, set all drive motors to zero, stop the flywheel and intake, and go to `STATE_6_ALL_STOP`. Show the total elapsed time on telemetry (it may already be there)." — hold 5 s]**
+
+If the total timer ever passes twenty-nine and a half, whatever state we're in: stop everything, go to ALL_STOP. The Driver Station will cut you off at thirty anyway, but this stops the robot cleanly from your own code, and it covers practice runs where nobody set a timer.
 
 **[SCREEN: editor, the timeout check at the top of the loop]**
 
 There it is. One check, before the switch.
 
-**[SPLIT: Driver Hub | robot — five full runs, quick cuts, with a scorecard building up on screen]**
+**[SPLIT: Driver Hub | robot — five full Delayed runs, quick cuts, with a scorecard building up on screen]**
 
-Now, five runs from the same starting spot. Every run: how many pieces scored, did it park, how long.
+Now, five runs of each auto from the same starting spot. Every run: balls scored, ended in the zone, touching the wall, total time.
 
 **[SCORECARD: 5 rows filling in]**
 
-Run one: three pieces, parked. Run two: three, parked. Run three: two pieces, parked. Run four: three, parked. Run five: three, parked.
+Run one: three balls, in the zone, clear of the wall. Run two: three, in, clear. Run three: three, in — touching. Run four: three, in, clear. Run five: three, in, clear.
 
-Four out of five clean. The miss was a piece. Good enough to compete; but let's see if we can get it to five.
+Four out of five. The miss was the wall. Good enough to compete; let's see if we can get it to five.
 
-**[TEXT CARD: "What went wrong: run 3, first shot was weak"]**
+**[TEXT CARD: "What went wrong: run 3 ended touching the wall"]**
 
-**[TEXT CARD: "Increase SPIN_UP from 1.5 to 2.0 seconds." — hold 3 s]**
+**[TEXT CARD: "Change STATE_5C_PARK_BACK_OFF_WALL from 100 to 150 ms." — hold 3 s]**
 
 **[ROBOT: five more runs, quick cuts, scorecard: 5/5]**
 
 Five for five.
 
-> **Ben:** replace with The Hive's real reliability numbers and whatever actually needed tuning. If it was drive distance varying, show the "lower power, longer time" fix — that's the most useful one for other teams.
+> **Ben:** replace with The Hive's real reliability numbers and whatever actually needed tuning. If it was park distance varying, show the "lower power, longer time" fix — that's the most useful one for other teams.
 
-**[TEXT CARD: "Slower is more consistent" — with the DRIVE_TO_PARK 0.5 / 2.0 → 0.35 / 2.8 example]**
+**[TEXT CARD: "Slower is more consistent" — with the STATE_5B 0.4 / 3.0 → 0.3 / 4.0 example]**
 
-The general rule for time-based auto: if a distance varies run to run, lower the power and lengthen the time. Slower is more consistent. Every time.
+The general rule for time-based auto: if a distance varies run to run, lower the power and lengthen the time. Slower is more consistent. Every time. Then re-add the total.
 
 **[FOOTAGE: battery voltage on the Driver Hub]**
 
@@ -62,21 +100,23 @@ And note the battery voltage you tuned at. Low battery, shorter distances. If it
 
 **[TEXT CARD: match-day checklist — hold 5 s]**
 
-Match day: battery charged, wheels clean, starting position marked, right OpMode selected — HiveAutoShoot, not the TeleOp — pieces loaded the same way every time, field clear.
+Match day: battery charged and the voltage noted, wheels clean, starting position marked or jigged, the *right* OpMode selected — Shoot First or Shoot Delayed, agreed with your alliance partner — balls preloaded the same way every time, field clear.
 
 **[SCREEN: Git commit, then Git → New Tag "week1-final"]**
 
-Commit. And this time, tag it. "week1-final." When you add odometry next month and everything's different, this tag is how you get back to a robot that worked.
+Commit: "Auto final — delayed under 30 s, 5/5, non-contact park." And this time, tag it. "week1-final." When you add odometry next month and everything's different, this tag is how you get back to a robot that worked.
 
 **[TEXT CARD: Checkpoint 8 checklist]**
 
-Checkpoint eight: safety timeout in, five runs logged with at least four good, well under thirty, someone can explain the timeout and every state, saved and tagged.
+Checkpoint eight: both autos add up to under 29 on paper, safety timeout in, non-contact park confirmed, five runs logged per auto with at least four good, someone can explain the timeout and every state, saved and tagged.
 
 **[ON CAMERA or VO over the robot completing a full run]**
 
 That's the series.
 
-I build intakes. A week ago I'd never opened Android Studio. The autonomous you just watched — I wrote the prompts for it. Not because I learned Java, but because I knew what the robot needed to do and I learned how to say it precisely.
+I build intakes. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
+
+There's one more page in the guide, Checkpoint 9, with the extras we described into existence after this: LED lights so the driver can see from across the field that the flywheel's up to speed, an endgame rumble, and a four-ball autonomous experiment. Same method. Nothing new to learn.
 
 Your mechanical team knows your robot better than anyone. Give them this, and see what they build.
 
@@ -88,7 +128,11 @@ Start with Episode 1.
 
 ## Shot list
 
-- [ ] Duration table card
+- [ ] Duration table cards (both autos)
+- [ ] Shoot-duration prompt
+- [ ] Robot against the wall at the end of a park + the verbatim non-contact prompt card
+- [ ] STATE_5C in the editor
+- [ ] 6.5 s prompt and the 28.9 s sum card
 - [ ] Safety timeout prompt + editor
 - [ ] 5 runs with scorecard overlay
 - [ ] Failure + fix + 5 more runs
@@ -96,9 +140,10 @@ Start with Episode 1.
 - [ ] Battery voltage
 - [ ] Match-day checklist card
 - [ ] Commit + tag
-- [ ] Closing: full run, narrator close
+- [ ] Closing: full run, narrator close, Checkpoint 9 mention
 
 ## Notes
 
 - The scorecard overlay is worth the editing effort — it makes "reliability" concrete.
 - If the narrator did Episodes 6–9, consider a two-line on-camera close from them instead of Ben. It lands harder.
+- The non-contact park prompt is verbatim from the guide. Don't clean it up.

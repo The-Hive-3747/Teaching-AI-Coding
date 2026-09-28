@@ -106,7 +106,7 @@ Last step: prove the whole chain works before we write anything. Plug in the Con
 
 On the Driver Hub, the robot controller restarts and reconnects. The OpMode list is empty — that's expected. FIRST's sample programs are all disabled, so nothing shows until we write our own. The version number matching what we just built is the proof.
 
-**[TEXT CARD: Checkpoint 0 checklist, 5 items]**
+**[TEXT CARD: Checkpoint 0 checklist, 6 items]**
 
 Checkpoint zero: Android Studio open, sync finished, the three pop-ups answered right, dot-a-i-exclude in place, Gemini signed in, one successful deploy. Six checks. If they're all green, you're ready.
 

@@ -1,6 +1,6 @@
 # Checkpoint 8 — Autonomous: Under 30 Seconds
 
-**At the end of this checkpoint:** The autonomous runs reliably, finishes with time to spare inside the 30-second period, and is ready for a match.
+**At the end of this checkpoint:** Both autos run reliably, finish inside the 30-second period, and score the non-contact parking bonus.
 
 **Time:** 30–60 minutes of runs.
 
@@ -8,102 +8,129 @@
 
 ## 8.1 Add up the time
 
-Write down the duration of every state and total them:
+Write down the duration of every state and total them. Do it for **each** OpMode, because the delayed one has 15 seconds less to work with.
+
+**Shoot First:**
 
 | State | Duration (s) |
 |---|---|
-| LEAVE_WALL | 0.9 |
-| SPIN_UP | 2.0 (after Checkpoint 5 tuning) |
-| SHOOT (3 × 0.5) | 1.5 |
-| TURN_TO_PARK | 0.6 |
-| DRIVE_TO_PARK | 2.0 |
-| **Total** | **7.0** |
+| STATE_1_BACK_UP | 0.30 |
+| STATE_1B_SETTLE_1000MS | 1.0 |
+| STATE_2_START_FLYWHEEL | 2.0 |
+| STATE_3_PULSE_SHOOTING | 10.0 |
+| **Total** | **13.3** |
 
-If you're under 30 with margin, you're fine and this checkpoint is about *reliability*, not speed. Most teams doing this will be well under. If you're close to 30, the fixes are below.
+Fine.
 
-Ask Gemini to do the sum if you want a sanity check:
-> "Add up the total duration of all states in `HiveAutoShoot` and tell me the worst-case run time."
+**Shoot Delayed, as it left Checkpoint 7:**
 
-## 8.2 Add a safety timer
+| State | Duration (s) |
+|---|---|
+| DELAY | 15.0 |
+| STATE_1_BACK_UP | 0.30 |
+| STATE_1B_SETTLE_1000MS | 1.0 |
+| STATE_2_START_FLYWHEEL | 2.0 |
+| STATE_3_PULSE_SHOOTING | 10.0 |
+| STATE_4B_PARK_BACK_UP | 0.45 |
+| STATE_5_PARK_TURN_LEFT | 0.55 |
+| STATE_5B_PARK_DRIVE_FORWARD | 3.0 |
+| **Total** | **32.3** |
+
+**Over.** The Driver Station stops the OpMode at 30.0 s, so this robot would be cut off in the middle of the park drive, every match. Nothing in testing tells you this — you have to add it up. Ask Gemini to do the sum if you want a check:
+
+> "Add up the total duration of all states in `BaseAuto` for the delayed auto and tell me the worst-case run time."
+
+## 8.2 Where the time goes
+
+The only state with slack is shooting: 10 seconds to launch three balls is generous. The Hive cut the delayed auto's shoot time to 8.3 s, leaving Shoot First at 10.
+
+> **Prompt:**
+>
+> In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else.
+
+That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s; on the field the robot was probably stopped by the Driver Station somewhere in the last second of the park drive. *Ben: confirm what actually happened.*) This is why you add it up: the fix is one more number.
+
+> **Prompt:**
+>
+> The delayed auto totals more than 30 seconds and the period is 30. Reduce the delayed shoot duration from 8.3 to 6.5 seconds so the whole run finishes with a full second to spare.
+
+Or shorten the delay itself, if the alliance partner doesn't need the full 15. Either way, re-add the column until it's under 29 — including the 0.1 s step you're about to add.
+
+## 8.3 The non-contact park bonus — a real prompt
+
+After the park drive, the robot ends pressed against the wall. The game gives more points for parking *without* touching it. The mechanical team's prompt, verbatim:
+
+> *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
+
+Gemini added `STATE_5C_PARK_BACK_OFF_WALL`: all four motors at −0.5 for 100 ms, between the park drive and ALL_STOP. Notice the prompt explains the *rule* ("we get points for not touching the wall") — that's why Gemini knew "a backup" meant a small one, not a return to the shooting spot.
+
+With the 6.5 s shoot from 8.2, Shoot Delayed now adds up to 15 + 0.3 + 1.0 + 2.0 + 6.5 + 0.45 + 0.55 + 3.0 + 0.1 = **28.9 s**. Under 29, with the safety timer below as the backstop.
+
+`[SCREENSHOT: the STATE_5C case in BaseAuto.java]`
+
+## 8.4 Add a safety timer
 
 Whatever the total, add a hard stop so the robot can never run past the period:
 
 > **Prompt:**
 >
-> Add a safety timeout to `HiveAutoShoot`. Use a separate `ElapsedTime` that starts when the OpMode starts. If it ever passes 28 seconds, regardless of the current state, stop all motors and go to DONE. Show the total elapsed time on telemetry.
+> Add a safety timeout to `BaseAuto`. Use the existing `totalAutoTimer`. If it ever passes 29.5 seconds, regardless of the current state, set all drive motors to zero, stop the flywheel and intake, and go to `STATE_6_ALL_STOP`. Show the total elapsed time on telemetry (it may already be there).
 
-The Driver Station has its own 30-second autonomous timer that stops the OpMode, but the safety timer is still worth having: it stops the robot *cleanly*, from your own code, before the hard cutoff — and it protects you during practice runs where the Driver Station timer may not be on.
+The Driver Station has its own 30-second timer that stops the OpMode, but this stops the robot *cleanly*, from your own code, before the hard cutoff — and it protects you during practice runs where nobody set a timer.
 
-## 8.3 Reliability runs
+## 8.5 Reliability runs
 
-Run the full autonomous **five times** from the same starting position. For each run write down:
+Run each auto **five times** from the same starting position. For each run write down:
 
-| Run | Pieces scored | Ended in park zone? | Total time (s) | Notes |
-|---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
+| Run | OpMode | Balls scored | Ended in zone? | Touching wall? | Total time (s) | Notes |
+|---|---|---|---|---|---|---|
+| 1 | Delayed | | | | | |
+| 2 | Delayed | | | | | |
+| 3 | Delayed | | | | | |
+| 4 | Delayed | | | | | |
+| 5 | Delayed | | | | | |
 
 Five out of five is the target. Four is acceptable if the miss was small. Fewer means something needs tuning.
 
-## 8.4 If it's inconsistent
+## 8.6 If it's inconsistent
 
 Time-based autonomous varies because of battery voltage, wheel slip, and where the robot started. Fixes, in order of how often they help:
 
 | Problem | Fix |
 |---|---|
-| Drive distance varies run to run | Lower the power and lengthen the time. "Change DRIVE_TO_PARK to 0.35 power for 2.8 seconds." Slower is more consistent. |
-| Worse when battery is low | Test with a fresh battery and note the voltage. Consider: "Scale all drive powers by 12.5 divided by the current battery voltage, so the robot moves the same distance on a low battery." (This reads `hardwareMap.voltageSensor`.) |
+| Park distance varies run to run | Lower the power and lengthen the time. "Change STATE_5B to 0.3 power for 4.0 seconds." Slower is more consistent. (Then re-add the total.) |
+| Worse when battery is low | Test with a fresh battery and note the voltage. Consider: "Scale all drive powers in the auto by 12.5 divided by the current battery voltage, read from `hardwareMap.voltageSensor`, so the robot moves the same distance on a low battery. Cap at 1.0." |
 | Turn angle varies | Same fix as drive: slower turn, longer time. |
-| First shot inconsistent | "Increase SPIN_UP from 1.5 to 2.0 seconds." |
+| First shot wild | "Increase STATE_1B_SETTLE_1000MS from 1.0 to 1.5 seconds." |
 | Starting position varies | Not a code fix. Make a physical jig or tape marks for the starting position. |
-| Piece jams | "Add a 0.3 second reverse pulse of the intake before SHOOT starts, to unjam." |
+| Back-off-wall doesn't clear the wall | "Change STATE_5C_PARK_BACK_OFF_WALL from 100 to 150 ms." |
 
-## 8.5 If it's too slow
-
-Only if you're near 30 seconds:
-
-| Where to save time | Prompt |
-|---|---|
-| Spin-up | "Start the flywheels during LEAVE_WALL instead of after, so spin-up overlaps with driving." |
-| Shooting | "Reduce the pulse-off time from 0.2 to 0.1 seconds." |
-| Driving | "Increase DRIVE_TO_PARK power to 0.7 and reduce the time to 1.4 seconds." (Then re-check reliability — faster is less consistent.) |
-| Turning | "Increase TURN_TO_PARK power to 0.7 and reduce time to 0.4 seconds." |
-
-## 8.6 Match-day checklist
+## 8.7 Match-day checklist
 
 - [ ] Battery charged; note the voltage you tuned at
 - [ ] Wheels clean
 - [ ] Starting position marked or jigged
-- [ ] Right OpMode selected on the Driver Hub (`HiveAutoShoot`, not TeleOp)
-- [ ] Pieces preloaded the same way every time
+- [ ] **Right OpMode selected** — Shoot First or Shoot Delayed, agreed with the alliance partner
+- [ ] Balls preloaded the same way every time
 - [ ] Field clear of people
 
-## 8.7 Save it — and tag it
+## 8.8 Save it — and tag it
 
-Commit: "Auto final — 5/5 reliable, X seconds."
+Commit: "Auto final — delayed under 30 s, 5/5, non-contact park."
 
-In Git, also tag it: **Git → New Tag**, name it `auto-v1` or `week1-final`. When you start adding odometry or changing the robot later, you can always get this version back.
+In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start adding odometry or changing the robot later, you can always get this version back.
 
-**Compare with:** [`../example-code/08-auto-tuning/HiveAutoShoot.java`](../example-code/08-auto-tuning/HiveAutoShoot.java) — a reference version written against the same prompt (simulated until the real one replaces it).
+**Compare with:** [`../example-code/08-auto-tuning/`](../example-code/08-auto-tuning/) — The Hive's final `BaseAuto.java` (minus LEDs), with the back-off-wall state and the 8.3 s delayed shoot.
 
 ## Checkpoint 8 test
 
+- [ ] Both autos add up to under 29 s on paper
 - [ ] Safety timeout is in
-- [ ] 5 runs logged; at least 4 succeed
-- [ ] Total time is well under 30 seconds
+- [ ] Non-contact park confirmed
+- [ ] 5 runs logged per auto; at least 4 succeed
 - [ ] Reader can explain the safety timeout and every state
 - [ ] Saved and tagged
 
 ## What's next
 
-You have a working robot with an autonomous, and a team that can change any of it by describing what they want. Some things to describe next, using the same loop:
-
-- **Encoders** — "Use the drive motor encoders instead of time so LEAVE_WALL drives exactly 24 inches." (You'll need the wheel diameter and gear ratio.)
-- **Odometry** — once it's wired, describe it the same way you described the motors in Checkpoint 1.
-- **A second autonomous** for the other starting position — copy `HiveAutoShoot`, describe the differences.
-- **Driver-assist features** in TeleOp — "When I press X, run the shooter sequence once automatically."
-
-Whatever you add, one change per prompt, test after every change, save what works.
+You have a working robot with two autonomous routines, and a team that can change any of it by describing what they want. [Checkpoint 9](09-extras.md) covers the extras The Hive added — LED status lights, endgame rumble, and a 4-ball experiment — and what to describe next season.

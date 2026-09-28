@@ -46,7 +46,7 @@ One rule before you start: do one thing at a time, and test after every change. 
 
 Let's go.
 
-**[END CARD: "Next: Episode 1 — Install" + repo URL]**
+**[END CARD: "Next: Episode 1 — Install Android Studio and FtcRobotController" + repo URL]**
 
 ---
 

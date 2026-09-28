@@ -1,6 +1,6 @@
 # Checkpoint 2 — Mecanum Drive
 
-**At the end of this checkpoint:** A TeleOp OpMode that drives the robot in all directions from the left stick and rotates from the right stick.
+**At the end of this checkpoint:** A TeleOp OpMode that drives: tank-style on the two sticks, strafe on stick X, precision moves on the D-pad.
 
 **Time:** 15–30 minutes including the test.
 
@@ -12,31 +12,34 @@ Same Gemini conversation as Checkpoint 1.
 
 > **Prompt:**
 >
-> Create a new TeleOp OpMode in the TeamCode module called `HiveTeleOp`. For now, only implement the mecanum drive — no intake, no shooter yet.
+> Create a TeleOp OpMode in the TeamCode module called `MecanumTeleOp`. For now, only the drive — no intake, no flywheel yet.
 >
-> - Map the four drive motors by the names I gave you.
-> - Reverse `frontLeft` and `backLeft`.
-> - Left stick Y is forward/back (remember the gamepad Y axis is negative when pushed forward). Left stick X is strafe. Right stick X is rotation.
-> - Use standard mecanum mixing and scale the powers so no motor is asked for more than 1.0.
-> - Set the drive motors to brake when their power is zero, so the robot stops instead of coasting.
-> - Show each motor's power on telemetry so I can see what's happening.
+> - Use the iterative `OpMode` style (`init()` and `loop()`), not `LinearOpMode`.
+> - Map the four drive motors by the names I gave you. Reverse `front_left_drive` and `back_left_drive`. Set all four to brake when power is zero.
+> - Tank drive: left stick Y = left wheels, right stick Y = right wheels. Remember the stick Y axis is negative when pushed forward.
+> - Strafe: average the two sticks' X values. Multiply by 1.1 to make up for mecanum strafe losses.
+> - D-pad: up/down drive straight at 0.5, left/right strafe at 0.5, overriding the sticks while held.
+> - Combine with standard mecanum mixing, normalize so no motor is asked for more than 1.0, then scale everything by 0.8.
+> - Telemetry: show all four motor powers.
 >
 > Use the `@TeleOp` annotation so it shows up on the Driver Hub.
 
 `[SCREENSHOT: Gemini panel with the prompt sent and the start of the generated OpMode visible]`
 
+**Why iterative `OpMode`?** FIRST's samples use both styles. The Hive's build used `OpMode` (`init()`, `loop()`), which is a natural fit for state machines: `loop()` runs over and over, and each subsystem gets an `update()` call every time. Either works. Pick one and say which.
+
 ## 2.2 Read what it wrote
 
-Open `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/HiveTeleOp.java`. You should be able to find these four things. Have the Reader point at each one:
+Open `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/MecanumTeleOp.java`. You should be able to find these four things. Have the Reader point at each one:
 
-1. **Hardware mapping** — lines like `frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");`. Check the strings in quotes match your config exactly.
-2. **Reversing** — `frontLeft.setDirection(DcMotor.Direction.REVERSE);` for the two left motors.
-3. **Reading the gamepad** — `gamepad1.left_stick_y`, `gamepad1.left_stick_x`, `gamepad1.right_stick_x`.
-4. **Setting power** — `frontLeft.setPower(...)` and three more.
+1. **Hardware mapping** — in `init()`, lines like `frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");`. Check the strings in quotes match your config exactly.
+2. **Reversing** — `setDirection(DcMotor.Direction.REVERSE)` on the two left motors.
+3. **Reading the gamepad** — in `loop()`: `gamepad1.left_stick_y`, `gamepad1.right_stick_y`, the two `_stick_x`, and the four `dpad_` checks.
+4. **Setting power** — four `setPower(...)` calls after the mixing and the `* 0.8`.
 
 If any of the four is missing, ask: "I don't see where you reverse the left motors. Add it."
 
-**Compare with:** [`../example-code/02-mecanum-drive/HiveTeleOp.java`](../example-code/02-mecanum-drive/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
+**Compare with:** [`../example-code/02-mecanum-drive/MecanumTeleOp.java`](../example-code/02-mecanum-drive/MecanumTeleOp.java) — The Hive's final drive code with everything else stripped out.
 
 ## 2.3 Build and deploy
 
@@ -50,43 +53,46 @@ Click **Run ▶**. Wait for "Install successfully finished."
 
 Robot on the floor, wheels free to move, nobody's feet nearby.
 
-On the Driver Hub: select `HiveTeleOp` from the TeleOp list → **Init** → **▶**.
+On the Driver Hub: select `Mecanum TeleOp` from the TeleOp list → **Init** → **▶**.
 
 | Try | Expected | Write down what actually happened |
 |---|---|---|
-| Push left stick forward | Robot drives forward | |
-| Pull left stick back | Robot drives backward | |
-| Push left stick left | Robot strafes left | |
-| Push left stick right | Robot strafes right | |
-| Push right stick left | Robot rotates counter-clockwise | |
-| Push right stick right | Robot rotates clockwise | |
+| Both sticks forward | Robot drives forward | |
+| Both sticks back | Robot drives backward | |
+| Left stick forward only | Robot curves right | |
+| Both sticks pushed left (X) | Robot strafes left | |
+| Both sticks pushed right (X) | Robot strafes right | |
+| D-pad up | Creeps forward, slower | |
+| D-pad left | Creeps left | |
 | Release everything | Robot stops | |
 
-`[SCREENSHOT: Driver Hub with HiveTeleOp selected, telemetry showing four motor powers]`
+`[SCREENSHOT: Driver Hub with Mecanum TeleOp selected, telemetry showing four motor powers]`
 
 ## 2.5 If it's wrong
 
-Write down the symptom in words, then use the matching prompt.
+Write down the symptom in words, then use the matching prompt. The first one is what actually happened to The Hive — and the prompt is the one the team typed:
 
 | Symptom | Prompt |
 |---|---|
-| Forward goes backward | "Forward and backward are swapped. Negate the forward input." |
-| Forward works but strafe is mirrored | "Strafe left moves the robot right. Flip the sign on the strafe term." |
-| Rotation is mirrored | "Right stick right rotates the robot counter-clockwise. Flip the rotation sign." |
-| Robot spins in place on forward | Two motors are reversed wrong. "When I push forward, the robot spins. The left motors are on the left side of the robot. Re-check which motors are reversed." Then physically verify which motor is which by running one at a time. |
+| **Strafe is mirrored** | *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"* — the real prompt. Gemini flipped the strafe signs in the four mixing lines. |
+| Forward goes backward | "Both sticks forward drives the robot backward. The Y axis sign is wrong — negate it." |
+| Robot spins in place on forward | Two motors are reversed wrong. "When I push both sticks forward, the robot spins. Re-check which motors are reversed; the left motors are on the left side of the robot." Then physically verify which motor is which. |
 | One wheel doesn't move | Probably a config or cable problem, not code. Check the port on the hub and the name in the config. |
 | Robot crashes on Init: *Unable to find a hardware device with name "X"* | Name mismatch. Compare the quoted string in the code to the config. Tell Gemini the correct name. |
-| Drives, but jerky or too fast | "Cube the joystick inputs so small movements are more precise." or "Cap the drive power at 0.7." |
+| D-pad does nothing | "The D-pad precision moves aren't working. Show me where you read `gamepad1.dpad_up`." |
+| Too fast to control | "Lower the drive cap from 0.8 to 0.6." |
 
 Every fix is one prompt, one deploy, one test. Don't stack them.
 
+Notice the real prompt: it names the *symptom* exactly ("holding both joysticks left made the robot strafe right") and says what's wanted ("please fix"). It doesn't guess at the cause. That was enough.
+
 ## 2.6 Save it
 
-Once all seven rows in the test table pass: commit in Git (**Git → Commit**, message "Mecanum drive works") or copy `HiveTeleOp.java` to a safe folder.
+Once all eight rows in the test table pass: commit in Git (**Git → Commit**, message "Mecanum drive works") or copy `MecanumTeleOp.java` to a safe folder.
 
 ## Checkpoint 2 test
 
-- [ ] All seven drive tests pass
+- [ ] All eight drive tests pass
 - [ ] The Reader can point at the four parts of the code (mapping, reversing, gamepad, power) and say what each does
 - [ ] Saved
 

@@ -13,96 +13,119 @@ Checkpoints 2–4 got the robot working. Now it needs to work *well*. That means
 The pattern is always the same:
 
 1. A driver says what's wrong, in plain words.
-2. Someone turns that into a prompt that names the part, the symptom, and the change.
+2. Someone types that into Gemini — naming the part, the symptom, and (if they know it) the change.
 3. Deploy, test, keep or undo.
 
-## 5.2 Turning complaints into prompts
+## 5.2 The Hive's real refinements
 
-The skill is being specific. Compare:
+These are the actual prompts the mechanical team typed, in order, from Gemini's own log of the build. Read them for the *style*: short, specific about what was observed, no code words.
 
-| Driver says | Weak prompt | Strong prompt |
-|---|---|---|
-| "It's too twitchy" | "Make it less twitchy" | "The drive is too sensitive at small stick movements. Cube the joystick inputs so the first 30% of stick travel gives finer control." |
-| "The intake keeps spitting pieces back out" | "Fix the intake" | "When the intake is pulling in, pieces bounce back out. Reduce intake power to 0.7 and see if that helps." |
-| "I can't drive while it's shooting" | "Let me drive while shooting" | "During the shooter's spin-up, the drive doesn't respond. Make sure the drive code runs every loop regardless of shooter state." |
-| "It shoots two at once" | "Only shoot one" | "Two pieces launch on one pulse. Shorten the intake pulse from 0.3 to 0.2 seconds." |
-| "Turning is too fast" | "Slow the turning" | "Scale the rotation input by 0.7 so turning is slower than driving." |
-| "Sometimes it shoots weak" | "Make it shoot harder" | "The first shot after spin-up is weak but later ones are fine. Increase the spin-up wait from 1.5 to 2.0 seconds." |
+### "It is spitting balls out"
 
-What makes the strong prompts strong:
-- **Names the part** (drive, intake, rotation)
-- **Names the symptom** exactly as observed
-- **Names the change**, with a number when there is one
-- **Changes one thing**
+> *what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it*
 
-## 5.3 A menu of common refinements
+Gemini answered the question (200 ms) and shortened `REVERSE_DURATION_SEC` to 100 ms. Two things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it, and it names the symptom ("spitting balls out") rather than guessing a fix.
+
+### "I thought gamepad 1 dpad was slow mode"
+
+> *I thought gamepad 1 dpad was slow mode, not tuning the flywheel.*
+
+The Checkpoint 4 prompt put flywheel tuning on the D-pad — the same D-pad Checkpoint 2 used for precision driving. Both worked at once, which is worse than either. Gemini moved tuning to **gamepad 2's** D-pad and left gamepad 1's D-pad to driving. One sentence, stated as an expectation, fixed a control conflict.
+
+### "I don't want the intake to resume"
+
+> *When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running).*
+
+Before this, if Collect was on when you pressed B, the intake reversed for the bump and then went right back to collecting — pushing the next ball into a flywheel that was still spooling. The fix was one line in `Intake.java` (`isCollectOn = false` during the bump). Notice how precisely the prompt describes the *sequence*: keep the reverse, then stop, regardless of what it was doing before.
+
+### "Let's set the default speed to 0.95"
+
+> *Let's set the default speed to 0.95*
+
+The drivers had a gamepad 2 D-pad to try flywheel speeds in practice; this makes their pick the default so nobody has to tune it at the start of every match. That's the tuning loop closing: D-pad to experiment, then bake the answer into the code.
+
+### Also from the log: the strafe fix
+
+> *hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix*
+
+That one's in [Checkpoint 2](02-mecanum-drive.md); it happened during the refine phase but belongs to the drive.
+
+## 5.3 What makes these prompts work
+
+| Prompt | Names the part | Names the symptom | Names the change |
+|---|---|---|---|
+| spitting balls out | "spinning the motors back before starting the flywheel" | "spitting balls out" | "shorten it" |
+| dpad was slow mode | "gamepad 1 dpad" | "tuning the flywheel" (unexpected) | implied: make it slow mode only |
+| intake to resume | "the intake" after "start up the flywheel" | "I don't want the intake to resume" | "stop, whether it was stopped or running" |
+| default speed | "default speed" | — | "0.95" |
+| strafe | "holding both joysticks left" | "strafe right, and vice versa" | "please fix" |
+
+None of them mention a variable, a file, or a line of Java. All of them were enough.
+
+## 5.4 A menu of common refinements
 
 Pick what your drivers ask for. Each is one prompt, one test.
 
 **Drive feel**
-- "Add a slow mode: while the left trigger is held, scale all drive powers by 0.4."
+- "Lower the drive cap from 0.8 to 0.7." / "Raise it to 1.0."
+- "Change the D-pad precision power from 0.5 to 0.35."
 - "Cube the stick inputs for finer control at low speed."
-- "Scale rotation by 0.7 so it's slower than straight-line driving."
 - "Add a deadzone of 0.05 on all sticks so the robot doesn't creep when the sticks are released."
 
 **Intake**
-- "Reverse the intake direction." (if it's still wrong)
-- "Change intake power to 0.7."
-- "Make the intake toggle on with one press of the right bumper and off with another press, instead of hold."
+- "Change collect power from 0.5 to 0.7."
+- "Make reject mode a hold instead of a toggle."
 
-**Shooter**
-- "Change the spin-up wait to X seconds."
-- "Change flywheel power to X."
-- "Change the pulse to X on / Y off."
-- "Add a second shooter speed: right trigger = far shot at 1.0 power, A button = close shot at 0.6 power. Same spin-up and feed logic for both."
-- "Keep the flywheels spinning at 0.3 power all the time so spin-up is faster."
+**Flywheel**
+- "Change the reverse bump from 100 ms to 150 ms." / "…the pause from 300 ms to 200 ms."
+- "Change the feed pulse to 80 ms on / 250 ms off."
+- "Add a second target: gamepad 2 Y sets 0.8 for close shots, gamepad 2 A sets 0.95 for far shots."
+- "Show the flywheel target on telemetry in big text so the driver can see it from the field."
 
 **Directions**
 - "Reverse motor `X`." — the simplest and most common fix.
 
-**Telemetry**
-- "Show the current shooter state and the time since the trigger was pressed on telemetry."
-
 **Gamepad 2**
-- "Move the intake and shooter controls to gamepad 2. Gamepad 1 only drives."
+- "Move A, B, RB, LB and X to gamepad 2. Gamepad 1 only drives."
 
-## 5.4 When Gemini breaks something that worked
+## 5.5 When Gemini breaks something that worked
 
-It will happen. Signs: the drive stops working after you asked about the shooter; the file got much shorter; a whole section vanished.
+It will happen. Signs: the drive stops working after you asked about the flywheel; the file got much shorter; a whole section vanished.
 
 First try:
-> "You changed code outside the part I asked about. Restore the [drive/intake/shooter] section exactly as it was, and only make the change I asked for."
+> "You changed code outside the part I asked about. Restore the [drive/intake/flywheel] section exactly as it was, and only make the change I asked for."
 
 If that doesn't fix it, go back to your last saved version (Git → revert, or copy the file back), and ask again with "Only change X" at the top of the prompt.
 
-This is why Rule 3 says save after every passing test.
+The Hive did this a different way: they asked Gemini to **make backup copies** before big changes. That's the `backup/` folder in [`example-code/final/`](../example-code/final/backup/). It works, and it's what Gemini's own summary recommends. Git does the same job with less clutter; either is fine as long as you do one of them.
 
-## 5.5 When Gemini doesn't understand
+## 5.6 When Gemini doesn't understand
 
 Sometimes a prompt gets a confused answer, or Gemini changes the wrong thing. Usually it's because the prompt used a word that means something different in code than on the team. "Feed," "shoot," "fire," "launch," "pulse" — decide what your team calls things and use the same words every time. If you called it "feed" in Checkpoint 4, don't call it "fire" now.
 
-You can also ask Gemini to explain before changing:
-> "Before you change anything: explain in plain English what happens when the right trigger is pressed, step by step."
+You can also ask Gemini to explain before changing — the "spitting balls out" prompt did exactly this:
+> "Before you change anything: what is the current reverse bump time, and what happens step by step when I press B?"
 
 If the explanation doesn't match what the robot does, you've found the bug. If it doesn't match what you *want*, you've found the missing description.
 
-## 5.6 Keep a log
+## 5.7 Keep a log
 
 Mechanical team: every time you change something, write one line:
 
 | Date | Who | Prompt (short) | Result | Kept? |
 |---|---|---|---|---|
-| | | "Add slow mode on left trigger, 0.4×" | Drivers like it for lining up | Yes |
-| | | "Intake power 1.0 → 0.7" | Still bounces out | No, reverted |
-| | | "Rotation scaled by 0.7" | Turning controllable now | Yes |
+| | | "Reverse bump 200 → 100 ms" | Stopped spitting balls | Yes |
+| | | "Flywheel tuning → gamepad 2 dpad" | No more conflict with precision drive | Yes |
+| | | "Collect stops after bump" | No more jams on spool-up | Yes |
+| | | "Default 0.95" | Drivers' pick from practice | Yes |
 
-This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code.
+This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code. (Gemini can write this log for you — see [Checkpoint 9](09-extras.md).)
 
-## 5.7 Save it
+## 5.8 Save it
 
 Commit after every kept change. Message = the prompt, roughly.
 
-**Compare with:** [`../example-code/05-refine/HiveTeleOp.java`](../example-code/05-refine/HiveTeleOp.java) — a reference version written against the same prompt (simulated until the real one replaces it).
+**Compare with:** [`../example-code/05-refine/`](../example-code/05-refine/) — The Hive's final `Flywheel.java` and `Intake.java` verbatim, and `MecanumTeleOp.java` without the LED and rumble extras.
 
 ## Checkpoint 5 test
 

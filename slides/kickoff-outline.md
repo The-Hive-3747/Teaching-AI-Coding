@@ -30,20 +30,22 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 
 ## 3. What happened in our robot-in-one-week (1–2 slides)
 
-**Slide 3a:** Timeline graphic, one line per day. *(Ben: fill in actual days.)*
-- Day 1: Coordinator describes architecture, hardware names, controls to Gemini → working mecanum drive
-- Day 2: Intake added
-- Day 3: Shooter added, intake/flywheel timing fixed
-- Day 4–5: Mechanical team takes over — adjusts timings and power in plain English
-- Day 6: Mechanical team builds the autonomous: shoot, then park
-- Day 7: Under 30 seconds. Done.
+**Slide 3a:** Timeline graphic, one line per session. These are Gemini's own "session iterations" from its log of the build. *(Ben: put days on them.)*
+- Session 1: Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes — Gemini's own choice, not asked for
+- Session 2: First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
+- Session 3: Mechanical team: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
+- Session 4: *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
+- Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?"* — non-contact park
+- Session 6: *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
+- Session 7: *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* — spool-up jam fixed
+- Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in
 
 **Slide 3b:** The punchline, alone on a slide:
-> "After day 3, the mechanical team wrote the autonomous. Nobody on that team writes Java."
+> "Sessions 3 through 8 were the mechanical team. Nobody on that team writes Java."
 
-**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did the autonomous. The tool didn't replace the programmer; it freed the programmer.
+**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did sessions 3–8. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
 
-`[SCREENSHOT: the Gemini panel in Android Studio showing one of the mechanical team's actual prompts, e.g. the one that adjusted the intake pulse timing]`
+`[SCREENSHOT: the Gemini panel in Android Studio showing one of those prompts as typed — the "spitting balls out" one if it's still in the history]`
 
 ---
 
@@ -70,8 +72,8 @@ Mention up front: check with your coach about your school's or district's AI pol
 
 ```
    ┌─────────────┐
-   │  DESCRIBE   │  "The intake is a motor named 'intake'.
-   │             │   Right bumper runs it forward at full power..."
+   │  DESCRIBE   │  "The intake is a motor named 'intake' plus two
+   │             │   CR servos. A toggles collect at 0.5 power..."
    └──────┬──────┘
           ▼
    ┌─────────────┐
@@ -83,8 +85,8 @@ Mention up front: check with your coach about your school's or district's AI pol
    └──────┬──────┘
           ▼
    ┌─────────────┐
-   │   REFINE    │  "The intake runs backwards. Reverse it."
-   │             │  "The flywheel needs 1.5 s to spin up before feeding."
+   │   REFINE    │  "it is spitting balls out, so i would
+   │             │   like to shorten it"
    └──────┬──────┘
           │
           └──────────► back to GENERATE
@@ -102,11 +104,12 @@ Mention up front: check with your coach about your school's or district's AI pol
 1. Describe the robot: names, ports, purposes, directions
 2. Mecanum drive → **test**
 3. Intake → **test**
-4. Shooter → **test**
-5. Refine: fix directions, timing, pulsing
-6. Auto v1: move off the wall and shoot → **test**
-7. Auto v2: park → **test**
-8. Auto v3: under 30 seconds → **test**
+4. Shooter: flywheel startup sequence + pulsed feed → **test**
+5. Refine: the mechanical team's four real prompts
+6. Auto v1: back off the wall and shoot → **test**
+7. Auto v2: Shoot First / Shoot Delayed, which parks → **test**
+8. Auto v3: under 30 seconds, non-contact park → **test**
+9. Extras: LEDs, endgame rumble, the 4-ball experiment
 
 **Notes:** Point out that "test" appears after every step. The single biggest mistake is asking for everything at once. Small steps mean when something breaks, you know exactly which description caused it.
 
@@ -120,34 +123,40 @@ There's a video for each checkpoint and a guide page for each checkpoint. Show t
 
 **Asked for everything at once:**
 > "Write a TeleOp with mecanum drive, intake, and a flywheel shooter, plus an autonomous that shoots and parks."
-→ 400 lines. Intake backwards. Flywheel fires before spin-up. Auto drives into the wall. Where do you start?
+→ 600 lines across five files. Strafe mirrored. Flywheel spits balls out. Intake jams the spool-up. Where do you start?
 
 **Asked one step at a time:**
-> "Write a TeleOp with mecanum drive. Left stick moves, right stick rotates. Motors are named..."
-→ 60 lines. Drive works. Next.
+> "Write a TeleOp with tank-style mecanum drive. Left stick Y is the left wheels, right stick Y the right wheels, stick X strafes. Motors are named..."
+→ 100 lines. Drive works. Next.
 
-**Notes:** Skip if short on time; the point is already made in slide 6.
+**Notes:** Honest version: our session 1 *was* the all-at-once prompt, and it worked — but the three bugs above were all in it, and it took sessions 3, 4 and 7 to find them one at a time. The guide's checkpoints are the one-at-a-time version of the same week. Skip if short on time.
 
 ---
 
 ## 8. What a good description looks like (1–2 slides)
 
 **Slide 8a:** The five things every description needs:
-1. **Names** — exactly as they appear in the Robot Controller config (`frontLeft`, not "the front left motor")
+1. **Names** — exactly as they appear in the Robot Controller config (`front_left_drive`, not "the front left motor")
 2. **Purpose** — what the part does for the robot
 3. **Direction** — which way is "forward," and which motors are mounted mirrored
-4. **Control** — which button or stick, and what happens on press vs. hold vs. release
+4. **Control** — which button or stick; **toggle or hold**; what happens on release
 5. **Timing and order** — what has to happen before what, and for how long
 
-**Slide 8b:** A real before/after. *(Ben: replace with an actual pair from the build.)*
+**Slide 8b:** A before/after for a *new feature*.
 
 Vague:
 > "Add a shooter."
 
 Specific:
-> "Add a flywheel shooter. Two motors named `flywheelLeft` and `flywheelRight`, mounted facing each other so they must spin in opposite directions. When the driver holds the right trigger, spin both flywheels to 0.8 power. After 1.5 seconds, pulse the intake motor forward to feed: 0.3 seconds on, 0.2 seconds off, repeating. Release the trigger to stop everything."
+> "One motor named `flywheel`, reversed. Pressing B runs the flywheel and intake backward at −0.5 for 200 ms to clear a jammed ball, stops everything for 300 ms, then runs the flywheel forward at full power and keeps it there. Pressing B again stops it. While it's running and right bumper is held, pulse the intake 100 ms on at 0.5, 200 ms off, so balls feed one at a time."
 
 **Notes:** Read the vague one and ask the room what Gemini would have to guess. Then read the specific one. Everything Gemini would have guessed is now stated.
+
+**Slide 8c:** A real *refinement* prompt, verbatim from the mechanical team:
+
+> *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."*
+
+**Notes:** No code words. It describes a sequence — keep this step, then don't do that, regardless of what was happening before. That precision is why it was a one-line fix in `Intake.java`. This is the slide that convinces the mechanical kids in the room.
 
 ---
 
@@ -160,7 +169,7 @@ Specific:
 2. Type the mecanum drive prompt live. Send it. While it generates, narrate what you asked for.
 3. Show the generated OpMode. Point at the hardware names — they match the config.
 4. Build and deploy. Drive the robot.
-5. Type a refinement live: "Strafing is reversed. Fix it." Deploy. Drive again.
+5. Type a refinement live — use the real one: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"* Deploy. Drive again.
 6. Stop there. "That's the whole method. Everything else is more trips around the loop."
 
 **Fallback if the robot won't cooperate:** Have a screen recording of the same demo ready. Play it, narrate over it.
@@ -176,13 +185,13 @@ Specific:
 | Symptom | Cause | Fix |
 |---|---|---|
 | Code won't compile: "cannot find symbol" | Gemini invented a class or method name | Paste the error back into the panel: "Fix this compile error" |
-| Motor runs backwards | Direction wasn't described | "The left motors are mounted mirrored. Reverse `frontLeft` and `backLeft`." |
-| Shooter fires before spinning up | Timing wasn't described | "Wait 1.5 seconds after spin-up starts before feeding." |
-| Intake never stops | Release behavior wasn't described | "When the bumper is released, stop the intake." |
-| Auto drives too far | Time-based; power or duration off | "Reduce the LEAVE_WALL drive from 0.9 s to 0.7 s." |
+| Strafe is mirrored | Mecanum mixing signs | *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"* |
+| Flywheel startup spits balls out | Reverse bump too long | *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* |
+| Two controls on one button | Control scheme drifted | *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* |
+| Auto runs over 30 s | Nobody added it up | "Add up the total duration of all states and tell me the worst-case run time." Then cut one number. |
 | Gemini rewrote everything, broke what worked | Asked for a change without saying "only change X" | "Only change the intake section. Leave the drive code as is." |
 
-**Notes:** Every one of these happened to us. The guide's checkpoint 5 is all about this. The pattern: when it's wrong, the description was missing something. Say the missing thing.
+**Notes:** Every one of these happened to us; the italic ones are the actual prompts. The guide's checkpoint 5 is all about this. The pattern: when it's wrong, the description was missing something. Say the missing thing.
 
 ---
 
@@ -207,38 +216,54 @@ Specific:
 
 ## 12. Autonomous without odometry (1 slide) *(optional)*
 
-**Slide:** A simple state machine diagram.
+**Slide:** The Shoot Delayed autonomous as a state machine — The Hive's states, with the guide's Checkpoint 8 shoot time (6.5 s; the team's shipped code has 8.3 s).
 
 ```
   START
     │
     ▼
-┌───────────────┐  drive forward 0.9 s
-│  LEAVE_WALL   │
-└───────┬───────┘
-        ▼
-┌───────────────┐  flywheels on, wait 1.5 s
-│   SPIN_UP     │
-└───────┬───────┘
-        ▼
-┌───────────────┐  pulse intake ×3
-│    SHOOT      │
-└───────┬───────┘
-        ▼
-┌───────────────┐  flywheels off, rotate 0.6 s
-│ TURN_TO_PARK  │
-└───────┬───────┘
-        ▼
-┌───────────────┐  drive forward 2.0 s
-│ DRIVE_TO_PARK │
-└───────┬───────┘
-        ▼
-┌───────────────┐
-│     DONE      │
-└───────────────┘
+┌────────────────────┐  wait 15 s for the alliance partner (0 s in Shoot First)
+│       DELAY        │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  -0.3 for 0.30 s: back away from the wall to shooting distance
+│  STATE_1_BACK_UP   │
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  stop for 1.0 s so the robot isn't rocking
+│STATE_1B_SETTLE_1000MS│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  flywheel straight to speed, 2.0 s (no reverse bump — balls preloaded)
+│STATE_2_START_FLYWHEEL│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  intake pulses 100 ms on / 200 ms off, 6.5 s
+│STATE_3_PULSE_SHOOTING│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  -0.3 for 0.45 s
+│STATE_4B_PARK_BACK_UP│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  0.55 s
+│STATE_5_PARK_TURN_LEFT│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  0.4 for 3.0 s, into the zone
+│STATE_5B_PARK_DRIVE_FORWARD│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐  -0.5 for 0.1 s: "we get points for not touching the wall"
+│STATE_5C_PARK_BACK_OFF_WALL│
+└─────────┬──────────┘
+          ▼
+┌────────────────────┐
+│  STATE_6_ALL_STOP  │
+└────────────────────┘
 ```
 
-**Notes:** Time-based auto is fine for a first week. You don't need odometry to score. Each box is one state; each arrow is "after N seconds, move to the next state." Students can describe this exact diagram to Gemini and get a working state machine. Checkpoint 6 builds the first four boxes; checkpoint 7 adds the two park boxes; checkpoint 8 makes it reliable.
+**Notes:** Time-based auto is fine for a first week. You don't need odometry to score. Each box is one state; each arrow is "after N seconds, move to the next state." Students can describe this exact diagram to Gemini and get a working state machine. Checkpoint 6 builds the shooting boxes; checkpoint 7 adds the delay and the park boxes; checkpoint 8 adds the last one — from a real prompt — and makes the total fit in 30 seconds. Point out that the mechanical team wrote the park and the back-off step, and that adding up the column is how they found the run was over 30 s.
 
 ---
 
@@ -275,10 +300,9 @@ Repo URL. Contact for questions.
 
 ## Assets needed for the deck
 
-- [ ] `[SCREENSHOT]` Gemini panel with a real mechanical-team prompt (slide 3)
+- [ ] `[SCREENSHOT]` Gemini panel with a real mechanical-team prompt, ideally as typed (slide 3)
 - [ ] `[SCREENSHOT]` Gemini panel with the mecanum prompt and generated code (slide 9 fallback)
 - [ ] Team photo or robot photo for the title slide
-- [ ] Actual day-by-day timeline from the build (slide 3a)
-- [ ] A real vague/specific prompt pair from the build (slide 8b)
+- [ ] Days for the eight sessions (slide 3a)
 - [ ] Fallback screen recording of the live demo (slide 9)
 - [ ] Repo URL once the repo exists

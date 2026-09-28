@@ -1,41 +1,42 @@
 # Checkpoint 2 — mecanum drive
 
-> **SIMULATED** — the guide's prompt, not yet The Hive's original. Replace when recovered.
+> **RECONSTRUCTED prompt, VERBATIM fix** — see the README for what that means.
 
 Guide page: `../guide/02-mecanum-drive.md`
-Produces: `../example-code/02-mecanum-drive/HiveTeleOp.java`
 
-## Prompt (as used)
+## Prompt (as used in the guide)
 
-> Create a new TeleOp OpMode in the TeamCode module called `HiveTeleOp`. For now, only implement the mecanum drive — no intake, no shooter yet.
+> **Prompt:**
 >
-> - Map the four drive motors by the names I gave you.
-> - Reverse `frontLeft` and `backLeft`.
-> - Left stick Y is forward/back (remember the gamepad Y axis is negative when pushed forward). Left stick X is strafe. Right stick X is rotation.
-> - Use standard mecanum mixing and scale the powers so no motor is asked for more than 1.0.
-> - Set the drive motors to brake when their power is zero, so the robot stops instead of coasting.
-> - Show each motor's power on telemetry so I can see what's happening.
+> Create a TeleOp OpMode in the TeamCode module called `MecanumTeleOp`. For now, only the drive — no intake, no flywheel yet.
+>
+> - Use the iterative `OpMode` style (`init()` and `loop()`), not `LinearOpMode`.
+> - Map the four drive motors by the names I gave you. Reverse `front_left_drive` and `back_left_drive`. Set all four to brake when power is zero.
+> - Tank drive: left stick Y = left wheels, right stick Y = right wheels. Remember the stick Y axis is negative when pushed forward.
+> - Strafe: average the two sticks' X values. Multiply by 1.1 to make up for mecanum strafe losses.
+> - D-pad: up/down drive straight at 0.5, left/right strafe at 0.5, overriding the sticks while held.
+> - Combine with standard mecanum mixing, normalize so no motor is asked for more than 1.0, then scale everything by 0.8.
+> - Telemetry: show all four motor powers.
 >
 > Use the `@TeleOp` annotation so it shows up on the Driver Hub.
 
-**Who typed it:** coordinator
-
 ## What it produced
 
-A `LinearOpMode` with a `while (opModeIsActive())` loop: four `hardwareMap.get` calls, two `setDirection(REVERSE)`, the standard `forward ± strafe ± rotate` mix, normalization, four `setPower` calls, telemetry. About 80 lines. Same shape as FIRST's `BasicOmniOpMode_Linear` sample, which is what Gemini has as context.
+`MecanumTeleOp.java`: iterative `OpMode`, four `hardwareMap.get` calls in `init()`, left motors reversed, tank + averaged-strafe mix, D-pad overrides, normalize then × 0.8, telemetry. Compare `../example-code/02-mecanum-drive/`.
 
-## What went wrong (most likely on first test)
+## What went wrong — and the real fix
 
-**Strafe mirrored.** Left stick left → robot goes right. The mecanum mix in the sample assumes an X roller pattern viewed from above; if the wheels are mounted the other way, strafe flips.
+Strafe was mirrored. The prompt the team typed, verbatim (Gemini's transcript, Session Iteration 3):
 
-## The fix prompt
+> **VERBATIM:** *hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix*
 
-> Strafe left moves the robot right. Flip the sign on the strafe term. Don't change anything else.
+Gemini flipped the strafe signs in the four mixing lines:
 
-## Second most likely
+```java
+frontLeftPower  = leftY + strafe;
+backLeftPower   = leftY - strafe;
+frontRightPower = rightY - strafe;
+backRightPower  = rightY + strafe;
+```
 
-**Robot spins on forward.** Two motors reversed wrong — usually the config has left/right swapped, not the code. Check by running one motor at a time:
-
-> Add a test mode: while I hold X, run only `frontLeft` forward at 0.3 power; A = `backLeft`, Y = `frontRight`, B = `backRight`. I'll use it to check which motor is which.
-
-(FIRST's sample has this exact test commented out. Once the config is right, ask Gemini to remove it.)
+Note what the prompt does *not* do: guess at the cause, name a variable, or suggest code. It says what was pressed and what happened. That was enough.

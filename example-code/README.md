@@ -1,43 +1,66 @@
 # Example Code
 
-Reference OpModes, one folder per checkpoint. Each folder holds the file as it should look **at the end of that checkpoint**, so you can compare yours after each test.
+The Hive's actual robot-in-one-week code, plus snapshots of what it looked like at each checkpoint.
 
 These are for **comparison, not copying**. The point of the workshop is that your team describes *your* robot and Gemini writes code that matches *your* hardware config. If you paste ours in, it won't match your motor names, directions, or timings, and you'll skip the part where your team learns to describe what they want.
 
-## Folders
+## `final/` — the real code, verbatim
 
-| Folder | Checkpoint | What it should do |
+Everything in The Hive's `TeamCode` folder at the end of the week, unchanged, including the `backup/` folder the team had Gemini create before big changes.
+
+| File | What it is |
+|---|---|
+| `MecanumTeleOp.java` | The TeleOp. Tank drive + strafe, D-pad precision moves, A/B/RB/LB/X subsystem controls, gamepad 2 flywheel tuning, LED status colors, endgame rumble warnings |
+| `Flywheel.java` | Flywheel subsystem: B toggles a 3-phase startup (100 ms reverse bump → 300 ms pause → run at 0.95) |
+| `Intake.java` | Intake subsystem: motor + two CR servos; collect (0.5), pulsed feed (100 ms on / 200 ms off), reject (−0.5) |
+| `LedController.java` | goBILDA LED servos: color = state (init, driving, collecting, spinning up, feeding, warning) |
+| `BaseAuto.java` | Shared autonomous state machine: back up, settle, spool, pulse-shoot, then (delayed only) back up, turn left, drive to park, back off the wall |
+| `AutoShootFirst.java` / `AutoShootDelayed.java` | The two match autos: 0 s delay (shoot and stop) and 15 s delay (shoot, then park) |
+| `BaseAutoExperimental.java` + `*Experimental.java`, `ExperimentalParkShootFirst.java` | The 4-ball experiment: shoot 3, scoop a 4th from in front of the robot, shoot it |
+| `Firewheel.java` | Feed-servo subsystem that isn't wired into any OpMode — looks like an abandoned experiment *(Ben: confirm)* |
+| `backup/` | Snapshots the team had Gemini save before refactors |
+
+## Per-checkpoint snapshots — derived
+
+The team didn't commit after each step, so these were **reconstructed** by stripping the final code down to what each checkpoint would have had. They compile (checked with `javac` against the SDK v12.0 API surface) but haven't been run on the robot in this form.
+
+| Folder | Checkpoint | What it has |
 |---|---|---|
-| `02-mecanum-drive/HiveTeleOp.java` | Mecanum drive | Drives in all directions from the left stick, rotates from the right |
-| `03-intake/HiveTeleOp.java` | Intake | ...plus intake in/out on the bumpers |
-| `04-shooter/HiveTeleOp.java` | Shooter | ...plus flywheel spin-up and feed on the right trigger (IDLE → SPINNING_UP → FEEDING) |
-| `05-refine/HiveTeleOp.java` | Refine | `flywheelRight` reversed, spin-up 2.0 s, cubed inputs, rotation × 0.7, slow mode on left trigger, deadzone |
-| `06-auto-shoot/HiveAutoShoot.java` | Autonomous v1 | LEAVE_WALL → SPIN_UP → SHOOT → DONE |
-| `07-auto-park/HiveAutoShoot.java` | Autonomous v2 | ...→ TURN_TO_PARK → DRIVE_TO_PARK → DONE |
-| `08-auto-tuning/HiveAutoShoot.java` | Autonomous v3 | ...plus a 28-second safety timeout |
-| `hardware-config.xml` | — | Example Robot Controller config these OpModes expect (names are what matter) |
+| `02-mecanum-drive/` | Mecanum drive | `MecanumTeleOp` — drive only. Tank + strafe, D-pad precision, 0.8 cap |
+| `03-intake/` | Intake | + `Intake` class: A toggles collect, LB/X toggles reject. No feed pulsing yet |
+| `04-shooter/` | Shooter | + `Flywheel` class with the 3-phase startup; `Intake` gets feed pulsing. **Before** the Checkpoint 5 fixes: 200 ms bump, 1.0 target, tuning on gamepad 1's D-pad |
+| `05-refine/` | Refine | Final `Flywheel` and `Intake` verbatim; `MecanumTeleOp` minus LEDs and rumble. All five real refinement prompts applied |
+| `06-auto-shoot/` | Autonomous v1 | `AutoShootFirst` as a single OpMode: back up → settle → spool → pulse-shoot 10 s → stop |
+| `07-auto-park/` | Autonomous v2 | Split into `BaseAuto` + `AutoShootFirst` (0 s) + `AutoShootDelayed` (15 s, parks). Before the back-off-wall step |
+| `08-auto-tuning/` | Autonomous v3 | Final `BaseAuto` minus LEDs: back-off-wall step, 8.3 s shoot for Delayed |
+| `hardware-config.xml` | — | Reconstructed config: real device names, servo ports from the source, motor ports are placeholders |
 
-## Where these came from
+Each autonomous folder also carries the `Flywheel.java` and `Intake.java` it depends on.
 
-**Status: simulated, not yet from the real robot.**
+## The numbers
 
-These were written by working through the guide's prompts in order, as Gemini would, against the FtcRobotController SDK v12.0 (2026–27 season) and the conventions in FIRST's own sample OpModes (`BasicOmniOpMode_Linear` and friends). Each file was compiled with `javac` against the SDK's API surface to catch syntax and API mistakes. They have **not** been built with Gradle or run on a robot yet.
+| Value | Where |
+|---|---|
+| Drive power cap | 0.8 |
+| Precision (D-pad) drive | 0.5 |
+| Strafe multiplier | 1.1 (compensates for mecanum strafe loss) |
+| Flywheel target | 0.95 (was 1.0) |
+| Flywheel reverse bump | −0.5 for 100 ms (was 200 ms) |
+| Flywheel pause after bump | 300 ms |
+| Intake collect / reject | 0.5 / −0.5 |
+| Feed pulse | 100 ms on at 0.5 / 200 ms off |
+| Auto: back up to shooting spot | −0.3 for 0.30 s, then settle 1.0 s |
+| Auto: spool before shooting | 2.0 s |
+| Auto: shoot duration | 10.0 s (Shoot First), 8.3 s (Shoot Delayed) |
+| Auto park (Delayed): extra back-up | −0.3 for 0.45 s |
+| Auto park: turn left | ±0.5 × 0.8 for 0.55 s |
+| Auto park: drive to zone | 0.4 × 0.8 for 3.0 s |
+| Auto park: back off wall | −0.5 for 0.10 s |
 
-Motor names, the park path (turn right ~90°, drive ~4 ft), and every number are placeholders that match the guide. When The Hive's real OpModes are recovered they replace these.
+## A timing note for Checkpoint 8
 
-- [ ] Replace with the real OpModes from the build (Ben)
-- [ ] Replace `hardware-config.xml` with the real config
-- [ ] Build once in Android Studio and deploy to confirm
+Add up Shoot Delayed: 15.0 + 0.30 + 1.0 + 2.0 + 8.3 + 0.45 + 0.55 + 3.0 + 0.10 = **30.7 s**. The Driver Station stops autonomous at 30.0 s, so as written the last ~0.7 s of the park drive and the back-off-wall step wouldn't run in a match. The shoot duration was already cut from 10.0 to 8.3 s for exactly this reason; it looks like it needs about one more second. This is the Checkpoint 8 exercise in the guide. *(Ben: confirm whether the delayed auto ever finished the back-off step in a match.)*
 
-## Tuning values used
-
-| Value | TeleOp (05) | Auto (08) |
-|---|---|---|
-| Flywheel power | 0.8 | 0.8 |
-| Spin-up | 2.0 s | 2.0 s |
-| Intake pulse on / off | 0.3 / 0.2 s | 0.3 / 0.2 s |
-| Shots | as long as trigger held | 3 pulses |
-| LEAVE_WALL | — | 0.5 power, 0.9 s |
-| TURN_TO_PARK | — | ±0.5 power, 0.6 s (clockwise) |
-| DRIVE_TO_PARK | — | 0.5 power, 2.0 s |
-| Safety timeout | — | 28 s |
+- [ ] Replace `hardware-config.xml` with the real exported config
+- [ ] Confirm `Firewheel.java` status
+- [ ] Confirm the 30.7 s arithmetic against what happened on the field

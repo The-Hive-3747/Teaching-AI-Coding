@@ -140,4 +140,4 @@ Prove the whole chain works with FIRST's code before you add your own.
 - [ ] Gemini panel is signed in
 - [ ] Run ▶ deploys to the Control Hub with "Install successfully finished"
 
-All five? Go to [Checkpoint 1 — Describe the robot](01-describe-the-robot.md).
+All six? Go to [Checkpoint 1 — Describe the robot](01-describe-the-robot.md).

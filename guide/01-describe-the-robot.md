@@ -1,6 +1,6 @@
 # Checkpoint 1 — Describe the Robot
 
-**At the end of this checkpoint:** You have a written description of every motor and servo — name, port, purpose, direction — and Gemini has read it. Every later prompt builds on this.
+**At the end of this checkpoint:** You have a written description of every motor and servo — name, port, purpose, direction — plus the control scheme, and Gemini has read it. Every later prompt builds on this.
 
 **Time:** 20–30 minutes. Most of it is the team agreeing on what things are called.
 
@@ -8,7 +8,7 @@
 
 ## 1.1 Why this comes first
 
-Gemini can only use the names you give it. If your hardware config calls the motor `frontLeft` and you tell Gemini "the front left motor," it will invent a name, the code will compile, and the robot will crash on startup with *"Unable to find a hardware device with name..."*.
+Gemini can only use the names you give it. If your hardware config calls the motor `front_left_drive` and you tell Gemini "the front left motor," it will invent a name, the code will compile, and the robot will crash on startup with *"Unable to find a hardware device with name..."*.
 
 So before writing any code: get the names right, write them down, and give the whole list to Gemini once.
 
@@ -18,19 +18,21 @@ On the Driver Hub: **⋮ menu → Configure Robot → (your config) → Edit**. 
 
 `[SCREENSHOT: Driver Hub Configure Robot screen showing motor ports with names]`
 
-Fill in a table like this. **Use the exact names, exact capitalization.**
+Fill in a table like this. **Use the exact names, exact capitalization.** This is The Hive's robot:
 
 | Name in config | Type | Hub / port | What it does | Direction notes |
 |---|---|---|---|---|
-| `frontLeft` | DC motor | Control Hub, motor 0 | Front-left drive wheel | Mounted mirrored — must be reversed |
-| `frontRight` | DC motor | Control Hub, motor 1 | Front-right drive wheel | |
-| `backLeft` | DC motor | Control Hub, motor 2 | Back-left drive wheel | Mounted mirrored — must be reversed |
-| `backRight` | DC motor | Control Hub, motor 3 | Back-right drive wheel | |
-| `intake` | DC motor | Expansion Hub, motor 0 | Pulls game pieces in | Positive power = in |
-| `flywheelLeft` | DC motor | Expansion Hub, motor 1 | Left shooter wheel | |
-| `flywheelRight` | DC motor | Expansion Hub, motor 2 | Right shooter wheel | Unknown — test; one of the two will likely need reversing |
+| `front_left_drive` | DC motor | Control Hub, motor 0 | Front-left mecanum wheel | Left side mounted mirrored — reverse |
+| `front_right_drive` | DC motor | Control Hub, motor 1 | Front-right mecanum wheel | |
+| `back_left_drive` | DC motor | Control Hub, motor 2 | Back-left mecanum wheel | Left side mounted mirrored — reverse |
+| `back_right_drive` | DC motor | Control Hub, motor 3 | Back-right mecanum wheel | |
+| `flywheel` | DC motor | Expansion Hub, motor 0 | Shooter wheel; launches balls | Reversed |
+| `intake` | DC motor | Expansion Hub, motor 1 | Pulls balls in; also feeds them into the flywheel | Positive = in |
+| `intake_servo_left` | CR servo | Control Hub, servo 1 | Left intake roller | Reversed so both pull in |
+| `intake_servo_right` | CR servo | Expansion Hub, servo 5 | Right intake roller | |
+| `led_left`, `led_right` | Servo | CH servo 3 / EH servo 3 | goBILDA status lights | (Checkpoint 9) |
 
-> **Ben:** replace this with The Hive's real config. The examples above are illustrative.
+> **Ben:** motor ports above are placeholders — the source doesn't say. Servo ports are from the code comments.
 
 Two rules:
 - If you don't know which way a motor spins yet, write "unknown — test." You'll find out at the next checkpoint.
@@ -38,42 +40,67 @@ Two rules:
 
 ## 1.3 Describe the controls
 
-Decide, as a team, what every button does. Write it down before asking for code.
+Decide, as a team, what every button does. Write it down before asking for code. The Hive's scheme:
 
 | Control | Action |
 |---|---|
-| Left stick | Drive: forward/back and strafe left/right |
-| Right stick X | Rotate |
-| Right bumper (hold) | Intake in |
-| Left bumper (hold) | Intake out (reverse) |
-| Right trigger (hold) | Spin up flywheels, then feed |
-| Gamepad 2 | (unused for now) |
+| **Gamepad 1** left stick Y | Left-side wheels forward/back (tank drive) |
+| Right stick Y | Right-side wheels forward/back |
+| Either stick X | Strafe (the two X values are averaged) |
+| D-pad | Precision moves at 0.5 power: up/down = drive, left/right = strafe |
+| A (press) | Toggle intake Collect |
+| B (press) | Toggle flywheel: reverse bump → pause → run. Press again to stop |
+| Right bumper (hold) | Pulse-feed balls into the running flywheel |
+| Left bumper or X (press) | Toggle Reject mode: everything runs backward at −0.5 |
+| **Gamepad 2** D-pad up/down | Flywheel target speed ±0.05 |
 
-> **Ben:** replace with the actual control scheme.
+(The gamepad 2 row is where the scheme *ended up*. The first version put flywheel tuning on gamepad 1's D-pad, which collided with precision driving; Checkpoint 5 has the one-sentence prompt that moved it.)
 
-## 1.4 Give it all to Gemini
+Two things here are worth copying regardless of your robot: **toggles for things that stay on** (collect, flywheel, reject) and **hold for things that should stop the moment you let go** (feeding). Say which is which in the prompt, or Gemini will guess.
+
+## 1.4 Describe the sequences
+
+Anything with timing or ordering, write out as steps before prompting. The Hive's flywheel startup:
+
+1. Press B.
+2. Flywheel **and intake** run backward at −0.5 for a moment, to push out any ball jammed against the wheel.
+3. Everything stops briefly so the flywheel isn't fighting itself.
+4. Flywheel spins forward at target power and stays there.
+5. Holding right bumper now pulses the intake — briefly on, longer off — so one ball feeds at a time.
+
+You'll put numbers on those "moments" in the prompt (The Hive started with 200 ms and 300 ms; the bump was later shortened to 100 ms). Numbers you can change. Missing steps you can't.
+
+## 1.5 Give it all to Gemini
 
 Open the Gemini panel. Paste in a single message that has everything above. This becomes the first message in the conversation, and every later prompt refers back to it.
 
 > **Prompt:**
 >
-> I'm writing code for a FIRST Tech Challenge robot using the FtcRobotController SDK. All my code goes in the TeamCode module. Here's the robot.
+> I'm writing code for a FIRST Tech Challenge robot using the FtcRobotController SDK (this project). All my code goes in the TeamCode module. Here's the robot.
 >
-> **Drive:** Mecanum drive, four motors. Names in the hardware config: `frontLeft`, `frontRight`, `backLeft`, `backRight`. The left-side motors are mounted mirrored, so `frontLeft` and `backLeft` need to be reversed for the robot to drive forward when all four get positive power.
+> **Drive:** Mecanum, four motors named `front_left_drive`, `front_right_drive`, `back_left_drive`, `back_right_drive`. The left-side motors are mounted mirrored and need to be reversed. I want tank-style driving: left stick Y drives the left wheels, right stick Y drives the right wheels, and the X of either stick strafes. Cap all drive power at 0.8. The D-pad should do slow precision moves at 0.5 power.
 >
-> **Intake:** One motor named `intake`. Positive power pulls game pieces into the robot.
+> **Flywheel:** One motor named `flywheel`, mounted so it needs to be reversed. It launches balls.
 >
-> **Shooter:** Two flywheel motors named `flywheelLeft` and `flywheelRight`, one on each side of the launch path, so the game piece is pushed out between them. One of them will probably need to be reversed; I'll tell you which after testing. The intake feeds pieces into the flywheels.
+> **Intake:** One motor named `intake` plus two continuous-rotation servos, `intake_servo_left` and `intake_servo_right`, that run together with it. The left servo is mounted mirrored and needs reversing. Positive power pulls balls in. The intake is also what feeds balls into the flywheel.
 >
-> **Controls (gamepad 1):** Left stick moves the robot (Y = forward/back, X = strafe). Right stick X rotates. Right bumper held = intake in. Left bumper held = intake out. Right trigger held = spin up the flywheels, then feed.
+> **Controls (gamepad 1):** A toggles the intake on and off for collecting. B toggles the flywheel. Right bumper, held, feeds balls into the flywheel. Left bumper or X toggles a reject mode that runs the intake and flywheel backward.
+>
+> **Flywheel startup sequence, when B is pressed:** run the flywheel and intake backward at −0.5 for 200 ms to clear a jammed ball, stop everything for 300 ms, then run the flywheel forward at full power and keep it there. Pressing B again stops it.
+>
+> **Feeding, when right bumper is held and the flywheel is running:** pulse the intake, 100 ms on at 0.5 power, 200 ms off, repeating, so balls feed one at a time.
+>
+> Everything must be non-blocking: use `ElapsedTime` and state machines, never `sleep()`, so driving stays responsive during the flywheel sequence.
 >
 > Don't write any code yet. Just confirm you understand the robot and tell me if anything is unclear.
 
 `[SCREENSHOT: Gemini panel with the robot description sent and Gemini's confirmation reply]`
 
-The last line matters. You want Gemini to read and confirm, not immediately generate 300 lines. If it asks a question, answer it. If it restates something wrong ("so the flywheels spin the same direction"), correct it now.
+The last line matters. You want Gemini to read and confirm, not immediately generate 500 lines. If it asks a question, answer it. If it restates something wrong, correct it now.
 
-## 1.5 Save the description
+> **Note:** this is a reconstruction. The Hive's original first prompt wasn't saved; Gemini's own summary of it is in [`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md) under "Session Iteration 1." The description above is what would produce the code the team ended up with.
+
+## 1.6 Save the description
 
 Put the same text in a file so you can re-paste it later (Gemini's memory of a conversation doesn't last forever, and you'll want to start fresh conversations sometimes).
 
@@ -84,8 +111,9 @@ Save it as `TeamCode/ROBOT.md` — or anywhere in the project. Having it in the 
 There's no robot test yet. The test is:
 
 - [ ] Every motor and servo in the hardware config is in your table, with its exact name
-- [ ] The team agrees on the control scheme
+- [ ] The team agrees on the control scheme, and which controls toggle vs. hold
+- [ ] Every timed sequence is written out as numbered steps
 - [ ] Gemini has confirmed the description and you've corrected anything it got wrong
 - [ ] The description is saved in a file
 
-All four? Go to [Checkpoint 2 — Mecanum drive](02-mecanum-drive.md).
+All five? Go to [Checkpoint 2 — Mecanum drive](02-mecanum-drive.md).

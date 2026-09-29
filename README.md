@@ -27,7 +27,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 5. **Refine** — the mechanical team's four real prompts
 6. **Autonomous: back off the wall and shoot** — first state machine, test
 7. **Autonomous: park** — Shoot First and Shoot Delayed, test
-8. **Autonomous: under 30 seconds** — add it up, non-contact park, final test
+8. **Autonomous: under 30 seconds** — add it up, keep the LEAVE points, final test
 9. **Extras** — LEDs, endgame rumble, the 4-ball experiment
 
 ## Status

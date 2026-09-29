@@ -1,6 +1,6 @@
 # Checkpoint 8 — Autonomous: Under 30 Seconds
 
-**At the end of this checkpoint:** Both autos run reliably, finish inside the 30-second period, and score the non-contact parking bonus.
+**At the end of this checkpoint:** Both autos run reliably, finish inside the 30-second period, and keep the LEAVE points by ending clear of the wall.
 
 **Time:** 30–60 minutes of runs.
 
@@ -36,7 +36,7 @@ Fine.
 | STATE_5B_PARK_DRIVE_FORWARD | 3.0 |
 | **Total** | **32.3** |
 
-**Over.** The Driver Station stops the OpMode at 30.0 s, so this robot would be cut off in the middle of the park drive, every match. Nothing in testing tells you this — you have to add it up. Ask Gemini to do the sum if you want a check:
+**Over.** The Driver Station stops the OpMode at 30.0 s, so this robot gets cut off in the middle of the park drive, every match — which is what you saw in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for. Ask Gemini to do the sum if you want a check:
 
 > "Add up the total duration of all states in `BaseAuto` for the delayed auto and tell me the worst-case run time."
 
@@ -48,7 +48,7 @@ The only state with slack is shooting: 10 seconds to launch three balls is gener
 >
 > In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else.
 
-That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s; on the field the robot was probably stopped by the Driver Station somewhere in the last second of the park drive. *Ben: confirm what actually happened.*) This is why you add it up: the fix is one more number.
+That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s. On the field the Driver Station would stop it about 0.6 s short of the end of the park drive, and the back-off step would never run — so the LEAVE points the team asked for in 8.3 would be lost anyway. *Ben: confirm what actually happened.*) This is why you add it up: the fix is one more number.
 
 > **Prompt:**
 >
@@ -56,9 +56,9 @@ That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final
 
 Or shorten the delay itself, if the alliance partner doesn't need the full 15. Either way, re-add the column until it's under 29 — including the 0.1 s step you're about to add.
 
-## 8.3 The non-contact park bonus — a real prompt
+## 8.3 Keeping the LEAVE points — a real prompt
 
-After the park drive, the robot ends pressed against the wall. The game gives more points for parking *without* touching it. The mechanical team's prompt, verbatim:
+After the park drive, the robot ends pressed against the wall. In BIOBUZZ, PARK (5 points) only needs the robot in the loading zone — but LEAVE (3 points) requires the robot to *not be touching the perimeter wall*, and both are assessed at the end of AUTO. A robot that parks by driving into the wall earns PARK and forfeits LEAVE. The mechanical team spotted this. Their prompt, verbatim:
 
 > *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
 
@@ -76,7 +76,7 @@ Whatever the total, add a hard stop so the robot can never run past the period:
 >
 > Add a safety timeout to `BaseAuto`. Use the existing `totalAutoTimer`. If it ever passes 29.5 seconds, regardless of the current state, set all drive motors to zero, stop the flywheel and intake, and go to `STATE_6_ALL_STOP`. Show the total elapsed time on telemetry (it may already be there).
 
-The Driver Station has its own 30-second timer that stops the OpMode, but this stops the robot *cleanly*, from your own code, before the hard cutoff — and it protects you during practice runs where nobody set a timer.
+The Driver Station's own 30-second timer will stop the OpMode regardless. This stops the robot *cleanly*, from your own code, half a second before that — every motor at zero in a known state, rather than whatever the DS interrupted.
 
 ## 8.5 Reliability runs
 
@@ -116,7 +116,7 @@ Time-based autonomous varies because of battery voltage, wheel slip, and where t
 
 ## 8.8 Save it — and tag it
 
-Commit: "Auto final — delayed under 30 s, 5/5, non-contact park."
+Commit: "Auto final — delayed under 30 s, 5/5, LEAVE kept."
 
 In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start adding odometry or changing the robot later, you can always get this version back.
 
@@ -126,7 +126,7 @@ In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start 
 
 - [ ] Both autos add up to under 29 s on paper
 - [ ] Safety timeout is in
-- [ ] Non-contact park confirmed
+- [ ] LEAVE confirmed: not touching the wall when the timer expires
 - [ ] 5 runs logged per auto; at least 4 succeed
 - [ ] Reader can explain the safety timeout and every state
 - [ ] Saved and tagged

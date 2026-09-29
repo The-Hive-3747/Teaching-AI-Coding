@@ -43,7 +43,7 @@ The autonomous is a **state machine**: a list of steps, each with a condition fo
 
 Each box is a state. Each arrow is "when the timer passes N seconds, go to the next state." That's all a state machine is.
 
-Two details that came from testing, not planning: the **settle** state (the robot rocks after braking, and the first shots went wild) and **no reverse bump in auto** (Gemini's log: "Reversing intake while preloaded with balls will eject them"). Both are in the prompt below because The Hive found them the hard way.
+Two details worth copying: the **settle** state (a robot rocks after braking; shooting while it rocks scatters shots) and **no reverse bump in auto** — Gemini's log of the build records the lesson: "Reversing intake while preloaded with balls will eject them. Preloaded balls require direct forward spooling." Both are in the prompt below.
 
 ## 6.2 Reuse the subsystems
 

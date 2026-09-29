@@ -104,7 +104,7 @@ Last step: prove the whole chain works before we write anything. Plug in the Con
 
 **[PIP: Driver Hub reconnecting, then showing the Robot Controller version]**
 
-On the Driver Hub, the robot controller restarts and reconnects. The OpMode list is empty — that's expected. FIRST's sample programs are all disabled, so nothing shows until we write our own. The version number matching what we just built is the proof.
+On the Driver Hub, the robot controller restarts and reconnects. The TeleOp and Autonomous lists are empty — that's expected. The Utility menu has two test OpModes the SDK ships enabled; TestHardware is handy for checking which way each motor spins. FIRST's sample programs are all disabled, so nothing shows until we write our own. The version number matching what we just built is the proof.
 
 **[TEXT CARD: Checkpoint 0 checklist, 6 items]**
 

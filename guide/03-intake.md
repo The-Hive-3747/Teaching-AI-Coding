@@ -22,7 +22,7 @@
 
 The line "Don't change any of the drive code — it works" is the important one. Without it, Gemini sometimes rewrites the whole file and changes things that were fine.
 
-The "own class" line is a choice. In The Hive's build, Gemini split the code into subsystem classes on its own, from the first prompt — nobody asked — and it paid off: the autonomous later reused `Intake` and `Flywheel` unchanged. The guide asks for it explicitly so it happens on purpose. If your team would rather keep everything in one file for now, leave that line out.
+The "own class" line is a choice. The Hive's code came out of the first session already split into subsystem classes (whether the coordinator asked for that or Gemini offered it isn't recorded), and it paid off: the autonomous later reused `Intake` and `Flywheel` unchanged. The guide asks for it explicitly so it happens on purpose. If your team would rather keep everything in one file for now, leave that line out.
 
 `[SCREENSHOT: Gemini panel showing the new Intake.java and the changes to MecanumTeleOp]`
 

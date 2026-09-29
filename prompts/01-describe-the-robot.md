@@ -26,7 +26,9 @@ Guide page: `../guide/01-describe-the-robot.md`
 >
 > Don't write any code yet. Just confirm you understand the robot and tell me if anything is unclear.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 A restatement of the robot. No code — the last line asks for confirmation first.
 

@@ -104,7 +104,7 @@ The last line matters. You want Gemini to read and confirm, not immediately gene
 
 Put the same text in a file so you can re-paste it later (Gemini's memory of a conversation doesn't last forever, and you'll want to start fresh conversations sometimes).
 
-Save it as `TeamCode/ROBOT.md` — or anywhere in the project. Having it in the project also means Gemini can find it as context.
+Save it as `AGENTS.md` in the project root. Android Studio's Agent mode reads a root `AGENTS.md` as standing instructions, so the description then rides along with every prompt without re-pasting. (Any file works for re-pasting by hand; `AGENTS.md` is the one Gemini picks up on its own.)
 
 ## Checkpoint 1 test
 

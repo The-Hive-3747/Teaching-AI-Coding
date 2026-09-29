@@ -24,7 +24,7 @@ These are the actual prompts the mechanical team typed, in order, from Gemini's 
 
 > *what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it*
 
-Gemini answered the question (200 ms) and shortened `REVERSE_DURATION_SEC` to 100 ms. Two things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it, and it names the symptom ("spitting balls out") rather than guessing a fix.
+Gemini shortened `REVERSE_DURATION_SEC` from 200 ms to 100 ms. Two things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it, and it names the symptom ("spitting balls out") rather than guessing a fix.
 
 ### "I thought gamepad 1 dpad was slow mode"
 
@@ -119,7 +119,7 @@ Mechanical team: every time you change something, write one line:
 | | | "Collect stops after bump" | No more jams on spool-up | Yes |
 | | | "Default 0.95" | Drivers' pick from practice | Yes |
 
-This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code. (Gemini can write this log for you — see [Checkpoint 9](09-extras.md).)
+This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code — and FIRST's published guidance on AI is that teams using it for code should give credit. Put a line in each file's header comment ("Written with Gemini in Android Studio from the team's descriptions; see BUILD_LOG.md") and mention it in the portfolio. (Gemini can write this log for you — see [Checkpoint 9](09-extras.md).)
 
 ## 5.8 Save it
 

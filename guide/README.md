@@ -25,7 +25,7 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 | 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical team's words (the fifth, the strafe fix, is in Checkpoint 2) |
 | 6 | [06-auto-shoot.md](06-auto-shoot.md) | An autonomous that backs off the wall and shoots |
 | 7 | [07-auto-park.md](07-auto-park.md) | ...split into Shoot First and Shoot Delayed, which parks |
-| 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...inside 30 seconds, with the non-contact park bonus |
+| 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...inside 30 seconds, ending clear of the wall for the LEAVE points |
 | 9 | [09-extras.md](09-extras.md) | LEDs, endgame rumble, the 4-ball experiment, next season |
 
 Also: [the-loop.md](the-loop.md) — the describe → generate → test → refine method, on one page. Read it first if you only read one thing.
@@ -36,7 +36,7 @@ The robot in this guide is The Hive's (FTC #3747) robot-in-one-week robot: mecan
 
 You need:
 - A laptop that runs Android Studio (Windows, Mac, or Linux; 16 GB RAM recommended, 8 GB minimum)
-- A Google account for Gemini in Android Studio. **Coaches:** sort this out before the session. Personal Google accounts may have an age requirement for Gemini, and most FTC students are minors, so plan on a coach-owned or school-provisioned account that the team uses on the workshop laptop. Check your school or district's policy on students using AI tools.
+- A Google account for Gemini in Android Studio. **Coaches: this needs a decision before the session.** Google's Generative AI terms, which Gemini in Android Studio is under, require users to be 18 or older, and most FTC students aren't. Sharing a coach's login with students works around the age rule but breaks Google's account terms, and we don't recommend it. The clean options are (a) a coach or adult mentor at the keyboard, typing what the student Describer says, or (b) a school- or district-provisioned account with Gemini enabled by the admin, used under the district's AI policy. Also know that the no-cost tier has daily usage quotas, and one shared account across many teams will hit them. *(Ben: decide which of these the workshop assumes and say so on slide 13.)*
 - Your robot's hardware configured on the Driver Hub or Robot Controller app, with a name for every motor and servo
 - The robot itself, or at least the Control Hub, charged and nearby
 

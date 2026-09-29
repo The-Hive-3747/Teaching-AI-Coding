@@ -18,7 +18,9 @@ Guide page: `../guide/03-intake.md`
 > - Set the intake motor to brake at zero power.
 > - Add the intake power and the reject-mode state to telemetry.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 New `Intake.java` (motor + two CR servos, A toggles collect with edge detection, reject at −0.5) and the LB/X reject toggle in `MecanumTeleOp`. Compare `../example-code/03-intake/`.
 

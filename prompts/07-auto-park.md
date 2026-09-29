@@ -21,7 +21,9 @@ Guide page: `../guide/07-auto-park.md`
 >   - then `STATE_6_ALL_STOP`.
 > - Same timer reset on every transition. Add the new states to telemetry.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 `BaseAuto.java` (abstract, holds the state machine, `DELAY` state, `getInitialDelaySeconds()`, `shouldParkTurnAndDrive()`, three park states) plus `AutoShootFirst.java` and `AutoShootDelayed.java`, each ~12 lines. Compare `../example-code/07-auto-park/`.
 

@@ -11,7 +11,7 @@ These are the mechanical team's words, from Gemini's transcript (Session Iterati
 > **VERBATIM:** *what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it*
 
 **Changed:** `REVERSE_DURATION_SEC` 0.200 → 0.100 in `Flywheel.java`.
-**Style:** asks the question first, names the symptom, says the direction of the change but not the number. Gemini picked 100 ms.
+**Style:** asks the question first, names the symptom, says the direction of the change but not the number. The transcript records the change (200 → 100 ms), not the reply.
 
 ## "I thought gamepad 1 dpad was slow mode"
 

@@ -23,7 +23,9 @@ Guide page: `../guide/06-auto-shoot.md`
 >
 > Reset the state timer on every transition. Call `flywheel.update(autoGamepad, false)` and `intake.update(...)` every loop, after the switch, so the subsystems run their own state machines. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 `AutoShootFirst.java` with a six-state machine, a simulated `Gamepad`, and a new `Flywheel.startDirect()`. Compare `../example-code/06-auto-shoot/`.
 
@@ -33,4 +35,4 @@ Gemini's transcript (Session Iteration 2) summarizes the first autonomous sessio
 
 ## The lesson that came from testing
 
-The first autonomous ran the normal B-button startup — reverse bump included — and ejected the preloaded balls. The fix was `startDirect()`: go straight to RUNNING. If your prompt doesn't say "balls are preloaded, skip the reverse bump," expect the same thing.
+Gemini's transcript records the lesson without the story: "Reversing intake while preloaded with balls will eject them. Preloaded balls require direct forward spooling (`startDirect()`)." If your prompt doesn't say "balls are preloaded, skip the reverse bump," expect to learn it the same way.

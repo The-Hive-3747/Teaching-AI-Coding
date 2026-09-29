@@ -24,7 +24,7 @@ Here's the plan as a picture. Each box is a state. Each arrow says "when the tim
 
 Back up: all four motors at minus 0.3 for 0.30 seconds, to shooting distance. Settle: motors off for a full second. Start flywheel: straight to target, wait 2.0 seconds. Pulse shooting: feed for 10 seconds. Stop shooting. All stop.
 
-Two of those boxes came from testing, not planning. The settle — because the robot rocks after it brakes, and our first shots went wild. And "straight to target" — no reverse bump in auto, because the balls are already loaded and the bump would spit them out. Gemini's log actually says that: "Reversing intake while preloaded with balls will eject them."
+Two of those boxes are worth copying. The settle — a robot rocks after it brakes, and shooting while it rocks scatters shots. And no reverse bump in auto: the balls are preloaded, and reversing the intake ejects them. That one's in Gemini's own log of our build as a lesson learned.
 
 And yes, there's no STATE_5. That's the park. It goes in next episode, and leaving the gap now means the names don't shift later.
 

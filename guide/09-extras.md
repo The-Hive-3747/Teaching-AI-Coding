@@ -23,7 +23,7 @@ The robot has two goBILDA LED modules on servo ports (`led_left`, `led_right`). 
 
 Why bother: the driver can see at a glance, from across the field, whether the flywheel is up to speed (purple) before pulling the feed trigger. That's a real match-time advantage from a "describe what you want" prompt.
 
-**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java).
+**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java). Two things to check on your robot: the color-to-position map (see the quirks list in [`example-code/README.md`](../example-code/README.md) — other teams' goBILDA code uses different numbers), and that "feeding" really means feeding (`isFeeding` in the shipped code is just "RB held").
 
 ## 9.2 Endgame warnings
 
@@ -49,6 +49,7 @@ The Hive's `BaseAutoExperimental` tries something clever: shoot the three preloa
 Two things it teaches:
 - **A state machine can get long and stay readable** as long as every state does one thing. Seventeen one-thing states beat five do-three-things states.
 - **Experiments get their own files.** `BaseAutoExperimental` and its subclasses live next to the working autos, so trying the trick never risked the match code. Ask for that: "Make a copy called `BaseAutoExperimental` and change only the copy."
+- **And they can be wrong.** The step that's supposed to back the 4th ball away by reversing the intake sets a gamepad button the `Intake` class never reads, so the intake runs forward instead (details in [`example-code/README.md`](../example-code/README.md)). It's a clean example of a description Gemini implemented literally — "press left bumper" — when the code path needed something else. The fix prompt: "In STATE_6 the intake should run in reverse. `Intake.update` doesn't read the left bumper; pass a reverse flag instead."
 
 **Code:** [`example-code/final/BaseAutoExperimental.java`](../example-code/final/BaseAutoExperimental.java) and its two subclasses.
 

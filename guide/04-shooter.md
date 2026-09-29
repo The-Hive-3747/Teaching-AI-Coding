@@ -60,7 +60,7 @@ Describe it as a sequence with those state names, and Gemini will write it as on
 
 The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during the startup sequence and you can't drive. If you don't know what that means, that's fine — just include the line. (Gemini's own summary of The Hive's build lists this as the number one lesson.)
 
-The D-pad tuning line is what The Hive's first version had. It conflicts with the D-pad precision drive from Checkpoint 2 — hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in: fixing it is a Checkpoint 5 exercise, with the real prompt.
+The D-pad tuning line reproduces a conflict from The Hive's build (the transcript's Session 6: "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). It collides with the D-pad precision drive from Checkpoint 2 — hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in: fixing it is a Checkpoint 5 exercise, with the real prompt.
 
 ## 4.3 Read what it wrote
 

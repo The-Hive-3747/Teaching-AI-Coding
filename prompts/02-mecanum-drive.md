@@ -20,7 +20,9 @@ Guide page: `../guide/02-mecanum-drive.md`
 >
 > Use the `@TeleOp` annotation so it shows up on the Driver Hub.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 `MecanumTeleOp.java`: iterative `OpMode`, four `hardwareMap.get` calls in `init()`, left motors reversed, tank + averaged-strafe mix, D-pad overrides, normalize then × 0.8, telemetry. Compare `../example-code/02-mecanum-drive/`.
 

@@ -92,7 +92,7 @@ Test **Shoot First** once to confirm nothing changed. Then **Shoot Delayed**: ro
 | Turns | About 90° left | |
 | Drives | Ends in the park zone | |
 | Done | Stops, stays | |
-| Total time | Add it up — see Checkpoint 8 | |
+| Total time | **The Driver Station will cut this run off at 30 s, mid-drive.** That's expected right now — Checkpoint 8 fixes it | |
 
 Three runs. Note where the robot ends up each time — use tape marks.
 
@@ -107,6 +107,7 @@ Three runs. Note where the robot ends up each time — use tape marks.
 | Robot drifts during the drive | "In STATE_5B, run the right motors slightly faster: right 0.45, left 0.4." |
 | Ends up in the right spot only sometimes | Time-based variance. Lower the power and lengthen the time. "Change STATE_5B to 0.3 power for 4.0 seconds." |
 | Shoot First now parks too | "`shouldParkTurnAndDrive()` should return false when the delay is 0." |
+| Cut off by the Driver Station before it finishes | Expected — the run is over 30 s. Go to Checkpoint 8. |
 | Shooting broke | Gemini touched earlier states. "Restore STATE_1 through STATE_4 exactly as they were." Or revert to the saved Checkpoint 6 files. |
 
 Tuning table:
@@ -123,7 +124,7 @@ Commit: "Two autos: shoot first, shoot delayed + park."
 ## Checkpoint 7 test
 
 - [ ] Shoot First still passes the Checkpoint 6 test
-- [ ] Shoot Delayed: three runs in a row end in the park zone
+- [ ] Shoot Delayed: three runs in a row are heading into the park zone when the DS timer cuts them off (finishing inside 30 s is Checkpoint 8)
 - [ ] Reader can trace the full state sequence and say which file holds the delay
 - [ ] Saved
 

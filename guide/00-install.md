@@ -8,7 +8,7 @@
 
 ## 0.1 Install Android Studio
 
-1. Go to https://developer.android.com/studio and download the installer for your OS.
+1. Go to https://developer.android.com/studio and download the installer for your OS. You need **Android Studio Narwhal 3 Feature Drop or later** for this season's SDK; the current download is fine. If a laptop already has an older Android Studio, update it first (**Help → Check for Updates**).
 2. Run it. Accept the defaults. When it asks about install type, choose **Standard**.
 3. First launch will download the Android SDK. Let it finish. This is the slow part.
 
@@ -44,8 +44,9 @@ Android Studio will show a few notifications during or right after the first syn
 
 | Pop-up | What it says (roughly) | Click |
 |---|---|---|
-| **Gradle Daemon JVM toolchain** | "Migrate to Gradle Daemon JVM criteria" / "Gradle JDK configuration has changed" | **Accept / Migrate.** This tells Gradle which Java to use and is harmless. Declining leaves you with JDK-mismatch errors later. |
+| **Gradle Daemon JVM toolchain** | "Migrate to Gradle Daemon JVM criteria" / "Gradle JDK configuration has changed" | **Accept / Migrate.** This tells Gradle which Java to use and is harmless either way; accepting keeps everyone on the same setting. |
 | **Gradle / Android Gradle Plugin upgrade** | "A newer version of Gradle / AGP is available. Upgrade?" or the **Upgrade Assistant** | **Decline / Don't ask again.** The FTC project pins the versions it's tested with. Upgrading breaks the build, and the fix is re-cloning. |
+| **AGP *downgrade*** (older Android Studio only) | "This project uses a newer Android Gradle Plugin. Downgrade?" | **Decline — and update Android Studio.** SDK v12.0 needs **Android Studio Narwhal 3 Feature Drop or later**; older versions can't sync it and offer to downgrade instead. The SDK's own README says: do not do this. School laptops with a pre-installed older Studio will hit this. |
 | **Windows Defender** (Windows only) | "Windows Defender might be impacting your build performance" | **Accept the automatic exclusion.** Defender scanning every file Gradle touches makes builds 2–5× slower. |
 
 `[SCREENSHOT: the Daemon JVM toolchain migration prompt, with the accept button highlighted]`
@@ -81,9 +82,7 @@ In the **Project** panel on the left, switch the dropdown at the top to **Androi
 
 ## 0.4 Keep Gemini focused on your code
 
-The FtcRobotController module contains dozens of sample OpModes. If Gemini reads all of them as context, it gets confused about which robot it's writing for and may copy sample hardware names instead of yours.
-
-Tell Gemini to ignore the samples:
+The FtcRobotController module contains dozens of sample OpModes. The Hive excluded them so Gemini would stop reaching for sample hardware names instead of theirs. There's a trade-off: the samples are also Gemini's best in-project evidence of this season's API, so if you start seeing `cannot find symbol` errors on SDK calls after excluding them, un-exclude and see if it helps. Start the way The Hive did:
 
 1. In the Project panel, switch to **Project** view (the dropdown at the top).
 2. Right-click the project root folder → **New → File**. Name it `.aiexclude` (with the leading dot).
@@ -104,7 +103,8 @@ Tell Gemini to ignore the samples:
 1. **View → Tool Windows → Gemini** (or click the Gemini icon on the right-hand toolbar).
 2. Click **Sign in** and use the Google account your coach set up.
 3. Gemini will ask whether it can use your project's code as context. Say **yes** — this is what lets it see your hardware names and edit your files.
-4. Check which **mode** the panel is in. This guide assumes **Agent mode**, where Gemini creates and edits files in your project directly. In plain chat ("Ask") mode, Gemini shows code in the panel and you insert it yourself — the method still works, you just do more copying. Agent mode needs a recent Android Studio; if you don't see it, update.
+4. Check which **mode** the panel is in. This guide assumes **Agent mode**, where Gemini creates and edits files in your project directly — but it **waits for you to accept or reject each change**. That Accept step is where teams stall: nothing happens until someone clicks it. In plain chat ("Ask") mode, Gemini shows code in the panel and you insert it yourself — the method still works, you just do more copying. Agent mode needs a recent Android Studio; if you don't see it, update.
+5. Know the limits: the no-cost tier has a daily usage quota per account. A workshop of many teams on one account will hit it. And on the no-cost tier, check the setting for whether your prompts and code may be used for training — Google says paid plans never are.
 
 `[SCREENSHOT: Gemini panel after sign-in, mode selector showing Agent, empty prompt box visible]`
 
@@ -122,7 +122,7 @@ Prove the whole chain works with FIRST's code before you add your own.
 2. At the top of Android Studio, make sure the run configuration says **TeamCode** and the device dropdown shows your Control Hub (it'll appear as something like "REV Robotics Control Hub").
 3. Click the green **Run** ▶ button.
 4. Wait for "Install successfully finished" in the bottom panel.
-5. The Robot Controller app on the Control Hub restarts. On the Driver Hub, wait for it to reconnect, then check the Robot Controller version shown on the Driver Hub matches the SDK version you just built (it's in the FtcRobotController project's release notes). The OpMode list will be **empty** — the sample OpModes are all disabled by default, so nothing shows until you write your own. That's expected.
+5. The Robot Controller app on the Control Hub restarts. On the Driver Hub, wait for it to reconnect, then check the Robot Controller version shown on the Driver Hub matches the SDK version you just built (it's in the FtcRobotController project's release notes). The TeleOp and Autonomous lists will be **empty** — the sample OpModes are all disabled by default, so nothing shows until you write your own. The **Utility** menu (Driver Station 11.2 or later) shows two entries the SDK ships enabled, `TestGamepad` and `TestHardware`. That's expected — and `TestHardware` is useful: it lets you run each configured motor by name, which is how to fill in the "unknown — test" direction column in Checkpoint 1 before writing any code.
 
 `[SCREENSHOT: run configuration dropdown showing TeamCode and the Control Hub as the target device]`
 

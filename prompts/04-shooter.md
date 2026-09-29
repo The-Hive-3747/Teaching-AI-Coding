@@ -24,7 +24,9 @@ Guide page: `../guide/04-shooter.md`
 > - All timing with `ElapsedTime`, no `sleep()` — the drive must keep responding through the whole sequence.
 > - Telemetry: flywheel phase, target power, intake power, whether feeding is active.
 
-## What it produced
+## What it should produce
+
+*(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
 New `Flywheel.java` with `enum StartPhase { IDLE, REVERSE_BUMP, PAUSE, RUNNING }`, B edge-detect, two timed transitions, D-pad tuning; `Intake.update` gains the three flywheel-state parameters and the 100/200 ms pulse. Compare `../example-code/04-shooter/` (pre-refinement: 200 ms bump, 1.0 target, tuning on gamepad 1).
 

@@ -63,4 +63,4 @@ Then back to Generate.
 
 ## The one rule
 
-**One change per trip around the loop.** If you change three things and something breaks, you don't know which change did it. If you change one thing, you do.
+**One change per trip around the loop.** If you change three things and something breaks, you don't know which change did it. If you change one thing, you do. (The Hive's first session asked for everything at once and it mostly worked — but the three bugs in it took three separate sessions to find. One-at-a-time is how you find them the first time.)

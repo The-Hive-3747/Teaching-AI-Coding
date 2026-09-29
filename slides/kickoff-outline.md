@@ -31,19 +31,19 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 ## 3. What happened in our robot-in-one-week (1–2 slides)
 
 **Slide 3a:** Timeline graphic, one line per session. These are Gemini's own "session iterations" from its log of the build. *(Ben: put days on them.)*
-- Session 1: Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes — Gemini's own choice, not asked for
+- Session 1: Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes
 - Session 2: First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
 - Session 3: Mechanical team: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
 - Session 4: *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
 - Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?"* — non-contact park
 - Session 6: *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
 - Session 7: *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* — spool-up jam fixed
-- Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in
+- Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
 
 **Slide 3b:** The punchline, alone on a slide:
-> "Sessions 3 through 8 were the mechanical team. Nobody on that team writes Java."
+> "After the first build, the mechanical team completed the autonomous, tuned the timings and power, and created the park routine. Nobody on that team writes Java."
 
-**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did sessions 3–8. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
+**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did the later sessions. Be precise about who did what: the coordinator described the architecture and got the first TeleOp and the first autonomous state machines; the mechanical team then completed the autonomous, tuned it, and created the park routine. Gemini's transcript doesn't record who typed each prompt, so this attribution is the coordinator's account. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
 
 `[SCREENSHOT: the Gemini panel in Android Studio showing one of those prompts as typed — the "spitting balls out" one if it's still in the history]`
 
@@ -108,7 +108,7 @@ Mention up front: check with your coach about your school's or district's AI pol
 5. Refine: the mechanical team's four real prompts
 6. Auto v1: back off the wall and shoot → **test**
 7. Auto v2: Shoot First / Shoot Delayed, which parks → **test**
-8. Auto v3: under 30 seconds, non-contact park → **test**
+8. Auto v3: under 30 seconds, keep the LEAVE points → **test**
 9. Extras: LEDs, endgame rumble, the 4-ball experiment
 
 **Notes:** Point out that "test" appears after every step. The single biggest mistake is asking for everything at once. Small steps mean when something breaks, you know exactly which description caused it.
@@ -210,7 +210,7 @@ Specific:
 - If Gemini rewrites something that already worked, say "only change X."
 - The reader has to be able to explain the code before the team moves on.
 
-**Notes:** The Reader role is how you answer the "aren't they just cheating" question. If a student can explain what the state machine does and why the timings are what they are, they learned it. Also mention account setup: coaches should sort out Google accounts for Gemini before the session, and check any age or district restrictions.
+**Notes:** The Reader role is our answer to the "aren't they just cheating" question. If a student can explain what the state machine does and why the timings are what they are, they learned it. Also the account question, plainly: Google's Generative AI terms require users to be 18+, so students shouldn't be on a personal Gemini login and sharing a coach's login breaks account terms. The workable options are an adult at the keyboard typing what the student Describer says, or a district-provisioned account with Gemini enabled by the admin. Say which one this workshop assumes.
 
 ---
 
@@ -271,7 +271,7 @@ Specific:
 
 **Slide:** Checklist.
 - [ ] A laptop that can run Android Studio (Windows, Mac, or Linux; 8 GB RAM minimum, 16 GB better)
-- [ ] A Google account signed in to Gemini in Android Studio
+- [ ] A Gemini in Android Studio account that's allowed for your students — see the coach note on slide 11 (18+ terms; adult at the keyboard or a district account)
 - [ ] The FtcRobotController project cloned
 - [ ] Your robot's hardware config done on the Driver Hub / Robot Controller (names and ports)
 - [ ] A written list of every motor and servo: name, port, purpose, direction
@@ -293,7 +293,7 @@ Repo URL. Contact for questions.
 **Notes:** Q&A. Likely questions and short answers:
 - *"Does this work with Blocks / OnBot Java?"* — The method does; the tool doesn't. Gemini is inside Android Studio. Teams on OnBot Java could use the web version of Gemini and paste, but this workshop is built around Android Studio.
 - *"What about odometry / Road Runner?"* — Same method, more to describe. Start with time-based; add odometry once you have it wired.
-- *"Is this allowed?"* — FIRST has published guidance on generative AI; check the current season's Game Manual and that guidance before the session, and check your school's policy. The safe position regardless: students must understand and be able to explain the code they submit. *(Ben: confirm the current wording and whether disclosure is expected before putting this on a slide.)*
+- *"Is this allowed?"* — FIRST has published guidance on generative AI; check the current season's Game Manual and that guidance before the session, and check your school's policy. The safe position regardless: students must understand and be able to explain the code they submit, and the team credits the AI in the code and portfolio (FIRST's published guidance asks for attribution). *(Ben: confirm the current wording and whether disclosure is expected before putting this on a slide.)*
 - *"Will it work with ChatGPT / Claude instead?"* — The describe/test/refine method works with any of them. Gemini in Android Studio is convenient because it sees your project and edits files in place.
 
 ---

@@ -20,7 +20,7 @@ Before Gemini writes a single line, it needs to know what it's writing for. This
 
 Start on the Driver Hub. Configure Robot, open your config, and go port by port. Every motor and servo has a name here. Those exact names — same spelling, same capitalization — are what Gemini has to use. If the config says `front_left_drive` and you tell Gemini "the front left motor," it invents a name, the code compiles, and the robot crashes on Init with "Unable to find a hardware device."
 
-**[SCREEN: a table being filled in — text editor or the guide's ROBOT.md]**
+**[SCREEN: a table being filled in — text editor or the guide's AGENTS.md]**
 
 So write them all down. Name, type, which hub and port, what it does, and which way it spins. If you don't know the direction yet, write "unknown — test." You'll find out when you test.
 
@@ -60,9 +60,9 @@ Don't write code yet. We want Gemini to read it back to us, so we can catch misu
 
 Here's the reply. It restates the robot. Read this carefully. If it restates the startup as "spin the flywheel backward for 200 milliseconds" and leaves the intake out — that's wrong, and this is the moment to fix it. Just reply: "No — the intake reverses with the flywheel during the bump."
 
-**[SCREEN: saving ROBOT.md into the TeamCode folder]**
+**[SCREEN: saving AGENTS.md in the project root]**
 
-Last thing: save the description as a file in the project. Gemini conversations don't last forever, and you'll want to paste this again later. Putting it in the project also means Gemini can find it.
+Last thing: save the description as a file in the project. Save it as AGENTS.md in the project root. Agent mode reads that file as standing instructions, so the description rides along with every prompt from now on.
 
 **[TEXT CARD: Checkpoint 1 checklist, 5 items]**
 
@@ -79,7 +79,7 @@ Checkpoint one: every device in the table with its exact name, the team agrees o
 - [ ] Startup sequence as numbered steps
 - [ ] Gemini prompt paste
 - [ ] Gemini reply
-- [ ] Saving ROBOT.md
+- [ ] Saving AGENTS.md
 
 ## Notes
 

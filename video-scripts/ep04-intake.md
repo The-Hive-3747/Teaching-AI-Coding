@@ -26,7 +26,7 @@ That second sentence is the most important line in this episode. Without it, Gem
 
 Then: put it in its own class, `Intake`, with init, update, and stop. The motor named `intake` plus the two CR servos, `intake_servo_left` reversed and `intake_servo_right` — always running together. Press A to toggle collect at 0.5, with edge detection so holding A doesn't flicker it. Left bumper or X toggles reject at minus 0.5. Reject overrides collect; A while rejecting switches to collect. Brake at zero. Telemetry.
 
-The "own class" line is a choice. In our build, Gemini did this split on its own from the first prompt — nobody asked. We ask for it here so it happens on purpose.
+The "own class" line is a choice. Our build came out of the first session already split this way, and it paid off later. We ask for it here so it happens on purpose.
 
 **[SCREEN: Gemini generating, 4×]**
 

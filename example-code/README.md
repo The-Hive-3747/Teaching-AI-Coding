@@ -28,7 +28,7 @@ The team didn't commit after each step, so these were **reconstructed** by strip
 |---|---|---|
 | `02-mecanum-drive/` | Mecanum drive | `MecanumTeleOp` — drive only. Tank + strafe, D-pad precision, 0.8 cap |
 | `03-intake/` | Intake | + `Intake` class: A toggles collect, LB/X toggles reject. No feed pulsing yet |
-| `04-shooter/` | Shooter | + `Flywheel` class with the 3-phase startup; `Intake` gets feed pulsing. **Before** the Checkpoint 5 fixes: 200 ms bump, 1.0 target, tuning on gamepad 1's D-pad |
+| `04-shooter/` | Shooter | + `Flywheel` class with the 3-phase startup; `Intake` gets feed pulsing. Rolled back to a *plausible* pre-Checkpoint-5 state (200 ms bump, 1.0 target, tuning on gamepad 1's D-pad) — not recovered history. The only real intermediate artifact, `final/backup/FlywheelBackup.java`, has tuning on gamepad 2's *triggers* with a gamepad-1 fallback, so the team's actual path had at least one more step than the guide shows |
 | `05-refine/` | Refine | Final `Flywheel` and `Intake` verbatim; `MecanumTeleOp` minus LEDs and rumble. All five real refinement prompts applied |
 | `06-auto-shoot/` | Autonomous v1 | `AutoShootFirst` as a single OpMode: back up → settle → spool → pulse-shoot 10 s → stop |
 | `07-auto-park/` | Autonomous v2 | Split into `BaseAuto` + `AutoShootFirst` (0 s) + `AutoShootDelayed` (15 s, parks). Before the back-off-wall step |
@@ -60,6 +60,16 @@ Each autonomous folder also carries the `Flywheel.java` and `Intake.java` it dep
 ## A timing note for Checkpoint 8
 
 Add up Shoot Delayed: 15.0 + 0.30 + 1.0 + 2.0 + 8.3 + 0.45 + 0.55 + 3.0 + 0.10 = **30.7 s**. The Driver Station stops autonomous at 30.0 s, so as written the last ~0.7 s of the park drive and the back-off-wall step wouldn't run in a match. The shoot duration was already cut from 10.0 to 8.3 s for exactly this reason; it looks like it needs about one more second. This is the Checkpoint 8 exercise in the guide. *(Ben: confirm whether the delayed auto ever finished the back-off step in a match.)*
+
+## Known quirks in the final code
+
+Found while reviewing, left in place because `final/` is verbatim. Each is a good Checkpoint-5-style exercise.
+
+- **`Intake.isFeeding()` is true whenever RB is held**, flywheel running or not (`Intake.java`), so the LED goes white and telemetry says feeding is ACTIVE even when nothing feeds. One-line fix: `isFeeding = gamepad.right_bumper && isFlywheelOn;`.
+- **The 4-ball experiment's "reverse the intake" step doesn't reverse.** `BaseAutoExperimental` STATE_6 sets `autoGamepad.left_bumper = true`, but `Intake.update()` never reads `left_bumper` — reject is driven by the `isReversed` parameter, which the autos pass as `false`. Collect is still on from STATE_5, so the intake runs *forward* during that state. The experiment can't have worked as described; a `reverse()` method on `Intake`, or passing `autoGamepad.left_bumper` as `isReversed`, fixes it.
+- **`Flywheel.startDirect()` hard-codes 0.95** separately from the default `targetPower`. Change one without the other and TeleOp and auto silently diverge. A Checkpoint 5 "change the default speed" prompt should say "in both places."
+- **LED color map unverified.** `LedController` maps colors across a 500–2500 µs range (red at 0.00 … white at 1.00). Other teams' goBILDA indicator code uses a narrower map (red ≈ 0.28, green 0.50, blue ≈ 0.61, violet ≈ 0.72, white 1.0). If the colors on the robot didn't match the names in the code, this is why. *(Ben: did the LEDs show the intended colors?)*
+- **`MecanumTeleOp`'s header says "2Hz flashing"**; the code flashes at 1 Hz. The code is right (the rules flag >2 Hz).
 
 - [ ] Replace `hardware-config.xml` with the real exported config
 - [ ] Confirm `Firewheel.java` status

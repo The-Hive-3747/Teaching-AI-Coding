@@ -20,7 +20,7 @@ And here's the more important thing.
 
 **[B-ROLL: mechanical team members at a laptop, Gemini panel visible]**
 
-After the first couple of days, I wasn't writing the prompts. The mechanical team was. They adjusted the timings, changed the power levels, and built the entire autonomous routine — shoot, then drive to park — while I was across the room helping other teams.
+After the first couple of days, I wasn't writing the prompts. The mechanical team was. They completed the autonomous, adjusted the timings, changed the power levels, and created the park routine — while I was across the room helping other teams.
 
 Nobody on the mechanical team writes Java.
 

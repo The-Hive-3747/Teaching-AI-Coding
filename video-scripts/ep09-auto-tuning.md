@@ -92,7 +92,7 @@ Five for five.
 
 **[TEXT CARD: "Slower is more consistent" — with the STATE_5B 0.4 / 3.0 → 0.3 / 4.0 example]**
 
-The general rule for time-based auto: if a distance varies run to run, lower the power and lengthen the time. Slower is more consistent. Every time. Then re-add the total.
+The general rule for time-based auto: if a distance varies run to run, lower the power and lengthen the time. Slower is more consistent — in our experience, nearly every time. Then re-add the total.
 
 **[FOOTAGE: battery voltage on the Driver Hub]**
 

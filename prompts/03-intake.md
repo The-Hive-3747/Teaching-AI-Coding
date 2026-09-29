@@ -10,7 +10,7 @@ Guide page: `../guide/03-intake.md`
 >
 > Add the intake to `MecanumTeleOp`. Don't change any of the drive code — it works.
 >
-> - Put the intake in its own class, `Intake`, with `init(hardwareMap)`, `update(gamepad, isReversed)`, and `stop()` methods, so the OpMode stays readable.
+> - Put the intake in its own class, `Intake`, so the OpMode stays readable. **An autonomous OpMode will use this class later too**, so put the behavior in plain methods — `setCollect(boolean on)`, `setReject(boolean on)`, `stop()` — and have `update(gamepad, isReversed)` only map buttons to those methods. Nothing inside the class should depend on a gamepad except `update`.
 > - It has the motor `intake` and the two CR servos `intake_servo_left` (reversed) and `intake_servo_right`. They always run together at the same power.
 > - Pressing A toggles Collect mode: 0.5 power, pulling balls in. Press again to stop. Use edge detection so holding A doesn't flicker it.
 > - Pressing left bumper or X toggles Reject mode: −0.5 power. Reject overrides Collect.

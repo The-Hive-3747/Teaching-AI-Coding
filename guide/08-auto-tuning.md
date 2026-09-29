@@ -36,7 +36,7 @@ Fine.
 | STATE_5B_PARK_DRIVE_FORWARD | 3.0 |
 | **Total** | **32.3** |
 
-**Over.** The Driver Station stops the OpMode at 30.0 s, so this robot gets cut off in the middle of the park drive, every match — which is what you saw in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for. Ask Gemini to do the sum if you want a check:
+**Over.** The Driver Station stops the OpMode at 30 s, so at this total the robot gets cut off in the park drive — which is what you'd see in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for. Ask Gemini to do the sum if you want a check:
 
 > "Add up the total duration of all states in `BaseAuto` for the delayed auto and tell me the worst-case run time."
 
@@ -48,7 +48,7 @@ The only state with slack is shooting: 10 seconds to launch three balls is gener
 >
 > In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else.
 
-That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s. On the field the Driver Station would stop it about 0.6 s short of the end of the park drive, and the back-off step would never run — so the LEAVE points the team asked for in 8.3 would be lost anyway. *Ben: confirm what actually happened.*) This is why you add it up: the fix is one more number.
+That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s on paper — and on the field it finished, off the wall. So the cutoff isn't as sharp as the arithmetic suggests. Don't bank on that: a run that only works because the timer is generous is one battery-voltage dip from not working. Add it up, and leave real margin.) This is why you add it up: the fix is one more number.
 
 > **Prompt:**
 >

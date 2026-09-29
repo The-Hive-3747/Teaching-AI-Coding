@@ -17,7 +17,7 @@ Everything in The Hive's `TeamCode` folder at the end of the week, unchanged, in
 | `BaseAuto.java` | Shared autonomous state machine: back up, settle, spool, pulse-shoot, then (delayed only) back up, turn left, drive to park, back off the wall |
 | `AutoShootFirst.java` / `AutoShootDelayed.java` | The two match autos: 0 s delay (shoot and stop) and 15 s delay (shoot, then park) |
 | `BaseAutoExperimental.java` + `*Experimental.java`, `ExperimentalParkShootFirst.java` | The 4-ball experiment: shoot 3, scoop a 4th from in front of the robot, shoot it |
-| `Firewheel.java` | Feed-servo subsystem that isn't wired into any OpMode — looks like an abandoned experiment *(Ben: confirm)* |
+| `Firewheel.java` | Subsystem for the original **transfer mechanism** — two CR servos that carried balls from the intake to the flywheel. The mechanism had to be ripped out mid-week for mechanical problems, and the team recoded quickly so the intake fed the flywheel directly. The class was left behind, unused |
 | `backup/` | Snapshots the team had Gemini save before refactors |
 
 ## Per-checkpoint snapshots — derived
@@ -36,6 +36,8 @@ The team didn't commit after each step, so these were **reconstructed** by strip
 | `hardware-config.xml` | — | Reconstructed config: real device names, servo ports from the source, motor ports are placeholders |
 
 Each autonomous folder also carries the `Flywheel.java` and `Intake.java` it depends on.
+
+**Note on the autos (06–08):** like the real code they're derived from, these drive the subsystems through a *simulated* `Gamepad` (`autoGamepad.right_bumper = true`). The guide's Checkpoint 6 asks for direct method calls instead and explains why the fake-gamepad version shipped: nobody told Gemini an autonomous was coming when it wrote the subsystem classes. Read the snapshots as "what happened," and the guide as "what to ask for."
 
 ## The numbers
 
@@ -59,18 +61,17 @@ Each autonomous folder also carries the `Flywheel.java` and `Intake.java` it dep
 
 ## A timing note for Checkpoint 8
 
-Add up Shoot Delayed: 15.0 + 0.30 + 1.0 + 2.0 + 8.3 + 0.45 + 0.55 + 3.0 + 0.10 = **30.7 s**. The Driver Station stops autonomous at 30.0 s, so as written the last ~0.7 s of the park drive and the back-off-wall step wouldn't run in a match. The shoot duration was already cut from 10.0 to 8.3 s for exactly this reason; it looks like it needs about one more second. This is the Checkpoint 8 exercise in the guide. *(Ben: confirm whether the delayed auto ever finished the back-off step in a match.)*
+Add up Shoot Delayed: 15.0 + 0.30 + 1.0 + 2.0 + 8.3 + 0.45 + 0.55 + 3.0 + 0.10 = **30.7 s**, against a 30-second period. On the field it finished, off the wall — so the Driver Station's cutoff has a little slack. The shoot duration had already been cut from 10.0 to 8.3 s. The guide's Checkpoint 8 cuts it further, to 6.5 s, because slack isn't margin: a low battery or a slow loop eats it.
 
 ## Known quirks in the final code
 
-Found while reviewing, left in place because `final/` is verbatim. Each is a good Checkpoint-5-style exercise.
+Found by reading the code, not by the team on the robot — they didn't see either of the first two in practice. Left in place because `final/` is verbatim. Each is a good Checkpoint-5-style exercise.
 
 - **`Intake.isFeeding()` is true whenever RB is held**, flywheel running or not (`Intake.java`), so the LED goes white and telemetry says feeding is ACTIVE even when nothing feeds. One-line fix: `isFeeding = gamepad.right_bumper && isFlywheelOn;`.
 - **The 4-ball experiment's "reverse the intake" step doesn't reverse.** `BaseAutoExperimental` STATE_6 sets `autoGamepad.left_bumper = true`, but `Intake.update()` never reads `left_bumper` — reject is driven by the `isReversed` parameter, which the autos pass as `false`. Collect is still on from STATE_5, so the intake runs *forward* during that state. The experiment can't have worked as described; a `reverse()` method on `Intake`, or passing `autoGamepad.left_bumper` as `isReversed`, fixes it.
 - **`Flywheel.startDirect()` hard-codes 0.95** separately from the default `targetPower`. Change one without the other and TeleOp and auto silently diverge. A Checkpoint 5 "change the default speed" prompt should say "in both places."
-- **LED color map unverified.** `LedController` maps colors across a 500–2500 µs range (red at 0.00 … white at 1.00). Other teams' goBILDA indicator code uses a narrower map (red ≈ 0.28, green 0.50, blue ≈ 0.61, violet ≈ 0.72, white 1.0). If the colors on the robot didn't match the names in the code, this is why. *(Ben: did the LEDs show the intended colors?)*
 - **`MecanumTeleOp`'s header says "2Hz flashing"**; the code flashes at 1 Hz. The code is right (the rules flag >2 Hz).
 
 - [ ] Replace `hardware-config.xml` with the real exported config
-- [ ] Confirm `Firewheel.java` status
-- [ ] Confirm the 30.7 s arithmetic against what happened on the field
+- [x] `Firewheel.java` explained (removed transfer mechanism)
+- [x] Delayed auto: 30.7 s on paper, finished off the wall on the field

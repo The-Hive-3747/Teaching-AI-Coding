@@ -104,14 +104,14 @@ The FtcRobotController module contains dozens of sample OpModes. The Hive exclud
 2. Click **Sign in** and use the Google account your coach set up.
 3. Gemini will ask whether it can use your project's code as context. Say **yes** — this is what lets it see your hardware names and edit your files.
 4. Check which **mode** the panel is in. This guide assumes **Agent mode**, where Gemini creates and edits files in your project directly — but it **waits for you to accept or reject each change**. That Accept step is where teams stall: nothing happens until someone clicks it. In plain chat ("Ask") mode, Gemini shows code in the panel and you insert it yourself — the method still works, you just do more copying. Agent mode needs a recent Android Studio; if you don't see it, update.
-5. Know the limits: the no-cost tier has a daily usage quota per account. A workshop of many teams on one account will hit it. And on the no-cost tier, check the setting for whether your prompts and code may be used for training — Google says paid plans never are.
+5. Know the limit: the no-cost tier has a daily usage quota per account. A workshop of many teams on one account will hit it, so each team should sign in with its own.
 
 `[SCREENSHOT: Gemini panel after sign-in, mode selector showing Agent, empty prompt box visible]`
 
 > **Ben:** note the Android Studio version and Gemini mode you recorded with, so teams can match it.
 
 **If it's wrong:**
-- *Sign-in blocked* — the Google account may not be allowed to use Gemini (age or organization restrictions). Coaches: use a coach-owned or school-provisioned account, and check your district's policy.
+- *Sign-in blocked* — try a different Google account. Coaches: have a working sign-in confirmed before the session.
 - *Gemini panel isn't listed under Tool Windows* — update Android Studio (**Help → Check for Updates**). Gemini ships with current versions.
 
 ## 0.6 Deploy once, before you write anything

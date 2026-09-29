@@ -1,4 +1,4 @@
-# Checkpoint 8 — under 30 seconds; the non-contact park
+# Checkpoint 8 — under 30 seconds; keeping the LEAVE points
 
 > **RECONSTRUCTED prompts, VERBATIM park prompt** — see the README for what that means.
 
@@ -18,7 +18,7 @@ Guide page: `../guide/08-auto-tuning.md`
 >
 > Add a safety timeout to `BaseAuto`. Use the existing `totalAutoTimer`. If it ever passes 29.5 seconds, regardless of the current state, set all drive motors to zero, stop the flywheel and intake, and go to `STATE_6_ALL_STOP`. Show the total elapsed time on telemetry (it may already be there).
 
-## The real prompt: non-contact park
+## The real prompt: back off the wall
 
 > **VERBATIM:** *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
 
@@ -27,7 +27,7 @@ Guide page: `../guide/08-auto-tuning.md`
 
 ## The arithmetic
 
-Shoot Delayed as it left Checkpoint 7 totals 32.3 s. The 8.3 s shoot duration in the final code brings it to 30.6, and the back-off step makes it 30.7 — still over the 30.0 s period. The guide's Checkpoint 8 walks through finding this and fixing it with one more number. *(Ben: what happened on the field?)*
+Shoot Delayed as it left Checkpoint 7 totals 32.3 s. The 8.3 s shoot duration in the final code brings it to 30.6, and the back-off step makes it 30.7 on paper. On the field it finished, off the wall — so the timer has some slack. The guide's Checkpoint 8 still walks through cutting it to 28.9, because slack isn't margin.
 
 ## Compare
 

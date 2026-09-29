@@ -44,9 +44,7 @@ Notice it explains the *rule* — "we get points for not touching the wall." Tha
 
 **[TEXT CARD: "30.6 + 0.1 = 30.7 s — still over"]**
 
-Which brings the delayed auto to 30.7. Our final code shipped exactly like that — 30.7 — so on the field the Driver Station was probably stopping us somewhere in the last second of the park drive.
-
-> **Ben:** the guide asks you to confirm what actually happened on the field with the 30.7 s auto. Say it here.
+Which brings the delayed auto to 30.7. Our final code shipped exactly like that — 30.7 on paper — and on the field it finished, off the wall. So the timer has a little slack. Don't count on it. A run that only works because the timer is generous is one low battery away from not working.
 
 The fix is one more number:
 

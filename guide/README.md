@@ -36,7 +36,7 @@ The robot in this guide is The Hive's (FTC #3747) robot-in-one-week robot: mecan
 
 You need:
 - A laptop that runs Android Studio (Windows, Mac, or Linux; 16 GB RAM recommended, 8 GB minimum)
-- A Google account for Gemini in Android Studio. **Coaches: this needs a decision before the session.** Google's Generative AI terms, which Gemini in Android Studio is under, require users to be 18 or older, and most FTC students aren't. Sharing a coach's login with students works around the age rule but breaks Google's account terms, and we don't recommend it. The clean options are (a) a coach or adult mentor at the keyboard, typing what the student Describer says, or (b) a school- or district-provisioned account with Gemini enabled by the admin, used under the district's AI policy. Also know that the no-cost tier has daily usage quotas, and one shared account across many teams will hit them. *(Ben: decide which of these the workshop assumes and say so on slide 13.)*
+- A Google account signed in to Gemini in Android Studio, confirmed working before the session. The no-cost tier has a daily usage quota per account, so one account per team.
 - Your robot's hardware configured on the Driver Hub or Robot Controller app, with a name for every motor and servo
 - The robot itself, or at least the Control Hub, charged and nearby
 

@@ -30,7 +30,17 @@ And yes, there's no STATE_5. That's the park. It goes in next episode, and leavi
 
 **[SCREEN: Flywheel.java and Intake.java in the project tree]**
 
-One more idea before the prompt. The auto doesn't get its own shooter code. It drives the same `Flywheel` and `Intake` classes TeleOp uses, by making a *simulated gamepad* — a Gamepad object nobody's holding — and setting its right bumper to true when it wants to feed. The subsystems can't tell the difference. Everything we tuned last episode comes along for free.
+One more idea before the prompt. The auto doesn't get its own shooter code. It calls the same `Flywheel` and `Intake` classes TeleOp uses — `flywheel.startDirect()`, `intake.setFeed(true)`. Everything we tuned last episode comes along for free.
+
+**[SCREEN: BaseAuto.java from the real build, the `autoGamepad` lines highlighted]**
+
+Here's a confession. That's not what our code does. Ours makes a *fake gamepad* — a Gamepad object nobody's holding — and sets its right bumper to true when it wants to feed. The subsystems can't tell the difference. It works. It shipped.
+
+It's also a shortcut. Our auto depends on which button feeds. Move feeding off the right bumper and the auto quietly stops working. We never got to fix that. And it happened because when Gemini wrote `Intake`, nobody told it an autonomous was coming. Gemini takes the fastest route to what you asked for. If you don't say what's coming, the fastest route is a shortcut.
+
+**[TEXT CARD: "An autonomous OpMode will use this class later too." — hold 3 s]**
+
+That's why episode 4's prompt had this line in it. Say what the code will be used for, not just what it does now.
 
 **[SCREEN: new Gemini conversation, pasting the robot description from Checkpoint 1]**
 
@@ -42,7 +52,7 @@ Start a fresh Gemini conversation for the autonomous, and paste the robot descri
 
 Then the prompt. It's the diagram, written out. New Autonomous OpMode called `AutoShootFirst`, iterative like MecanumTeleOp. Same drive motors, same reversals, same brake settings — read them from that file. Reuse `Flywheel` and `Intake`, don't modify them. The robot starts with the shooter facing the goal and its back against the wall, balls preloaded.
 
-Then the six states, each with what the motors do and for how long. A new `startDirect()` on Flywheel that skips the bump. A simulated Gamepad with `right_bumper` true during STATE_3. Reset the timer on every transition. Update both subsystems every loop, after the switch. Telemetry. No sleep.
+Then the six states, each with what the motors do and for how long. A new `startDirect()` on Flywheel that skips the bump. `intake.setFeed(true)` during STATE_3 — direct calls, no fake gamepad. Reset the timer on every transition. Tick both subsystems every loop, after the switch. Telemetry. No sleep.
 
 **[SCREEN: generation, 4×]**
 
@@ -56,7 +66,7 @@ What came back. Find:
 
 **[Highlight]** In each case, the timer check. "If state time past 0.30, go to STATE_1B_SETTLE_1000MS, reset the timer." That's the arrow from the diagram.
 
-**[Highlight]** In STATE_3, `autoGamepad.right_bumper = true` — and at the top of loop, it's set back to false.
+**[Highlight]** In STATE_3, `intake.setFeed(true)` — and no Gamepad object anywhere in the file. If there is one, that's the shortcut; ask for the direct call.
 
 **[Highlight]** In Flywheel.java, the new `startDirect()`.
 
@@ -104,7 +114,7 @@ Three clean runs. Commit.
 
 **[TEXT CARD: Checkpoint 6 checklist]**
 
-Checkpoint six: three runs in a row that back off, settle, spool, launch all the preloaded balls, and stop. Someone can explain how the state machine moves between states, and what the simulated gamepad is for. Numbers written down. Saved.
+Checkpoint six: three runs in a row that back off, settle, spool, launch all the preloaded balls, and stop. Someone can explain how the state machine moves between states, and why the auto calls `setFeed` instead of pretending to press a button. Numbers written down. Saved.
 
 **[END CARD: "Next: Episode 8 — Autonomous: Shoot First, Shoot Delayed, park" + repo URL]**
 

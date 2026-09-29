@@ -12,7 +12,7 @@
 >
 > Add the intake to `MecanumTeleOp`. Don't change any of the drive code — it works.
 >
-> - Put the intake in its own class, `Intake`, with `init(hardwareMap)`, `update(gamepad, isReversed)`, and `stop()` methods, so the OpMode stays readable.
+> - Put the intake in its own class, `Intake`, so the OpMode stays readable. **An autonomous OpMode will use this class later too**, so put the behavior in plain methods — `setCollect(boolean on)`, `setReject(boolean on)`, `stop()` — and have `update(gamepad, isReversed)` only map buttons to those methods. Nothing inside the class should depend on a gamepad except `update`.
 > - It has the motor `intake` and the two CR servos `intake_servo_left` (reversed) and `intake_servo_right`. They always run together at the same power.
 > - Pressing A toggles Collect mode: 0.5 power, pulling balls in. Press again to stop. Use edge detection so holding A doesn't flicker it.
 > - Pressing left bumper or X toggles Reject mode: −0.5 power. Reject overrides Collect.
@@ -37,6 +37,8 @@ Two files now. In `Intake.java`, find:
 In `MecanumTeleOp.java`: an `Intake intake` field, `intake.init(hardwareMap)` in `init()`, `intake.update(...)` in `loop()`, and the LB/X toggle.
 
 Ask the Reader: "What happens if I press A twice fast?" The edge detection is the answer. If they can explain why `previousAState` exists, they've understood the most reused pattern in FTC code.
+
+Also check that `update()` is thin — it reads buttons and calls `setCollect` / `setReject` — and the power decision lives in a method that takes no gamepad. That's the line the autonomous will call in Checkpoint 6. The "autonomous will use this later" sentence in the prompt is what makes Gemini build it this way; leave it out and Gemini takes the shortest path to a working TeleOp, which is fine until Checkpoint 6.
 
 **Compare with:** [`../example-code/03-intake/`](../example-code/03-intake/) — derived from The Hive's final `Intake.java` with feed pulsing removed.
 

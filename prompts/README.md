@@ -40,7 +40,7 @@ The prompts that built The Hive's robot code, mapped to the guide's checkpoints.
 | `05-refine.md` | The four refinement prompts |
 | `06-auto-shoot.md` | Back off the wall and shoot |
 | `07-auto-park.md` | Two autos, delayed one parks |
-| `08-auto-tuning.md` | Under 30 seconds; the non-contact park prompt |
+| `08-auto-tuning.md` | Under 30 seconds; the back-off-the-wall prompt |
 
 ## TODO
 

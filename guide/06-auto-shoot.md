@@ -45,9 +45,17 @@ Each box is a state. Each arrow is "when the timer passes N seconds, go to the n
 
 Two details worth copying: the **settle** state (a robot rocks after braking; shooting while it rocks scatters shots) and **no reverse bump in auto** — Gemini's log of the build records the lesson: "Reversing intake while preloaded with balls will eject them. Preloaded balls require direct forward spooling." Both are in the prompt below.
 
-## 6.2 Reuse the subsystems
+## 6.2 Reuse the subsystems — by calling them
 
-The autonomous drives the flywheel and intake through the same `Flywheel` and `Intake` classes TeleOp uses. It does that by creating a **simulated gamepad** — a `Gamepad` object nobody is holding — and setting `autoGamepad.right_bumper = true` when it wants to feed. The subsystem code doesn't know the difference. That's the payoff of the "own class" choice in Checkpoint 3: the pulse timing, the phase logic, everything you tuned in Checkpoint 5 comes along for free.
+The autonomous drives the flywheel and intake through the same `Flywheel` and `Intake` classes TeleOp uses, by calling their methods directly: `flywheel.startDirect()`, `intake.setFeed(true)`, `intake.stop()`. That's the payoff of the "an autonomous will use this later" line in Checkpoints 3 and 4: the pulse timing, the phase logic, everything you tuned in Checkpoint 5 comes along for free, and the auto never touches a button name.
+
+### What The Hive's code actually does — and why we don't teach it
+
+Look at [`example-code/final/BaseAuto.java`](../example-code/final/BaseAuto.java). It doesn't call `intake.setFeed(true)`. It creates a **simulated gamepad** — `autoGamepad = new Gamepad()`, a controller nobody is holding — and sets `autoGamepad.right_bumper = true` when it wants to feed, then passes that object to the same `update()` TeleOp uses. The subsystems can't tell the difference. It works, and it shipped.
+
+It's also a shortcut. The autonomous now depends on the TeleOp *button mapping*: move feeding from RB to a trigger and the auto silently stops feeding. It was one refactor the team didn't get to. And it happened for a reason worth remembering: **nobody told Gemini, when it wrote `Intake` and `Flywheel`, that an autonomous would need them.** With only a TeleOp in view, the fastest route from "feed when RB is held" to working code is to put the behavior behind the gamepad — so that's what it built, and when the auto came, faking a gamepad was the fastest route again.
+
+Gemini will make it work. It won't always make it work the way you'd choose, and it takes the most expedient route unless you tell it what's coming. That's why the Checkpoint 3 and 4 prompts in this guide say "an autonomous will use this class later." Say what the code will be used for, not just what it does now.
 
 ## 6.3 Ask for it
 
@@ -64,11 +72,11 @@ Start a **new** Gemini conversation for the autonomous, and paste your robot des
 > 1. `STATE_1_BACK_UP` — all four drive motors at −0.3 for 0.30 seconds, to back away from the wall to shooting distance.
 > 2. `STATE_1B_SETTLE_1000MS` — drive motors at 0 for 1.0 second so the robot stops rocking.
 > 3. `STATE_2_START_FLYWHEEL` — add a `startDirect()` method to `Flywheel` that goes straight to RUNNING at target power, skipping the reverse bump (balls are preloaded; reversing would eject them). Call it, and wait 2.0 seconds.
-> 4. `STATE_3_PULSE_SHOOTING` — create a `Gamepad` object in the OpMode as a simulated gamepad. In this state set its `right_bumper` to true and pass it to `intake.update(...)` so the intake pulses exactly as in TeleOp. Stay here 10 seconds.
+> 4. `STATE_3_PULSE_SHOOTING` — call `intake.setFeed(true)` so the intake pulses exactly as in TeleOp. Stay here 10 seconds. On exit, `intake.setFeed(false)`.
 > 5. `STATE_4_STOP_SHOOTING` — `flywheel.stop()`, `intake.stop()`.
 > 6. `STATE_6_ALL_STOP` — everything at zero. Stay here.
 >
-> Reset the state timer on every transition. Call `flywheel.update(autoGamepad, false)` and `intake.update(...)` every loop, after the switch, so the subsystems run their own state machines. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
+> Reset the state timer on every transition. Don't use the gamepad `update()` methods or a fake `Gamepad` — call the subsystem methods directly. If the subsystems need a per-loop tick to run their timers, add a `tick()` method that does that without a gamepad, and call it every loop after the switch. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
 
 `[SCREENSHOT: Gemini panel showing the generated state machine with the enum and switch visible]`
 
@@ -80,7 +88,7 @@ Find:
 1. `enum AutoState { STATE_1_BACK_UP, STATE_1B_SETTLE_1000MS, STATE_2_START_FLYWHEEL, STATE_3_PULSE_SHOOTING, STATE_4_STOP_SHOOTING, STATE_6_ALL_STOP }`.
 2. A `switch (currentState)` inside `loop()`, with a `case` for each state.
 3. In each case, a check like `if (stateTime >= 0.30) { currentState = AutoState.STATE_1B_SETTLE_1000MS; stateTimer.reset(); }`.
-4. `autoGamepad.right_bumper = true;` inside STATE_3, and the `autoGamepad.right_bumper = false;` reset at the top of `loop()`.
+4. `intake.setFeed(true)` inside STATE_3 and `intake.setFeed(false)` (or `intake.stop()`) on the way out — and **no** `Gamepad` object anywhere in the file. If Gemini made one anyway, say: "Don't simulate a gamepad. Call `intake.setFeed` directly."
 5. The new `startDirect()` in `Flywheel.java`.
 
 Ask the Reader: "How does the robot get from BACK_UP to SETTLE?" The answer is the timer check. If they can say that, they understand state machines.
@@ -115,7 +123,7 @@ Run it **three times**. Time-based auto varies; you want to see the variation.
 | First shot wild | Settle too short, or it's rocking. "Increase the settle from 1.0 to 1.5 seconds." |
 | A ball pops out the front when the flywheel starts | The reverse bump ran. "STATE_2 must call `startDirect()`, not the normal startup — it's running the reverse bump." |
 | Balls dribble | "Increase STATE_2_START_FLYWHEEL from 2.0 to 2.5 seconds." Or the target is low — check `Flywheel`'s default. |
-| Doesn't feed | The simulated gamepad isn't reaching the intake. "In STATE_3, I don't see `autoGamepad.right_bumper` being set, or `intake.update` isn't being called with `autoGamepad`. Show me." |
+| Doesn't feed | The feed pulse timer isn't being ticked. "In STATE_3 `setFeed(true)` is called but the intake never pulses. Show me where the pulse timer runs each loop when there's no gamepad." |
 | Never reaches ALL_STOP | "STATE_3 never exits. After 10 seconds move to STATE_4_STOP_SHOOTING." |
 | Shooting takes forever with balls gone | "Reduce STATE_3_PULSE_SHOOTING from 10 to 6 seconds." (Careful: Checkpoint 8 is where you tune this against the 30-second limit.) |
 
@@ -133,7 +141,7 @@ Commit: "Auto shoots from the wall."
 ## Checkpoint 6 test
 
 - [ ] Three runs in a row: backs off, settles, spools, launches all preloaded balls, stops
-- [ ] Reader can explain how the state machine moves between states, and what the simulated gamepad is for
+- [ ] Reader can explain how the state machine moves between states, and why the auto calls `intake.setFeed` instead of pretending to press a button
 - [ ] Tuning numbers written down
 - [ ] Saved
 

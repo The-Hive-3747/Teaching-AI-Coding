@@ -10,7 +10,7 @@ Guide page: `../guide/04-shooter.md`
 >
 > Add the flywheel to `MecanumTeleOp`. Don't change the drive or intake code.
 >
-> - Put it in its own class, `Flywheel`, like `Intake`: `init(hardwareMap)`, `update(gamepad, isReversed)`, `stop()`.
+> - Put it in its own class, `Flywheel`, like `Intake`, and like `Intake` the autonomous will use it later: plain methods `startSequence()` (the 3-phase startup), `stop()`, and later `startDirect()`; `update(gamepad, isReversed)` only maps B and the D-pad to them.
 > - One motor named `flywheel`, reversed, brake at zero power.
 > - Use an enum with the states IDLE, REVERSE_BUMP, PAUSE, RUNNING.
 > - Pressing B (edge-detected) when IDLE starts the sequence: REVERSE_BUMP runs the flywheel at −0.5 for 200 ms; PAUSE stops it for 300 ms; RUNNING sets it to the target power, 1.0, and stays there. Pressing B in any other state stops the flywheel and returns to IDLE.
@@ -18,7 +18,7 @@ Guide page: `../guide/04-shooter.md`
 > - The intake needs to know the flywheel's state. Give `Flywheel` methods `isReversing()`, `isPausing()`, `isOn()`, and change `Intake.update` to take those three booleans:
 >   - While the flywheel is in REVERSE_BUMP, the intake also runs at −0.5.
 >   - While it's in PAUSE, the intake stops.
->   - While it's RUNNING and right bumper is held, pulse the intake: 100 ms on at 0.5, 200 ms off, repeating. Reset the pulse timer when the bumper is first pressed.
+>   - Give `Intake` a method `setFeed(boolean on)`. While `setFeed(true)` and the flywheel is RUNNING, pulse the intake: 100 ms on at 0.5, 200 ms off, repeating. Reset the pulse timer when feeding first turns on. `update()` calls `setFeed(gamepad.right_bumper)`.
 >   - Otherwise the intake behaves as before (collect / reject / off).
 > - Reject mode (LB/X) also runs the flywheel at −0.5.
 > - All timing with `ElapsedTime`, no `sleep()` — the drive must keep responding through the whole sequence.

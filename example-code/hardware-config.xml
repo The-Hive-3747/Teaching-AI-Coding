@@ -19,14 +19,14 @@
             <!-- servo ports: from the source comments -->
             <ContinuousRotationServo name="intake_servo_left" port="1" />
             <Servo                   name="led_left"          port="3" />
-            <ContinuousRotationServo name="firewheel_left"    port="5" />  <!-- unused by TeleOp -->
+            <ContinuousRotationServo name="firewheel_left"    port="5" />  <!-- transfer mechanism, removed mid-week -->
         </LynxModule>
         <LynxModule name="Expansion Hub 2" port="2">
             <!-- motor ports: placeholders -->
             <goBILDA5202SeriesMotor name="flywheel" port="0" />
             <goBILDA5202SeriesMotor name="intake"   port="1" />
             <!-- servo ports: from the source comments -->
-            <ContinuousRotationServo name="firewheel_right"    port="1" />  <!-- unused by TeleOp -->
+            <ContinuousRotationServo name="firewheel_right"    port="1" />  <!-- transfer mechanism, removed mid-week -->
             <Servo                   name="led_right"          port="3" />
             <ContinuousRotationServo name="intake_servo_right" port="5" />
         </LynxModule>

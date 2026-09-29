@@ -22,7 +22,7 @@ The drive works. Now we add one thing: the intake. This episode is short because
 
 **[TEXT CARD zoom on that second sentence]**
 
-That second sentence is the most important line in this episode. Without it, Gemini sometimes rewrites the whole file, and things that were fine stop being fine.
+That second sentence is the most important line in this episode. And one more line that doesn't look important yet: "an autonomous OpMode will use this class later too — put the behavior in plain methods." Remember it. Episode 7 is where it pays off. Without it, Gemini sometimes rewrites the whole file, and things that were fine stop being fine.
 
 Then: put it in its own class, `Intake`, with init, update, and stop. The motor named `intake` plus the two CR servos, `intake_servo_left` reversed and `intake_servo_right` — always running together. Press A to toggle collect at 0.5, with edge detection so holding A doesn't flicker it. Left bumper or X toggles reject at minus 0.5. Reject overrides collect; A while rejecting switches to collect. Brake at zero. Telemetry.
 

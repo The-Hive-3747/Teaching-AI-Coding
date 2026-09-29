@@ -23,7 +23,7 @@ The robot has two goBILDA LED modules on servo ports (`led_left`, `led_right`). 
 
 Why bother: the driver can see at a glance, from across the field, whether the flywheel is up to speed (purple) before pulling the feed trigger. That's a real match-time advantage from a "describe what you want" prompt.
 
-**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java). Two things to check on your robot: the color-to-position map (see the quirks list in [`example-code/README.md`](../example-code/README.md) — other teams' goBILDA code uses different numbers), and that "feeding" really means feeding (`isFeeding` in the shipped code is just "RB held").
+**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java). One thing to check on your robot: that "feeding" really means feeding (`isFeeding` in the shipped code is just "RB held", so the white shows whenever RB is down — the team never noticed because nobody holds RB with the flywheel off).
 
 ## 9.2 Endgame warnings
 
@@ -69,7 +69,13 @@ The tuning log in Checkpoint 5 doesn't have to be kept by hand. At the end of a 
 
 That's how [`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md) came to exist — Gemini wrote it, and it's the source for the real prompts quoted in this guide.
 
-## 9.7 Next season
+## 9.7 Two things that happened that aren't in the transcript
+
+**The robot changed under the code.** Mid-week, the transfer mechanism — two CR servos (`firewheel_left`, `firewheel_right`) that carried balls from the intake to the flywheel — had to be ripped out for mechanical problems. The team recoded quickly: the intake now feeds the flywheel directly, which is the design in this guide. `Firewheel.java` in [`example-code/final/`](../example-code/final/) is the class that was left behind. The prompt for that kind of change is a Checkpoint 1 update plus a Checkpoint 5 fix: "We removed the transfer servos. The intake now feeds the flywheel directly. Remove `Firewheel` from the OpModes and make the right bumper pulse the intake instead."
+
+**The AI took the expedient route.** The autonomous drives the subsystems through a simulated gamepad (Checkpoint 6 explains). It works, but it ties the auto to the TeleOp button mapping, and it happened because nobody told Gemini an autonomous was coming when it wrote `Intake` and `Flywheel`. Gemini will make it work; it won't always make it work the way you'd choose. Tell it what the code will be used for, not just what it does now.
+
+## 9.8 Next season
 
 The prompting method carries over; the hardware doesn't. When the new game is announced:
 

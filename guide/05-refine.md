@@ -119,7 +119,7 @@ Mechanical team: every time you change something, write one line:
 | | | "Collect stops after bump" | No more jams on spool-up | Yes |
 | | | "Default 0.95" | Drivers' pick from practice | Yes |
 
-This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code — and FIRST's published guidance on AI is that teams using it for code should give credit. Put a line in each file's header comment ("Written with Gemini in Android Studio from the team's descriptions; see BUILD_LOG.md") and mention it in the portfolio. (Gemini can write this log for you — see [Checkpoint 9](09-extras.md).)
+This is the team's tuning history. It's also what you'll show a judge who asks how you developed the code. (Gemini can write this log for you — see [Checkpoint 9](09-extras.md).)
 
 ## 5.8 Save it
 

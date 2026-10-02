@@ -57,6 +57,10 @@ Click **Run ▶**. Wait for "Install successfully finished."
 
 ## 2.4 Test
 
+This is what a passing drive test looks like — the mentor robot on the shop floor, 17 seconds: [`docs/video/drive-test-shop-floor.mp4`](../docs/video/drive-test-shop-floor.mp4).
+
+![Drive test on the shop floor](../docs/images/drive-test-shop-floor-frame.jpg)
+
 Robot on the floor, wheels free to move, nobody's feet nearby.
 
 On the Driver Hub: select `Mecanum TeleOp` from the TeleOp list → **Init** → **▶**.

@@ -36,9 +36,9 @@ That's 30.6. Still over. Hold that thought — there's one more thing to add fir
 
 Look where it ends: pushed up against the wall. That scores the park. But the game gives *more* points for parking without touching the wall. So here's the prompt I typed — word for word:
 
-**[TEXT CARD: "On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?" — hold 5 s]**
+**[TEXT CARD: "On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away." — hold 6 s]**
 
-Notice it explains the *rule* — "we get points for not touching the wall." That's how Gemini knew "a backup" meant a small one, not a drive back to the shooting spot. It added STATE_5C_PARK_BACK_OFF_WALL: all four motors at minus 0.5 for 100 milliseconds, between the park drive and ALL_STOP.
+Look at the shape of that. The rule — we get points for not touching the wall. The ask — a backup after the turn and drive. And a starting number — 100 milliseconds at 0.5. Gemini had nothing to guess. It added STATE_5C_PARK_BACK_OFF_WALL: all four motors at minus 0.5 for 100 milliseconds, between the park drive and ALL_STOP.
 
 **[SCREEN: the STATE_5C case in BaseAuto.java]**
 

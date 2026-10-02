@@ -10,12 +10,17 @@ These are the mechanical team's words, from Gemini's transcript (Session Iterati
 
 > **VERBATIM:** *what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it*
 
-**Changed:** `REVERSE_DURATION_SEC` 0.200 → 0.100 in `Flywheel.java`.
-**Style:** asks the question first, names the symptom, says the direction of the change but not the number. The transcript records the change (200 → 100 ms), not the reply.
+**Changed:** `REVERSE_DURATION_SEC` 0.200 → 0.100 in `Flywheel.java` — plus an unrequested power reduction, reverted by the next prompt:
+
+> **VERBATIM:** *don't bump down the power, keep it the same. let's just try the shortened time.*
+
+**Style:** asks the question first, names the symptom, says the direction of the change but not the number. Then holds Gemini to one change.
 
 ## "I thought gamepad 1 dpad was slow mode"
 
 > **VERBATIM:** *I thought gamepad 1 dpad was slow mode, not tuning the flywheel.*
+
+(Second time of asking. The night before: *"Let's move the up/down on the dpad for tuning the flywheel to gamepad2. Let's make up dpad controls move the robot at 0.2 speed forward/backward and s…"* — clipped in the log.)
 
 **Changed:** `Flywheel.update` now takes two gamepads; D-pad tuning reads gamepad 2 only. Gamepad 1's D-pad is left to precision drive.
 **Style:** states the expectation. A complete bug report in one sentence.
@@ -28,6 +33,8 @@ These are the mechanical team's words, from Gemini's transcript (Session Iterati
 **Style:** describes the sequence step by step — keep this, then don't do that, regardless of prior state. That precision is why it was a one-line fix.
 
 ## "Let's set the default speed to 0.95"
+
+Preceded, as usual, by a question: *"What is the current default speed of the flywheel?"* — Gemini: 1.0 — then:
 
 > **VERBATIM:** *Let's set the default speed to 0.95*
 

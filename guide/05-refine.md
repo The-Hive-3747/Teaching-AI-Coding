@@ -24,13 +24,19 @@ These are the actual prompts the mechanical team typed, in order, from Gemini's 
 
 > *what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it*
 
-Gemini shortened `REVERSE_DURATION_SEC` from 200 ms to 100 ms. Two things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it, and it names the symptom ("spitting balls out") rather than guessing a fix.
+Gemini shortened `REVERSE_DURATION_SEC` from 200 ms to 100 ms — and, on its own initiative, also proposed lowering the reverse power. The next prompt, two minutes later, verbatim:
+
+> *don't bump down the power, keep it the same. let's just try the shortened time.*
+
+Three things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it; it names the symptom ("spitting balls out") rather than guessing a fix; and when Gemini changed two things, the team put one back. One change, one test.
 
 ### "I thought gamepad 1 dpad was slow mode"
 
 > *I thought gamepad 1 dpad was slow mode, not tuning the flywheel.*
 
-The Checkpoint 4 prompt put flywheel tuning on the D-pad — the same D-pad Checkpoint 2 used for precision driving. Both worked at once, which is worse than either. Gemini moved tuning to **gamepad 2's** D-pad and left gamepad 1's D-pad to driving. One sentence, stated as an expectation, fixed a control conflict.
+The first build put flywheel tuning on the D-pad — the same D-pad used for precision driving. Both worked at once, which is worse than either. The team had already asked to move it the night before (Sep 18, 10:10 PM: *"Let's move the up/down on the dpad for tuning the flywheel to gamepad2…"*), but the next morning the conflict was still there. This one sentence, stated as an expectation, got it fixed for good: tuning on **gamepad 2's** D-pad, gamepad 1's D-pad to driving.
+
+The lesson isn't the sentence; it's the re-test. A change you asked for isn't a change you have until the robot shows it.
 
 ### "I don't want the intake to resume"
 

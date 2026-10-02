@@ -50,11 +50,13 @@ Now open Gemini and paste it all in as one message.
 
 Every motor and servo by name. What each one does. Which ones are reversed. The controls — toggle or hold. The startup sequence with its numbers. Non-blocking, no sleep. And the last line is the important one:
 
-**[TEXT CARD zoom: "Don't write any code yet. Just confirm you understand the robot and tell me if anything is unclear."]**
+**[TEXT CARD zoom: "What questions do you have?"]**
 
-Don't write code yet. We want Gemini to read it back to us, so we can catch misunderstandings before they turn into code.
+What questions do you have. That's how our real first prompt ended. Gemini came back with five numbered questions — iterative or linear, how big a tuning step, that kind of thing — and the whole answer was:
 
-> **Ben:** the guide says this prompt is a reconstruction — The Hive's original first message wasn't saved. Say so on camera or leave it; your call.
+**[TEXT CARD: "1. iterative 2. 0.05 per step 3. Let's have them run at fixed speeds of 0.3 4. Yes.  5. Yes." — hold 4 s]**
+
+And then the code appeared. Let it ask. Answer the questions. That's cheaper than fixing guesses.
 
 **[SCREEN: Gemini's reply, sped up if long]**
 

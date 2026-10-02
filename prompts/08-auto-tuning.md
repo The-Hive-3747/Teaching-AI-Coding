@@ -20,10 +20,10 @@ Guide page: `../guide/08-auto-tuning.md`
 
 ## The real prompt: back off the wall
 
-> **VERBATIM:** *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
+> **VERBATIM:** *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away.*
 
 **Changed:** new `STATE_5C_PARK_BACK_OFF_WALL` — all four motors at −0.5 for 100 ms — between the park drive and ALL_STOP (Gemini's transcript, Session Iteration 5).
-**Style:** explains the rule. Because the prompt says *why* ("we get points for not touching the wall"), Gemini knew "a backup" meant a nudge, not a retreat.
+**Style:** rule, ask, starting number. Gemini's own summary dropped the last sentence; the backend log has it.
 
 ## The arithmetic
 

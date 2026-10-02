@@ -36,7 +36,9 @@ Fine.
 | STATE_5B_PARK_DRIVE_FORWARD | 3.0 |
 | **Total** | **32.3** |
 
-**Over.** The Driver Station stops the OpMode at 30 s, so at this total the robot gets cut off in the park drive — which is what you'd see in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for. Ask Gemini to do the sum if you want a check:
+**Over.** The Driver Station stops the OpMode at 30 s, so at this total the robot gets cut off in the park drive — which is what you'd see in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for.
+
+The Hive did think about this. The prompt that added the park, verbatim: *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shoot[ing] … [minim]um of 5 seconds shooting."* Gemini cut the delayed shoot to 8.3 s — and the total was still 30.7. Telling Gemini the limit isn't the same as seeing the sum. Ask for it:
 
 > "Add up the total duration of all states in `BaseAuto` for the delayed auto and tell me the worst-case run time."
 
@@ -60,9 +62,9 @@ Or shorten the delay itself, if the alliance partner doesn't need the full 15. E
 
 After the park drive, the robot ends pressed against the wall. In BIOBUZZ, PARK (5 points) only needs the robot in the loading zone — but LEAVE (3 points) requires the robot to *not be touching the perimeter wall*, and both are assessed at the end of AUTO. A robot that parks by driving into the wall earns PARK and forfeits LEAVE. The mechanical team spotted this. Their prompt, verbatim:
 
-> *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?*
+> *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away.*
 
-Gemini added `STATE_5C_PARK_BACK_OFF_WALL`: all four motors at −0.5 for 100 ms, between the park drive and ALL_STOP. Notice the prompt explains the *rule* ("we get points for not touching the wall") — that's why Gemini knew "a backup" meant a small one, not a return to the shooting spot.
+Gemini added `STATE_5C_PARK_BACK_OFF_WALL`: all four motors at −0.5 for 100 ms, between the park drive and ALL_STOP. Notice the shape: the rule ("we get points for not touching the wall"), the ask ("a backup after the turn and drive forward"), and a starting number ("100ms for 0.5 power"). Gemini had nothing to guess.
 
 With the 6.5 s shoot from 8.2, Shoot Delayed now adds up to 15 + 0.3 + 1.0 + 2.0 + 6.5 + 0.45 + 0.55 + 3.0 + 0.1 = **28.9 s**. Under 29, with the safety timer below as the backstop.
 

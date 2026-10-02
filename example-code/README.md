@@ -17,7 +17,7 @@ Everything in The Hive's `TeamCode` folder at the end of the week, unchanged, in
 | `BaseAuto.java` | Shared autonomous state machine: back up, settle, spool, pulse-shoot, then (delayed only) back up, turn left, drive to park, back off the wall |
 | `AutoShootFirst.java` / `AutoShootDelayed.java` | The two match autos: 0 s delay (shoot and stop) and 15 s delay (shoot, then park) |
 | `BaseAutoExperimental.java` + `*Experimental.java`, `ExperimentalParkShootFirst.java` | The 4-ball experiment: shoot 3, scoop a 4th from in front of the robot, shoot it |
-| `Firewheel.java` | Subsystem for the original **transfer mechanism** — two CR servos that carried balls from the intake to the flywheel. The mechanism had to be ripped out mid-week for mechanical problems, and the team recoded quickly so the intake fed the flywheel directly. The class was left behind, unused |
+| `Firewheel.java` | Subsystem for the original **transfer mechanism** — two CR servos that carried balls from the intake to the flywheel. Added Sep 18 at 5:17 PM (*"The wiring changed. We have added firewheels…"*), ripped out by 7:50 PM the same evening (*"We removed the firewheels. They interfered with the flywheel."*), and the team recoded that night so the intake fed the flywheel directly. The class was left behind, unused |
 | `backup/` | Snapshots the team had Gemini save before refactors |
 
 ## Per-checkpoint snapshots — derived

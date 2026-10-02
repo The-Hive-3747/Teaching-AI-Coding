@@ -24,7 +24,7 @@ Guide page: `../guide/01-describe-the-robot.md`
 >
 > Everything must be non-blocking: use `ElapsedTime` and state machines, never `sleep()`, so driving stays responsive during the flywheel sequence.
 >
-> Don't write any code yet. Just confirm you understand the robot and tell me if anything is unclear.
+> What questions do you have?
 
 ## What it should produce
 
@@ -32,9 +32,21 @@ Guide page: `../guide/01-describe-the-robot.md`
 
 A restatement of the robot. No code — the last line asks for confirmation first.
 
-## Why reconstructed
+## The real one
 
-The Hive's first session built the whole TeleOp — drive, flywheel, intake, LEDs — from one description. Gemini's summary of it (Session Iteration 1 in the transcript) records the intent, not the words. The prompt above is written to produce the same code, split the way the guide teaches it: describe everything once, then ask for one subsystem at a time.
+The Hive's first prompt (Sep 17, 10:26 PM; [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md) row 1) asked for the drive, flywheel and intake together and ended *"What questions do you have?"* Gemini replied with five numbered questions. The whole answer was:
+
+> **VERBATIM:** *1. iterative 2. 0.05 per step 3. Let's have them run at fixed speeds of 0.3 4. Yes.  5. Yes.*
+
+Three follow-ups the same night, all verbatim:
+
+> *This looks good, but we want variables declared in class variables, not redeclared each loop.*
+
+> *reverse the polarity of the flywheel*
+
+> *Let's turn the driving power max down to 0.8*
+
+(That first one is why every class in the final code declares its working variables as fields.) The log clips the middle of the first prompt; the version above is the guide's reconstruction, reordered for the checkpoint sequence.
 
 ## What to watch for in the reply
 

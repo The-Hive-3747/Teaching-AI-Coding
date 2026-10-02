@@ -92,13 +92,17 @@ Open the Gemini panel. Paste in a single message that has everything above. This
 >
 > Everything must be non-blocking: use `ElapsedTime` and state machines, never `sleep()`, so driving stays responsive during the flywheel sequence.
 >
-> Don't write any code yet. Just confirm you understand the robot and tell me if anything is unclear.
+> What questions do you have?
 
 `[SCREENSHOT: Gemini panel with the robot description sent and Gemini's confirmation reply]`
 
-The last line matters. You want Gemini to read and confirm, not immediately generate 500 lines. If it asks a question, answer it. If it restates something wrong, correct it now.
+The last line matters. It's what The Hive's real first prompt ended with, and it worked: instead of generating 500 lines, Gemini came back with five numbered questions (iterative or linear OpMode? how big a tuning step? …). The coordinator's entire next message was:
 
-> **Note:** this is a reconstruction. The Hive's original first prompt wasn't saved; Gemini's own summary of it is in [`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md) under "Session Iteration 1." The description above is what would produce the code the team ended up with.
+> *1. iterative 2. 0.05 per step 3. Let's have them run at fixed speeds of 0.3 4. Yes.  5. Yes.*
+
+and the TeleOp, `Flywheel.java`, and `Intake.java` appeared. Answer the questions. If Gemini restates something wrong, correct it now.
+
+> **Note:** this is a reconstruction in the guide's checkpoint order. The Hive's real first prompt (Sep 17, 10:26 PM) is in [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md), row 1 — it asked for the drive, flywheel and intake in one go, with a flywheel reverse-bump and "What questions do you have?" at the end. The log clips its middle; the first and last lines are intact.
 
 ## 1.6 Save the description
 

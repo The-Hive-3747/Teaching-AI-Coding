@@ -35,7 +35,7 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 - Session 2: First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
 - Session 3: Mechanical team: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
 - Session 4: *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
-- Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward?"* — non-contact park
+- Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away."* — back off the wall
 - Session 6: *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
 - Session 7: *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* — spool-up jam fixed
 - Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
@@ -189,7 +189,7 @@ Specific:
 | Flywheel startup spits balls out | Reverse bump too long | *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* |
 | Two controls on one button | Control scheme drifted | *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* |
 | Auto works, but drives the intake through a *fake gamepad* | Nobody told Gemini an autonomous was coming | Say it up front: "An autonomous OpMode will use this class later too — put the behavior in plain methods." Gemini takes the expedient route unless you say what's coming. |
-| Auto runs over 30 s | Nobody added it up | "Add up the total duration of all states and tell me the worst-case run time." Then cut one number. |
+| Auto runs over 30 s | Gemini was told the limit, but nobody saw the sum | "Add up the total duration of all states and tell me the worst-case run time." Then cut one number. |
 | Gemini rewrote everything, broke what worked | Asked for a change without saying "only change X" | "Only change the intake section. Leave the drive code as is." |
 
 **Notes:** Every one of these happened to us; the italic ones are the actual prompts. The guide's checkpoint 5 is all about this. The pattern: when it's wrong, the description was missing something. Say the missing thing.

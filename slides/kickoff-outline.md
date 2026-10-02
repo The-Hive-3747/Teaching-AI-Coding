@@ -9,7 +9,7 @@
 
 Structure: the story first (the whole room cares about that), then the method, then the live demo, then what to take home. Coaches get the "how to run this with a team" slide near the end so students don't tune out early.
 
-**Deck file:** `slides/kickoff.pptx` — built from this outline; import into Google Slides with **File → Import slides**. Logo gold `#F9BE14` on black.
+**Deck file:** `slides/kickoff.pptx` — built from this outline; import into Google Slides with **File → Import slides**. Logo gold `#F9BE14` on black. A designed version of the same deck also exists as a Claude Slides artifact (Ben has the link); it adds one slide — the "spitting balls out" prompt as typed — and plays the Test Match 3 auto clip on the timeline slide.
 
 ---
 

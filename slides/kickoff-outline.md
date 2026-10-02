@@ -64,7 +64,7 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 > "I've written Java for twenty-five years. I didn't type a line of it. After the first build, the changes came from the mechanical mentors — sometimes typed by them, sometimes called out from over the robot while I typed. They don't write Java."
 > — Ben, our coordinator
 
-(This line is Ben's summary written for the deck, not a transcript quote. Ben signs off on the wording before it goes on a slide with his name under it.)
+(This line is Ben's summary written for the deck, not a transcript quote. Ben approved the wording on Oct 1, 2026.)
 
 **Notes:** Tell 4a as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days — the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair — Asim deciding what to change, Ben typing — plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: **the person who understands the robot drives the prompt, whoever's hands are on the keys.** Two things make the experiment honest, and say both: Ben *can* write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. Then put 4b up and let it sit for a few seconds.
 

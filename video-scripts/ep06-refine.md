@@ -2,7 +2,7 @@
 
 **Length:** ~5 minutes
 **Format:** Mostly robot and team footage, some screen recording, voice-over
-**Narrator:** Asim, the mechanical mentor, if he's willing — this is the episode that proves the point. Otherwise another mechanical team member.
+**Narrator:** Asim, the mechanical mentor, if he's willing — this is the episode that proves the point. Otherwise Ben.
 **Guide page:** `guide/05-refine.md`
 **Starting state:** Checkpoint 4 committed
 

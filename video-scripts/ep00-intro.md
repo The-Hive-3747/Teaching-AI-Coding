@@ -14,13 +14,13 @@ Hi. I'm Ben, I coordinate robotics at Beehive Academy. At our robot-in-one-week,
 
 **[B-ROLL: robot driving, intaking, shooting — 5 seconds]**
 
-Not one line of its code was written by hand. The drive, the intake, the shooter, the autonomous — all of it was written by describing what we wanted in plain English to Gemini, inside Android Studio.
+Not one line of its code was written by hand. I've written Java for twenty-five years, and I didn't type any. The drive, the intake, the shooter, the autonomous — all of it was written by describing what we wanted in plain English to Gemini, inside Android Studio.
 
 And here's the more important thing.
 
 **[B-ROLL: Asim at the robot, Ben at the laptop, Gemini panel visible]**
 
-After the first night, the changes weren't mine. They were Asim's — our mechanical mentor, who built the robot and doesn't write Java. Sometimes he was at the keyboard himself — tank drive, the strafe fix, a whole experimental autonomous with its tuning. Sometimes he was standing over the robot calling out what to change and I typed it. Either way: the timings, the power levels, the park routine, the fixes — those came from the person who built the robot.
+After the first night, the changes weren't mine. They came from Asim and the mechanical mentors — the people who built the robot, who don't write Java. Sometimes he was at the keyboard himself — tank drive, the strafe fix, a whole experimental autonomous with its tuning. Sometimes he was standing over the robot calling out what to change and I typed it. Either way: the timings, the power levels, the park routine, the fixes — those came from the person who built the robot.
 
 **[ON CAMERA]**
 

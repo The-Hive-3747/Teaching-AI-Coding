@@ -30,7 +30,7 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 
 Also: [the-loop.md](the-loop.md) — the describe → generate → test → refine method, on one page. Read it first if you only read one thing.
 
-The robot in this guide is the **mentor robot** — built by The Hive's (FTC #3747) mentors for the mentor competition at robot-in-one-week, while the students coded their own robot by hand. The mentors' experiment was: no hand-written code, everything described to Gemini. It: mecanum drive, one flywheel, an intake with two rollers, goBILDA LEDs. The code it ended up with is in [`example-code/final/`](../example-code/final/), verbatim, and the prompts quoted in Checkpoints 2, 5 and 8 are the mechanical mentor's, exactly as typed or dictated.
+The robot in this guide is the **mentor robot** — built by The Hive's (FTC #3747) mentors for the mentor competition at robot-in-one-week, while the students coded their own robot by hand. The mentors' experiment was: no hand-written code, everything described to Gemini — by a coordinator who writes Java and chose not to, and by mechanical mentors who don't. It: mecanum drive, one flywheel, an intake with two rollers, goBILDA LEDs. The code it ended up with is in [`example-code/final/`](../example-code/final/), verbatim, and the prompts quoted in Checkpoints 2, 5 and 8 are the mechanical mentor's, exactly as typed or dictated.
 
 ## Before you start
 

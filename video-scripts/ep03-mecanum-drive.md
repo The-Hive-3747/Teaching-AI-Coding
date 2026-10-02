@@ -100,7 +100,7 @@ Checkpoint two: all eight drive tests pass, someone on the team can point at the
 
 ## Shot list
 
-- [ ] Gemini prompt + generation (4×)
+- [ ] Gemini prompt + generation (4×) — the real tank-drive prompt and its generated code are in `docs/images/android-studio-tank-drive-prompt.png` if a screen recording isn't available
 - [ ] Editor with four highlighted sections
 - [ ] Build/deploy
 - [ ] Driver Hub + robot split for all 8 tests (existing drive-test footage to cut in: `docs/video/drive-test-shop-floor.mp4`)

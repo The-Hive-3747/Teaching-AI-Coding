@@ -24,7 +24,9 @@ Same Gemini conversation as Checkpoint 1.
 >
 > Use the `@TeleOp` annotation so it shows up on the Driver Hub.
 
-`[SCREENSHOT: Gemini panel with the prompt sent and the start of the generated OpMode visible]`
+This is what that looks like in Android Studio — the mentors' real tank-drive prompt on the left, the mecanum mixing Gemini wrote in `MecanumTeleOp.java` on the right:
+
+![Gemini Agent panel with the tank-drive prompt and the generated MecanumTeleOp code](../docs/images/android-studio-tank-drive-prompt.png)
 
 **Why iterative `OpMode`?** FIRST's samples use both styles. The mentors' build used `OpMode` (`init()`, `loop()`), which is a natural fit for state machines: `loop()` runs over and over, and each subsystem gets an `update()` call every time. Either works. Pick one and say which.
 

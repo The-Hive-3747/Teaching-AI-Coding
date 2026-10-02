@@ -28,6 +28,10 @@ Gemini shortened `REVERSE_DURATION_SEC` from 200 ms to 100 ms — and, on its ow
 
 > *don't bump down the power, keep it the same. let's just try the shortened time.*
 
+Here it is as typed, with Gemini's reply — it reports the numbers (200 ms reverse at −0.5, 300 ms pause) and offers two options before changing anything:
+
+![Gemini Agent panel with the "spitting balls out" prompt and Gemini's reply](../docs/images/android-studio-spitting-balls-prompt.png)
+
 Three things to notice: the prompt **asks first** ("what is the current time") so the team learns what the number is before changing it; it names the symptom ("spitting balls out") rather than guessing a fix; and when Gemini changed two things, the team put one back. One change, one test.
 
 ### "I thought gamepad 1 dpad was slow mode"
@@ -132,6 +136,10 @@ This is the team's tuning history. It's also what you'll show a judge who asks h
 Commit after every kept change. Message = the prompt, roughly.
 
 **Compare with:** [`../example-code/05-refine/`](../example-code/05-refine/) — the mentor robot's final `Flywheel.java` and `Intake.java` verbatim, and `MecanumTeleOp.java` without the LED and rumble extras.
+
+**What it looks like in a match:** the first 30 seconds of TeleOp in Test Match 3 at the scrimmage, with this exact code on the robot — [`docs/video/scrimmage-match3-teleop-start.mp4`](../docs/video/scrimmage-match3-teleop-start.mp4) (39 s, from the FIRST Robotics Utah stream).
+
+![Test Match 3, TeleOp — the mentor robot on the field](../docs/images/scrimmage-match3-teleop-frame.jpg)
 
 ## Checkpoint 5 test
 

@@ -124,6 +124,10 @@ In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start 
 
 **Compare with:** [`../example-code/08-auto-tuning/`](../example-code/08-auto-tuning/) — the mentor robot's final `BaseAuto.java` (minus LEDs), with the back-off-wall state and the 8.3 s delayed shoot.
 
+**What it looks like on the field:** the full 30-second autonomous period of Test Match 3 at the scrimmage, with this code on the robot — [`docs/video/scrimmage-match3-auto.mp4`](../docs/video/scrimmage-match3-auto.mp4) (44 s, from the FIRST Robotics Utah stream; the first few seconds are the pre-start hold at 2:30). Watch the Red score on the overlay: 0 → 3 → 16 inside the period.
+
+![Test Match 3, autonomous — the mentor robot off the wall at 2:19](../docs/images/scrimmage-match3-auto-frame.jpg)
+
 ## Checkpoint 8 test
 
 - [ ] Both autos add up to under 29 s on paper

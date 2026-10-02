@@ -105,8 +105,8 @@ Checkpoint five: the drivers are happy enough to practice with it, the tuning lo
 ## Shot list
 
 - [ ] Narrator at laptop (establishing)
-- [ ] Driver practice footage
-- [ ] 4 × (complaint card → verbatim prompt card → test footage)
+- [ ] Driver practice footage (`docs/video/drive-test-shop-floor.mp4`; for the finished TeleOp in a match, `docs/video/scrimmage-match3-teleop-start.mp4`)
+- [ ] 4 × (complaint card → verbatim prompt card → test footage); the "spitting balls out" prompt card can be the real screenshot, `docs/images/android-studio-spitting-balls-prompt.png`
 - [ ] "What makes these prompts work" table
 - [ ] Gemini overwrite + restore prompt
 - [ ] Git revert

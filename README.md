@@ -43,8 +43,9 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - [x] Delayed auto: 30.7 s on paper, finished off the wall on the field
 - [x] `Firewheel.java` explained: transfer mechanism, in and out on Sep 18
 - [x] Every prompt attributed (Ben / Asim at the keyboard / Asim's request typed by Ben)
-- [x] Robot and match photos in `docs/images/`, drive-test video in `docs/video/`
-- [ ] Screenshots captured (see `[SCREENSHOT: ...]` callouts in `guide/`)
+- [x] Robot and match photos in `docs/images/`; drive-test video and two scrimmage clips (Test Match 3 auto and TeleOp) in `docs/video/`
+- [x] Android Studio screenshots of two real prompts (tank drive; "spitting balls out") in `docs/images/`
+- [ ] Remaining screenshots (install pop-ups, Driver Hub, generated code) — see `[SCREENSHOT: ...]` callouts in `guide/`
 - [ ] Kickoff deck built from `slides/kickoff-outline.md`
 - [ ] Videos recorded
 

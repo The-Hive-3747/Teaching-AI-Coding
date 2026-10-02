@@ -138,7 +138,7 @@ Start with Episode 1.
 - [ ] Battery voltage
 - [ ] Match-day checklist card
 - [ ] Commit + tag
-- [ ] Closing: full run, narrator close, Checkpoint 9 mention
+- [ ] Closing: full run (`docs/video/scrimmage-match3-auto.mp4` — the real auto in Test Match 3, scoreboard and all), narrator close, Checkpoint 9 mention
 
 ## Notes
 

@@ -41,9 +41,9 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 - Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
 
 **Slide 3b:** The punchline, alone on a slide:
-> "After the first build, the mechanical team completed the autonomous, tuned the timings and power, and created the park routine. Nobody on that team writes Java."
+> "After the first build, the changes came from the mechanical team — sometimes typed by them, sometimes called out from over the robot while I typed. Nobody on that team writes Java."
 
-**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did the later sessions. Be precise about who did what: the coordinator described the architecture and got the first TeleOp and the first autonomous state machines; the mechanical team then completed the autonomous, tuned it, and created the park routine. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
+**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did the later sessions. Be precise about who did what, because the audience will ask. The coordinator described the architecture and got the first TeleOp and the first autonomous state machines. From there it was a pair: Asim, the mechanical specialist, at the robot deciding what to change; the coordinator at the keyboard typing it — that's the Sep 18 autonomous session, the park routine, and most of the Sep 19 fixes. And Asim at the keyboard himself for eight prompts: tank drive, the strafe fix, the spitting-balls pair, and the entire ExperimentalParkShootFirst autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
 
 `[SCREENSHOT: the Gemini panel in Android Studio showing one of those prompts as typed — the "spitting balls out" one if it's still in the history]`
 
@@ -199,7 +199,7 @@ Specific:
 ## 11. For coaches: running this with a team (1–2 slides)
 
 **Slide 11a:** Suggested roles.
-- **Describer** — one student types into Gemini. Rotates.
+- **Describer** — the student who knows the robot best says what to change. They can type it, or someone else can; what matters is whose words they are. On The Hive this was Asim, the mechanical specialist — sometimes at the keyboard, sometimes over the robot with the coordinator typing.
 - **Tester** — one student deploys and drives. Says exactly what happened.
 - **Reader** — one student reads the generated code aloud and explains it. This is where the learning happens.
 - **Coach** — asks "what did you tell it?" when something breaks. Doesn't type.

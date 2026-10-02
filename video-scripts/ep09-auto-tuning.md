@@ -112,7 +112,7 @@ Checkpoint eight: both autos add up to under 29 on paper, safety timeout in, non
 
 That's the series.
 
-I build intakes. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
+I build intakes. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Some I typed, some I said out loud while someone else typed. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
 
 There's one more page in the guide, Checkpoint 9, with the extras we described into existence after this: LED lights so the driver can see from across the field that the flywheel's up to speed, an endgame rumble, and a four-ball autonomous experiment. Same method. Nothing new to learn.
 

@@ -20,7 +20,7 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 | 3 | Mecanum drive in one prompt | 5 min | 02-mecanum-drive.md | Ben or programmer |
 | 4 | Add the intake | 3 min | 03-intake.md | Student |
 | 5 | Add the shooter | 6 min | 04-shooter.md | Student |
-| 6 | Refine: the mechanical team's real prompts | 5 min | 05-refine.md | Mechanical team member |
+| 6 | Refine: the mechanical team's real prompts | 5 min | 05-refine.md | Asim (mechanical specialist) or another mechanical team member |
 | 7 | Autonomous: back off the wall and shoot | 6 min | 06-auto-shoot.md | Mechanical team member |
 | 8 | Autonomous: Shoot First, Shoot Delayed, park | 4 min | 07-auto-park.md | Mechanical team member |
 | 9 | Under 30 seconds and match-ready | 4 min | 08-auto-tuning.md | Mechanical team member |

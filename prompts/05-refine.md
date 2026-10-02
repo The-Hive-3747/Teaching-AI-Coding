@@ -4,7 +4,7 @@
 
 Guide page: `../guide/05-refine.md`
 
-These are the mechanical team's words, from Gemini's transcript (Session Iterations 4, 6, 7, 8). Each is one prompt, one change, one test.
+These are the mechanical team's words — "spitting balls out" typed by Asim; the gamepad, intake-resume and 0.95 prompts called out by Asim at the robot and typed by Ben. Each is one prompt, one change, one test. Authors per prompt are in `../docs/verbatim-transcript.md`.
 
 ## "It is spitting balls out"
 

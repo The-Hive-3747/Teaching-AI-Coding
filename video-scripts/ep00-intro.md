@@ -20,7 +20,7 @@ And here's the more important thing.
 
 **[B-ROLL: mechanical team members at a laptop, Gemini panel visible]**
 
-After the first couple of days, I wasn't writing the prompts. The mechanical team was. They completed the autonomous, adjusted the timings, changed the power levels, and created the park routine — while I was across the room helping other teams.
+After the first night, the changes weren't mine. They were the mechanical team's. Sometimes Asim, our mechanical specialist, was at the keyboard himself — tank drive, the strafe fix, a whole experimental autonomous with its tuning. Sometimes he was standing over the robot calling out what to change and I typed it. Either way: the timings, the power levels, the park routine, the fixes — those came from the people who built the robot.
 
 Nobody on the mechanical team writes Java.
 

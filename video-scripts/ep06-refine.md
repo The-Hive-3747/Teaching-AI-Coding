@@ -2,7 +2,7 @@
 
 **Length:** ~5 minutes
 **Format:** Mostly robot and team footage, some screen recording, voice-over
-**Narrator:** A mechanical team member. This is the episode that proves the point — the narrator should be someone who doesn't write Java.
+**Narrator:** Asim, the mechanical specialist, if he's willing — this is the episode that proves the point. Otherwise another mechanical team member.
 **Guide page:** `guide/05-refine.md`
 **Starting state:** Checkpoint 4 committed
 
@@ -14,7 +14,7 @@
 
 **[ON CAMERA or VO over footage of narrator at the laptop]**
 
-I'm on the mechanical team. I built the intake. I don't write code. This is the episode where that stops mattering.
+I'm on the mechanical team. I built the intake. I don't write code. This is the episode where that stops mattering. Some of these prompts I typed myself. Some I called out from over the robot while our coordinator typed. Same thing — the words were mine.
 
 **[FOOTAGE: driver practicing, narrator watching]**
 

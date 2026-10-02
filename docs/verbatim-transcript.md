@@ -2,12 +2,16 @@
 
 Source: the Android Studio Gemini agent session file (`steps.jsonl`, thread *"Create FTC Mecanum OpMode with flywheel and intake controls"*). Every user prompt is complete and exactly as typed. Gemini's text replies are complete. Tool calls (file writes, searches, shell commands) are summarized to one line each; Gemini's private reasoning ("thoughts") is omitted. Timestamps are from the plugin's backend log where a match was found (local time).
 
+Each prompt carries an *Author* line: **Ben** (coordinator), **Asim** at the keyboard (mechanical specialist), or **Asim's request, typed by Ben** — Asim at the robot calling the change, Ben typing it. Attribution is from Ben's recollection plus writing style (Asim's prompts are lowercase and open with "hey," or "okay,"). Prompts 65–67 are tagged Ben by default and may also have been Asim's requests.
+
 This is the primary source for every prompt quoted in this repo. Earlier sessions on other teams' robots (Koalaified, CubedMentors) are not in this thread; the backend log in `gemini-log-transcript.md` covers them.
 
 
 ---
 
 ### 1. You  ·  `Sep 17 10:26:32 PM`
+
+*Author: **Ben***
 
 > I'd like a basic mechanum opmode for an FTC robot. In the loop, gamepad1 should use the left joystick for forward/back and strafe left/right, and the right joystick for left-right turning.
 > 
@@ -60,6 +64,8 @@ If the suggested defaults work for you, let me know and I will write the code!
 
 ### 2. You  ·  `Sep 17 10:30:50 PM`
 
+*Author: **Ben***
+
 > 1. iterative
 > 2. 0.05 per step
 > 3. Let's have them run at fixed speeds of 0.3
@@ -111,6 +117,8 @@ I have created the Mecanum OpMode along with the `Flywheel` and `Intake` subsyst
 
 ### 3. You  ·  `Sep 17 10:33:55 PM`
 
+*Author: **Ben***
+
 > This looks good, but we want variables declared in class variables, not redeclared each loop.
 
 - `read_file` MecanumTeleOp.java
@@ -145,6 +153,8 @@ I have updated all three classes ([`MecanumTeleOp.java`](file:///C:/Users/3747h/
 
 ### 4. You  ·  `Sep 17 10:48:07 PM`
 
+*Author: **Ben***
+
 > reverse the polarity of the flywheel
 
 - `read_file` Flywheel.java
@@ -152,6 +162,8 @@ I have updated all three classes ([`MecanumTeleOp.java`](file:///C:/Users/3747h/
 ---
 
 ### 5. You  ·  `Sep 17 10:50:25 PM`
+
+*Author: **Ben***
 
 > Let's turn the driving power max down to 0.8
 
@@ -180,6 +192,8 @@ I have updated the code with both changes:
 ---
 
 ### 6. You  ·  `Sep 18 1:31:40 PM`
+
+*Author: **Ben***
 
 > On the expansion hub I have an intake continuous rotation servo on port 5 and a gobuilda LED light on servo port 2. On the control hub, I have a continous rotation servo on port 1 and a gobuilda LED light on servo port 3.
 > 
@@ -253,6 +267,8 @@ We can wire up the continuous rotation intake servos and LEDs in the code as fol
 
 ### 7. You  ·  `Sep 18 1:39:09 PM`
 
+*Author: **Ben***
+
 > 1. Global Robot mode makes more sense, since they are undercarriage lights. 
 > 2. The PWM to color information is in this image. You will have to use a image to text function to decode it: https://cdn11.bigcommerce.com/s-x56mtydx1w/images/stencil/original/products/2275/15126/3118-0808-0002-Product-Insight-4__88285.1757516465.png?c=1
 > 
@@ -304,6 +320,8 @@ We can wire up the continuous rotation intake servos and LEDs in the code as fol
 ---
 
 ### 8. You  ·  `Sep 18 5:13:17 PM`
+
+*Author: **Ben***
 
 > From gemini search: 
 > 
@@ -366,6 +384,8 @@ I have implemented the intake continuous rotation servos, the goBILDA LED underc
 ---
 
 ### 9. You  ·  `Sep 18 5:17:13 PM`
+
+*Author: **Ben***
 
 > The wiring changed. We have added firewheels, which allow intake while the flywheel is spinning and not to fire balls. When activated the firewheels move the balls from intake to the flywheel to shoot. Essentially, the firewheels work together to become the "shoot" button.
 > 
@@ -436,6 +456,8 @@ Do you prefer **Right Trigger** (hold to feed/shoot), **Right Bumper**, or the *
 ---
 
 ### 10. You  ·  `Sep 18 5:20:21 PM`
+
+*Author: **Ben***
 
 > Let's make the endgame warnings flash for 4 seconds, but only according to the FTC rules. I believe there is a requirement that it not flash too fast, and then go back to normal indicators.
 > 
@@ -520,6 +542,8 @@ FTC robot safety rules prohibit high-frequency stroboscopic/flashing lighting. I
 
 ### 11. You  ·  `Sep 18 5:33:17 PM`
 
+*Author: **Ben***
+
 > can you give me a chart of the controls?
 
 **Gemini:**
@@ -562,6 +586,8 @@ Here is the complete driver control chart and LED indicator mapping for your FTC
 
 ### 12. You  ·  `Sep 18 5:41:18 PM`
 
+*Author: **Ben***
+
 > The firewheel left starts up when the the start button is hit.
 
 - `read_file` Firewheel.java
@@ -571,6 +597,8 @@ Here is the complete driver control chart and LED indicator mapping for your FTC
 ---
 
 ### 13. You  ·  `Sep 18 5:41:56 PM`
+
+*Author: **Ben***
 
 > The left intake servo is the wrong direction
 
@@ -603,6 +631,8 @@ I have updated both [`Intake.java`](file:///C:/Users/3747h/StudioProjects/FtcRob
 
 ### 14. You  ·  `Sep 18 5:44:13 PM`
 
+*Author: **Ben***
+
 > When we start up, the left was green and the right led was purple.
 
 - `read_file` LedController.java
@@ -613,6 +643,8 @@ I have updated both [`Intake.java`](file:///C:/Users/3747h/StudioProjects/FtcRob
 ---
 
 ### 15. You  ·  `Sep 18 5:44:40 PM`
+
+*Author: **Ben***
 
 > Is that a wiring problem?
 
@@ -653,6 +685,8 @@ Now both LEDs will receive the exact goBILDA pulse widths and display identical,
 ---
 
 ### 16. You  ·  `Sep 18 5:46:00 PM`
+
+*Author: **Ben***
 
 > I meant is the right servo starting up and the lights not being the same color. Is that possible that we wired to the wrong ports?
 
@@ -695,6 +729,8 @@ Please trace the wires from your mechanism to the Hub ports and double-check:
 
 ### 17. You  ·  `Sep 18 5:59:14 PM`
 
+*Author: **Ben***
+
 > the flywheel is going the wrong way.
 
 - `read_file` Flywheel.java
@@ -711,6 +747,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 ---
 
 ### 18. You
+
+*Author: **Asim** at the keyboard*
 
 > hey, i prefer tank drive. can you set left joystick to controlling the left motors, right joystick to controlling the right motors, with y+ being forward on each side, y- being back, and both sticks pointing x- being strafe left, both sticks pointing x+ being strafe right?
 
@@ -766,6 +804,8 @@ backRightPower  = rightY + strafe;
 
 ### 19. You  ·  `Sep 18 7:50:13 PM`
 
+*Author: **Ben***
+
 > We removed the firewheels. They interfered with the flywheel. We now only use the intake and the flywheels.
 > 
 > The process is that we keep the flywheel off. We turn on the intake and intake the balls. We then stop the intake and need to have the intake reverse for 200ms. Then we need to turn on the flywheel and have it get up to speed. Then, while the flywheel is on, we need to activate the intake again at a slower speed, which allows the balls to be sent to the flywheel slowly. 
@@ -818,6 +858,8 @@ Does this control scheme fit your drivers' style? If so, I will remove the `Fire
 
 ### 20. You  ·  `Sep 18 7:52:42 PM`
 
+*Author: **Ben***
+
 > For the A button, let's not execute the 200ms reverse bump. Let's only do that with the flywheel on/off. But let's do a 200ms bump, and then turn on the flywheel when the b button is pressed.
 
 - `write_file` → Flywheel.java (133 lines)
@@ -832,6 +874,8 @@ Does this control scheme fit your drivers' style? If so, I will remove the `Fire
 ---
 
 ### 21. You  ·  `Sep 18 7:53:34 PM`
+
+*Author: **Ben***
 
 > Please print out the button control chart again with the control scheme.
 
@@ -875,6 +919,8 @@ Here is the updated driver control chart and undercarriage LED status mapping fo
 
 ### 22. You  ·  `Sep 18 8:46:33 PM`
 
+*Author: **Ben***
+
 > flywheel is going the wrong direction
 
 - `read_file` Flywheel.java
@@ -891,6 +937,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 ---
 
 ### 23. You  ·  `Sep 18 8:51:39 PM`
+
+*Author: **Ben***
 
 > When the intake is shooting, let's use a 0.5 power.
 
@@ -911,6 +959,8 @@ I have updated [`Intake.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotCon
 ---
 
 ### 24. You
+
+*Author: **Ben***
 
 > When we start the flywheel, let's have it go back at .3 power with the intake to reject any stuck balls, stop for 300ms and then go forward at power.
 
@@ -951,6 +1001,8 @@ I have updated the Flywheel startup sequence in [`Flywheel.java`](file:///C:/Use
 
 ### 25. You  ·  `Sep 18 9:07:32 PM`
 
+*Author: **Ben***
+
 > When we are shooting, I'd like to pulse the intake at 0.5 power at 200ms on, 200ms off.
 
 - `read_file` Intake.java
@@ -960,6 +1012,8 @@ I have updated the Flywheel startup sequence in [`Flywheel.java`](file:///C:/Use
 ---
 
 ### 26. You  ·  `Sep 18 9:07:57 PM`
+
+*Author: **Ben***
 
 > During the phase 3 you mentioned above.
 
@@ -996,12 +1050,16 @@ I have updated the shooting behavior in [`Intake.java`](file:///C:/Users/3747h/S
 
 ### 27. You  ·  `Sep 18 9:12:01 PM`
 
+*Author: **Ben***
+
 > Please give me the controls chart again.
 
 
 ---
 
 ### 28. You  ·  `Sep 18 9:13:54 PM`
+
+*Author: **Ben***
 
 > Let's change the on pluse to 100ms and the off pulse to 200ms.
 
@@ -1010,6 +1068,8 @@ I have updated the shooting behavior in [`Intake.java`](file:///C:/Users/3747h/S
 ---
 
 ### 29. You  ·  `Sep 18 9:14:13 PM`
+
+*Author: **Ben***
 
 > Let
 
@@ -1062,6 +1122,8 @@ Here is your updated control chart and LED indicator table:
 
 ### 30. You  ·  `Sep 18 9:22:19 PM`
 
+*Author: **Ben***
+
 > Let's set the flywheel limit to 1.0 and let's set the flywheel default to 1.0 speed when shooting.
 
 - `read_file` Flywheel.java
@@ -1080,6 +1142,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 ---
 
 ### 31. You  ·  `Sep 18 9:32:33 PM`
+
+*Author: **Ben***
 
 > The end flashing is pusling too fast. And it looks like white. How are you doing the flashing code?
 
@@ -1111,6 +1175,8 @@ Now the warnings display vibrant, deep Orange and Red pulses without fading into
 ---
 
 ### 32. You
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > I need you to write two autonomous opmodes.  We have a competition in which one robot shoots first and then causes a bistable "hive" target to tip to the other side. So one robot shoots while the other waits. Then the other robot shoots. I would like our second opmode to wait 15 seconds before shooting.
 > 
@@ -1162,6 +1228,8 @@ Would you like me to write both Autonomous OpMode files now?
 
 ### 33. You  ·  `Sep 18 9:57:24 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > Yes. Please do so.
 
 - `write_file` → BaseAuto.java (246 lines)
@@ -1201,6 +1269,8 @@ I have created the two Autonomous OpModes and a shared base class in `TeamCode/s
 
 ### 34. You  ·  `Sep 18 10:01:15 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > I'd like to do two more experimental autonomous modes. The team has suggested that we can rest pur fourth ball on top of the intake (we get 4 at the start, but our intake only holds 3). If we shoot, then drive backwards with the intake on, the ball will fall in front of the robot and then we can drive forward, intake the ball, hit the wall (gently), shoot the fourth ball, and then move away from the wall to get the move away from the wall points.
 > 
 > Can you implement the two experimental autonomous modes with this feature (first and delayed)? We need to keep the original ones, as they are not experimental.
@@ -1216,6 +1286,8 @@ I have created the two Autonomous OpModes and a shared base class in `TeamCode/s
 ---
 
 ### 35. You  ·  `Sep 18 10:02:22 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Note on the experimental autonomous, we still have to shoot first before we collect the fourth ball.
 
@@ -1256,6 +1328,8 @@ Yes, exactly! The experimental state machine in [`BaseAutoExperimental.java`](fi
 ---
 
 ### 36. You  ·  `Sep 18 10:06:29 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > After testing, we need to move the robot 6 inches from the wall to shoot. We estimate that is about 0.3 power for one second. So, our state machine will have to move first and then shoot. However, this makes it easier for our experimental opmodes, as we will already be away from the wall. But it means that we will have to drive into the wall and then back out to shoot. Does that make sense?
 
@@ -1310,6 +1384,8 @@ By having the robot **back up 6 inches (`-0.3` power for 1.0s) as the very first
 
 ### 37. You  ·  `Sep 18 10:10:50 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > Let's move the up/down on the dpad for tuning the flywheel to gamepad2. Let's make up dpad controls move the robot at 0.2 speed forward/backward and strafe left/right at the same slow speed.
 > 
 > Let's have the rejection power at the same power as the intake speed. We are seeing jams with the bigger balls (which we should not collect).
@@ -1350,6 +1426,8 @@ Your proposed changes make complete physical and operational sense for driver co
 ---
 
 ### 38. You  ·  `Sep 18 10:18:08 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shooting until we hit a minimum of 5 seconds shooting.
 > 
@@ -1405,6 +1483,8 @@ I have updated both delayed autonomous OpModes ([`AutoShootDelayed.java`](file:/
 
 ### 39. You
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > The robot spit out the balls in experimental. Let's not reverse the intake before we shoot the first balls. It is preloaded and we have placed them correctly. In addition, the strafe right is only for the delayed versions. The normal versions do not strafe.
 
 - `read_file` Flywheel.java
@@ -1446,6 +1526,8 @@ I have applied both requested fixes across all autonomous OpModes:
 ---
 
 ### 40. You
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Let's only go forward 1/4 of the ime that we currently go back (and forward). It is too far back.
 > 
@@ -1505,6 +1587,8 @@ I have updated all Autonomous OpModes with your calibration adjustments:
 
 ### 41. You
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > This is better. We need a full second of settling time.
 > 
 > We also need to turn off the flywheel when we intake the fourth ball and then follow our shooting sequence - intake off, settling time, reversal, flywheel on, etc.
@@ -1516,6 +1600,8 @@ I have updated all Autonomous OpModes with your calibration adjustments:
 ---
 
 ### 42. You  ·  `Sep 18 10:49:57 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Let's make sure that we don't reverse twice in a row - once after intake and once for the flywheel on. Only once.
 
@@ -1550,6 +1636,8 @@ I have updated both [`BaseAuto.java`](file:///C:/Users/3747h/StudioProjects/FtcR
 ---
 
 ### 43. You
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > The flywheel is not stopped in time for the fourth ball intake. The intake moves it to a still spinning flywheel. Let's use the zero power braking mode for the flywheel and wait 250ms before we move to intake.
 > 
@@ -1590,6 +1678,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 
 ### 44. You  ·  `Sep 18 11:03:29 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > The intake seems to start up when the robot drives backwards in the beginning. When the flywheel starts up, that causes the first ball to shoot low, a loss. Can you verify that the intake only turns on after the flywheel delay.
 
 - `read_file` BaseAuto.java
@@ -1620,6 +1710,8 @@ I have verified the intake behavior and made sure that the intake remains **100%
 
 ### 45. You  ·  `Sep 18 11:10:21 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > The strafing is the opposite direction. And let's increase power to 0.5.
 
 - `read_file` MecanumTeleOp.java
@@ -1636,6 +1728,8 @@ I have verified the intake behavior and made sure that the intake remains **100%
 ---
 
 ### 46. You  ·  `Sep 18 11:11:52 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Before we strafe, do the same backup for the same time again.
 
@@ -1669,6 +1763,8 @@ I have updated the strafing direction, power, and back-up sequence across all Op
 
 ### 47. You  ·  `Sep 18 11:13:50 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > There should be no strafe in first autos. only delayed autos, correct?
 
 **Gemini:**
@@ -1689,6 +1785,8 @@ In both sets of Autonomous OpModes:
 ---
 
 ### 48. You  ·  `Sep 18 11:17:00 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Let's make the backup 300ms for all the backups. We need to be a bit closer to the goal.
 
@@ -1718,6 +1816,8 @@ I have updated all back-up durations across all Autonomous OpModes from `0.25s` 
 ---
 
 ### 49. You  ·  `Sep 18 11:20:34 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Let's change the 15 second delay to a 1 second delay for our testing convenience. We are going to move it back to 15 seconds after we are done testing. It just makes for a long wait.
 > 
@@ -1757,6 +1857,8 @@ I have updated the testing delay and replaced the strafing parking maneuver with
 
 ### 50. You  ·  `Sep 18 11:27:03 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > Instead of backing up for 500ms, let's back up for 750ms before our turn and drive. We are really close.
 
 - `write_file` → BaseAuto.java (311 lines)
@@ -1786,6 +1888,8 @@ Before executing the left turn and drive forward into the parking box, the robot
 ---
 
 ### 51. You  ·  `Sep 18 11:28:42 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > We are not changing the shooting backup, correct? Just the turning.
 > 
@@ -1820,6 +1924,8 @@ To reach a total backward displacement of **750 ms** before turning left and dri
 ---
 
 ### 52. You  ·  `Sep 18 11:39:57 PM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > It worked! Let's reduce the turn from 0.5 seconds to 0.45 seconds. And let's set the delay back to 15 seconds.
 
@@ -1856,6 +1962,8 @@ I have updated the parking back-up step in [`BaseAuto.java`](file:///C:/Users/37
 
 ### 53. You  ·  `Sep 18 11:44:27 PM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > Did you change the turn from 0.5 to 0.45 seconds?
 
 **Gemini:**
@@ -1885,6 +1993,8 @@ case STATE_5_PARK_TURN_LEFT:
 ---
 
 ### 54. You  ·  `Sep 19 8:29:23 AM`
+
+*Author: **Asim** at the keyboard*
 
 > hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix
 
@@ -1918,6 +2028,8 @@ backRightPower  = rightY + strafe;
 ---
 
 ### 55. You  ·  `Sep 19 8:36:39 AM`
+
+*Author: **Asim** at the keyboard*
 
 > what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it
 
@@ -1972,6 +2084,8 @@ I have updated the reverse bump duration and power across all files to prevent s
 
 ### 56. You  ·  `Sep 19 8:39:18 AM`
 
+*Author: **Asim** at the keyboard*
+
 > don't bump down the power, keep it the same. let's just try the shortened time.
 
 - `read_file` Flywheel.java
@@ -1993,6 +2107,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 ---
 
 ### 57. You  ·  `Sep 19 8:40:52 AM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away.
 
@@ -2024,6 +2140,8 @@ I have updated the parking sequence in both [`BaseAuto.java`](file:///C:/Users/3
 ---
 
 ### 58. You  ·  `Sep 19 8:42:25 AM`
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > The turn should also be for 0.55 seconds not for 0.45 seconds.
 
@@ -2066,6 +2184,8 @@ case STATE_PARK_TURN_LEFT:
 ---
 
 ### 59. You
+
+*Author: **Asim** at the keyboard*
 
 > create backup copies of the existing operation modes. we are now going to create a separate, autonomous mode. it is going to be the shoot without delay program, then turn 45 degrees left. drive backwards for 1.5 seconds, turn 45 degrees right to correct, then drive forward for 3 seconds. name this ExperimentalParkShootFirst. before you do this, remove the power adjustment for the flywheel from the dpad, and move the up power adjustment to the right trigger on the gamepad (NOT THE BUMPER), and the down power adjustment to the left trigger.
 
@@ -2121,6 +2241,8 @@ I have completed creating backup copies of all existing code, moved the flywheel
 
 ### 60. You
 
+*Author: **Asim** at the keyboard*
+
 > two changes: first, make sure that it goes back to pick up the 4th ball. the experimental versions have been working well, lets keep doing it in the expiermentalparkshootfirst program. second, instead of driving forward for 3 seconds, drive backwards. still back off the wall at the end.
 
 - `read_file` ExperimentalParkShootFirst.java
@@ -2156,6 +2278,8 @@ I have updated [`ExperimentalParkShootFirst.java`](file:///C:/Users/3747h/Studio
 
 ### 61. You
 
+*Author: **Asim** at the keyboard*
+
 > a few changes: have the first drive backwards after the turn left be 1.65 seconds instead of 1.5. then change the second backwards drive to 2.5 seconds and remove the pull off the wall at the end.
 
 - `read_file` ExperimentalParkShootFirst.java
@@ -2180,6 +2304,8 @@ I have updated [`ExperimentalParkShootFirst.java`](file:///C:/Users/3747h/Studio
 
 ### 62. You  ·  `Sep 19 10:09:20 AM`
 
+*Author: **Asim** at the keyboard*
+
 > okay, lets up the first backwards drive to 1.75 seconds, and drop the second backwards drive to 2.3 seconds.
 
 - `read_file` ExperimentalParkShootFirst.java
@@ -2202,6 +2328,8 @@ I have updated the drive durations in [`ExperimentalParkShootFirst.java`](file:/
 ---
 
 ### 63. You
+
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
 
 > Do not change the functionality of gamepad 1. I want gamepad 2 to also change the speed of the flywheel using the dpad up/down during teleop.
 
@@ -2226,6 +2354,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 
 ### 64. You  ·  `Sep 19 11:35:12 AM`
 
+*Author: **Asim's request**, typed by Ben (Asim at the robot)*
+
 > I thought gamepad 1 dpad was slow mode, not tuning the flywheel.
 
 - `write_file` → Flywheel.java (182 lines)
@@ -2249,6 +2379,8 @@ I have separated the controls in [`Flywheel.java`](file:///C:/Users/3747h/Studio
 ---
 
 ### 65. You  ·  `Sep 19 11:37:45 AM`
+
+*Author: **Ben***
 
 > When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running). Does that make sense?
 
@@ -2281,6 +2413,8 @@ When you press **B** on Gamepad 1 to start the flywheel:
 
 ### 66. You  ·  `Sep 19 2:57:25 PM`
 
+*Author: **Ben***
+
 > What is the current default speed of the flywheel?
 
 **Gemini:**
@@ -2296,6 +2430,8 @@ The current default target speed of the flywheel is **`1.0`** (**100% full max p
 ---
 
 ### 67. You  ·  `Sep 19 2:57:51 PM`
+
+*Author: **Ben***
 
 > Let's set the default speed to 0.95
 
@@ -2318,6 +2454,8 @@ I have updated [`Flywheel.java`](file:///C:/Users/3747h/StudioProjects/FtcRobotC
 ---
 
 ### 68. You  ·  `Sep 28 3:56:09 PM`
+
+*Author: **Ben***
 
 > Can you please make a .zip file with all the source code made in this project? And also include the AI transcript so I can teach others how to code using Ai
 
@@ -2384,6 +2522,8 @@ The included document [`AI_Development_Transcript_And_Guide.md`](file:///C:/User
 
 ### 69. You  ·  `Sep 28 3:59:50 PM`
 
+*Author: **Ben***
+
 > where is the zip file located? I am trying to drag and drop it into a drive folder
 
 **Gemini:**
@@ -2412,6 +2552,8 @@ You will see **`FtcRobotController_SourceCode_And_AI_Transcript.zip`** sitting r
 
 ### 70. You  ·  `Oct 01 6:56:43 PM`
 
+*Author: **Ben***
+
 > Can you make a word for word transcript of this conversation? I need it verbatim.
 
 - `write_file` → Verbatim_AI_Conversation_Transcript.txt (471 lines)
@@ -2437,6 +2579,8 @@ I have created a complete, verbatim, word-for-word text transcript file of our e
 
 ### 71. You
 
+*Author: **Ben***
+
 > Can you make a word for word transcript starting from the beginning? No summary. 
 > 
 > Your last attempt did not start at the beginning, which started "I'd like a basic mechanum opmode for an FTC robot. In the loop, gamepad1 should use the left joystick for forward/back and strafe left/right, and the right joystick for left-right turning."
@@ -2457,6 +2601,8 @@ I am sorry I can't generate the full file automatically for you, but I hope the 
 ---
 
 ### 72. You  ·  `Oct 01 7:04:20 PM`
+
+*Author: **Ben***
 
 > Is there a way to dump all the text from this window? The selection mechansim only allows me to select one text bubble at a time.
 
@@ -2485,6 +2631,8 @@ I apologize for the inconvenience! It is a known limitation of the current chat 
 
 ### 73. You  ·  `Oct 01 9:09:40 PM`
 
+*Author: **Ben***
+
 > Do you know where the local cache of this chat is?
 
 - `shell` powershell -Command "Get-ChildItem -Path 'C:\Users\3747h\AppData\Roaming\Google\', 'C:\Users\3747h\AppData\Loc
@@ -2492,6 +2640,8 @@ I apologize for the inconvenience! It is a known limitation of the current chat 
 ---
 
 ### 74. You  ·  `Oct 01 9:13:26 PM`
+
+*Author: **Ben***
 
 > This looks like a lot of errors to me.
 

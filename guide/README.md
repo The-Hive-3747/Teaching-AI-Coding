@@ -22,7 +22,7 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 | 2 | [02-mecanum-drive.md](02-mecanum-drive.md) | A TeleOp that drives (tank + strafe, D-pad precision) |
 | 3 | [03-intake.md](03-intake.md) | ...and collects / rejects balls |
 | 4 | [04-shooter.md](04-shooter.md) | ...and runs the flywheel startup sequence and pulse-feeds |
-| 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical team's words (the fifth, the strafe fix, is in Checkpoint 2) |
+| 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical team's words — some typed by the mechanical specialist, some dictated to the coordinator (the fifth, the strafe fix, is in Checkpoint 2) |
 | 6 | [06-auto-shoot.md](06-auto-shoot.md) | An autonomous that backs off the wall and shoots |
 | 7 | [07-auto-park.md](07-auto-park.md) | ...split into Shoot First and Shoot Delayed, which parks |
 | 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...inside 30 seconds, ending clear of the wall for the LEAVE points |

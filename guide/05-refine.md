@@ -18,7 +18,7 @@ The pattern is always the same:
 
 ## 5.2 The Hive's real refinements
 
-These are the actual prompts the mechanical team typed, in order, from Gemini's own log of the build. Read them for the *style*: short, specific about what was observed, no code words.
+These are the actual prompts from the refinement sessions, in order, from the agent session log. Who typed them matters less than you'd think, and the honest answer is "it varied": Asim, the mechanical specialist, typed the strafe fix and the spitting-balls pair himself (lowercase, "hey,", "please fix"); for the gamepad and intake-resume ones he was at the robot calling the change and Ben, the coordinator, was typing. The author of each prompt is tagged in [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md). Either way the words are the mechanical team's — read them for the *style*: short, specific about what was observed, no code words.
 
 ### "It is spitting balls out"
 

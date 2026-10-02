@@ -51,7 +51,7 @@ Let's go.
 ## Shot list
 
 - [ ] Ben on camera, two setups (intro and close)
-- [ ] Robot driving/intaking/shooting, 10 s total — cut from the scrimmage stream at 3:39:22 (https://www.youtube.com/live/E53OUghEmlg?t=13162); stills in `docs/images/`
+- [ ] Robot driving/intaking/shooting, 10 s total — cut from the mentor competition on the scrimmage stream, starting 3:39:22 (https://www.youtube.com/live/E53OUghEmlg?t=13162); stills in `docs/images/`
 - [ ] Asim at the robot, Ben at the laptop with Gemini panel, 5 s
 - [ ] Robot completing autonomous, 5 s
 - [ ] Loop diagram text card

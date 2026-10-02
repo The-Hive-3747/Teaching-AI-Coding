@@ -4,7 +4,7 @@ Materials for teaching FIRST Tech Challenge teams to write their robot code by d
 
 At The Hive's robot-in-one-week, the students built and coded their robot the traditional way. The mentors entered the mentor competition with a robot of their own — and coded it entirely by describing it to Gemini in Android Studio. Ben, the coordinator, is a Java developer; he described the architecture on night one and typed no Java. After that the changes came from Asim and the mechanical mentors, who don't write Java: sometimes Asim at the keyboard himself, sometimes over the robot calling out the change while Ben typed. Timings, power levels, the park routine, a whole experimental autonomous: described in plain English. The code is in this repo verbatim, and so is every prompt from the week, with its author.
 
-The experiment was the mentors'. The workshop is so that students can do the same. The robot's match at the Robot in 7 Days Scrimmage is on the FIRST Robotics Utah stream, starting at 3:39:22: [youtube.com/live/E53OUghEmlg?t=13162](https://www.youtube.com/live/E53OUghEmlg?t=13162).
+The experiment was the mentors'. The workshop is so that students can do the same. The mentor competition at the Robot in 7 Days Scrimmage is on the FIRST Robotics Utah stream, starting at 3:39:22: [youtube.com/live/E53OUghEmlg?t=13162](https://www.youtube.com/live/E53OUghEmlg?t=13162).
 
 ## What's here
 

@@ -28,6 +28,10 @@ The path as it shipped:
 
 `[DIAGRAM: top-down field sketch — start on the wall, back up to shooting spot, back up more, turn left 90°, drive forward into the park zone]`
 
+For reference, the real field at match start — the mentor robot is bottom-left, against the wall:
+
+![Scrimmage field at match start](../docs/images/scrimmage-field-wide-start.jpg)
+
 Rough numbers are fine; you'll tune. Write it as a list like this before you prompt.
 
 ```

@@ -304,7 +304,7 @@ Repo URL. Contact for questions.
 
 - [ ] `[SCREENSHOT]` Gemini panel with a real mechanical-team prompt, ideally as typed (slide 3)
 - [ ] `[SCREENSHOT]` Gemini panel with the mecanum prompt and generated code (slide 9 fallback)
-- [ ] Team photo or robot photo for the title slide
+- [x] Robot photos in `docs/images/` — `match-closeup-green-leds.jpg` for the title, the two wide scrimmage frames for slide 3
 - [ ] Days for the eight sessions (slide 3a)
 - [ ] Fallback screen recording of the live demo (slide 9)
 - [ ] Repo URL once the repo exists

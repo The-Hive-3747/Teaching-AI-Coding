@@ -51,7 +51,7 @@ Let's go.
 ## Shot list
 
 - [ ] Ben on camera, two setups (intro and close)
-- [ ] Robot driving/intaking/shooting, 10 s total
+- [ ] Robot driving/intaking/shooting, 10 s total (stills to cut in: `docs/images/match-shooting-at-goal.jpg`, `match-closeup-green-leds.jpg`)
 - [ ] Asim at the robot, Ben at the laptop with Gemini panel, 5 s
 - [ ] Robot completing autonomous, 5 s
 - [ ] Loop diagram text card

@@ -18,7 +18,10 @@ On the Driver Hub: **⋮ menu → Configure Robot → (your config) → Edit**. 
 
 `[SCREENSHOT: Driver Hub Configure Robot screen showing motor ports with names]`
 
-Fill in a table like this. **Use the exact names, exact capitalization.** This is the mentor robot:
+Fill in a table like this. **Use the exact names, exact capitalization.** This is the mentor robot — the black wheel on the cross-shaft is the flywheel, the grey roller at the front is the intake:
+
+![The mentor robot from above on the test floor](../docs/images/robot-top-down-tile-floor.jpg)
+
 
 | Name in config | Type | Hub / port | What it does | Direction notes |
 |---|---|---|---|---|

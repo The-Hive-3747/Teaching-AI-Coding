@@ -6,6 +6,10 @@ Everything else the mentors described into existence during the week. None of it
 
 ## 9.1 LED status lights
 
+![Green undercarriage LEDs during a match — Collect mode](../docs/images/match-closeup-green-leds.jpg)
+
+*Green means Collect is on. From across the field, that's all the driver needs to know.*
+
 The robot has two goBILDA LED modules on servo ports (`led_left`, `led_right`). They're driven like servos: the "position" picks the color. The Hive had Gemini build a `LedController` class and then described what color meant what:
 
 > **Prompt (reconstructed):**

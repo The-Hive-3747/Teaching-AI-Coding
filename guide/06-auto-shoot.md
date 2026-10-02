@@ -8,6 +8,8 @@
 
 ## 6.1 Autonomous without sensors
 
+![The robot at the wall, a ball in flight toward the goal](../docs/images/match-shooting-at-goal.jpg)
+
 You don't need odometry or encoders to score in autonomous. Time-based driving ("backward at 0.3 power for 0.3 seconds") is repeatable enough for a first week, as long as the battery is charged and the wheels are clean.
 
 The autonomous is a **state machine**: a list of steps, each with a condition for moving to the next. This is the mentor robot's:

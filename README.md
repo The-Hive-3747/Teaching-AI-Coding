@@ -46,7 +46,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - [x] Robot and match photos in `docs/images/`; drive-test video and two scrimmage clips (Test Match 3 auto and TeleOp) in `docs/video/`
 - [x] Android Studio screenshots of two real prompts (tank drive; "spitting balls out") in `docs/images/`
 - [ ] Remaining screenshots (install pop-ups, Driver Hub, generated code) — see `[SCREENSHOT: ...]` callouts in `guide/`
-- [ ] Kickoff deck built from `slides/kickoff-outline.md`
+- [x] Kickoff deck: `slides/kickoff.pptx` (import into Google Slides), built by `slides/build-deck.js` from `slides/kickoff-outline.md` — The Hive's slide 5 column still to fill in
 - [ ] Videos recorded
 
 ## Season note

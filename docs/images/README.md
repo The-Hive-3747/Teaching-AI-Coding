@@ -9,6 +9,7 @@ Photos of the mentor robot, supplied by Ben. The two wide field shots are frames
 | `drive-test-shop-floor-frame.jpg` | Still from the drive-test video (`../video/`) — robot mid-strafe on the tile floor | Checkpoint 2 |
 | `scrimmage-match3-auto-frame.jpg` | Still from the Test Match 3 auto clip (`../video/`) at 2:19 — the robot has left the wall | Checkpoint 8 |
 | `scrimmage-match3-teleop-frame.jpg` | Still from the Test Match 3 TeleOp clip (`../video/`) | Checkpoint 5 |
+| `hive-mark.png` | Just the honeycomb mark, cropped from the logo PNG (790×810) — deck footers and title slide | Deck |
 | `hive-logo.svg` / `hive-logo.png` | The Hive 3747 logo — gold honeycomb on black, 16:9 (960×540 viewBox; PNG at 1920×1080). SVG is the master | Deck title/close slides, video bumper and end card, README |
 | `match-closeup-green-leds.jpg` | The robot in a match, intake side toward the goal pole, undercarriage LEDs **green** — Collect mode, per `LedController` | Checkpoint 9 (LEDs), deck title/slide 3 |
 | `match-shooting-at-goal.jpg` | A ball in flight toward the BIOBUZZ goal; robot at the wall in shooting position | Checkpoint 6 (auto shooting position), Episode 0 B-roll |

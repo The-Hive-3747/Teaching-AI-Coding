@@ -32,15 +32,15 @@ Subtitle: How The Hive's mentors coded a robot in one week with Gemini in Androi
 
 **Set-up, said out loud before 3a:** At our robot-in-one-week the students built and coded their robot the normal way. The mentors had our own competition, and we ran an experiment on our robot: no hand-written code at all — everything described to Gemini. This is what happened.
 
-**Slide 3a:** Timeline graphic, one line per session. These are Gemini's own "session iterations" from its log of the build. *(Ben: put days on them.)*
-- Session 1: Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes
-- Session 2: First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
-- Session 3: Asim (mechanical mentor): *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
-- Session 4: *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
-- Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away."* — back off the wall
-- Session 6: *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
-- Session 7: *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* — spool-up jam fixed
-- Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
+**Slide 3a:** Timeline graphic, one line per session. These are Gemini's own "session iterations" from its log of the build; times from the agent log.
+- Session 1 (Wed Sep 17, 10:26 PM): Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes
+- Session 2 (Thu Sep 18, ~9:50 PM): First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
+- Session 3 (Fri Sep 19, 8:29 AM): Asim (mechanical mentor): *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
+- Session 4 (8:36 AM): *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
+- Session 5 (8:40 AM): *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away."* — back off the wall
+- Session 6 (11:35 AM): *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
+- Session 7 (11:37 AM): *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."* — spool-up jam fixed
+- Session 8 (2:57 PM): *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
 
 **Slide 3b:** The punchline, alone on a slide:
 > "I've written Java for twenty-five years. I didn't type a line of it. After the first build, the changes came from the mechanical mentors — sometimes typed by them, sometimes called out from over the robot while I typed. They don't write Java."
@@ -280,7 +280,7 @@ Specific:
 - [ ] The FtcRobotController project cloned
 - [ ] Your robot's hardware config done on the Driver Hub / Robot Controller (names and ports)
 - [ ] A written list of every motor and servo: name, port, purpose, direction
-- [ ] The guide and videos: `[REPO URL]`
+- [ ] The guide and videos: `github.com/The-Hive-3747/Teaching-AI-Coding`
 
 **Notes:** The hardware list is the one thing to do *before* opening Gemini. Everything else follows from it.
 
@@ -309,6 +309,5 @@ Repo URL. Contact for questions.
 - [ ] `[SCREENSHOT]` Gemini panel with a real mechanical-team prompt, ideally as typed (slide 3)
 - [ ] `[SCREENSHOT]` Gemini panel with the mecanum prompt and generated code (slide 9 fallback)
 - [x] Robot photos in `docs/images/` — `match-closeup-green-leds.jpg` for the title, the two wide scrimmage frames for slide 3
-- [ ] Days for the eight sessions (slide 3a)
 - [ ] Fallback screen recording of the live demo (slide 9)
-- [ ] Repo URL once the repo exists
+- [x] Repo URL: https://github.com/The-Hive-3747/Teaching-AI-Coding

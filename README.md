@@ -2,7 +2,7 @@
 
 Materials for teaching FIRST Tech Challenge teams to write their robot code by describing it in plain language to Gemini in Android Studio, then testing and refining it one subsystem at a time.
 
-This is how The Hive (FTC #3747) built its robot-in-one-week code: a coordinator described the architecture, hardware names, and control scheme once; after that, the mechanical team refined timings, power levels, and the autonomous routine in natural language without writing Java themselves. The code is in this repo verbatim, and so are six of the mechanical team's prompts.
+This is how The Hive (FTC #3747) built its robot-in-one-week code. The coordinator described the architecture, hardware names, and control scheme on night one. After that the changes came from the mechanical team — Asim, the mechanical specialist, sometimes at the keyboard himself, sometimes standing over the robot calling out the change while the coordinator typed. Timings, power levels, the park routine, a whole experimental autonomous: described in plain English, by people who don't write Java. The code is in this repo verbatim, and so is every prompt from the week, with its author.
 
 ## What's here
 
@@ -11,9 +11,9 @@ This is how The Hive (FTC #3747) built its robot-in-one-week code: a coordinator
 | `slides/` | Kickoff presentation outline and speaker notes | Presenter |
 | `guide/` | Step-by-step written guide, one file per checkpoint, with diagrams and screenshot callouts | Teams following along |
 | `video-scripts/` | Series plan and a script for each checkpoint video | Video production |
-| `prompts/` | The six verbatim prompts from the build, plus reconstructed ones for each checkpoint | Teams |
+| `prompts/` | The real prompts from the build mapped to checkpoints, plus reconstructed ones where the team didn't follow the checkpoint order | Teams |
 | `example-code/` | The Hive's final code verbatim (`final/`), and per-checkpoint snapshots derived from it | Teams (for comparison, not copying) |
-| `docs/` | The complete verbatim session transcript, the code after every prompt, and Gemini's own summary | Everyone |
+| `docs/` | `verbatim-transcript.md` (every prompt, tagged by author, with Gemini's full replies), `code-history/` (the code after each of the 50 prompts that changed it), and Gemini's own summary | Everyone |
 
 ## The checkpoint sequence
 
@@ -36,8 +36,9 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - [x] Every prompt from the week recovered verbatim (`docs/verbatim-transcript.md`); the code after each one replayed and validated (`docs/code-history/`)
 - [x] Per-checkpoint snapshots derived from the real code (compile-checked; not run on the robot in that form)
 - [ ] Real hardware config XML (`example-code/hardware-config.xml` is reconstructed)
-- [ ] Confirm what happened on the field with the 30.7 s delayed auto (see `example-code/README.md`)
-- [ ] Confirm `Firewheel.java` is an abandoned experiment
+- [x] Delayed auto: 30.7 s on paper, finished off the wall on the field
+- [x] `Firewheel.java` explained: transfer mechanism, in and out on Sep 18
+- [x] Every prompt attributed (Ben / Asim at the keyboard / Asim's request typed by Ben)
 - [ ] Screenshots captured (see `[SCREENSHOT: ...]` callouts in `guide/`)
 - [ ] Kickoff deck built from `slides/kickoff-outline.md`
 - [ ] Videos recorded

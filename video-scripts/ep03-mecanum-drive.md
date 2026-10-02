@@ -103,6 +103,6 @@ Checkpoint two: all eight drive tests pass, someone on the team can point at the
 - [ ] Gemini prompt + generation (4×)
 - [ ] Editor with four highlighted sections
 - [ ] Build/deploy
-- [ ] Driver Hub + robot split for all 8 tests
+- [ ] Driver Hub + robot split for all 8 tests (existing drive-test footage to cut in: `docs/video/drive-test-shop-floor.mp4`)
 - [ ] The strafe failure and the real fix prompt (real or staged)
 - [ ] Git commit dialog

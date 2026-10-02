@@ -1,6 +1,6 @@
 # Images
 
-Photos of the mentor robot, supplied by Ben. The two wide field shots are frames from the "Robot in 7 Days Scrimmage" stream (FIRST Canopy overlay) and include spectators and other teams' robots — fine for a workshop, but check before publishing beyond the program.
+Photos of the mentor robot, supplied by Ben. The two wide field shots are frames from the **2026-27 FTC Robot in 7 Days Scrimmage** stream by FIRST Robotics Utah (Sep 20, 2026) — the mentor robot's match starts at 3:39:22: [https://www.youtube.com/live/E53OUghEmlg?t=13162](https://www.youtube.com/live/E53OUghEmlg?t=13162) and include spectators and other teams' robots — fine for a workshop, but check before publishing beyond the program.
 
 | File | What it shows | Used in |
 |---|---|---|

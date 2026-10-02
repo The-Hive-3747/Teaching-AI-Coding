@@ -176,6 +176,8 @@ Specific:
 
 **Fallback if the robot won't cooperate:** Have a screen recording of the same demo ready. Play it, narrate over it.
 
+**Match footage for slide 3 or the open:** the mentor robot's scrimmage match, FIRST Robotics Utah stream, from 3:39:22 — [https://www.youtube.com/live/E53OUghEmlg?t=13162](https://www.youtube.com/live/E53OUghEmlg?t=13162). Download the clip beforehand; don't rely on the venue's Wi-Fi.
+
 `[SCREENSHOT: Gemini panel with the mecanum drive prompt and the generated code visible side by side — for the fallback slide]`
 
 ---

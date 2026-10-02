@@ -43,7 +43,28 @@ The autonomous is a **state machine**: a list of steps, each with a condition fo
 
 Each box is a state. Each arrow is "when the timer passes N seconds, go to the next state." That's all a state machine is.
 
-Two details worth copying: the **settle** state (a robot rocks after braking; shooting while it rocks scatters shots) and **no reverse bump in auto** — Gemini's log of the build records the lesson: "Reversing intake while preloaded with balls will eject them. Preloaded balls require direct forward spooling." Both are in the prompt below.
+This is how The Hive asked for its first autonomous, verbatim (Sep 18, ~9:50 PM) — notice it's already a numbered state machine with exit conditions, and it ends with a question:
+
+> *I need you to write two autonomous opmodes.  We have a competition in which one robot shoots first and then causes a bistable "hive" target to tip to the other side. So one robot shoots while the other waits. Then the other robot shoots. I would like our second opmode to wait 15 seconds before shooting.*
+>
+> *Here is the state machine:*
+> *start ->*
+> *1. flywheel starts moving - exit to state 2 by 1 second passing ->*
+> *2. start shooing by using our teleop procedure of pulsing the intake - exit to state 3 by 10 seconds passing ->*
+> *3. stop shooting and turn off intake and flywheel - exit to state 4 directly ->*
+> *4. drive backwards away from the wall slowly at 0.4 power (our shooter is on our back, intake on front) - exit to state 5 after one second*
+> *5. all stop -> end state machine*
+>
+> *Note that both autonomous sysems do the same thing. But the second autonomous waits 15 seconds.*
+>
+> *Any questions or problems you see?*
+
+The two details that make the final version different from this first one both came from testing, and both are verbatim:
+
+- **No reverse bump in auto.** *"The robot spit out the balls in experimental. Let's not reverse the intake before we shoot the first balls. It is preloaded and we have placed them correctly."* → `startDirect()`.
+- **Settle before shooting.** *"Let's give the robot 500ms to settle after driving backwards. the inertia is causing the balls to shoot too quickly."* then, one test later, *"This is better. We need a full second of settling time."*
+
+Both are in the prompt below, so you don't have to find them the same way.
 
 ## 6.2 Reuse the subsystems — by calling them
 

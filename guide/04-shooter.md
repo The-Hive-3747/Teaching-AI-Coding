@@ -36,6 +36,20 @@ A flywheel takes time to reach speed, and a ball pressed against a stopped flywh
 
 Describe it as a sequence with those state names, and Gemini will write it as one — and the code will match the picture.
 
+This sequence is The Hive's, and it arrived in three prompts on the evening of Sep 18, all verbatim. First the process, with a request for a design rather than code:
+
+> *We removed the firewheels. They interfered with the flywheel. We now only use the intake and the flywheels.*
+>
+> *The process is that we keep the flywheel off. We turn on the intake and intake the balls. We then stop the intake and need to have the intake reverse for 200ms. Then we need to turn on the flywheel and have it get up to speed. Then, while the flywheel is on, we need to activate the intake again at a slower speed, which allows the balls to be sent to the flywheel slowly.*
+>
+> *I do not want this process fully automated, I still want the button presses. Propose to me a control scheme for this.*
+
+Then a correction to Gemini's proposal (*"For the A button, let's not execute the 200ms reverse bump. Let's only do that with the flywheel on/off…"*), and an hour later, after driving it, the three phases as they shipped:
+
+> *When we start the flywheel, let's have it go back at .3 power with the intake to reject any stuck balls, stop for 300ms and then go forward at power.*
+
+"Propose to me a control scheme" is worth stealing: describe the physical process, ask for the design, then correct the design. Code comes after.
+
 ## 4.2 Ask for it
 
 > **Prompt:**

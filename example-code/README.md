@@ -20,9 +20,21 @@ Everything in The Hive's `TeamCode` folder at the end of the week, unchanged, in
 | `Firewheel.java` | Subsystem for the original **transfer mechanism** — two CR servos that carried balls from the intake to the flywheel. Added Sep 18 at 5:17 PM (*"The wiring changed. We have added firewheels…"*), ripped out by 7:50 PM the same evening (*"We removed the firewheels. They interfered with the flywheel."*), and the team recoded that night so the intake fed the flywheel directly. The class was left behind, unused |
 | `backup/` | Snapshots the team had Gemini save before refactors |
 
-## Per-checkpoint snapshots — derived
+## Per-checkpoint snapshots — derived, with the real code alongside
 
-The team didn't commit after each step, so these were **reconstructed** by stripping the final code down to what each checkpoint would have had. They compile (checked with `javac` against the SDK v12.0 API surface) but haven't been run on the robot in this form.
+The team didn't build in the guide's checkpoint order (night one produced the whole TeleOp), so these teaching snapshots were **reconstructed** by stripping the final code down to what each checkpoint would have had. They compile (checked with `javac` against the SDK v12.0 API surface) but haven't been run on the robot in this form.
+
+The **real** code at every step is in [`docs/code-history/`](../docs/code-history/) — 50 states replayed from the agent session's file edits, ending byte-for-byte at `final/`. The closest real state for each checkpoint:
+
+| Checkpoint | Real state | What it is |
+|---|---|---|
+| 2 Drive | [`10-after-prompt-18`](../docs/code-history/10-after-prompt-18/) | Tank drive just requested; firewheels and LEDs still in |
+| 3 Intake | [`11-after-prompt-20`](../docs/code-history/11-after-prompt-20/) | Firewheels gone; intake/flywheel control scheme proposed and corrected |
+| 4 Shooter | [`18-after-prompt-30`](../docs/code-history/18-after-prompt-30/) | 3-phase startup, 100/200 pulse, flywheel default 1.0 |
+| 5 Refine | [`50-after-prompt-67`](../docs/code-history/50-after-prompt-67/) | = `final/` |
+| 6 Auto shoot | [`20-after-prompt-33`](../docs/code-history/20-after-prompt-33/) → [`27-after-prompt-41`](../docs/code-history/27-after-prompt-41/) | First two autos; then no-bump and 1 s settle |
+| 7 Park | [`37-after-prompt-52`](../docs/code-history/37-after-prompt-52/) | "It worked!" — turn left and drive |
+| 8 Tuning | [`42-after-prompt-58`](../docs/code-history/42-after-prompt-58/) | Back-off-wall step, 0.55 s turn |
 
 | Folder | Checkpoint | What it has |
 |---|---|---|

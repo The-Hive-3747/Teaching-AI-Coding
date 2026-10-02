@@ -28,6 +28,12 @@ Same Gemini conversation as Checkpoint 1.
 
 **Why iterative `OpMode`?** FIRST's samples use both styles. The Hive's build used `OpMode` (`init()`, `loop()`), which is a natural fit for state machines: `loop()` runs over and over, and each subsystem gets an `update()` call every time. Either works. Pick one and say which.
 
+**Why tank drive?** Because a driver asked for it. The first build (Sep 17) was the usual POV layout — left stick moves, right stick turns. The next afternoon, verbatim:
+
+> *hey, i prefer tank drive. can you set left joystick to controlling the left motors, right joystick to controlling the right motors, with y+ being forward on each side, y- being back, and both sticks pointing x- being strafe left, both sticks pointing x+ being strafe right?*
+
+One prompt, and the drive the team used all week. Notice it defines every axis. The code it produced is [`docs/code-history/10-after-prompt-18/`](../docs/code-history/10-after-prompt-18/).
+
 ## 2.2 Read what it wrote
 
 Open `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/MecanumTeleOp.java`. You should be able to find these four things. Have the Reader point at each one:
@@ -39,7 +45,7 @@ Open `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/MecanumTeleOp.java`.
 
 If any of the four is missing, ask: "I don't see where you reverse the left motors. Add it."
 
-**Compare with:** [`../example-code/02-mecanum-drive/MecanumTeleOp.java`](../example-code/02-mecanum-drive/MecanumTeleOp.java) — The Hive's final drive code with everything else stripped out.
+**Compare with:** [`../example-code/02-mecanum-drive/MecanumTeleOp.java`](../example-code/02-mecanum-drive/MecanumTeleOp.java) — The Hive's final drive code with everything else stripped out. The real code at the moment tank drive went in (whole TeleOp, firewheels and LEDs included) is [`docs/code-history/10-after-prompt-18/`](../docs/code-history/10-after-prompt-18/).
 
 ## 2.3 Build and deploy
 

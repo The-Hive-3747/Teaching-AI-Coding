@@ -55,9 +55,11 @@ Two things it teaches:
 
 ## 9.5 Backups by asking
 
-Gemini's own summary of the week lists "Maintain Field Backups: always ask the AI to save backup snapshots before major architectural refactors" as a top-four principle. The `backup/` folder in `example-code/final/` is the result. The prompt is just:
+Gemini's own summary of the week lists "Maintain Field Backups: always ask the AI to save backup snapshots before major architectural refactors" as a top-four principle. The `backup/` folder in `example-code/final/` is the result. The real prompt that made it (Sep 19, before a risky new OpMode), verbatim — note the backup request comes first, then the risky change:
 
-> "Before you change anything, save a copy of every file in TeamCode to a `backup` subfolder with `Backup` added to each class name."
+> *create backup copies of the existing operation modes. we are now going to create a separate, autonomous mode. it is going to be the shoot without delay program, then turn 45 degrees left. drive backwards for 1.5 seconds, turn 45 degrees right to correct, then drive forward for 3 seconds. name this ExperimentalParkShootFirst. before you do this, remove the power adjustment for the flywheel from the dpad, and move the up power adjustment to the right trigger on the gamepad (NOT THE BUMPER), and the down power adjustment to the left trigger.*
+
+(That prompt also explains a thing the repo puzzled over: `backup/FlywheelBackup.java` has trigger-based tuning because the triggers were asked for in the same breath as the backup. Two prompts later — *"Do not change the functionality of gamepad 1. I want gamepad 2 to also change the speed of the flywheel using the dpad up/down"* — and then *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* It took three prompts to land tuning where it stayed.)
 
 Git does this better (see Rule 3 in the [README](README.md)), but if your team isn't using Git yet, this works today.
 

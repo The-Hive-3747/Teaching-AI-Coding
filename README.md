@@ -13,7 +13,7 @@ This is how The Hive (FTC #3747) built its robot-in-one-week code: a coordinator
 | `video-scripts/` | Series plan and a script for each checkpoint video | Video production |
 | `prompts/` | The six verbatim prompts from the build, plus reconstructed ones for each checkpoint | Teams |
 | `example-code/` | The Hive's final code verbatim (`final/`), and per-checkpoint snapshots derived from it | Teams (for comparison, not copying) |
-| `docs/` | Gemini's own transcript and summary of the build | Everyone |
+| `docs/` | The complete verbatim session transcript, the code after every prompt, and Gemini's own summary | Everyone |
 
 ## The checkpoint sequence
 
@@ -33,7 +33,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 ## Status
 
 - [x] Real code in `example-code/final/`, Gemini's transcript in `docs/`
-- [x] Six verbatim prompts in `prompts/` and quoted through the guide; the rest reconstructed
+- [x] Every prompt from the week recovered verbatim (`docs/verbatim-transcript.md`); the code after each one replayed and validated (`docs/code-history/`)
 - [x] Per-checkpoint snapshots derived from the real code (compile-checked; not run on the robot in that form)
 - [ ] Real hardware config XML (`example-code/hardware-config.xml` is reconstructed)
 - [ ] Confirm what happened on the field with the 30.7 s delayed auto (see `example-code/README.md`)

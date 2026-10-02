@@ -14,7 +14,13 @@ Two OpModes that share 90% of their logic is exactly what a **base class** is fo
 
 ## 7.2 Work out the park path before prompting
 
-Walk the robot through it by hand from the shooting spot. The Hive's path:
+Walk the robot through it by hand from the shooting spot. The Hive's path took three tries in ninety minutes, all verbatim: first *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shooting…"*; then *"The strafing is the opposite direction. And let's increase power to 0.5."*; then the design that stuck:
+
+> *Let's change the 15 second delay to a 1 second delay for our testing convenience. We are going to move it back to 15 seconds after we are done testing… Instead of strafing, let's turn left for .5 seconds at 0.5 power. And then go forward at 0.4 power for 3 seconds.*
+
+Two tuning prompts later: *"It worked! Let's reduce the turn from 0.5 seconds to 0.45 seconds. And let's set the delay back to 15 seconds."* (And the next morning: *"The turn should also be for 0.55 seconds not for 0.45 seconds."*) Setting the delay to 1 s for testing and back to 15 s afterward is a trick worth copying — nobody wants to wait 15 seconds per test run.
+
+The path as it shipped:
 
 1. Back up a little more (0.45 s at −0.3), so there's room to turn.
 2. Turn left in place, about 90° (0.55 s at 0.5).

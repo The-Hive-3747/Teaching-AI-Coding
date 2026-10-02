@@ -4,6 +4,7 @@ Photos of the mentor robot, supplied by Ben. The two wide field shots are frames
 
 | File | What it shows | Used in |
 |---|---|---|
+| `hive-logo.svg` / `hive-logo.png` | The Hive 3747 logo — gold honeycomb on black, 16:9 (960×540 viewBox; PNG at 1920×1080). SVG is the master | Deck title/close slides, video bumper and end card, README |
 | `match-closeup-green-leds.jpg` | The robot in a match, intake side toward the goal pole, undercarriage LEDs **green** — Collect mode, per `LedController` | Checkpoint 9 (LEDs), deck title/slide 3 |
 | `match-shooting-at-goal.jpg` | A ball in flight toward the BIOBUZZ goal; robot at the wall in shooting position | Checkpoint 6 (auto shooting position), Episode 0 B-roll |
 | `scrimmage-field-wide-start.jpg` | Full field at match start (2:30), robot bottom-left against the wall | Checkpoint 7 field diagram reference |

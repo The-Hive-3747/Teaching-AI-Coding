@@ -304,6 +304,8 @@ Repo URL. Contact for questions.
 
 ## Assets needed for the deck
 
+- [x] The Hive logo — `docs/images/hive-logo.svg` (gold on black, 16:9). Title slide and close slide background; the deck's palette is the logo's gold **#F9BE14** on black **#000000**.
+
 - [ ] `[SCREENSHOT]` Gemini panel with a real mechanical-team prompt, ideally as typed (slide 3)
 - [ ] `[SCREENSHOT]` Gemini panel with the mecanum prompt and generated code (slide 9 fallback)
 - [x] Robot photos in `docs/images/` — `match-closeup-green-leds.jpg` for the title, the two wide scrimmage frames for slide 3

@@ -47,7 +47,7 @@ Checkpoint 9 (extras: LEDs, endgame rumble, the 4-ball experiment) has no episod
 
 ## Series-wide assets
 
-- [ ] Intro/outro bumper with The Hive logo (5 s)
+- [ ] Intro/outro bumper with The Hive logo (5 s) — `docs/images/hive-logo.png`, already 16:9 on black; fade in/out, nothing else needed
 - [ ] Text-card template for prompts
 - [ ] "Sped up 4×" label
 - [ ] "What went wrong" card

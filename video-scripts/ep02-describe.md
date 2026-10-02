@@ -2,7 +2,7 @@
 
 **Length:** ~4 minutes
 **Format:** Screen recording + Driver Hub footage, voice-over
-**Narrator:** Ben
+**Narrator:** Student (Tom)
 **Guide page:** `guide/01-describe-the-robot.md`
 **Starting state:** Checkpoint 0 complete, Gemini panel empty
 

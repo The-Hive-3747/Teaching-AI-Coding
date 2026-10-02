@@ -48,23 +48,25 @@ Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 ## 4. What the mentors did — the week (2 slides, 4 min)
 
 **Slide 4a — timeline.** One line per session, from Gemini's own log of the build. The quotes are verbatim, typos and all.
-- Wed Sep 17, 10:26 PM — Ben (coordinator) describes the whole robot: mecanum drive, flywheel with a 3-phase startup, pulsed intake → working TeleOp, split into subsystem classes
-- Thu Sep 18, ~9:50 PM — first autonomous state machines (Shoot First / Shoot Delayed), plus a 4-ball experiment
-- Fri Sep 19, 8:29 AM — Asim (mechanical mentor): *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
+- Sep 17, 10:26 PM — Ben (coordinator) describes the whole robot → working TeleOp that night, split into subsystem classes. Ben keeps building it out through Sep 18 (shooter startup sequence, pulsed feed, LEDs)
+- Sep 18, ~9:50 PM — first autonomous state machines (Shoot First / Shoot Delayed): Asim's design, called out at the robot, typed by Ben
+- Sep 19, 8:29 AM — Asim (mechanical mentor), at the keyboard: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
 - 8:36 AM — *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
 - 8:40 AM — *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away."*
 - 11:35 AM — *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."*
 - 11:37 AM — *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."*
-- 2:57 PM — *"Let's set the default speed to 0.95"* — tuned value baked in
-- Sat Sep 20 — scrimmage. Autonomous scored; TeleOp drove. (Clips: `docs/video/scrimmage-match3-*.mp4`)
+- 2:57 PM — *"Let's set the default speed to 0.95"* — default changed from 1.0
+- Scrimmage day — autonomous scored; TeleOp drove. (Clips: `docs/video/scrimmage-match3-*.mp4`)
 
-Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spitting balls out" prompt exactly as it was typed, with Gemini's answer.
+Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spitting balls out" prompt exactly as it was typed, with Gemini's answer. (Gemini reported the numbers and offered two options — then changed both numbers in the same turn; the next prompt put the power back. Say so if you show it: one change, one test, even when Gemini does two.)
 
 **Slide 4b — the quote, alone on the slide:**
 > "I've written Java for twenty-five years. I didn't type a line of it. After the first build, the changes came from the mechanical mentors — sometimes typed by them, sometimes called out from over the robot while I typed. They don't write Java."
 > — Ben, our coordinator
 
-**Notes:** Tell 4a as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and got the first TeleOp and the first autonomous. From then on it was a pair — Asim at the robot deciding what to change, Ben at the keyboard typing it — and for eight prompts Asim at the keyboard himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: **the person who understands the robot drives the prompt, whoever's hands are on the keys.** Two things make the experiment honest, and say both: Ben *can* write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. Then put 4b up and let it sit for a few seconds.
+(This line is Ben's summary written for the deck, not a transcript quote. Ben signs off on the wording before it goes on a slide with his name under it.)
+
+**Notes:** Tell 4a as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days — the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair — Asim deciding what to change, Ben typing — plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: **the person who understands the robot drives the prompt, whoever's hands are on the keys.** Two things make the experiment honest, and say both: Ben *can* write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. Then put 4b up and let it sit for a few seconds.
 
 ---
 
@@ -75,9 +77,9 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 | Our robot — hand-coded | Mentor robot — described to Gemini |
 |---|---|
 | `[THE HIVE: how many of us could write the code?]` | 2 people wrote prompts; 1 of them writes Java, 1 doesn't |
-| `[THE HIVE: hours spent coding during the week]` | 74 prompts over three days; first working TeleOp on night one |
-| `[THE HIVE: what broke, and who could fix it]` | Mechanical mentor fixed strafe, flywheel bump, controls — in English, from over the robot |
-| `[THE HIVE: how a mechanical change reached the code]` | Transfer servos pulled out Sep 18 at 7:50 PM; code reworked that night by describing the new design |
+| `[THE HIVE: hours spent coding during the week]` | 67 prompts over three days; working TeleOp on night one |
+| `[THE HIVE: what broke, and who could fix it]` | Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java |
+| `[THE HIVE: how a mechanical change reached the code]` | Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design |
 | `[THE HIVE: what we understood about our code]` | Someone still has to read what Gemini wrote — see Reader role, slide 11 |
 
 **Notes:** The right column is from the mentor transcript (`docs/verbatim-transcript.md`); the left column is yours to fill from your own week — be concrete and be fair to both. The honest comparison is not "AI was faster": it's **where the bottleneck was.** On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to *describing precisely* — and that's a skill the mechanical people already had. That's the thing we want every Utah team to hear.
@@ -152,10 +154,10 @@ Vague: *"Add a shooter."*
 
 Specific: *"One motor named `flywheel`, reversed. Pressing B runs the flywheel and intake backward at −0.5 for 200 ms to clear a jammed ball, stops everything for 300 ms, then runs the flywheel forward at full power and keeps it there. Pressing B again stops it. While it's running and right bumper is held, pulse the intake 100 ms on at 0.5, 200 ms off, so balls feed one at a time."*
 
-Then the real refinement, verbatim, called out from over the robot:
-> *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."*
+Then a real refinement from the Sep 19 session, verbatim:
+> *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running). Does that make sense?"*
 
-**Notes:** Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The verbatim one has no code words at all — it describes a sequence — and that's why it was a one-line fix in `Intake.java`. This is the slide for the mechanical kids in the room.
+**Notes:** Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The verbatim one has no code words at all — it describes a sequence — and that's why the fix was a few lines in `Intake.java`. This is the slide for the mechanical kids in the room.
 
 ---
 
@@ -191,7 +193,7 @@ Then the real refinement, verbatim, called out from over the robot:
 | Auto runs over 30 s | Gemini was told the limit; nobody saw the sum | "Add up every state's duration and tell me the worst-case run time." Then cut one number. |
 | Gemini rewrote everything, broke what worked | Didn't say "only change X" | "Only change the intake section. Leave the drive code as is." |
 
-**Notes:** Every one of these happened on the mentor robot. The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.
+**Notes:** The italic rows and the fake-gamepad row happened on the mentor robot; the compile-error and over-30-seconds rows are the ones you'll hit first that the mentors got lucky on (their delayed auto adds up to 30.7 s on paper and the field timer let it finish). The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.
 
 ---
 
@@ -218,7 +220,7 @@ Ground rules:
 ## 13. What you need to start (1 slide, 1 min)
 
 **Slide:** Checklist.
-- A laptop that runs Android Studio (Windows, Mac or Linux; 8 GB RAM minimum, 16 better)
+- A laptop that runs Android Studio (Windows, Mac or Linux)
 - A Google account signed in to Gemini in Android Studio
 - The FtcRobotController project cloned
 - Your robot's hardware config done on the Driver Hub (names and ports)

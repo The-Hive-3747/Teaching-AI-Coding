@@ -2,7 +2,7 @@
 
 **Length:** ~4 minutes
 **Format:** Robot footage + screen recording, voice-over
-**Narrator:** Asim, or whoever narrated Episode 6
+**Narrator:** Student (Sadiqah); all three students for the on-camera close
 **Guide page:** `guide/08-auto-tuning.md`
 **Starting state:** Checkpoint 7 committed
 
@@ -34,7 +34,7 @@ That's 30.6. Still over. Hold that thought — there's one more thing to add fir
 
 **[ROBOT: end of a Delayed run — robot pressed against the wall in the park zone]**
 
-Look where it ends: pushed up against the wall. That scores the park. But the game gives *more* points for parking without touching the wall. So here's the prompt I typed — word for word:
+Look where it ends: pushed up against the wall. That scores the park. But the game gives *more* points for parking without touching the wall. So here's the prompt Asim gave — word for word:
 
 **[TEXT CARD: "On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away." — hold 6 s]**
 
@@ -108,15 +108,15 @@ Commit: "Auto final — delayed under 30 s, 5/5, non-contact park." And this tim
 
 Checkpoint eight: both autos add up to under 29 on paper, safety timeout in, non-contact park confirmed, five runs logged per auto with at least four good, someone can explain the timeout and every state, saved and tagged.
 
-**[ON CAMERA or VO over the robot completing a full run]**
+**[ON CAMERA — all three students, the robot completing a full run behind them]**
 
 That's the series.
 
-I'm the mechanical mentor. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Some I typed, some I said out loud while someone else typed. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
+The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — are our mentors'. Asim typed some and said the rest out loud while Ben typed. Not because he learned Java, but because he knew what the robot needed to do and learned how to say it precisely. We coded our own robot by hand this year. We watched this happen on theirs.
 
 There's one more page in the guide, Checkpoint 9, with the extras we described into existence after this: LED lights so the driver can see from across the field that the flywheel's up to speed, an endgame rumble, and a four-ball autonomous experiment. Same method. Nothing new to learn.
 
-We're mentors; we did this on our robot. Your students know yours better than anyone. Give them this, and see what they build.
+They're mentors; they did this on their robot. You know yours better than anyone. Try it on yours, and see what you build.
 
 Start with Episode 1.
 
@@ -143,5 +143,5 @@ Start with Episode 1.
 ## Notes
 
 - The scorecard overlay is worth the editing effort — it makes "reliability" concrete.
-- If the narrator did Episodes 6–9, consider a two-line on-camera close from them instead of Ben. It lands harder.
+- The close is all three students on camera. Keep it to the lines above; it lands harder short.
 - The non-contact park prompt is verbatim from the guide. Don't clean it up.

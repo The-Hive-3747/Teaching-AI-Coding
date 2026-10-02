@@ -2,7 +2,7 @@
 
 **Length:** ~6 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** Student
+**Narrator:** Student (Sophi)
 **Guide page:** `guide/04-shooter.md`
 **Starting state:** Checkpoint 3 committed
 

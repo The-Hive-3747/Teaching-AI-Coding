@@ -2,7 +2,7 @@
 
 **Length:** ~4 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** Asim, or whoever narrated Episode 6
+**Narrator:** Student (Sadiqah)
 **Guide page:** `guide/07-auto-park.md`
 **Starting state:** Checkpoint 6 committed, same Gemini conversation
 

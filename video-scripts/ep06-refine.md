@@ -2,7 +2,7 @@
 
 **Length:** ~5 minutes
 **Format:** Mostly robot and team footage, some screen recording, voice-over
-**Narrator:** Asim, the mechanical mentor, if he's willing — this is the episode that proves the point. Otherwise Ben.
+**Narrator:** Student (Sadiqah). This is the episode that proves the point: every prompt in it is the mechanical mentor's, and he doesn't write Java.
 **Guide page:** `guide/05-refine.md`
 **Starting state:** Checkpoint 4 committed
 
@@ -12,21 +12,21 @@
 
 **[TITLE CARD: Episode 6 — Refine]**
 
-**[ON CAMERA or VO over footage of narrator at the laptop]**
+**[ON CAMERA or VO over footage of the narrator at the laptop]**
 
-I'm the mechanical mentor. I built this robot. I don't write code. This is the episode where that stops mattering. Some of these prompts I typed myself. Some I called out from over the robot while Ben typed. Same thing — the words were mine.
+Asim is our mechanical mentor. He built this robot. He doesn't write code. This is the episode where that stops mattering. Some of these prompts he typed himself. Some he called out from over the robot while Ben typed. Same thing — the words were his.
 
 **[FOOTAGE: driver practicing, narrator watching]**
 
-The robot works. Now it has to work well, and the only way to find out what "well" means is to drive it and complain. Every complaint becomes one sentence to Gemini. The four you're about to see are the ones we actually typed, word for word, from Gemini's own log of the week.
+The robot works. Now it has to work well, and the only way to find out what "well" means is to drive it and complain. Every complaint becomes one sentence to Gemini. The four you're about to see are the ones the mentors actually typed, word for word, from Gemini's own log of the week.
 
 **[TEXT CARD: "Driver: 'It's spitting balls out when the flywheel starts.'"]**
 
-First one. Press B, and a ball pops out the front before the flywheel's even running. That's the reverse bump doing its job too well. Here's what I typed:
+First one. Press B, and a ball pops out the front before the flywheel's even running. That's the reverse bump doing its job too well. Here's what Asim typed:
 
 **[TEXT CARD: "what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it" — hold 4 s]**
 
-Lowercase, no code words. Two things to notice. It *asks first* — "what is the current time" — so I learned the number before I changed it. And it names the symptom — "spitting balls out" — instead of guessing a fix. Gemini said 200 milliseconds, and cut it to 100. Deploy, test.
+Lowercase, no code words. Two things to notice. It *asks first* — "what is the current time" — so he learned the number before he changed it. And it names the symptom — "spitting balls out" — instead of guessing a fix. Gemini said 200 milliseconds, and cut it to 100. Deploy, test.
 
 **[FOOTAGE: B pressed, no ball ejected]**
 
@@ -72,7 +72,7 @@ The pattern, every time. Names the part — "spinning the motors back before sta
 
 **[SCREEN: Gemini has rewritten a big chunk — the drive section is gone or different]**
 
-Now the thing that will happen to you. I asked for a flywheel change and Gemini rewrote the drive code too. Drive stopped working.
+Now the thing that will happen to you. The mentors asked for a flywheel change and Gemini rewrote the drive code too. Drive stopped working.
 
 **[TEXT CARD: "You changed code outside the part I asked about. Restore the drive section exactly as it was, and only make the change I asked for." — hold 4 s]**
 
@@ -115,6 +115,6 @@ Checkpoint five: the drivers are happy enough to practice with it, the tuning lo
 
 ## Notes
 
-- The narrator choice is the message. If Asim is comfortable on camera, do the open and close on camera.
+- The prompts are the message: a student reading a mechanical mentor's words that worked as typed. Do the open and close on camera.
 - The four prompt cards are verbatim from the guide, typos and casing included. Don't clean them up — the point is that they worked as typed.
 - Get the student's and parent's okay before publishing outside the team.

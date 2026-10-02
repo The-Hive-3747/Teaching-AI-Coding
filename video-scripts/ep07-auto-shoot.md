@@ -2,7 +2,7 @@
 
 **Length:** ~6 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** Asim (same as Episode 6 if possible)
+**Narrator:** Student (Sadiqah)
 **Guide page:** `guide/06-auto-shoot.md`
 **Starting state:** Checkpoint 5 committed. Fresh Gemini conversation.
 

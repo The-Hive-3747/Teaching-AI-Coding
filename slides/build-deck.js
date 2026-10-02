@@ -102,7 +102,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(t, { x: 1.6, y, w: 6.9, h: 1.2, ...body({ fontSize: 18, valign: "middle" }), objectName: "line " + k });
   });
   s.addImage({ path: IMG("match-shooting-at-goal.jpg"), x: 9.1, y: 1.5, w: 2.6, h: 4.8, objectName: "shooting photo" });
-  s.addText("The mentor robot, scrimmage day", { x: 9.1, y: 6.35, w: 3.2, h: 0.3, fontSize: 10, color: C.text2, margin: 0, isTextBox: true, objectName: "caption" });
+  s.addText("The mentor robot in a match", { x: 9.1, y: 6.35, w: 3.2, h: 0.3, fontSize: 10, color: C.text2, margin: 0, isTextBox: true, objectName: "caption" });
 }
 
 // ================= 3. The problem =================
@@ -124,29 +124,29 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 4a. Timeline =================
 {
-  const s = content("What the mentors did — the week", "Tell this as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and got the first TeleOp and the first autonomous. From then on it was a pair — Asim at the robot deciding what to change, Ben at the keyboard typing it — and for eight prompts Asim at the keyboard himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. Two things make the experiment honest, and say both: Ben CAN write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. The quotes are verbatim, typos and all. The screenshot is the 'spitting balls out' prompt exactly as typed, with Gemini's answer. If there's time, play docs/video/scrimmage-match3-auto.mp4 from the laptop here.");
+  const s = content("What the mentors did — the week", "Tell this as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days — the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair — Asim deciding what to change, Ben typing — plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. Two things make the experiment honest, and say both: Ben CAN write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. The quotes are verbatim, typos and all. The screenshot is the 'spitting balls out' prompt exactly as typed, with Gemini's answer. If there's time, play docs/video/scrimmage-match3-auto.mp4 from the laptop here.");
   const rows = [
-    ["Wed 10:26 PM", "Ben (coordinator) describes the whole robot → working TeleOp, subsystem classes"],
-    ["Thu 9:50 PM", "First autonomous state machines: Shoot First / Shoot Delayed"],
-    ["Fri 8:29 AM", "Asim (mechanical): “holding both joysticks left made the robot strafe right, and vice versa. please fix”"],
-    ["Fri 8:36 AM", "“it is spitting balls out, so i would like to shorten it” — reverse bump 200 → 100 ms"],
-    ["Fri 8:40 AM", "“we get points for not touching the wall. Can we add a backup after the turn and drive forward?”"],
-    ["Fri 11:35 AM", "“I thought gamepad 1 dpad was slow mode, not tuning the flywheel.”"],
-    ["Fri 11:37 AM", "“I don't want the intake to resume. I want the intake to stop (whether it was stopped or running).”"],
-    ["Fri 2:57 PM", "“Let's set the default speed to 0.95” — tuned value baked in"],
-    ["Sat", "Scrimmage. Autonomous scored; TeleOp drove."],
+    ["Sep 17, 10:26 PM", "Ben (coordinator) describes the whole robot → working TeleOp that night, subsystem classes"],
+    ["Sep 18, ~9:50 PM", "First autonomous state machines, Shoot First / Shoot Delayed — Asim's design, called out at the robot, typed by Ben"],
+    ["Sep 19, 8:29 AM", "Asim (mechanical), at the keyboard: “holding both joysticks left made the robot strafe right, and vice versa. please fix”"],
+    ["8:36 AM", "“it is spitting balls out, so i would like to shorten it” — reverse bump 200 → 100 ms"],
+    ["8:40 AM", "“we get points for not touching the wall. Can we add a backup after the turn and drive forward?”"],
+    ["11:35 AM", "“I thought gamepad 1 dpad was slow mode, not tuning the flywheel.”"],
+    ["11:37 AM", "“I don't want the intake to resume. I want the intake to stop (whether it was stopped or running).”"],
+    ["2:57 PM", "“Let's set the default speed to 0.95” — default changed from 1.0"],
+    ["Scrimmage", "Autonomous scored; TeleOp drove."],
   ];
   const y0 = 1.5, dy = 0.58;
   s.addShape(pres.ShapeType.line, { x: 0.78, y: y0 + 0.15, w: 0, h: dy * (rows.length - 1), line: { color: C.accent1, width: 1.5 }, objectName: "timeline" });
   rows.forEach(([t, txt], i) => {
     const y = y0 + i * dy;
     s.addShape(pres.ShapeType.hexagon, { x: 0.65, y: y + 0.02, w: 0.26, h: 0.26, fill: { color: C.accent1 }, line: { color: C.accent1 }, objectName: "dot " + i });
-    s.addText(t, { x: 1.05, y, w: 1.3, h: 0.3, ...body({ fontSize: 11, bold: true, color: C.accent1 }), objectName: "time " + i });
-    s.addText(txt, { x: 2.35, y, w: 4.75, h: dy, ...body({ fontSize: 11, italic: txt.startsWith("“"), color: txt.startsWith("“") ? C.text1 : C.text2 }), objectName: "event " + i });
+    s.addText(t, { x: 1.05, y, w: 1.45, h: 0.3, ...body({ fontSize: 11, bold: true, color: C.accent1 }), objectName: "time " + i });
+    s.addText(txt, { x: 2.5, y, w: 4.6, h: dy, ...body({ fontSize: 11, italic: txt.startsWith("“"), color: txt.startsWith("“") ? C.text1 : C.text2 }), objectName: "event " + i });
   });
   s.addImage({ path: IMG("android-studio-spitting-balls-prompt.png"), x: 7.4, y: 1.5, w: 5.43, h: 3.22, objectName: "spitting balls screenshot" });
-  s.addText("Fri 8:36 AM, as typed — and Gemini's reply: it reports the numbers (200 ms at −0.5, 300 ms pause) and offers two options before changing anything.", { x: 7.4, y: 4.8, w: 5.43, h: 0.8, ...body({ fontSize: 11, color: C.text2 }), objectName: "screenshot caption" });
-  s.addText("74 prompts over three days. 0 lines of Java typed.", { x: 7.4, y: 5.7, w: 5.43, h: 0.8, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "stat" });
+  s.addText("Sep 19, 8:36 AM, as typed — and Gemini's reply: it reports the numbers (200 ms at −0.5, 300 ms pause), offers two options, then changes both at once. The next prompt put the power back.", { x: 7.4, y: 4.8, w: 5.43, h: 0.8, ...body({ fontSize: 11, color: C.text2 }), objectName: "screenshot caption" });
+  s.addText("67 prompts over three days. 0 lines of Java typed.", { x: 7.4, y: 5.7, w: 5.43, h: 0.8, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "stat" });
 }
 
 // ================= 4b. Quote =================
@@ -163,9 +163,9 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   const s = content("Hand-coding vs. architecting with AI", "This is the slide that's ours. The right column is from the mentor transcript (docs/verbatim-transcript.md); the left column is yours to fill from your own week — be concrete and be fair to both. The honest comparison is not 'AI was faster': it's WHERE THE BOTTLENECK WAS. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely — and that's a skill the mechanical people already had. That's the thing we want every Utah team to hear.");
   const rows = [
     ["[THE HIVE: how many of us could write the code?]", "2 people wrote prompts — one writes Java, one doesn't"],
-    ["[THE HIVE: hours spent coding during the week]", "74 prompts over three days; working TeleOp on night one"],
-    ["[THE HIVE: what broke, and who could fix it]", "Mechanical mentor fixed strafe, flywheel bump, controls — in English, from over the robot"],
-    ["[THE HIVE: how a mechanical change reached the code]", "Transfer servos pulled Sep 18, 7:50 PM; code reworked that night by describing the new design"],
+    ["[THE HIVE: hours spent coding during the week]", "67 prompts over three days; working TeleOp on night one"],
+    ["[THE HIVE: what broke, and who could fix it]", "Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java"],
+    ["[THE HIVE: how a mechanical change reached the code]", "Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design"],
     ["[THE HIVE: what we understood about our code]", "Someone still has to read what Gemini wrote — the Reader role"],
   ];
   const colW = 5.9, gap = 0.5, x1 = 0.5, x2 = x1 + colW + gap;
@@ -262,7 +262,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 9b. Vague vs specific =================
 {
-  const s = content("Vague vs. specific", "Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The third one is verbatim, called out from over the robot — no code words at all, it describes a sequence — and that's why it was a one-line fix in Intake.java. This is the slide for the mechanical kids in the room.");
+  const s = content("Vague vs. specific", "Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The third one is verbatim from the Sep 19 session — no code words at all, it describes a sequence — and that's why the fix was a few lines in Intake.java. This is the slide for the mechanical kids in the room.");
   card(s, 0.5, 1.45, 3.4, 4.9, "vague card");
   s.addText("Vague", { x: 0.75, y: 1.65, w: 3, h: 0.45, ...body({ fontSize: 18, bold: true, color: C.accent4 }), objectName: "vague head" });
   s.addText("“Add a shooter.”", { x: 0.75, y: 2.3, w: 2.9, h: 1.0, ...body({ fontSize: 22, italic: true }), objectName: "vague text" });
@@ -273,9 +273,9 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addText("“One motor named flywheel, reversed. Pressing B runs the flywheel and intake backward at −0.5 for 200 ms to clear a jammed ball, stops everything for 300 ms, then runs the flywheel forward at full power and keeps it there. Pressing B again stops it. While it's running and right bumper is held, pulse the intake 100 ms on at 0.5, 200 ms off, so balls feed one at a time.”", { x: 4.45, y: 2.05, w: 8.15, h: 1.9, ...body({ fontSize: 12.5, italic: true }), objectName: "spec text" });
 
   card(s, 4.2, 4.2, 8.63, 2.15, "real card");
-  s.addText("Real — called out from over the robot, verbatim", { x: 4.45, y: 4.33, w: 8, h: 0.4, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "real head" });
-  s.addText("“When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running).”", { x: 4.45, y: 4.78, w: 8.15, h: 1.1, ...body({ fontSize: 13.5, italic: true }), objectName: "real text" });
-  s.addText("No code words. A sequence. One-line fix in Intake.java.", { x: 4.45, y: 5.9, w: 8, h: 0.35, ...body({ fontSize: 12, color: C.text2 }), objectName: "real note" });
+  s.addText("Real — Sep 19 session, verbatim", { x: 4.45, y: 4.33, w: 8, h: 0.4, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "real head" });
+  s.addText("“When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running). Does that make sense?”", { x: 4.45, y: 4.78, w: 8.15, h: 1.1, ...body({ fontSize: 13.5, italic: true }), objectName: "real text" });
+  s.addText("No code words. A sequence. A few lines changed in Intake.java.", { x: 4.45, y: 5.9, w: 8, h: 0.35, ...body({ fontSize: 12, color: C.text2 }), objectName: "real note" });
 }
 
 // ================= 10. Live demo =================
@@ -288,7 +288,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 11. Where it goes wrong =================
 {
-  const s = content("Where it goes wrong — and the fix", "Every one of these happened on the mentor robot; the italic ones are the actual prompts. The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.");
+  const s = content("Where it goes wrong — and the fix", "The italic rows and the fake-gamepad row happened on the mentor robot. The compile-error and over-30-seconds rows are the ones you'll hit first that the mentors got lucky on — their delayed auto adds up to 30.7 s on paper and the field timer let it finish. The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.");
   const hdr = (t) => ({ text: t, options: { bold: true, color: GOLD, fill: { color: THEME.colors.lt2 }, fontSize: 15 } });
   const c = (t, it) => ({ text: t, options: { fontSize: 13, color: "FFFFFF", italic: !!it } });
   const rows = [
@@ -328,7 +328,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 {
   const s = content("What you need to start", "The hardware list is the one thing to do BEFORE opening Gemini. For anyone installing tonight: during the first Gradle sync, Android Studio pops up three things. Accept the Daemon JVM toolchain migration. DECLINE the Gradle/AGP upgrade — it breaks the FTC project. On Windows, accept the Defender exclusion or builds crawl. Checkpoint 0 in the guide has all three.");
   const items = [
-    "A laptop that runs Android Studio (Windows, Mac or Linux; 8 GB RAM minimum, 16 better)",
+    "A laptop that runs Android Studio (Windows, Mac or Linux)",
     "A Google account signed in to Gemini in Android Studio",
     "The FtcRobotController project cloned",
     "Your robot's hardware config done on the Driver Hub — names and ports",

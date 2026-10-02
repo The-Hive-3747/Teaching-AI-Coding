@@ -6,7 +6,7 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 
 - **Length:** 3–6 minutes each. Install is the exception (8–10 min, mostly time-lapsed).
 - **Style:** Screen recording of Android Studio with a picture-in-picture of the robot when it's being tested. Narrator voice-over. No talking-head sections except the intro.
-- **Narrator:** One person for consistency, with Asim narrating the checkpoints he drove (Refine and the autonomous episodes) if he's willing — a mentor who doesn't write Java is the strongest demonstration of the point.
+- **Narrator:** The Hive's students — Tom, Sophi and Sadiqah — the same three who present the kickoff. One narrator per episode for consistency; split the series between them however they like (one suggestion below). Ben and Asim are quoted on cards, not heard. The students didn't run the experiment, so every script says so in the open: *our mentors did this on their robot; here's how.*
 - **On screen:** Every prompt typed is shown in full, and paused on for 3 seconds so viewers can read it. Every test is shown on the real robot.
 - **Captions:** Burned-in captions for the prompts. Auto-captions for the narration.
 
@@ -14,16 +14,16 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 
 | # | Title | Length | Guide page | Narrator |
 |---|---|---|---|---|
-| 0 | Why we're doing this | 2 min | — | Ben (on camera) |
-| 1 | Install Android Studio and FtcRobotController | 8–10 min | 00-install.md | Ben |
-| 2 | Describe your robot | 4 min | 01-describe-the-robot.md | Ben |
-| 3 | Mecanum drive in one prompt | 5 min | 02-mecanum-drive.md | Ben or programmer |
-| 4 | Add the intake | 3 min | 03-intake.md | Student |
-| 5 | Add the shooter | 6 min | 04-shooter.md | Student |
-| 6 | Refine: the mechanical mentor's real prompts | 5 min | 05-refine.md | Asim (mechanical mentor), or Ben |
-| 7 | Autonomous: back off the wall and shoot | 6 min | 06-auto-shoot.md | Asim (or Episode 6 narrator) |
-| 8 | Autonomous: Shoot First, Shoot Delayed, park | 4 min | 07-auto-park.md | Asim (or Episode 6 narrator) |
-| 9 | Under 30 seconds and match-ready | 4 min | 08-auto-tuning.md | Asim (or Episode 6 narrator) |
+| 0 | Why we're doing this | 2 min | — | Student, on camera (suggestion: Tom) |
+| 1 | Install Android Studio and FtcRobotController | 8–10 min | 00-install.md | Student (Tom) |
+| 2 | Describe your robot | 4 min | 01-describe-the-robot.md | Student (Tom) |
+| 3 | Mecanum drive in one prompt | 5 min | 02-mecanum-drive.md | Student (Sophi) |
+| 4 | Add the intake | 3 min | 03-intake.md | Student (Sophi) |
+| 5 | Add the shooter | 6 min | 04-shooter.md | Student (Sophi) |
+| 6 | Refine: the mechanical mentor's real prompts | 5 min | 05-refine.md | Student (Sadiqah) |
+| 7 | Autonomous: back off the wall and shoot | 6 min | 06-auto-shoot.md | Student (Sadiqah) |
+| 8 | Autonomous: Shoot First, Shoot Delayed, park | 4 min | 07-auto-park.md | Student (Sadiqah) |
+| 9 | Under 30 seconds and match-ready | 4 min | 08-auto-tuning.md | Student (Sadiqah), with all three for the close |
 
 Checkpoint 9 (extras: LEDs, endgame rumble, the 4-ball experiment) has no episode of its own; Episode 9 points to it in its close.
 

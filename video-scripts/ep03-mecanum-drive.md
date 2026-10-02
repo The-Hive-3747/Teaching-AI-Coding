@@ -2,7 +2,7 @@
 
 **Length:** ~5 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** Ben or team programmer
+**Narrator:** Student (Sophi)
 **Guide page:** `guide/02-mecanum-drive.md`
 **Starting state:** Checkpoint 1 complete, robot description sent and confirmed
 

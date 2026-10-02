@@ -2,7 +2,7 @@
 
 **Length:** 8–10 minutes (long download waits time-lapsed)
 **Format:** Screen recording, voice-over
-**Narrator:** Ben
+**Narrator:** Student (Tom)
 **Guide page:** `guide/00-install.md`
 **Starting state:** A clean laptop with nothing installed
 

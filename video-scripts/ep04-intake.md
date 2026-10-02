@@ -2,7 +2,7 @@
 
 **Length:** ~3 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** A student (not the original programmer, if possible)
+**Narrator:** Student (Sophi)
 **Guide page:** `guide/03-intake.md`
 **Starting state:** Checkpoint 2 committed
 

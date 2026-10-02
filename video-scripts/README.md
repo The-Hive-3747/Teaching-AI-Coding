@@ -6,7 +6,7 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 
 - **Length:** 3–6 minutes each. Install is the exception (8–10 min, mostly time-lapsed).
 - **Style:** Screen recording of Android Studio with a picture-in-picture of the robot when it's being tested. Narrator voice-over. No talking-head sections except the intro.
-- **Narrator:** One person for consistency. Students can narrate the checkpoints they own (e.g., a mechanical team member for Refine and the auto tuning), which is the strongest possible demonstration of the point.
+- **Narrator:** One person for consistency, with Asim narrating the checkpoints he drove (Refine and the autonomous episodes) if he's willing — a mentor who doesn't write Java is the strongest demonstration of the point.
 - **On screen:** Every prompt typed is shown in full, and paused on for 3 seconds so viewers can read it. Every test is shown on the real robot.
 - **Captions:** Burned-in captions for the prompts. Auto-captions for the narration.
 
@@ -20,10 +20,10 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 | 3 | Mecanum drive in one prompt | 5 min | 02-mecanum-drive.md | Ben or programmer |
 | 4 | Add the intake | 3 min | 03-intake.md | Student |
 | 5 | Add the shooter | 6 min | 04-shooter.md | Student |
-| 6 | Refine: the mechanical team's real prompts | 5 min | 05-refine.md | Asim (mechanical specialist) or another mechanical team member |
-| 7 | Autonomous: back off the wall and shoot | 6 min | 06-auto-shoot.md | Mechanical team member |
-| 8 | Autonomous: Shoot First, Shoot Delayed, park | 4 min | 07-auto-park.md | Mechanical team member |
-| 9 | Under 30 seconds and match-ready | 4 min | 08-auto-tuning.md | Mechanical team member |
+| 6 | Refine: the mechanical mentor's real prompts | 5 min | 05-refine.md | Asim (mechanical mentor) or another mechanical team member |
+| 7 | Autonomous: back off the wall and shoot | 6 min | 06-auto-shoot.md | Asim (or Episode 6 narrator) |
+| 8 | Autonomous: Shoot First, Shoot Delayed, park | 4 min | 07-auto-park.md | Asim (or Episode 6 narrator) |
+| 9 | Under 30 seconds and match-ready | 4 min | 08-auto-tuning.md | Asim (or Episode 6 narrator) |
 
 Checkpoint 9 (extras: LEDs, endgame rumble, the 4-ball experiment) has no episode of its own; Episode 9 points to it in its close.
 

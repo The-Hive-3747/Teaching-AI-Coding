@@ -38,19 +38,19 @@ Fine.
 
 **Over.** The Driver Station stops the OpMode at 30 s, so at this total the robot gets cut off in the park drive — which is what you'd see in the Checkpoint 7 test if you watched the DS timer. What testing *doesn't* tell you is by how much, or which state to shorten. That's what the column is for.
 
-The Hive did think about this. The prompt that added the park, verbatim: *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shoot[ing] … [minim]um of 5 seconds shooting."* Gemini cut the delayed shoot to 8.3 s — and the total was still 30.7. Telling Gemini the limit isn't the same as seeing the sum. Ask for it:
+The mentors did think about this. The prompt that added the park, verbatim: *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shoot[ing] … [minim]um of 5 seconds shooting."* Gemini cut the delayed shoot to 8.3 s — and the total was still 30.7. Telling Gemini the limit isn't the same as seeing the sum. Ask for it:
 
 > "Add up the total duration of all states in `BaseAuto` for the delayed auto and tell me the worst-case run time."
 
 ## 8.2 Where the time goes
 
-The only state with slack is shooting: 10 seconds to launch three balls is generous. The Hive cut the delayed auto's shoot time to 8.3 s, leaving Shoot First at 10.
+The only state with slack is shooting: 10 seconds to launch three balls is generous. The mentors cut the delayed auto's shoot time to 8.3 s, leaving Shoot First at 10.
 
 > **Prompt:**
 >
 > In `BaseAuto`, make the shoot duration depend on the delay: 10.0 seconds when the delay is 0, 8.3 seconds when the delay is greater than 0. Add a `getShootDurationSeconds()` method for it. Don't change anything else.
 
-That brings Shoot Delayed to **30.6 s** — still over by 0.6. (The Hive's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s on paper — and on the field it finished, off the wall. So the cutoff isn't as sharp as the arithmetic suggests. Don't bank on that: a run that only works because the timer is generous is one battery-voltage dip from not working. Add it up, and leave real margin.) This is why you add it up: the fix is one more number.
+That brings Shoot Delayed to **30.6 s** — still over by 0.6. (the mentor robot's final code ships like this, plus the 0.1 s step added in 8.3, for 30.7 s on paper — and on the field it finished, off the wall. So the cutoff isn't as sharp as the arithmetic suggests. Don't bank on that: a run that only works because the timer is generous is one battery-voltage dip from not working. Add it up, and leave real margin.) This is why you add it up: the fix is one more number.
 
 > **Prompt:**
 >
@@ -60,7 +60,7 @@ Or shorten the delay itself, if the alliance partner doesn't need the full 15. E
 
 ## 8.3 Keeping the LEAVE points — a real prompt
 
-After the park drive, the robot ends pressed against the wall. In BIOBUZZ, PARK (5 points) only needs the robot in the loading zone — but LEAVE (3 points) requires the robot to *not be touching the perimeter wall*, and both are assessed at the end of AUTO. A robot that parks by driving into the wall earns PARK and forfeits LEAVE. The mechanical team spotted this. Their prompt, verbatim:
+After the park drive, the robot ends pressed against the wall. In BIOBUZZ, PARK (5 points) only needs the robot in the loading zone — but LEAVE (3 points) requires the robot to *not be touching the perimeter wall*, and both are assessed at the end of AUTO. A robot that parks by driving into the wall earns PARK and forfeits LEAVE. The mechanical mentor spotted this. Their prompt, verbatim:
 
 > *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away.*
 
@@ -122,7 +122,7 @@ Commit: "Auto final — delayed under 30 s, 5/5, LEAVE kept."
 
 In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start adding odometry or changing the robot later, you can always get this version back.
 
-**Compare with:** [`../example-code/08-auto-tuning/`](../example-code/08-auto-tuning/) — The Hive's final `BaseAuto.java` (minus LEDs), with the back-off-wall state and the 8.3 s delayed shoot.
+**Compare with:** [`../example-code/08-auto-tuning/`](../example-code/08-auto-tuning/) — the mentor robot's final `BaseAuto.java` (minus LEDs), with the back-off-wall state and the 8.3 s delayed shoot.
 
 ## Checkpoint 8 test
 
@@ -135,4 +135,4 @@ In Git, also tag it: **Git → New Tag**, name it `week1-final`. When you start 
 
 ## What's next
 
-You have a working robot with two autonomous routines, and a team that can change any of it by describing what they want. [Checkpoint 9](09-extras.md) covers the extras The Hive added — LED status lights, endgame rumble, and a 4-ball experiment — and what to describe next season.
+You have a working robot with two autonomous routines, and people who can change any of it by describing what they want. [Checkpoint 9](09-extras.md) covers the extras The Hive added — LED status lights, endgame rumble, and a 4-ball experiment — and what to describe next season.

@@ -1,8 +1,10 @@
-# Verbatim transcript — The Hive's Gemini agent session, Sep 17 – Oct 1, 2026
+# Verbatim transcript — the mentor robot's Gemini agent session, Sep 17 – Oct 1, 2026
+
+Context: this is the mentor robot from The Hive's robot-in-one-week — the mentors' entry in the mentor competition, coded entirely by prompting while the students coded theirs by hand.
 
 Source: the Android Studio Gemini agent session file (`steps.jsonl`, thread *"Create FTC Mecanum OpMode with flywheel and intake controls"*). Every user prompt is complete and exactly as typed. Gemini's text replies are complete. Tool calls (file writes, searches, shell commands) are summarized to one line each; Gemini's private reasoning ("thoughts") is omitted. Timestamps are from the plugin's backend log where a match was found (local time).
 
-Each prompt carries an *Author* line: **Ben** (coordinator), **Asim** at the keyboard (mechanical specialist), or **Asim's request, typed by Ben** — Asim at the robot calling the change, Ben typing it. Attribution is from Ben's recollection plus writing style (Asim's prompts are lowercase and open with "hey," or "okay,"). Prompts 65–67 are tagged Ben by default and may also have been Asim's requests.
+Each prompt carries an *Author* line: **Ben** (coordinator), **Asim** at the keyboard (mechanical mentor), or **Asim's request, typed by Ben** — Asim at the robot calling the change, Ben typing it. Attribution is from Ben's recollection plus writing style (Asim's prompts are lowercase and open with "hey," or "okay,"). Prompts 65–67 are tagged Ben by default and may also have been Asim's requests.
 
 This is the primary source for every prompt quoted in this repo. Earlier sessions on other teams' robots (Koalaified, CubedMentors) are not in this thread; the backend log in `gemini-log-transcript.md` covers them.
 

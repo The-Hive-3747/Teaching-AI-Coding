@@ -1,8 +1,8 @@
-# Episode 6 — Refine: The Mechanical Team's Real Prompts
+# Episode 6 — Refine: The Mechanical Mentor's Real Prompts
 
 **Length:** ~5 minutes
 **Format:** Mostly robot and team footage, some screen recording, voice-over
-**Narrator:** Asim, the mechanical specialist, if he's willing — this is the episode that proves the point. Otherwise another mechanical team member.
+**Narrator:** Asim, the mechanical mentor, if he's willing — this is the episode that proves the point. Otherwise another mechanical team member.
 **Guide page:** `guide/05-refine.md`
 **Starting state:** Checkpoint 4 committed
 
@@ -14,7 +14,7 @@
 
 **[ON CAMERA or VO over footage of narrator at the laptop]**
 
-I'm on the mechanical team. I built the intake. I don't write code. This is the episode where that stops mattering. Some of these prompts I typed myself. Some I called out from over the robot while our coordinator typed. Same thing — the words were mine.
+I'm the mechanical mentor. I built this robot. I don't write code. This is the episode where that stops mattering. Some of these prompts I typed myself. Some I called out from over the robot while Ben typed. Same thing — the words were mine.
 
 **[FOOTAGE: driver practicing, narrator watching]**
 
@@ -115,6 +115,6 @@ Checkpoint five: the drivers are happy enough to practice with it, the tuning lo
 
 ## Notes
 
-- The narrator choice is the message. If the mechanical team member is comfortable on camera, do the open and close on camera.
+- The narrator choice is the message. If Asim is comfortable on camera, do the open and close on camera.
 - The four prompt cards are verbatim from the guide, typos and casing included. Don't clean them up — the point is that they worked as typed.
 - Get the student's and parent's okay before publishing outside the team.

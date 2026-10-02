@@ -26,7 +26,7 @@ Same Gemini conversation as Checkpoint 1.
 
 `[SCREENSHOT: Gemini panel with the prompt sent and the start of the generated OpMode visible]`
 
-**Why iterative `OpMode`?** FIRST's samples use both styles. The Hive's build used `OpMode` (`init()`, `loop()`), which is a natural fit for state machines: `loop()` runs over and over, and each subsystem gets an `update()` call every time. Either works. Pick one and say which.
+**Why iterative `OpMode`?** FIRST's samples use both styles. The mentors' build used `OpMode` (`init()`, `loop()`), which is a natural fit for state machines: `loop()` runs over and over, and each subsystem gets an `update()` call every time. Either works. Pick one and say which.
 
 **Why tank drive?** Because a driver asked for it. The first build (Sep 17) was the usual POV layout — left stick moves, right stick turns. The next afternoon, verbatim:
 
@@ -76,7 +76,7 @@ On the Driver Hub: select `Mecanum TeleOp` from the TeleOp list → **Init** →
 
 ## 2.5 If it's wrong
 
-Write down the symptom in words, then use the matching prompt. The first one is what actually happened to The Hive — and the prompt is the one the team typed:
+Write down the symptom in words, then use the matching prompt. The first one is what actually happened on the mentor robot — and the prompt is the one the team typed:
 
 | Symptom | Prompt |
 |---|---|

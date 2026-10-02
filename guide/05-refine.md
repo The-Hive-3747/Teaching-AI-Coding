@@ -2,7 +2,7 @@
 
 **At the end of this checkpoint:** The TeleOp does exactly what the drivers want, and the team can turn any complaint from a driver into a one-sentence prompt.
 
-**Time:** As long as you want. This is the checkpoint the mechanical team owns.
+**Time:** As long as you want. This is the checkpoint the people who built the robot own — on the mentor robot, that was Asim.
 
 ---
 
@@ -16,9 +16,9 @@ The pattern is always the same:
 2. Someone types that into Gemini — naming the part, the symptom, and (if they know it) the change.
 3. Deploy, test, keep or undo.
 
-## 5.2 The Hive's real refinements
+## 5.2 The mentors' real refinements
 
-These are the actual prompts from the refinement sessions, in order, from the agent session log. Who typed them matters less than you'd think, and the honest answer is "it varied": Asim, the mechanical specialist, typed the strafe fix and the spitting-balls pair himself (lowercase, "hey,", "please fix"); for the gamepad and intake-resume ones he was at the robot calling the change and Ben, the coordinator, was typing. The author of each prompt is tagged in [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md). Either way the words are the mechanical team's — read them for the *style*: short, specific about what was observed, no code words.
+These are the actual prompts from the refinement sessions, in order, from the agent session log. Who typed them matters less than you'd think, and the honest answer is "it varied": Asim, the mechanical mentor, typed the strafe fix and the spitting-balls pair himself (lowercase, "hey,", "please fix"); for the gamepad and intake-resume ones he was at the robot calling the change and Ben, the coordinator, was typing. The author of each prompt is tagged in [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md). Either way the words are the mechanical mentor's — read them for the *style*: short, specific about what was observed, no code words.
 
 ### "It is spitting balls out"
 
@@ -103,7 +103,7 @@ First try:
 
 If that doesn't fix it, go back to your last saved version (Git → revert, or copy the file back), and ask again with "Only change X" at the top of the prompt.
 
-The Hive did this a different way: they asked Gemini to **make backup copies** before big changes. That's the `backup/` folder in [`example-code/final/`](../example-code/final/backup/). It works, and it's what Gemini's own summary recommends. Git does the same job with less clutter; either is fine as long as you do one of them.
+The mentors did this a different way: they asked Gemini to **make backup copies** before big changes. That's the `backup/` folder in [`example-code/final/`](../example-code/final/backup/). It works, and it's what Gemini's own summary recommends. Git does the same job with less clutter; either is fine as long as you do one of them.
 
 ## 5.6 When Gemini doesn't understand
 
@@ -116,7 +116,7 @@ If the explanation doesn't match what the robot does, you've found the bug. If i
 
 ## 5.7 Keep a log
 
-Mechanical team: every time you change something, write one line:
+Whoever is making the changes: every time you change something, write one line:
 
 | Date | Who | Prompt (short) | Result | Kept? |
 |---|---|---|---|---|
@@ -131,7 +131,7 @@ This is the team's tuning history. It's also what you'll show a judge who asks h
 
 Commit after every kept change. Message = the prompt, roughly.
 
-**Compare with:** [`../example-code/05-refine/`](../example-code/05-refine/) — The Hive's final `Flywheel.java` and `Intake.java` verbatim, and `MecanumTeleOp.java` without the LED and rumble extras.
+**Compare with:** [`../example-code/05-refine/`](../example-code/05-refine/) — the mentor robot's final `Flywheel.java` and `Intake.java` verbatim, and `MecanumTeleOp.java` without the LED and rumble extras.
 
 ## Checkpoint 5 test
 

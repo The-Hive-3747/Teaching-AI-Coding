@@ -36,7 +36,7 @@ A flywheel takes time to reach speed, and a ball pressed against a stopped flywh
 
 Describe it as a sequence with those state names, and Gemini will write it as one — and the code will match the picture.
 
-This sequence is The Hive's, and it arrived in three prompts on the evening of Sep 18, all verbatim. First the process, with a request for a design rather than code:
+This sequence is the mentors', and it arrived in three prompts on the evening of Sep 18, all verbatim. First the process, with a request for a design rather than code:
 
 > *We removed the firewheels. They interfered with the flywheel. We now only use the intake and the flywheels.*
 >
@@ -72,9 +72,9 @@ Then a correction to Gemini's proposal (*"For the A button, let's not execute th
 
 `[SCREENSHOT: Gemini panel with the shooter prompt and its reply summarizing the state logic]`
 
-The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during the startup sequence and you can't drive. If you don't know what that means, that's fine — just include the line. (Gemini's own summary of The Hive's build lists this as the number one lesson.)
+The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during the startup sequence and you can't drive. If you don't know what that means, that's fine — just include the line. (Gemini's own summary of the mentors' build lists this as the number one lesson.)
 
-The D-pad tuning line reproduces a conflict from The Hive's build (the transcript's Session 6: "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). It collides with the D-pad precision drive from Checkpoint 2 — hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in: fixing it is a Checkpoint 5 exercise, with the real prompt.
+The D-pad tuning line reproduces a conflict from the mentors' build (the transcript's Session 6: "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). It collides with the D-pad precision drive from Checkpoint 2 — hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in: fixing it is a Checkpoint 5 exercise, with the real prompt.
 
 ## 4.3 Read what it wrote
 
@@ -88,7 +88,7 @@ In `Intake.java`: the new parameters on `update(...)`, and the pulse — a timer
 
 In `MecanumTeleOp.java`: `flywheel.update(...)` runs *before* `intake.update(...)`, because the intake needs the flywheel's state from this loop.
 
-**Compare with:** [`../example-code/04-shooter/`](../example-code/04-shooter/) — The Hive's `Flywheel` and `Intake`, rolled back to before the Checkpoint 5 fixes.
+**Compare with:** [`../example-code/04-shooter/`](../example-code/04-shooter/) — the mentor robot's `Flywheel` and `Intake`, rolled back to before the Checkpoint 5 fixes.
 
 ## 4.4 Build, deploy, test
 

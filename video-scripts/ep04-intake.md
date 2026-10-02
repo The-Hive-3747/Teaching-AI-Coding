@@ -56,7 +56,7 @@ Ours ran backwards. Most common intake bug there is. The fix is one sentence:
 
 If it's the motor pulling in but one servo pushing out, same idea: "`intake_servo_right` is spinning the wrong way. Reverse it." Deploy. Test.
 
-> **Ben:** the guide doesn't record what went wrong on The Hive's first intake test. Use the real thing if anyone remembers; otherwise stage this one.
+> **Ben:** the guide doesn't record what went wrong on the mentor robot's first intake test. Use the real thing if anyone remembers; otherwise stage this one.
 
 **[ROBOT: A — pulls in and keeps going. A again — stops. LB — everything backward. LB again — stops. LB, then A — reject stops, collect starts.]**
 

@@ -11,7 +11,7 @@ Structure: big picture first for the whole room, then the concrete method, then 
 ## 1. Title (1 slide)
 
 **Slide:** "Describe your robot. Let AI write the code. Test. Repeat."
-Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android Studio — and how your team can too.
+Subtitle: How The Hive's mentors coded a robot in one week with Gemini in Android Studio — and how your team can too.
 
 **Notes:** Keep this on screen while people sit down. No talking needed.
 
@@ -30,10 +30,12 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 
 ## 3. What happened in our robot-in-one-week (1–2 slides)
 
+**Set-up, said out loud before 3a:** At our robot-in-one-week the students built and coded their robot the normal way. The mentors had our own competition, and we ran an experiment on our robot: no hand-written code at all — everything described to Gemini. This is what happened.
+
 **Slide 3a:** Timeline graphic, one line per session. These are Gemini's own "session iterations" from its log of the build. *(Ben: put days on them.)*
 - Session 1: Coordinator describes the robot — mecanum drive, flywheel with a 3-phase startup, pulsed intake, LEDs → working TeleOp, split into subsystem classes
 - Session 2: First autonomous state machines (shoot first / shoot delayed), plus a 4-ball experiment
-- Session 3: Mechanical team: *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
+- Session 3: Asim (mechanical mentor): *"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"*
 - Session 4: *"what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"* — reverse bump 200 → 100 ms
 - Session 5: *"On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away."* — back off the wall
 - Session 6: *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* — controls untangled
@@ -41,9 +43,9 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 - Session 8: *"Let's set the default speed to 0.95"* — tuned value baked in (the same session also created the `ExperimentalParkShootFirst` OpMode)
 
 **Slide 3b:** The punchline, alone on a slide:
-> "After the first build, the changes came from the mechanical team — sometimes typed by them, sometimes called out from over the robot while I typed. Nobody on that team writes Java."
+> "After the first build, the changes came from our mechanical mentor — sometimes typed by him, sometimes called out from over the robot while I typed. He doesn't write Java."
 
-**Notes:** This is the story. Tell it as a story, not a list. Emphasize that the coordinator was *helping other teams* while the mechanical team did the later sessions. Be precise about who did what, because the audience will ask. The coordinator described the architecture and got the first TeleOp and the first autonomous state machines. From there it was a pair: Asim, the mechanical specialist, at the robot deciding what to change; the coordinator at the keyboard typing it — that's the Sep 18 autonomous session, the park routine, and most of the Sep 19 fixes. And Asim at the keyboard himself for eight prompts: tank drive, the strafe fix, the spitting-balls pair, and the entire ExperimentalParkShootFirst autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
+**Notes:** This is the story. Tell it as a story, not a list. Be precise about who did what, because the audience will ask — and be clear this was the mentors' robot, not the students'. The students coded theirs by hand; the mentors proved the method on theirs. The coordinator described the architecture and got the first TeleOp and the first autonomous state machines. From there it was a pair: Asim, the mechanical mentor, at the robot deciding what to change; the coordinator at the keyboard typing it — that's the Sep 18 autonomous session, the park routine, and most of the Sep 19 fixes. And Asim at the keyboard himself for eight prompts: tank drive, the strafe fix, the spitting-balls pair, and the entire ExperimentalParkShootFirst autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. The tool didn't replace the programmer; it freed the programmer. The quotes on 3a are verbatim — typos and all — and that's the point: those are the words of people describing a robot they built, not code they wrote.
 
 `[SCREENSHOT: the Gemini panel in Android Studio showing one of those prompts as typed — the "spitting balls out" one if it's still in the history]`
 
@@ -60,7 +62,7 @@ Subtitle: How The Hive built its robot-in-one-week code with Gemini in Android S
 | Learning what your robot's parts are called and how they interact | Skipping the learning |
 | A way for the whole team to change code | A way to avoid having anyone learn code |
 
-**Notes:** Coaches worry about this. Say it plainly: students still have to understand what a motor is, what direction it spins, what a state machine does. They just don't have to type the Java. Several students on our team could read and explain the code by the end, because they'd described every line of it.
+**Notes:** Coaches worry about this. Say it plainly: students still have to understand what a motor is, what direction it spins, what a state machine does. They just don't have to type the Java. Be honest that we haven't run this with students yet — the mentors ran it on the mentor robot. That's why there's a Reader role on slide 11: it's how you make sure the understanding is there when students do it.
 
 Gemini in Android Studio needs a Google account signed in — have that done before the session.
 
@@ -105,7 +107,7 @@ Gemini in Android Studio needs a Google account signed in — have that done bef
 2. Mecanum drive → **test**
 3. Intake → **test**
 4. Shooter: flywheel startup sequence + pulsed feed → **test**
-5. Refine: the mechanical team's four real prompts
+5. Refine: the mechanical mentor's four real prompts
 6. Auto v1: back off the wall and shoot → **test**
 7. Auto v2: Shoot First / Shoot Delayed, which parks → **test**
 8. Auto v3: under 30 seconds, keep the LEAVE points → **test**
@@ -152,7 +154,7 @@ Specific:
 
 **Notes:** Read the vague one and ask the room what Gemini would have to guess. Then read the specific one. Everything Gemini would have guessed is now stated.
 
-**Slide 8c:** A real *refinement* prompt, verbatim from the mechanical team:
+**Slide 8c:** A real *refinement* prompt, verbatim, called out by the mechanical mentor from over the robot:
 
 > *"When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running)."*
 
@@ -199,7 +201,7 @@ Specific:
 ## 11. For coaches: running this with a team (1–2 slides)
 
 **Slide 11a:** Suggested roles.
-- **Describer** — the student who knows the robot best says what to change. They can type it, or someone else can; what matters is whose words they are. On The Hive this was Asim, the mechanical specialist — sometimes at the keyboard, sometimes over the robot with the coordinator typing.
+- **Describer** — the person who knows the robot best says what to change. They can type it, or someone else can; what matters is whose words they are. On the mentor robot this was Asim, the mechanical mentor — sometimes at the keyboard, sometimes over the robot with the coordinator typing.
 - **Tester** — one student deploys and drives. Says exactly what happened.
 - **Reader** — one student reads the generated code aloud and explains it. This is where the learning happens.
 - **Coach** — asks "what did you tell it?" when something breaks. Doesn't type.
@@ -217,7 +219,7 @@ Specific:
 
 ## 12. Autonomous without odometry (1 slide) *(optional)*
 
-**Slide:** The Shoot Delayed autonomous as a state machine — The Hive's states, with the guide's Checkpoint 8 shoot time (6.5 s; the team's shipped code has 8.3 s).
+**Slide:** The Shoot Delayed autonomous as a state machine — the mentor robot's states, with the guide's Checkpoint 8 shoot time (6.5 s; the team's shipped code has 8.3 s).
 
 ```
   START
@@ -264,7 +266,7 @@ Specific:
 └────────────────────┘
 ```
 
-**Notes:** Time-based auto is fine for a first week. You don't need odometry to score. Each box is one state; each arrow is "after N seconds, move to the next state." Students can describe this exact diagram to Gemini and get a working state machine. Checkpoint 6 builds the shooting boxes; checkpoint 7 adds the delay and the park boxes; checkpoint 8 adds the last one — from a real prompt — and makes the total fit in 30 seconds. Point out that the mechanical team created the park routine and asked for the back-off step. Then add up the column out loud: 30.7 s on paper. It finished on the field — the timer has a little slack — but that's the Checkpoint 8 lesson: add it up and leave margin, because slack isn't margin.
+**Notes:** Time-based auto is fine for a first week. You don't need odometry to score. Each box is one state; each arrow is "after N seconds, move to the next state." Students can describe this exact diagram to Gemini and get a working state machine. Checkpoint 6 builds the shooting boxes; checkpoint 7 adds the delay and the park boxes; checkpoint 8 adds the last one — from a real prompt — and makes the total fit in 30 seconds. Point out that the mechanical mentor drove the park routine and asked for the back-off step. Then add up the column out loud: 30.7 s on paper. It finished on the field — the timer has a little slack — but that's the Checkpoint 8 lesson: add it up and leave margin, because slack isn't margin.
 
 ---
 

@@ -10,23 +10,21 @@
 
 **[ON CAMERA — Ben, robot on the table behind him]**
 
-Hi. I'm Ben, I coordinate robotics at Beehive Academy, and this is The Hive's robot from our robot-in-one-week challenge.
+Hi. I'm Ben, I coordinate robotics at Beehive Academy. At our robot-in-one-week, the students build and code a robot in seven days, the normal way. The mentors have our own competition the same week. This is the mentors' robot — and we ran an experiment on it.
 
 **[B-ROLL: robot driving, intaking, shooting — 5 seconds]**
 
-Here's the thing about this robot. The code that runs it — the drive, the intake, the shooter, the autonomous — was written by describing what we wanted in plain English to Gemini, inside Android Studio.
+Not one line of its code was written by hand. The drive, the intake, the shooter, the autonomous — all of it was written by describing what we wanted in plain English to Gemini, inside Android Studio.
 
 And here's the more important thing.
 
-**[B-ROLL: mechanical team members at a laptop, Gemini panel visible]**
+**[B-ROLL: Asim at the robot, Ben at the laptop, Gemini panel visible]**
 
-After the first night, the changes weren't mine. They were the mechanical team's. Sometimes Asim, our mechanical specialist, was at the keyboard himself — tank drive, the strafe fix, a whole experimental autonomous with its tuning. Sometimes he was standing over the robot calling out what to change and I typed it. Either way: the timings, the power levels, the park routine, the fixes — those came from the people who built the robot.
-
-Nobody on the mechanical team writes Java.
+After the first night, the changes weren't mine. They were Asim's — our mechanical mentor, who built the robot and doesn't write Java. Sometimes he was at the keyboard himself — tank drive, the strafe fix, a whole experimental autonomous with its tuning. Sometimes he was standing over the robot calling out what to change and I typed it. Either way: the timings, the power levels, the park routine, the fixes — those came from the person who built the robot.
 
 **[ON CAMERA]**
 
-That's not a trick, and it's not cheating. They understood the robot better than anyone, because they built it. All they needed was a way to tell the code what the robot should do. That's what this series is.
+That's not a trick, and it's not cheating. He understood the robot better than anyone, because he built it. All he needed was a way to tell the code what the robot should do. That's what this series is — and it's why we think students can do it too.
 
 **[TEXT CARD: the loop diagram — DESCRIBE → GENERATE → TEST → REFINE]**
 
@@ -54,7 +52,7 @@ Let's go.
 
 - [ ] Ben on camera, two setups (intro and close)
 - [ ] Robot driving/intaking/shooting, 10 s total
-- [ ] Mechanical team at laptop with Gemini panel, 5 s
+- [ ] Asim at the robot, Ben at the laptop with Gemini panel, 5 s
 - [ ] Robot completing autonomous, 5 s
 - [ ] Loop diagram text card
 - [ ] Checkpoint list text card

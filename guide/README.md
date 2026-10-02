@@ -22,7 +22,7 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 | 2 | [02-mecanum-drive.md](02-mecanum-drive.md) | A TeleOp that drives (tank + strafe, D-pad precision) |
 | 3 | [03-intake.md](03-intake.md) | ...and collects / rejects balls |
 | 4 | [04-shooter.md](04-shooter.md) | ...and runs the flywheel startup sequence and pulse-feeds |
-| 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical team's words — some typed by the mechanical specialist, some dictated to the coordinator (the fifth, the strafe fix, is in Checkpoint 2) |
+| 5 | [05-refine.md](05-refine.md) | The four real refinement prompts, in the mechanical mentor's words — some typed by the mechanical mentor, some dictated to the coordinator (the fifth, the strafe fix, is in Checkpoint 2) |
 | 6 | [06-auto-shoot.md](06-auto-shoot.md) | An autonomous that backs off the wall and shoots |
 | 7 | [07-auto-park.md](07-auto-park.md) | ...split into Shoot First and Shoot Delayed, which parks |
 | 8 | [08-auto-tuning.md](08-auto-tuning.md) | ...inside 30 seconds, ending clear of the wall for the LEAVE points |
@@ -30,7 +30,7 @@ A step-by-step guide for FTC teams. Follow the checkpoints in order. Each one en
 
 Also: [the-loop.md](the-loop.md) — the describe → generate → test → refine method, on one page. Read it first if you only read one thing.
 
-The robot in this guide is The Hive's (FTC #3747) robot-in-one-week robot: mecanum drive, one flywheel, an intake with two rollers, goBILDA LEDs. The code it ended up with is in [`example-code/final/`](../example-code/final/), verbatim, and the prompts quoted in Checkpoints 2, 5 and 8 are the ones the mechanical team actually typed.
+The robot in this guide is the **mentor robot** — built by The Hive's (FTC #3747) mentors for the mentor competition at robot-in-one-week, while the students coded their own robot by hand. The mentors' experiment was: no hand-written code, everything described to Gemini. It: mecanum drive, one flywheel, an intake with two rollers, goBILDA LEDs. The code it ended up with is in [`example-code/final/`](../example-code/final/), verbatim, and the prompts quoted in Checkpoints 2, 5 and 8 are the ones the mechanical team actually typed.
 
 ## Before you start
 

@@ -74,7 +74,7 @@ Say out loud what actually happened, in words. Not "it's wrong." "Both sticks le
 
 **[TEXT CARD: "What went wrong: holding both joysticks left made the robot strafe right"]**
 
-This is what happened to The Hive. Strafe was mirrored. And here's the fix — this is the prompt the team actually typed, word for word:
+This is what happened on the mentor robot. Strafe was mirrored. And here's the fix — this is the prompt the team actually typed, word for word:
 
 **[TEXT CARD: "hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix" — hold 3 s]**
 

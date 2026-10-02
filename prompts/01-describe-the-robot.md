@@ -34,7 +34,7 @@ A restatement of the robot. No code — the last line asks for confirmation firs
 
 ## The real one
 
-The Hive's first prompt (Sep 17, 10:26 PM; [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md) row 1) asked for the drive, flywheel and intake together and ended *"What questions do you have?"* Gemini replied with five numbered questions. The whole answer was:
+The mentors' first prompt (Sep 17, 10:26 PM; [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md) row 1) asked for the drive, flywheel and intake together and ended *"What questions do you have?"* Gemini replied with five numbered questions. The whole answer was:
 
 > **VERBATIM:** *1. iterative 2. 0.05 per step 3. Let's have them run at fixed speeds of 0.3 4. Yes.  5. Yes.*
 

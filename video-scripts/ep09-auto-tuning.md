@@ -2,7 +2,7 @@
 
 **Length:** ~4 minutes
 **Format:** Robot footage + screen recording, voice-over
-**Narrator:** Mechanical team member
+**Narrator:** Asim, or whoever narrated Episode 6
 **Guide page:** `guide/08-auto-tuning.md`
 **Starting state:** Checkpoint 7 committed
 
@@ -86,7 +86,7 @@ Four out of five. The miss was the wall. Good enough to compete; let's see if we
 
 Five for five.
 
-> **Ben:** replace with The Hive's real reliability numbers and whatever actually needed tuning. If it was park distance varying, show the "lower power, longer time" fix — that's the most useful one for other teams.
+> **Ben:** replace with the mentor robot's real reliability numbers and whatever actually needed tuning. If it was park distance varying, show the "lower power, longer time" fix — that's the most useful one for other teams.
 
 **[TEXT CARD: "Slower is more consistent" — with the STATE_5B 0.4 / 3.0 → 0.3 / 4.0 example]**
 
@@ -112,11 +112,11 @@ Checkpoint eight: both autos add up to under 29 on paper, safety timeout in, non
 
 That's the series.
 
-I build intakes. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Some I typed, some I said out loud while someone else typed. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
+I'm the mechanical mentor. A week ago I'd never opened Android Studio. The prompts you just read — "it is spitting balls out," "can we add a backup after the turn" — those are ours. Some I typed, some I said out loud while someone else typed. Not because we learned Java, but because we knew what the robot needed to do and we learned how to say it precisely.
 
 There's one more page in the guide, Checkpoint 9, with the extras we described into existence after this: LED lights so the driver can see from across the field that the flywheel's up to speed, an endgame rumble, and a four-ball autonomous experiment. Same method. Nothing new to learn.
 
-Your mechanical team knows your robot better than anyone. Give them this, and see what they build.
+We're mentors; we did this on our robot. Your students know yours better than anyone. Give them this, and see what they build.
 
 Start with Episode 1.
 

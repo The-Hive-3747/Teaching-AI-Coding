@@ -46,7 +46,7 @@ Deploy to the robot. Run the OpMode. Try the specific thing you just added. Writ
 - "what is the current time of spinning the motors back before starting the flywheel? it is spitting balls out, so i would like to shorten it"
 - "I thought gamepad 1 dpad was slow mode, not tuning the flywheel."
 
-Those are three of The Hive's actual prompts, exactly as typed. Exact observations become exact refinements.
+Those are three of the mentors' actual prompts, exactly as typed. Exact observations become exact refinements.
 
 ## Refine
 

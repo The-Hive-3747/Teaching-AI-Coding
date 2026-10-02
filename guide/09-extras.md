@@ -1,6 +1,6 @@
 # Checkpoint 9 — Extras
 
-Everything else The Hive described into existence during the week. None of it is required to compete; all of it is worth seeing, because each one shows the same method applied to something new.
+Everything else the mentors described into existence during the week. None of it is required to compete; all of it is worth seeing, because each one shows the same method applied to something new.
 
 ---
 
@@ -44,7 +44,7 @@ The Checkpoint 5 fix ("I thought gamepad 1 dpad was slow mode") moved flywheel t
 
 ## 9.4 The 4-ball experiment
 
-The Hive's `BaseAutoExperimental` tries something clever: shoot the three preloaded balls, then scoop a fourth that was dropped in front of the robot at the start, back it away from the flywheel, spool, and shoot it. Seventeen states, counting the delay. Gemini's log describes it step by step (Session Iteration 2).
+the mentor robot's `BaseAutoExperimental` tries something clever: shoot the three preloaded balls, then scoop a fourth that was dropped in front of the robot at the start, back it away from the flywheel, spool, and shoot it. Seventeen states, counting the delay. Gemini's log describes it step by step (Session Iteration 2).
 
 Two things it teaches:
 - **A state machine can get long and stay readable** as long as every state does one thing. Seventeen one-thing states beat five do-three-things states.

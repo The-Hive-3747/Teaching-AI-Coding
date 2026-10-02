@@ -8,13 +8,13 @@
 
 ## 7.1 Why two autos, and why a base class
 
-In a match your alliance partner may also want to shoot from the same spot. The Hive's answer was a second OpMode that waits 15 seconds before doing anything, then shoots and parks — while the Shoot First one shoots right away and stays put so the partner has room.
+In a match your alliance partner may also want to shoot from the same spot. The mentors' answer was a second OpMode that waits 15 seconds before doing anything, then shoots and parks — while the Shoot First one shoots right away and stays put so the partner has room.
 
 Two OpModes that share 90% of their logic is exactly what a **base class** is for: `BaseAuto` holds the state machine, and `AutoShootFirst` / `AutoShootDelayed` are each a few lines that say "my delay is 0" or "my delay is 15." Gemini will do this split cleanly if you ask for it.
 
 ## 7.2 Work out the park path before prompting
 
-Walk the robot through it by hand from the shooting spot. The Hive's path took three tries in ninety minutes, all verbatim: first *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shooting…"*; then *"The strafing is the opposite direction. And let's increase power to 0.5."*; then the design that stuck:
+Walk the robot through it by hand from the shooting spot. The mentors' path took three tries in ninety minutes, all verbatim: first *"On the delayed side, I want to strafe to the right for 3 seconds at 0.3 power. If that exceeds our 30 second time for autonomous, let's cut down shooting…"*; then *"The strafing is the opposite direction. And let's increase power to 0.5."*; then the design that stuck:
 
 > *Let's change the 15 second delay to a 1 second delay for our testing convenience. We are going to move it back to 15 seconds after we are done testing… Instead of strafing, let's turn left for .5 seconds at 0.5 power. And then go forward at 0.4 power for 3 seconds.*
 
@@ -84,7 +84,7 @@ Find:
 
 Ask the Reader: "Which file would you change to make the delay 12 seconds?" (`AutoShootDelayed.java`, one number.) "Which file to change the turn time?" (`BaseAuto.java`, and it changes for both — though only Delayed parks.)
 
-**Compare with:** [`../example-code/07-auto-park/`](../example-code/07-auto-park/) — The Hive's `BaseAuto` rolled back to before the Checkpoint 8 changes.
+**Compare with:** [`../example-code/07-auto-park/`](../example-code/07-auto-park/) — the mentor robot's `BaseAuto` rolled back to before the Checkpoint 8 changes.
 
 ## 7.5 Test
 

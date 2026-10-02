@@ -10,7 +10,7 @@
 
 You don't need odometry or encoders to score in autonomous. Time-based driving ("backward at 0.3 power for 0.3 seconds") is repeatable enough for a first week, as long as the battery is charged and the wheels are clean.
 
-The autonomous is a **state machine**: a list of steps, each with a condition for moving to the next. This is The Hive's:
+The autonomous is a **state machine**: a list of steps, each with a condition for moving to the next. This is the mentor robot's:
 
 ```
   START
@@ -43,7 +43,7 @@ The autonomous is a **state machine**: a list of steps, each with a condition fo
 
 Each box is a state. Each arrow is "when the timer passes N seconds, go to the next state." That's all a state machine is.
 
-This is how The Hive asked for its first autonomous, verbatim (Sep 18, ~9:50 PM) — notice it's already a numbered state machine with exit conditions, and it ends with a question:
+This is how the mentors asked for their first autonomous, verbatim (Sep 18, ~9:50 PM) — notice it's already a numbered state machine with exit conditions, and it ends with a question:
 
 > *I need you to write two autonomous opmodes.  We have a competition in which one robot shoots first and then causes a bistable "hive" target to tip to the other side. So one robot shoots while the other waits. Then the other robot shoots. I would like our second opmode to wait 15 seconds before shooting.*
 >
@@ -70,7 +70,7 @@ Both are in the prompt below, so you don't have to find them the same way.
 
 The autonomous drives the flywheel and intake through the same `Flywheel` and `Intake` classes TeleOp uses, by calling their methods directly: `flywheel.startDirect()`, `intake.setFeed(true)`, `intake.stop()`. That's the payoff of the "an autonomous will use this later" line in Checkpoints 3 and 4: the pulse timing, the phase logic, everything you tuned in Checkpoint 5 comes along for free, and the auto never touches a button name.
 
-### What The Hive's code actually does — and why we don't teach it
+### What the mentors' code actually does — and why we don't teach it
 
 Look at [`example-code/final/BaseAuto.java`](../example-code/final/BaseAuto.java). It doesn't call `intake.setFeed(true)`. It creates a **simulated gamepad** — `autoGamepad = new Gamepad()`, a controller nobody is holding — and sets `autoGamepad.right_bumper = true` when it wants to feed, then passes that object to the same `update()` TeleOp uses. The subsystems can't tell the difference. It works, and it shipped.
 
@@ -101,7 +101,7 @@ Start a **new** Gemini conversation for the autonomous, and paste your robot des
 
 `[SCREENSHOT: Gemini panel showing the generated state machine with the enum and switch visible]`
 
-(The state numbering with a gap — no STATE_5 — is The Hive's. STATE_5 is the park sequence, added in Checkpoint 7. Leaving the gap now means the names won't shift later.)
+(The state numbering with a gap — no STATE_5 — is the mentors'. STATE_5 is the park sequence, added in Checkpoint 7. Leaving the gap now means the names won't shift later.)
 
 ## 6.4 Read what it wrote
 
@@ -114,7 +114,7 @@ Find:
 
 Ask the Reader: "How does the robot get from BACK_UP to SETTLE?" The answer is the timer check. If they can say that, they understand state machines.
 
-**Compare with:** [`../example-code/06-auto-shoot/`](../example-code/06-auto-shoot/) — derived from The Hive's `BaseAuto.java` with the delay, park, and LEDs removed.
+**Compare with:** [`../example-code/06-auto-shoot/`](../example-code/06-auto-shoot/) — derived from the mentor robot's `BaseAuto.java` with the delay, park, and LEDs removed.
 
 ## 6.5 Test
 

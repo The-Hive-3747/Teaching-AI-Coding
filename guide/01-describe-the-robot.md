@@ -18,7 +18,7 @@ On the Driver Hub: **⋮ menu → Configure Robot → (your config) → Edit**. 
 
 `[SCREENSHOT: Driver Hub Configure Robot screen showing motor ports with names]`
 
-Fill in a table like this. **Use the exact names, exact capitalization.** This is The Hive's robot:
+Fill in a table like this. **Use the exact names, exact capitalization.** This is the mentor robot:
 
 | Name in config | Type | Hub / port | What it does | Direction notes |
 |---|---|---|---|---|
@@ -36,11 +36,11 @@ Fill in a table like this. **Use the exact names, exact capitalization.** This i
 
 Two rules:
 - If you don't know which way a motor spins yet, write "unknown — test." You'll find out at the next checkpoint.
-- If the mechanical team changes a motor's port, this table changes, the config changes, and Gemini needs to be told. Keep it current.
+- If whoever's building changes a motor's port, this table changes, the config changes, and Gemini needs to be told. Keep it current.
 
 ## 1.3 Describe the controls
 
-Decide, as a team, what every button does. Write it down before asking for code. The Hive's scheme:
+Decide, as a team, what every button does. Write it down before asking for code. The mentor robot's scheme:
 
 | Control | Action |
 |---|---|
@@ -60,7 +60,7 @@ Two things here are worth copying regardless of your robot: **toggles for things
 
 ## 1.4 Describe the sequences
 
-Anything with timing or ordering, write out as steps before prompting. The Hive's flywheel startup:
+Anything with timing or ordering, write out as steps before prompting. The mentor robot's flywheel startup:
 
 1. Press B.
 2. Flywheel **and intake** run backward at −0.5 for a moment, to push out any ball jammed against the wheel.
@@ -68,7 +68,7 @@ Anything with timing or ordering, write out as steps before prompting. The Hive'
 4. Flywheel spins forward at target power and stays there.
 5. Holding right bumper now pulses the intake — briefly on, longer off — so one ball feeds at a time.
 
-You'll put numbers on those "moments" in the prompt (The Hive started with 200 ms and 300 ms; the bump was later shortened to 100 ms). Numbers you can change. Missing steps you can't.
+You'll put numbers on those "moments" in the prompt (The mentors started with 200 ms and 300 ms; the bump was later shortened to 100 ms). Numbers you can change. Missing steps you can't.
 
 ## 1.5 Give it all to Gemini
 
@@ -96,13 +96,13 @@ Open the Gemini panel. Paste in a single message that has everything above. This
 
 `[SCREENSHOT: Gemini panel with the robot description sent and Gemini's confirmation reply]`
 
-The last line matters. It's what The Hive's real first prompt ended with, and it worked: instead of generating 500 lines, Gemini came back with five numbered questions (iterative or linear OpMode? how big a tuning step? …). The coordinator's entire next message was:
+The last line matters. It's what the mentors' real first prompt ended with, and it worked: instead of generating 500 lines, Gemini came back with five numbered questions (iterative or linear OpMode? how big a tuning step? …). The coordinator's entire next message was:
 
 > *1. iterative 2. 0.05 per step 3. Let's have them run at fixed speeds of 0.3 4. Yes.  5. Yes.*
 
 and the TeleOp, `Flywheel.java`, and `Intake.java` appeared. Answer the questions. If Gemini restates something wrong, correct it now.
 
-> **Note:** this is a reconstruction in the guide's checkpoint order. The Hive's real first prompt (Sep 17, 10:26 PM) is in [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md), row 1 — it asked for the drive, flywheel and intake in one go, with a flywheel reverse-bump and "What questions do you have?" at the end. The log clips its middle; the first and last lines are intact.
+> **Note:** this is a reconstruction in the guide's checkpoint order. the mentors' real first prompt (Sep 17, 10:26 PM) is in [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md), row 1 — it asked for the drive, flywheel and intake in one go, with a flywheel reverse-bump and "What questions do you have?" at the end. The log clips its middle; the first and last lines are intact.
 
 ## 1.6 Save the description
 

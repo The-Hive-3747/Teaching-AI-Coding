@@ -82,7 +82,7 @@ In the **Project** panel on the left, switch the dropdown at the top to **Androi
 
 ## 0.4 Keep Gemini focused on your code
 
-The FtcRobotController module contains dozens of sample OpModes. The Hive excluded them so Gemini would stop reaching for sample hardware names instead of theirs. There's a trade-off: the samples are also Gemini's best in-project evidence of this season's API, so if you start seeing `cannot find symbol` errors on SDK calls after excluding them, un-exclude and see if it helps. Start the way The Hive did:
+The FtcRobotController module contains dozens of sample OpModes. The mentors excluded them so Gemini would stop reaching for sample hardware names instead of theirs. There's a trade-off: the samples are also Gemini's best in-project evidence of this season's API, so if you start seeing `cannot find symbol` errors on SDK calls after excluding them, un-exclude and see if it helps. Start the way The Hive did:
 
 1. In the Project panel, switch to **Project** view (the dropdown at the top).
 2. Right-click the project root folder → **New → File**. Name it `.aiexclude` (with the leading dot).

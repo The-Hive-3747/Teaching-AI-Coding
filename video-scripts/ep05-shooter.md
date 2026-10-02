@@ -36,7 +36,7 @@ Then the part people miss: the intake needs to know what the flywheel is doing. 
 
 And this line. If you don't know what it means, include it anyway. Without it, Gemini might use sleep, and sleep freezes the whole robot during the startup sequence — you can't drive. ElapsedTime lets everything keep running.
 
-One more thing in that prompt, on purpose: D-pad tuning. That's the same D-pad that does precision driving. It's going to conflict. We're leaving it in, because fixing it is one of the mechanical team's prompts in the next episode.
+One more thing in that prompt, on purpose: D-pad tuning. That's the same D-pad that does precision driving. It's going to conflict. We're leaving it in, because fixing it is one of the mechanical mentor's prompts in the next episode.
 
 **[SCREEN: generation, 4×]**
 
@@ -96,7 +96,7 @@ Somebody held the bumper before pressing B, and the intake pushed a ball into a 
 
 That's it. A direction, then a rule — and it shoots, one ball per pulse.
 
-> **Ben:** replace the two failures above with what actually happened on The Hive's first shooter tests. The guide doesn't record them. The one real shooter complaint — "it is spitting balls out" — belongs to Episode 6; don't spend it here.
+> **Ben:** replace the two failures above with what actually happened on the mentor robot's first shooter tests. The guide doesn't record them. The one real shooter complaint — "it is spitting balls out" — belongs to Episode 6; don't spend it here.
 
 **[SCREEN: the tuning table in the guide being filled in]**
 
@@ -114,7 +114,7 @@ Commit — and put the numbers in the message. "Shooter works — bump 200 ms, t
 
 Checkpoint four: all eight shooter tests pass, drive and intake still pass their earlier tests, someone can find both phase transitions and explain why the intake needs the flywheel's state, the tuning numbers are written down, saved.
 
-**[END CARD: "Next: Episode 6 — Refine: the mechanical team's real prompts" + repo URL]**
+**[END CARD: "Next: Episode 6 — Refine: the mechanical mentor's real prompts" + repo URL]**
 
 ---
 

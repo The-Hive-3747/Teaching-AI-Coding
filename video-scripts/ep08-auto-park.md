@@ -2,7 +2,7 @@
 
 **Length:** ~4 minutes
 **Format:** Screen recording + robot footage, voice-over
-**Narrator:** Mechanical team member
+**Narrator:** Asim, or whoever narrated Episode 6
 **Guide page:** `guide/07-auto-park.md`
 **Starting state:** Checkpoint 6 committed, same Gemini conversation
 
@@ -20,7 +20,7 @@ Before touching Gemini, walk it. Where does the robot end up after shooting? Whi
 
 **[DIAGRAM CARD: top-down field sketch — wall start, back up to shooting spot, back up more, turn left 90°, drive forward into the park zone — hold 5 s]**
 
-> **Ben:** draw The Hive's actual path.
+> **Ben:** draw the mentor robot's actual path.
 
 **[TEXT CARD: the state diagram with DELAY at the front and the three park states after STATE_4_STOP_SHOOTING, new states highlighted — hold 5 s]**
 

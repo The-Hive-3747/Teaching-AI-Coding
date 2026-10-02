@@ -2,7 +2,9 @@
 
 Materials for teaching FIRST Tech Challenge teams to write their robot code by describing it in plain language to Gemini in Android Studio, then testing and refining it one subsystem at a time.
 
-This is how The Hive (FTC #3747) built its robot-in-one-week code. The coordinator described the architecture, hardware names, and control scheme on night one. After that the changes came from the mechanical team — Asim, the mechanical specialist, sometimes at the keyboard himself, sometimes standing over the robot calling out the change while the coordinator typed. Timings, power levels, the park routine, a whole experimental autonomous: described in plain English, by people who don't write Java. The code is in this repo verbatim, and so is every prompt from the week, with its author.
+At The Hive's robot-in-one-week, the students built and coded their robot the traditional way. The mentors entered the mentor competition with a robot of their own — and coded it entirely by describing it to Gemini in Android Studio. Ben, the coordinator, described the architecture on night one. After that the changes came from Asim, the mechanical mentor, who doesn't write Java: sometimes at the keyboard himself, sometimes over the robot calling out the change while Ben typed. Timings, power levels, the park routine, a whole experimental autonomous: described in plain English. The code is in this repo verbatim, and so is every prompt from the week, with its author.
+
+The experiment was the mentors'. The workshop is so that students can do the same.
 
 ## What's here
 
@@ -12,7 +14,7 @@ This is how The Hive (FTC #3747) built its robot-in-one-week code. The coordinat
 | `guide/` | Step-by-step written guide, one file per checkpoint, with diagrams and screenshot callouts | Teams following along |
 | `video-scripts/` | Series plan and a script for each checkpoint video | Video production |
 | `prompts/` | The real prompts from the build mapped to checkpoints, plus reconstructed ones where the team didn't follow the checkpoint order | Teams |
-| `example-code/` | The Hive's final code verbatim (`final/`), and per-checkpoint snapshots derived from it | Teams (for comparison, not copying) |
+| `example-code/` | the mentor robot's final code verbatim (`final/`), and per-checkpoint snapshots derived from it | Teams (for comparison, not copying) |
 | `docs/` | `verbatim-transcript.md` (every prompt, tagged by author, with Gemini's full replies), `code-history/` (the code after each of the 50 prompts that changed it), and Gemini's own summary | Everyone |
 
 ## The checkpoint sequence
@@ -24,7 +26,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 2. **Mecanum drive** — tank + strafe TeleOp, test
 3. **Intake** — collect and reject, test
 4. **Shooter** — flywheel startup sequence and pulsed feed, test
-5. **Refine** — the mechanical team's four real prompts
+5. **Refine** — the mechanical mentor's four real prompts
 6. **Autonomous: back off the wall and shoot** — first state machine, test
 7. **Autonomous: park** — Shoot First and Shoot Delayed, test
 8. **Autonomous: under 30 seconds** — add it up, keep the LEAVE points, final test
@@ -45,4 +47,4 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 
 ## Season note
 
-This guide is written for The Hive's 2026–27 (BIOBUZZ) season robot, against FtcRobotController SDK v12.0: mecanum drive, one flywheel, intake with two rollers, goBILDA LEDs, time-based autonomous (no odometry). The prompting method carries over; the hardware details will not.
+This guide is written for the mentor robot from The Hive's 2026–27 (BIOBUZZ) robot-in-one-week, against FtcRobotController SDK v12.0: mecanum drive, one flywheel, intake with two rollers, goBILDA LEDs, time-based autonomous (no odometry). The prompting method carries over; the hardware details will not.

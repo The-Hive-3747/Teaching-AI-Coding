@@ -1,12 +1,12 @@
 # Example Code
 
-The Hive's actual robot-in-one-week code, plus snapshots of what it looked like at each checkpoint.
+The mentor robot's actual code (The Hive's mentors' entry in the robot-in-one-week mentor competition; the students coded their own robot by hand), plus snapshots of what it looked like at each checkpoint.
 
 These are for **comparison, not copying**. The point of the workshop is that your team describes *your* robot and Gemini writes code that matches *your* hardware config. If you paste ours in, it won't match your motor names, directions, or timings, and you'll skip the part where your team learns to describe what they want.
 
 ## `final/` — the real code, verbatim
 
-Everything in The Hive's `TeamCode` folder at the end of the week, unchanged, including the `backup/` folder the team had Gemini create before big changes.
+Everything in the mentor robot's `TeamCode` folder at the end of the week, unchanged, including the `backup/` folder the team had Gemini create before big changes.
 
 | File | What it is |
 |---|---|

@@ -48,7 +48,22 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - [ ] Remaining screenshots (install pop-ups, Driver Hub, generated code) — see `[SCREENSHOT: ...]` callouts in `guide/`
 - [x] Kickoff deck: `slides/kickoff.pptx` (import into Google Slides), built by `slides/build-deck.js` from `slides/kickoff-outline.md` — The Hive's slide 5 column still to fill in
 - [x] "Why this matters" section for skeptical coaches (5 slides) — every quote and number sourced in `docs/research-ai-skills-case.md`; two refuter passes
+- [x] `guide/receipts.md` — how a team proves its students wrote the code (prompt-per-commit, session export, author tags)
+***REMOVED***
+- [ ] Training sessions: dates, place, sign-up (`[THE HIVE: …]` on the "What you need" slide)
 - [ ] Videos recorded
+
+## Credits
+
+- **The Hive's students** — hand-coded the team's own robot this season, and present this workshop: Tom, Sophi and Sadiqah on stage and narrating the videos.
+- **Ben** — coordinator; described the mentor robot's architecture to Gemini on night one and typed no Java.
+- **Annie** — head coach.
+- **Asim** — mechanical mentor; built the mentor robot and authored most of the later changes in plain English, at the keyboard for eight of them.
+- **Royd** — `[Ben: Royd's role]`
+- **Claude** (Anthropic) — drafted the guide, deck, scripts and research from the real transcript; every claim was then refuter-checked against sources.
+- **Gemini in Android Studio** (Google) — wrote every line of the mentor robot's code from the mentors' descriptions, and its own summary of the week.
+
+This workshop was itself made the way it teaches: described, generated, tested, refined — with the prompts kept.
 
 ## Season note
 

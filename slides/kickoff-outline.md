@@ -7,7 +7,7 @@
 
 **The frame, in one sentence:** At Robot in One Week, The Hive coded their robot by hand, the traditional way. The mentors had their own robot for the mentor competition and ran an experiment on it: no hand-written code — everything described to Gemini in Android Studio. The students saw both, and this talk is what they took from it: **hand-coding vs. architecting with AI**, and how any Utah team can use the second one.
 
-Structure (reordered Oct 3 for a skeptical room): who we are and the plain facts → the objection, stated by us first ("AI can make you dumber") → our rule → the seventy-year pattern → *then* the mentors' experiment → the method → the demo → what's at stake (Lehi, the door) → how to run it → training sessions and close. The stakes come after the demo on purpose: before trust, job statistics read as pressure; after they've watched it work, they read as opportunity.
+Structure (reordered Oct 3 for a skeptical room): who we are and the plain facts → the objection, stated by us first ("AI can shrink your skills") → our rule → the seventy-year pattern → *then* the mentors' experiment → the method → the demo → what's at stake (Lehi, the door) → how to run it → training sessions and close. The stakes come after the demo on purpose: before trust, job statistics read as pressure; after they've watched it work, they read as opportunity.
 
 Sourcing for slides 4–6 and 14–15: every quote and number is sourced and flagged in [`docs/research-ai-skills-case.md`](../docs/research-ai-skills-case.md); read its last two sections (hostile questions; "must not repeat") before presenting. Where a line is our inference rather than a finding, the slide says "we think" — keep it that way.
 
@@ -30,9 +30,9 @@ Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 **Slide:** Three lines.
 - We're The Hive, FTC 3747. This year our students built and coded our robot by hand. No AI.
 - Our mentors entered the mentor competition with a separate robot, and ran an experiment on it: **no hand-written Java. Everything described to Gemini.**
-- We watched both. This is what the experiment showed, what we'd do with it, and how you can use it — with the receipts.
+- We watched both. This is what the experiment showed, what we'd do with it, and how you can use it.
 
-**Notes (Tom/Sophi/Sadiqah — whoever opens):** Say every line plainly; this room suspects mentors do our work. Line 1: our students hand-coded our robot this year — no AI. Line 2: the AI experiment was the mentors', on a separate robot. Line 3: we're handing over what it showed, and we'll publish every prompt our students type when we do use it. Don't argue the rumor; state the facts and move on.
+**Notes (Tom/Sophi/Sadiqah — whoever opens):** Say every line plainly; this room suspects mentors do our work. Line 1: our students hand-coded our robot this year — no AI. Line 2: the AI experiment was the mentors', on a separate robot. Line 3: we're handing over what it showed. Don't argue the rumor; state the facts and move on.
 
 ---
 
@@ -47,7 +47,7 @@ Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 
 ---
 
-## 4. AI can make you dumber. Or smarter. (1 slide, 2 min)
+## 4. AI can shrink your skills. Or multiply them. (1 slide, 2 min)
 
 **Slide:** Three stat cards, red:
 - **−17% on the exam** — PNAS 2025, about 1,000 high-school students (math), randomized; plain ChatGPT: practice +48%, unassisted exam −17%; a hints-only tutor "largely mitigated" the harm
@@ -283,7 +283,7 @@ Footer line: *Or bring your robot to a Hive training session. We'll teach your s
 - **Ben — coordinator** — described the mentor robot's architecture to Gemini on night one; typed no Java
 - **Annie — head coach**
 - **Asim — mechanical mentor** — built the mentor robot; authored most of the later changes in plain English, eight at the keyboard
-- **Royd** — `[Ben: Royd's role]`
+- **Royd — coach and mechanical engineer** — second coach on The Hive
 - **Claude (Anthropic)** — drafted the guide, deck, scripts and research from the real transcript; every claim refuter-checked against sources
 - **Gemini in Android Studio (Google)** — wrote every line of the mentor robot's code from the mentors' descriptions
 Takeaway: *This workshop was made the way it teaches: described, generated, tested, refined — with the prompts kept.*
@@ -313,7 +313,7 @@ Dropped from the running order on Oct 3 — slides 4 and 5 now make the same poi
 |---|---|
 | 1–2 Title, who we are | 1 |
 | 3 The problem | 1 |
-| 4 Dumber or smarter | 2 |
+| 4 Shrink or multiply | 2 |
 | 5 Our rule | 2 |
 | 6 Seventy years | 1 |
 | 7 The mentors' week | 4 |

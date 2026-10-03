@@ -59,7 +59,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - **Ben** — coordinator; described the mentor robot's architecture to Gemini on night one and typed no Java.
 - **Annie** — head coach.
 - **Asim** — mechanical mentor; built the mentor robot and authored most of the later changes in plain English, at the keyboard for eight of them.
-- **Royd** — `[Ben: Royd's role]`
+- **Royd** — second coach; mechanical engineer.
 - **Claude** (Anthropic) — drafted the guide, deck, scripts and research from the real transcript; every claim was then refuter-checked against sources.
 - **Gemini in Android Studio** (Google) — wrote every line of the mentor robot's code from the mentors' descriptions, and its own summary of the week.
 

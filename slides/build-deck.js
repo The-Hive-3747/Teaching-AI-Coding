@@ -90,11 +90,11 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 2. Who we are =================
 {
-  const s = content("Who we are, and what this is", "Say every line plainly; this room suspects mentors do our work. Line 1: our students hand-coded our robot this year — no AI. Line 2: the AI experiment was the mentors', on a separate robot, for the mentor competition. Line 3: we're here to hand over what it showed, and we'll publish every prompt our students type when we do use it. Don't argue the rumor; state the facts and move on.");
+  const s = content("Who we are, and what this is", "Say every line plainly; this room suspects mentors do our work. Line 1: our students hand-coded our robot this year — no AI. Line 2: the AI experiment was the mentors', on a separate robot, for the mentor competition. Line 3: we're here to hand over what it showed. Don't argue the rumor; state the facts and move on.");
   const rows = [
     ["1", "We're The Hive, FTC 3747. This year our students built and coded our robot by hand. No AI."],
     ["2", "Our mentors entered the mentor competition with a separate robot, and ran an experiment on it: no hand-written Java. Everything described to Gemini."],
-    ["3", "We watched both. This is what the experiment showed, what we'd do with it, and how you can use it — with the receipts."],
+    ["3", "We watched both. This is what the experiment showed, what we'd do with it, and how you can use it."],
   ];
   rows.forEach(([k, t], i) => {
     const y = 1.7 + i * 1.45;
@@ -124,7 +124,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 5c. Why — what the skeptics get right =================
 {
-  const s = content("AI can make you dumber. Or smarter.", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse; a hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks; with AI they were 19% slower and believed they'd been 20% faster — the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest — 52 mostly-junior engineers learning a new library, AI group 50% vs 67% on comprehension, only about 2 minutes faster; 'delegation' hurt, asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used — delegate and auto-accept vs ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT': essays, 18 people, criticized stats — don't lean on it either way.");
+  const s = content("AI can shrink your skills. Or multiply them.", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse; a hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks; with AI they were 19% slower and believed they'd been 20% faster — the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest — 52 mostly-junior engineers learning a new library, AI group 50% vs 67% on comprehension, only about 2 minutes faster; 'delegation' hurt, asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used — delegate and auto-accept vs ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT': essays, 18 people, criticized stats — don't lean on it either way.");
   const studies = [
     ["−17%", "on the exam", "PNAS 2025 · about 1,000 high-school students (math), randomized. Plain ChatGPT: practice +48%, unassisted exam −17%. A hints-only tutor “largely mitigated” the harm."],
     ["+19%", "longer, not shorter", "METR 2025 · 16 expert maintainers on their own code, 246 tasks. With AI they took 19% longer — and believed they'd been 20% faster."],
@@ -445,13 +445,13 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 13b. Credits =================
 {
-  const s = content("Who made this", "Read the names. The point of the slide is that the people are named and the AI is named — the same way we're asking every team to credit its code. Royd's role: [Ben: fill in].");
+  const s = content("Who made this", "Read the names. The point of the slide is that the people are named and the AI is named — the same way we're asking every team to credit its code. Royd is the team's second coach and a mechanical engineer.");
   const people = [
     ["The Hive's students", "Hand-coded the team's own robot this season. Tom, Sophi and Sadiqah present this workshop and narrate the videos."],
     ["Ben — coordinator", "Described the mentor robot's architecture to Gemini on night one. Typed no Java."],
     ["Annie — head coach", ""],
     ["Asim — mechanical mentor", "Built the mentor robot; authored most of the later changes in plain English, eight of them at the keyboard."],
-    ["Royd", "[Ben: Royd's role]"],
+    ["Royd — coach and mechanical engineer", "Second coach on The Hive."],
     ["Claude (Anthropic)", "Drafted the guide, deck, scripts and research from the real transcript; every claim refuter-checked against sources."],
     ["Gemini in Android Studio (Google)", "Wrote every line of the mentor robot's code from the mentors' descriptions."],
   ];

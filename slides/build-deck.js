@@ -122,6 +122,27 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   });
 }
 
+// ================= 3b. The programmer's new job =================
+{
+  const s = content("The programmer doesn't go away. The job changes.", "This is the answer to 'AI replaces the programmer' — it doesn't; it moves them up. The programmer does the prep that makes the mechanical teammate's English land: the description, the architecture, the process. Then they review every change for drift — the two real examples are on the slide, both from the mentor robot, both verbatim in the transcript: the autonomous that drove the intake through a simulated gamepad because nobody said an autonomous was coming, and the D-pad that was doing slow mode and flywheel tuning at once ('I thought gamepad 1 dpad was slow mode, not tuning the flywheel'). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10–20 minutes of copying boilerplate. That time becomes 'what do I want vision to do,' not 'how do I parse the Limelight result.'");
+  card(s, 0.5, 1.45, 6.0, 3.9, "before card");
+  s.addText("Before anyone else touches it", { x: 0.8, y: 1.6, w: 5.4, h: 0.45, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "before head" });
+  s.addText([
+    { text: "Describe", options: { bold: true } }, { text: " the robot — every motor and servo, name, port, direction.", options: { breakLine: true, paraSpaceAfter: 10 } },
+    { text: "Architect", options: { bold: true } }, { text: " it — subsystems, state machines, what the autonomous will need later.", options: { breakLine: true, paraSpaceAfter: 10 } },
+    { text: "Set the process", options: { bold: true } }, { text: " — one change per prompt, test, commit.", options: { breakLine: true, paraSpaceAfter: 14 } },
+    { text: "That groundwork is what lets a mechanical teammate make a change in English and have it land in the right place.", options: { color: C.text2 } },
+  ], { x: 0.8, y: 2.15, w: 5.4, h: 3.1, ...body({ fontSize: 16 }), objectName: "before text" });
+  card(s, 6.83, 1.45, 6.0, 3.9, "after card");
+  s.addText("After every change", { x: 7.13, y: 1.6, w: 5.4, h: 0.45, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "after head" });
+  s.addText([
+    { text: "Review", options: { bold: true } }, { text: " what the AI did — and catch drift.", options: { breakLine: true, paraSpaceAfter: 14 } },
+    { text: "On the mentor robot: the autonomous that drove the intake through a fake gamepad. The D-pad that ended up doing two things — slow mode and flywheel tuning — instead of one.", options: { color: C.text2, breakLine: true, paraSpaceAfter: 14 } },
+    { text: "Both worked. Both were wrong. Only a programmer reading the code saw it.", options: { color: C.text2 } },
+  ], { x: 7.13, y: 2.15, w: 5.4, h: 3.1, ...body({ fontSize: 16 }), objectName: "after text" });
+  s.addText("The programmer gets the big picture back: “What do I want vision to do?” instead of “How do I parse the Limelight result?”", { x: 0.5, y: 5.6, w: 12.3, h: 0.9, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "takeaway" });
+}
+
 // ================= 5c. Why — what the skeptics get right =================
 {
   const s = content("AI can shrink your skills. Or multiply them.", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse; a hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks; with AI they were 19% slower and believed they'd been 20% faster — the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest — 52 mostly-junior engineers learning a new library, AI group 50% vs 67% on comprehension, only about 2 minutes faster; 'delegation' hurt, asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used — delegate and auto-accept vs ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT': essays, 18 people, criticized stats — don't lean on it either way.");

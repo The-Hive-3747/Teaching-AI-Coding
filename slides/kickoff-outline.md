@@ -2,14 +2,14 @@
 
 **Presenters:** The Hive (FTC 3747) students — Tom, Sophi and Sadiqah. The mentors who ran the experiment are quoted on the slides, not on stage.
 **Audience:** FTC teams from across Utah — students and coaches in the same room. Assume some have never opened Android Studio and some have a working TeleOp already.
-**Length:** about 36 minutes, no Q&A (30 before the "why this matters" section was added; Ben's call: don't hold to time, get them the information).
+**Length:** about 38 minutes, no Q&A (30 before the "why this matters" section was added; Ben's call: don't hold to time, get them the information).
 **Goal:** By the end, every team knows what the mentor experiment showed, knows the checkpoint order, and knows where the guide and videos are — and believes they can do this next week.
 
 **The frame, in one sentence:** At Robot in One Week, The Hive coded their robot by hand, the traditional way. The mentors had their own robot for the mentor competition and ran an experiment on it: no hand-written code — everything described to Gemini in Android Studio. The students saw both, and this talk is what they took from it: **hand-coding vs. architecting with AI**, and how any Utah team can use the second one.
 
-Structure (reordered Oct 3 for a skeptical room): who we are and the plain facts → the objection, stated by us first ("AI can shrink your skills") → our rule → the seventy-year pattern → *then* the mentors' experiment → the method → the demo → what's at stake (Lehi, the door) → how to run it → training sessions and close. The stakes come after the demo on purpose: before trust, job statistics read as pressure; after they've watched it work, they read as opportunity.
+Structure (reordered Oct 3 for a skeptical room): who we are and the plain facts → the problem → the programmer's new job → the objection, stated by us first ("AI can shrink your skills") → our rule → the seventy-year pattern → *then* the mentors' experiment → the method → the demo → what's at stake (Lehi, the door) → how to run it → training sessions and close. The stakes come after the demo on purpose: before trust, job statistics read as pressure; after they've watched it work, they read as opportunity.
 
-Sourcing for slides 4–6 and 14–15: every quote and number is sourced and flagged in [`docs/research-ai-skills-case.md`](../docs/research-ai-skills-case.md); read its last two sections (hostile questions; "must not repeat") before presenting. Where a line is our inference rather than a finding, the slide says "we think" — keep it that way.
+Sourcing for slides 5–7 and 15–16: every quote and number is sourced and flagged in [`docs/research-ai-skills-case.md`](../docs/research-ai-skills-case.md); read its last two sections (hostile questions; "must not repeat") before presenting. Where a line is our inference rather than a finding, the slide says "we think" — keep it that way.
 
 **Deck file:** `slides/kickoff.pptx` — built from this outline; import into Google Slides with **File → Import slides**. Logo gold `#F9BE14` on black. A designed version of the same deck also exists as a Claude Slides artifact (Ben has the link); it adds one slide — the "spitting balls out" prompt as typed — and plays the Test Match 3 auto clip on the timeline slide.
 
@@ -47,7 +47,25 @@ Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 
 ---
 
-## 4. AI can shrink your skills. Or multiply them. (1 slide, 2 min)
+## 4. The programmer doesn't go away. The job changes. (1 slide, 2 min)
+
+**Slide:** Two cards.
+
+*Before anyone else touches it* — the programmer:
+- **Describes** the robot — every motor and servo, name, port, direction
+- **Architects** it — subsystems, state machines, what the autonomous will need later
+- **Sets the process** — one change per prompt, test, commit
+- That groundwork is what lets a mechanical teammate make a change in English and have it land in the right place
+
+*After every change* — the programmer **reviews** what the AI did and catches drift. On the mentor robot: the autonomous that drove the intake through a fake gamepad; the D-pad that ended up doing two things — slow mode *and* flywheel tuning — instead of one. Both worked. Both were wrong. Only a programmer reading the code saw it.
+
+Takeaway: *The programmer gets the big picture back: "What do I want vision to do?" instead of "How do I parse the Limelight result?"*
+
+**Notes:** This is the answer to "AI replaces the programmer" — it doesn't; it moves them up. Both drift examples are verbatim in `docs/verbatim-transcript.md` (the simulated gamepad in `BaseAuto`; prompt 64, "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10–20 minutes of copying boilerplate.
+
+---
+
+## 5. AI can shrink your skills. Or multiply them. (1 slide, 2 min)
 
 **Slide:** Three stat cards, red:
 - **−17% on the exam** — PNAS 2025, about 1,000 high-school students (math), randomized; plain ChatGPT: practice +48%, unassisted exam −17%; a hints-only tutor "largely mitigated" the harm
@@ -57,7 +75,7 @@ Takeaway: *The difference is how you use it. Delegate and auto-accept: you lose 
 
 **Notes:** This is the slide that earns the right to be listened to: the objection, stated by us, with better evidence than the room has. Say it before they do. If MIT "Your Brain on ChatGPT" comes up: essays, 18 people, criticized stats — don't use it either way.
 
-## 5. Our rule: no AI until you can debug without it (1 slide, 2 min)
+## 6. Our rule: no AI until you can debug without it (1 slide, 2 min)
 
 **Slide:** The checklist quote in full:
 > *"Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works."* — The Hive, 2026 Programming Training Checklist
@@ -67,7 +85,7 @@ Takeaway: *Fundamentals first, then AI. We think that's how you get the speed wi
 
 **Notes:** "We think" is deliberate — no study has tested the sequence; it's our reading of the mode findings (5c) plus two studies where prior skill helped (Prather 2024; Kazemitabaar 2023).
 
-## 6. Seventy years of "that's not real programming" (1 slide, 1 min)
+## 7. Seventy years of "that's not real programming" (1 slide, 1 min)
 
 **Slide:** Timeline, one quote per row:
 - 1954, FORTRAN — *"the strength of the skepticism about 'automatic programming'… as it existed in 1954"* (John Backus, who led the FORTRAN team, writing in 1978)
@@ -79,7 +97,7 @@ Takeaway: *Every layer took the typing. None took the architecture, the testing,
 
 **Notes:** Say "most layers," not "every" — there's no named 1954 skeptic, only Backus remembering them. Fowler's limit (2025): this layer is non-deterministic, so reading and testing matter more, not less. Tell the fake-gamepad story here.
 
-## 7. What the mentors did — the week (2 slides, 4 min)
+## 8. What the mentors did — the week (2 slides, 4 min)
 
 **Slide 4a — timeline.** One line per session, from Gemini's own log of the build. The quotes are verbatim, typos and all.
 - Sep 17, 10:26 PM — Ben (coordinator) describes the whole robot → working TeleOp that night, split into subsystem classes. Ben keeps building it out through Sep 18 (shooter startup sequence, pulsed feed, LEDs)
@@ -104,7 +122,7 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 
 ---
 
-## 8. Two robots, one week: hand-coding vs. architecting with AI (1 slide, 3 min)
+## 9. Two robots, one week: hand-coding vs. architecting with AI (1 slide, 3 min)
 
 **Slide:** Two columns. This is the slide that's ours.
 
@@ -120,7 +138,7 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 
 ---
 
-## 9. The method: describe → generate → test → refine (1 slide, 2 min)
+## 10. The method: describe → generate → test → refine (1 slide, 2 min)
 
 **Slide:** The loop, four boxes:
 
@@ -137,7 +155,7 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 
 ---
 
-## 10. The checkpoints (1 slide, 2 min)
+## 11. The checkpoints (1 slide, 2 min)
 
 **Slide:** Numbered list, one line each — same as the README.
 
@@ -158,7 +176,7 @@ Repo URL on the slide.
 
 ---
 
-## 11. What a good description looks like (2 slides, 3 min)
+## 12. What a good description looks like (2 slides, 3 min)
 
 **Slide 9a:** The five things every description needs:
 1. **Names** — exactly as in the Robot Controller config (`front_left_drive`, not "the front left motor")
@@ -180,7 +198,7 @@ Then a real refinement from the Sep 19 session, verbatim:
 
 ---
 
-## 12. Live demo (1 slide + the demo, 7 min)
+## 13. Live demo (1 slide + the demo, 7 min)
 
 **Slide:** One line: "Now watch it happen." Under it, the tank-drive prompt as the mentors typed it, with the code it produced — `docs/images/android-studio-tank-drive-prompt.png`. Leave this up while switching to Android Studio.
 
@@ -198,7 +216,7 @@ Then a real refinement from the Sep 19 session, verbatim:
 
 ---
 
-## 13. Where it goes wrong, and the fix (1 slide, 2 min)
+## 14. Where it goes wrong, and the fix (1 slide, 2 min)
 
 **Slide:** Table. The italic ones are the actual prompts.
 
@@ -216,7 +234,7 @@ Then a real refinement from the Sep 19 session, verbatim:
 
 ---
 
-## 14. Lehi, 2026: it's in the job posting (1 slide, 1 min)
+## 15. Lehi, 2026: it's in the job posting (1 slide, 1 min)
 
 **Slide:** Four postings (verified live Oct 3, 2026 — re-open the links the morning of):
 - Podium, Lehi, Software Engineering Intern: *"Familiarity with AI-assisted development tools such as Cursor, Claude Code, Codex, GitHub Copilot, or similar."* — alongside "Strong programming fundamentals…"
@@ -227,7 +245,7 @@ Stats: 2.5% of US postings asked for AI skills in 2025, +55% in a year (Stanford
 
 **Notes:** Never say "Lightcast 56%" (no source). Don't use Microsoft's "66% won't hire without AI skills" (2024, vendor, self-reported).
 
-## 15. The door is narrower. The tool is expected. (1 slide, 1 min)
+## 16. The door is narrower. The tool is expected. (1 slide, 1 min)
 
 **Slide:**
 - **−20%** software developers aged 22–25, employment down nearly 20%, late 2022 → Sep 2025, payroll data; for young workers in AI-exposed jobs the gap widened to 19% by Aug 2026 (Stanford "Canaries")
@@ -240,7 +258,7 @@ Takeaway: *We think: the jobs disappearing are the ones AI does instead of a per
 
 ---
 
-## 16. Running this with your team (1 slide, 2 min)
+## 17. Running this with your team (1 slide, 2 min)
 
 **Slide:** Roles, then ground rules.
 
@@ -260,7 +278,7 @@ Ground rules:
 
 ---
 
-## 17. What you need to start (1 slide, 1 min)
+## 18. What you need to start (1 slide, 1 min)
 
 **Slide:** Checklist.
 - A laptop that runs Android Studio (Windows, Mac or Linux)
@@ -276,7 +294,7 @@ Footer line: *Or bring your robot to a Hive training session. We'll teach your s
 
 ---
 
-## 18. Who made this (1 slide, 1 min)
+## 19. Who made this (1 slide, 1 min)
 
 **Slide:** Names, two columns.
 - **The Hive's students** — hand-coded the team's own robot this season; Tom, Sophi and Sadiqah present this workshop and narrate the videos
@@ -292,7 +310,7 @@ Takeaway: *This workshop was made the way it teaches: described, generated, test
 
 ---
 
-## 19. Close (1 slide, 0 min)
+## 20. Close (1 slide, 0 min)
 
 **Slide:**
 > Start small. Test every step. When it's wrong, describe what was missing.
@@ -313,23 +331,24 @@ Dropped from the running order on Oct 3 — slides 4 and 5 now make the same poi
 |---|---|
 | 1–2 Title, who we are | 1 |
 | 3 The problem | 1 |
-| 4 Shrink or multiply | 2 |
-| 5 Our rule | 2 |
-| 6 Seventy years | 1 |
-| 7 The mentors' week | 4 |
-| 8 Hand-coding vs. AI | 3 |
-| 9 The loop | 2 |
-| 10 Checkpoints | 2 |
-| 11 Good descriptions | 3 |
-| 12 Live demo | 7 |
-| 13 Where it goes wrong | 2 |
-| 14–15 Lehi, the door | 2 |
-| 16 Running it with a team | 2 |
-| 17 What you need, training sessions | 1 |
-| 18 Who made this | 1 |
-| **Total** | **36** |
+| 4 The programmer's new job | 2 |
+| 5 Shrink or multiply | 2 |
+| 6 Our rule | 2 |
+| 7 Seventy years | 1 |
+| 8 The mentors' week | 4 |
+| 9 Hand-coding vs. AI | 3 |
+| 10 The loop | 2 |
+| 11 Checkpoints | 2 |
+| 12 Good descriptions | 3 |
+| 13 Live demo | 7 |
+| 14 Where it goes wrong | 2 |
+| 15–16 Lehi, the door | 2 |
+| 17 Running it with a team | 2 |
+| 18 What you need, training sessions | 1 |
+| 19 Who made this | 1 |
+| **Total** | **38** |
 
-If the demo runs long, slide 6 (seventy years) can go into the notes of slide 7.
+If the demo runs long, slide 7 (seventy years) can go into the notes of slide 8.
 
 ---
 

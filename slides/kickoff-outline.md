@@ -321,6 +321,14 @@ Repo URL. "Training sessions: bring your robot, leave with it driving. Find us a
 
 ---
 
+## 21–22. Sources (2 slides, 0 min)
+
+**Slides:** Every article, study, posting and rule the deck relies on, titled and linked — *studies, rules, history* (slides 5–7) and *employers and the market* (slides 15–16), plus the team's own transcript and the research report. Titles are live links in the PDF and the .pptx. Left up after the close so people can photograph it; sent to reviewers so they can check anything.
+
+**Notes:** Job postings expire — re-open the Podium links the morning of. PwC and Lightcast sell AI services; their wage figures are advertised-pay correlations. Full caveats: `docs/research-ai-skills-case.md`.
+
+---
+
 ## Cut: "What this is and isn't"
 
 Dropped from the running order on Oct 3 — slides 4 and 5 now make the same point with evidence. The slide's content is kept in git history (`build-deck.js`, block "6. Is / isn't", commit 719fc59) if it's wanted back.
@@ -346,6 +354,7 @@ Dropped from the running order on Oct 3 — slides 4 and 5 now make the same poi
 | 17 Running it with a team | 2 |
 | 18 What you need, training sessions | 1 |
 | 19 Who made this | 1 |
+| 21–22 Sources | 0 (left up) |
 | **Total** | **38** |
 
 If the demo runs long, slide 7 (seventy years) can go into the notes of slide 8.

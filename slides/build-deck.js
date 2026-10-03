@@ -495,6 +495,58 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addNotes("No Q&A slot, so say where people can find you afterward.");
 }
 
+// ================= 15. Sources (2 slides) =================
+function sourcesSlide(title, items, notes) {
+  const s = content(title, notes);
+  const half = Math.ceil(items.length / 2);
+  items.forEach(([lab, desc, url], i) => {
+    const col = i < half ? 0 : 1, row = i < half ? i : i - half;
+    const x = 0.5 + col * 6.3, y = 1.4 + row * 0.66;
+    s.addText([
+      { text: lab, options: { bold: true, color: C.accent1, hyperlink: { url }, breakLine: true } },
+      { text: desc + "  ·  " + url.replace(/^https?:\/\/(www\.)?/, "").slice(0, 70), options: { color: C.text2 } },
+    ], { x, y, w: 6.0, h: 0.6, ...body({ fontSize: 11, valign: "top" }), objectName: "source " + i });
+  });
+}
+{
+  const S1 = [
+    ["Bastani et al., PNAS 2025", "Generative AI can harm learning \u2014 ~1,000 HS students", "https://scale.stanford.edu/publications/generative-ai-can-harm-learning"],
+    ["Becker et al., METR, Jul 2025", "16 expert developers 19% slower with AI", "https://arxiv.org/abs/2507.09089"],
+    ["Anthropic, Jan 2026", "AI assistance and coding skill formation (vendor study)", "https://www.anthropic.com/news/AI-assistance-coding-skills"],
+    ["College Board, AP CS Principles", "Create task directions \u2014 AI use and attribution", "https://apcentral.collegeboard.org/media/pdf/ap-csp-student-task-directions.pdf"],
+    ["FTC Competition Manual 2026\u201327", "Awards section: A201, A204, A208", "https://ftc-resources.firstinspires.org/ftc/game/manual-06"],
+    ["FIRST blog: Expanding the toolbox with AI", "\u201cThe answer is yes!\u201d \u2014 credit convention", "https://community.firstinspires.org/expanding-the-first-toolbox-with-artificial-intelligence"],
+    ["Learn Java for FTC (Alan Smith)", "The textbook in The Hive's checklist", "https://raw.githubusercontent.com/alan412/LearnJavaForFTC/master/LearnJavaForFTC.pdf"],
+    ["Backus, 1978", "The History of FORTRAN I, II, and III (HOPL)", "https://softwarepreservation.computerhistory.org/FORTRAN/paper/p165-backus.pdf"],
+    ["Post, 1983", "Real Programmers Don't Use Pascal", "https://www.ee.torontomu.ca/~elf/hack/realmen.html"],
+    ["Petzold, 2005", "Does Visual Studio Rot the Mind?", "https://charlespetzold.com/etc/DoesVisualStudioRotTheMind.html"],
+    ["Fischer et al., IEEE S&P 2017", "Stack Overflow Considered Harmful?", "https://arxiv.org/abs/1710.03135"],
+    ["Brooks, 1987", "No Silver Bullet", "http://worrydream.com/refs/Brooks-NoSilverBullet.pdf"],
+    ["Fowler, 2025", "LLMs bring new nature of abstraction", "https://martinfowler.com/articles/2025-nature-abstraction.html"],
+  ];
+  sourcesSlide("Sources — studies, rules, history", S1, "Slides 5–7. Every title is a live link in the PDF and the .pptx. The caveats on each item are in docs/research-ai-skills-case.md; the 'must not repeat' table there is the one to read before you present.");
+}
+{
+  const S2 = [
+    ["Podium \u2014 Software Engineering Intern (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/7939921"],
+    ["Podium \u2014 Senior Software Engineer (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/6637207"],
+    ["Affirm \u2014 Senior Software Engineer", "remote, Poland; verified Oct 3, 2026", "https://job-boards.greenhouse.io/affirm/jobs/7806681003"],
+    ["1Password \u2014 Rust Developer", "verified Oct 3, 2026", "https://jobs.ashbyhq.com/1password/c247ea98-bf31-45f0-a38b-1fe255909538"],
+    ["Shopify memo, as quoted in Business Today", "Apr 2025 (secondary)", "https://www.businesstoday.in/technology/news/story/ai-use-is-no-longer-optional-at-shopify-declares-ceo-tobi-lutke-in-internal-memo-471211-2025-04-08"],
+    ["Stanford AI Index 2026 / Lightcast", "2.5% of US postings, +55%", "https://lightcast.io/resources/research/stanford-ai-index-2026"],
+    ["match.dev, Sep 2026", "AI coding tools in 4,820 SWE postings (one scan)", "https://www.match.dev/post/ai-coding-tools-in-job-postings/data/"],
+    ["PwC Global AI Jobs Barometer 2026", "62% wage premium (vendor, uncontrolled)", "https://www.pwc.com/gx/en/issues/artificial-intelligence/job-barometer/2026/2026-global-ai-jobs-barometer-global-findings.pdf"],
+    ["Lightcast, Jul 2025", "28% premium; 51% of AI postings outside IT (2024 data)", "https://lightcast.io/resources/blog/beyond-the-buzz-press-release-2025-07-23"],
+    ["Brynjolfsson, Chandar & Chen, Nov 2025", "Canaries in the Coal Mine (payroll data)", "https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf"],
+    ["Canaries dashboard", "gap widened to 19%, Aug 2026", "https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/"],
+    ["NACE, spring 2026", "AI skills in entry-level jobs (185 employers)", "https://www.naceweb.org/job-market/trends-and-predictions/demand-for-ai-skills-in-entry-level-jobs-nearly-triples-since-fall-2025"],
+    ["NACE student survey, 2026", "50.5% not building AI skills", "https://www.naceweb.org/about-us/press/2026/ready-or-reluctant-employer-expectations-for-ai-skills-meet-student-skepticism"],
+    ["Kent Beck, Apr 2023", "90% of my skills are now worth $0", "https://tidyfirst.substack.com/p/90-of-my-skills-are-now-worth-0"],
+    ["The Hive \u2014 verbatim transcript and research report", "every prompt, every number, with its caveats", "https://github.com/The-Hive-3747/Teaching-AI-Coding"],
+  ];
+  sourcesSlide("Sources — employers and the market", S2, "Slides 15–16 and the team's own records. Job postings expire: re-open the Podium links the morning of the talk. PwC and Lightcast sell AI-related services; their wage figures are advertised-pay correlations, not controlled comparisons.");
+}
+
 (async () => {
   await pres.writeFile({ fileName: OUT });
   const { applyTheme } = require(process.env.PPTX_SKILL ? path.join(process.env.PPTX_SKILL, "scripts/apply_theme.js") : "/mnt/skills/public/pptx/scripts/apply_theme.js");

@@ -11,7 +11,7 @@ Structure (reordered Oct 3 for a skeptical room): who we are and the plain facts
 
 Sourcing for slides 5–7 and 15–16: every quote and number is sourced and flagged in [`docs/research-ai-skills-case.md`](../docs/research-ai-skills-case.md); read its last two sections (hostile questions; "must not repeat") before presenting. Where a line is our inference rather than a finding, the slide says "we think" — keep it that way.
 
-**Deck file:** `slides/kickoff.pptx` — built from this outline; import into Google Slides with **File → Import slides**. Logo gold `#F9BE14` on black. A designed version of the same deck also exists as a Claude Slides artifact (Ben has the link); it adds one slide — the "spitting balls out" prompt as typed — and plays the Test Match 3 auto clip on the timeline slide.
+**Deck files:** `slides/kickoff.pdf` (slides only, reads on a phone), `slides/kickoff-with-notes.pdf` (each slide with its speaker notes — the one to send reviewers), `slides/kickoff.pptx` (import into Google Slides with **File → Import slides**). All three are built from this outline by `build-deck.js`; rebuild the PDFs after any change to the .pptx. Logo gold `#F9BE14` on black. A designed version of the same deck also exists as a Claude Slides artifact (Ben has the link); it adds one slide — the "spitting balls out" prompt as typed — and plays the Test Match 3 auto clip on the timeline slide.
 
 ---
 

@@ -501,3 +501,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   await applyTheme(OUT, THEME);
   console.log("wrote", OUT);
 })();
+
+// To regenerate the PDFs after a rebuild (needs LibreOffice):
+//   soffice --headless --convert-to pdf --outdir slides slides/kickoff.pptx
+//   soffice --headless --convert-to 'pdf:impress_pdf_Export:{"ExportNotesPages":{"type":"boolean","value":"true"},"ExportOnlyNotesPages":{"type":"boolean","value":"true"}}' --outdir /tmp slides/kickoff.pptx && mv /tmp/kickoff.pdf slides/kickoff-with-notes.pdf

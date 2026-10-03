@@ -12,7 +12,7 @@ The experiment was the mentors'. The workshop is so that students can do the sam
 
 | Folder | What it is | Audience |
 |---|---|---|
-| `slides/` | Kickoff deck (`kickoff.pptx`, import into Google Slides), its outline with speaker notes, and the script that builds it | Presenters |
+| `slides/` | Kickoff deck — [`kickoff.pdf`](slides/kickoff.pdf) to read on a phone, [`kickoff-with-notes.pdf`](slides/kickoff-with-notes.pdf) with the speaker notes under each slide, `kickoff.pptx` to import into Google Slides — plus the outline and the script that builds them | Presenters, reviewers |
 | `guide/` | Step-by-step written guide, one file per checkpoint, plus [`the-loop.md`](guide/the-loop.md) (the method on one page) and [`receipts.md`](guide/receipts.md) (how to prove your students wrote it) | Teams following along |
 | `video-scripts/` | Series plan and a script for each checkpoint video | Video production |
 | `prompts/` | The real prompts from the build mapped to checkpoints, plus reconstructed ones where the team didn't follow the checkpoint order | Teams |

@@ -184,7 +184,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 {
   const s = content("What the mentors did — the week", "Tell this as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days — the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair — Asim deciding what to change, Ben typing — plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. Two things make the experiment honest, and say both: Ben CAN write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. The quotes are verbatim, typos and all. The screenshot is the 'spitting balls out' prompt exactly as typed, with Gemini's answer. If there's time, play docs/video/scrimmage-match3-auto.mp4 from the laptop here.");
   const rows = [
-    ["Sep 17, 10:26 PM", "Ben (coordinator) describes the whole robot → working TeleOp that night, subsystem classes"],
+    ["Sep 17, 10:26 PM", "Ben (coordinator) describes the whole robot → working TeleOp that night, subsystem classes (25 minutes, 5 prompts)"],
     ["Sep 18, ~9:50 PM", "First autonomous state machines, Shoot First / Shoot Delayed — Asim's design, called out at the robot, typed by Ben"],
     ["Sep 19, 8:29 AM", "Asim (mechanical), at the keyboard: “holding both joysticks left made the robot strafe right, and vice versa. please fix”"],
     ["8:36 AM", "“it is spitting balls out, so i would like to shorten it” — reverse bump 200 → 100 ms"],
@@ -204,7 +204,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   });
   s.addImage({ path: IMG("android-studio-spitting-balls-prompt.png"), x: 7.4, y: 1.5, w: 5.43, h: 3.22, objectName: "spitting balls screenshot" });
   s.addText("Sep 19, 8:36 AM, as typed — and Gemini's reply: it reports the numbers (200 ms at −0.5, 300 ms pause), offers two options, then changes both at once. The next prompt put the power back.", { x: 7.4, y: 4.8, w: 5.43, h: 0.8, ...body({ fontSize: 11, color: C.text2 }), objectName: "screenshot caption" });
-  s.addText("67 prompts over three days. 0 lines of Java typed.", { x: 7.4, y: 5.7, w: 5.43, h: 0.8, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "stat" });
+  s.addText("67 prompts, two days and an evening. 0 lines of Java typed.", { x: 7.4, y: 5.7, w: 5.43, h: 0.8, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "stat" });
 }
 
 // ================= 4b. Quote =================
@@ -218,13 +218,13 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 5. Two robots =================
 {
-  const s = content("Hand-coding vs. architecting with AI", "This is the slide that's ours. The right column is from the mentor transcript (docs/verbatim-transcript.md); the left column is yours to fill from your own week — be concrete and be fair to both. The honest comparison is not 'AI was faster': it's WHERE THE BOTTLENECK WAS. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely — and that's a skill the mechanical people already had. That's the thing we want every Utah team to hear.");
+  const s = content("Hand-coding vs. architecting with AI", "This is the slide that's ours, and the left column is our real week. Four days of coding, three of us who could code the robot, and we were siloed: Tom wrote TeleOp, Sophi wrote autonomous. The bug: an autonomous borrowed from the FtcRobotController samples only powered two wheels, and Tom found it the morning of the competition, reading Sophi's code without knowing what she had done. Say the thing we'd do differently: AI could have given Tom a summary of the autonomous and he could have questioned it to find the bug. The grunt work: adding one state to the autonomous meant copying the same surrounding code again — 10 to 20 minutes for a new programmer, every time. Our process: the programmer works while a mechanical teammate waits, then sets up the robot and both watch the test; mechanical problems get fixed if quick or go on the to-do list; often it's one programmer doing all of it and kludging around mechanical problems in code. The honest comparison is not 'AI was faster': it's where the bottleneck was. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely — and that's a skill the mechanical people already had. The right column is from the mentor transcript: the Sep 17 session was 25 minutes and 5 prompts, then the 18th and the 19th.");
   const rows = [
-    ["[THE HIVE: how many of us could write the code?]", "2 people wrote prompts — one writes Java, one doesn't"],
-    ["[THE HIVE: hours spent coding during the week]", "67 prompts over three days; working TeleOp on night one"],
-    ["[THE HIVE: what broke, and who could fix it]", "Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java"],
-    ["[THE HIVE: how a mechanical change reached the code]", "Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design"],
-    ["[THE HIVE: what we understood about our code]", "Someone still has to read what Gemini wrote — the Reader role"],
+    ["3 of us could code it: Tom, Sophi, Sadiqah. Siloed — Tom wrote TeleOp, Sophi wrote autonomous", "2 people wrote prompts — one writes Java, one doesn't"],
+    ["4 days of coding", "67 prompts over two days and an evening; working TeleOp the first night"],
+    ["A borrowed sample autonomous only powered two wheels. Tom found it the morning of the competition, reading Sophi's code cold", "Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java"],
+    ["Programmer codes while the mechanical teammate waits; often one programmer does it all and kludges around mechanical problems. One new autonomous state: 10–20 minutes of boilerplate", "Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design"],
+    ["Each of us understood our own file. Nobody could summarize the other's", "Someone still has to read what Gemini wrote — the Reader role"],
   ];
   const colW = 5.9, gap = 0.5, x1 = 0.5, x2 = x1 + colW + gap;
   s.addText("Our robot — hand-coded by us", { x: x1, y: 1.4, w: colW, h: 0.5, ...body({ fontSize: 20, bold: true, color: C.text1 }), objectName: "col1 head" });
@@ -232,8 +232,8 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   rows.forEach(([a, b], i) => {
     const y = 2.0 + i * 0.82;
     card(s, x1, y, colW, 0.72, "l" + i); card(s, x2, y, colW, 0.72, "r" + i);
-    s.addText(a, { x: x1 + 0.2, y, w: colW - 0.4, h: 0.72, ...body({ fontSize: 13, italic: true, color: C.text2, valign: "middle" }), objectName: "lt" + i });
-    s.addText(b, { x: x2 + 0.2, y, w: colW - 0.4, h: 0.72, ...body({ fontSize: 13, valign: "middle" }), objectName: "rt" + i });
+    s.addText(a, { x: x1 + 0.2, y, w: colW - 0.4, h: 0.72, ...body({ fontSize: 11.5, valign: "middle" }), objectName: "lt" + i });
+    s.addText(b, { x: x2 + 0.2, y, w: colW - 0.4, h: 0.72, ...body({ fontSize: 11.5, valign: "middle" }), objectName: "rt" + i });
   });
   s.addText("The bottleneck moved: from “who can type Java” to “who can describe the robot precisely.”", { x: 0.5, y: 6.25, w: 12.3, h: 0.45, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }

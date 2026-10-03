@@ -110,13 +110,13 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 
 | Our robot — hand-coded | Mentor robot — described to Gemini |
 |---|---|
-| `[THE HIVE: how many of us could write the code?]` | 2 people wrote prompts; 1 of them writes Java, 1 doesn't |
-| `[THE HIVE: hours spent coding during the week]` | 67 prompts over three days; working TeleOp on night one |
-| `[THE HIVE: what broke, and who could fix it]` | Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java |
-| `[THE HIVE: how a mechanical change reached the code]` | Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design |
-| `[THE HIVE: what we understood about our code]` | Someone still has to read what Gemini wrote — see Reader role, slide 11 |
+| 3 of us could code it: Tom, Sophi, Sadiqah. Siloed — Tom wrote TeleOp, Sophi wrote autonomous | 2 people wrote prompts; 1 of them writes Java, 1 doesn't |
+| 4 days of coding | 67 prompts over two days and an evening; working TeleOp the first night |
+| A borrowed sample autonomous only powered two wheels. Tom found it the morning of the competition, reading Sophi's code cold | Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java |
+| Programmer codes while the mechanical teammate waits; often one programmer does it all and kludges around mechanical problems. One new autonomous state: 10–20 minutes of boilerplate | Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design |
+| Each of us understood our own file. Nobody could summarize the other's | Someone still has to read what Gemini wrote — the Reader role |
 
-**Notes:** The right column is from the mentor transcript (`docs/verbatim-transcript.md`); the left column is yours to fill from your own week — be concrete and be fair to both. The honest comparison is not "AI was faster": it's **where the bottleneck was.** On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to *describing precisely* — and that's a skill the mechanical people already had. That's the thing we want every Utah team to hear.
+**Notes:** This is the slide that's ours, and the left column is our real week. Four days of coding, three of us who could code the robot, and we were siloed: Tom wrote TeleOp, Sophi wrote autonomous. The bug: an autonomous borrowed from the FtcRobotController samples only powered two wheels, and Tom found it the morning of the competition, reading Sophi's code without knowing what she had done. Say the thing we'd do differently: AI could have given Tom a summary of the autonomous and he could have questioned it to find the bug. The grunt work: adding one state to the autonomous meant copying the same surrounding code again — 10 to 20 minutes for a new programmer, every time. Our process: the programmer works while a mechanical teammate waits, then sets up the robot and both watch the test; mechanical problems get fixed if quick or go on the to-do list; often it's one programmer doing all of it and kludging around mechanical problems in code. The honest comparison is not 'AI was faster': it's where the bottleneck was. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely — and that's a skill the mechanical people already had. The right column is from the mentor transcript: the Sep 17 session was 25 minutes and 5 prompts, then the 18th and the 19th.
 
 ---
 
@@ -342,5 +342,5 @@ If the demo runs long, slide 6 (seventy years) can go into the notes of slide 7.
 - [x] Robot photos — `match-closeup-green-leds.jpg` (title), `match-shooting-at-goal.jpg` (slide 2), `scrimmage-field-wide-start.jpg` (slide 4a)
 - [x] Scrimmage clips — `docs/video/scrimmage-match3-auto.mp4`, `scrimmage-match3-teleop-start.mp4` (play from the laptop during slide 4a if there's time; not embedded in the deck)
 - [x] Repo URL: https://github.com/The-Hive-3747/Teaching-AI-Coding
-- [ ] Slide 5 left column — The Hive's own numbers (`[THE HIVE: …]` placeholders)
+- [x] Slide 8 left column — The Hive's own week (from Ben, Oct 3)
 - No fallback recording for the demo — it's live.

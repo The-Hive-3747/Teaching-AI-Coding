@@ -46,7 +46,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - [x] Robot and match photos in `docs/images/`; drive-test video and two scrimmage clips (Test Match 3 auto and TeleOp) in `docs/video/`
 - [x] Android Studio screenshots of two real prompts (tank drive; "spitting balls out") in `docs/images/`
 - [ ] Remaining screenshots (install pop-ups, Driver Hub, generated code) — see `[SCREENSHOT: ...]` callouts in `guide/`
-- [x] Kickoff deck: `slides/kickoff.pptx` (import into Google Slides), built by `slides/build-deck.js` from `slides/kickoff-outline.md` — The Hive's slide 5 column still to fill in
+- [x] Kickoff deck: `slides/kickoff.pptx` (import into Google Slides), built by `slides/build-deck.js` from `slides/kickoff-outline.md`; The Hive's own week on slide 8
 - [x] "Why this matters" section for skeptical coaches (5 slides) — every quote and number sourced in `docs/research-ai-skills-case.md`; two refuter passes
 - [x] `guide/receipts.md` — how a team proves its students wrote the code (prompt-per-commit, session export, author tags)
 ***REMOVED***

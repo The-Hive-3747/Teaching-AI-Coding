@@ -2,7 +2,7 @@
 
 **Presenters:** The Hive (FTC 3747) students — Tom, Sophi and Sadiqah. The mentors who ran the experiment are quoted on the slides, not on stage.
 **Audience:** FTC teams from across Utah — students and coaches in the same room. Assume some have never opened Android Studio and some have a working TeleOp already.
-**Length:** 30 minutes, no Q&A. Timings per section below add to 30 with the demo.
+**Length:** about 37 minutes, no Q&A (30 before the "why this matters" section was added; Ben's call: don't hold to time, get them the information).
 **Goal:** By the end, every team knows what the mentor experiment showed, knows the checkpoint order, and knows where the guide and videos are — and believes they can do this next week.
 
 **The frame, in one sentence:** At Robot in One Week, The Hive coded their robot by hand, the traditional way. The mentors had their own robot for the mentor competition and ran an experiment on it: no hand-written code — everything described to Gemini in Android Studio. The students saw both, and this talk is what they took from it: **hand-coding vs. architecting with AI**, and how any Utah team can use the second one.
@@ -83,6 +83,56 @@ Image on 4a: `docs/images/android-studio-spitting-balls-prompt.png` — the "spi
 | `[THE HIVE: what we understood about our code]` | Someone still has to read what Gemini wrote — see Reader role, slide 11 |
 
 **Notes:** The right column is from the mentor transcript (`docs/verbatim-transcript.md`); the left column is yours to fill from your own week — be concrete and be fair to both. The honest comparison is not "AI was faster": it's **where the bottleneck was.** On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to *describing precisely* — and that's a skill the mechanical people already had. That's the thing we want every Utah team to hear.
+
+---
+
+## 5b–5f. Why this matters — for the skeptics in the room (5 slides, ~7 min)
+
+Every quote and number below is sourced and flagged in [`docs/research-ai-skills-case.md`](../docs/research-ai-skills-case.md); read its last two sections (hostile questions; "must not repeat") before presenting. Where a line is our inference rather than a finding, the slide says "we think" — keep it that way.
+
+**Slide 5b — Seventy years of "that's not real programming."** Timeline, one quote per row:
+- 1954, FORTRAN — *"the strength of the skepticism about 'automatic programming'… as it existed in 1954"* (John Backus, who led the FORTRAN team, writing in 1978)
+- 1983, Pascal — *"Real Programmers use FORTRAN. Quiche Eaters use PASCAL."* (Ed Post)
+- 2005, IDE autocomplete — *"And I think it's making us dumber."* (Charles Petzold, on IntelliSense)
+- 2017, Stack Overflow — 15.4% of 1.3 M Android apps contained security-related code copied from Stack Overflow; 97.9% of those had an insecure snippet (Fischer et al., IEEE S&P)
+- 2026, AI coding — Gemini drove our mentors' autonomous through a fake gamepad. It worked. A human reading the code caught it.
+Takeaway: *Every layer took the typing. None took the architecture, the testing, or the reading.* Brooks 1987: "the hard part of building software [is] the specification, design, and testing of this conceptual construct, not the labor of representing it."
+
+**Notes:** Say "most layers," not "every" — there's no named 1954 skeptic, only Backus remembering them. Fowler's limit (2025): this layer is non-deterministic, so reading and testing matter more, not less. Tell the fake-gamepad story here.
+
+**Slide 5c — What the skeptics get right.** Three stat cards, red:
+- **−17% on the exam** — PNAS 2025, about 1,000 high-school students (math), randomized; plain ChatGPT: practice +48%, unassisted exam −17%; a hints-only tutor "largely mitigated" the harm
+- **+19% longer, not shorter** — METR 2025, 16 expert maintainers on their own code, 246 tasks; believed they'd been 20% faster
+- **50 vs 67 comprehension score** — Anthropic, Jan 2026, their own tool, their own study (not peer-reviewed); 52 mostly-junior engineers; delegating hurt, asking questions didn't
+Takeaway: *The harm tracks how you use it. Delegate and auto-accept: you lose understanding. Ask, read the diff, explain it: you don't. That's our rule.*
+
+**Notes:** Say this before they do. If MIT "Your Brain on ChatGPT" comes up: essays, 18 people, criticized stats — don't use it either way.
+
+**Slide 5d — Our rule: no AI until you can debug without it.** The checklist quote in full:
+> *"Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works."* — The Hive, 2026 Programming Training Checklist
+
+The gate: **14** chapters of *Learn Java for FTC* by hand (14 of 15; analog sensors skipped) · **40** FTCSIM exercises · **0** AI until the mentor has checked every box, in order · **then** AI as a season tool, and you still explain the code. Same rule as AP CS Principles ("students must be prepared to explain their code in detail" — College Board) and FTC judging (students answer; adults may only observe).
+Takeaway: *Fundamentals first, then AI. We think that's how you get the speed without losing the understanding.*
+
+**Notes:** "We think" is deliberate — no study has tested the sequence; it's our reading of the mode findings (5c) plus two studies where prior skill helped (Prather 2024; Kazemitabaar 2023).
+
+**Slide 5e — Lehi, 2026: it's in the job posting.** Four postings (verified live Oct 3, 2026 — re-open the links the morning of):
+- Podium, Lehi, Software Engineering Intern: *"Familiarity with AI-assisted development tools such as Cursor, Claude Code, Codex, GitHub Copilot, or similar."* — alongside "Strong programming fundamentals…"
+- Podium, Lehi, Senior SWE: use AI tooling *"as a genuine force multiplier, not a novelty"*; *"A hands-on, daily relationship with AI coding tools"*
+- Affirm (US fintech; remote role, Poland): *"every Affirm engineer builds with tools like Claude Code and most PRs are co-authored with AI… excelling in the reviewer's seat… is a core expectation"*
+- 1Password: *"Effective at using AI tooling to accelerate development, testing, debugging…"* — and the interview is run without AI
+Stats: 2.5% of US postings asked for AI skills in 2025, +55% in a year (Stanford AI Index 2026 / Lightcast) · one Sep 2026 scan of 4,820 SWE postings: 10% required AI coding tools, 20% mentioned them, interns highest at 27% (match.dev) · *"Reflexive AI usage is now a baseline expectation at Shopify."* (Lütke, Apr 2025, as quoted in press). Footer: job ads with AI skills advertise higher pay — PwC 62% within occupation (global, 2025), Lightcast 28% (US, 2024); vendor data, correlation.
+
+**Notes:** Never say "Lightcast 56%" (no source). Don't use Microsoft's "66% won't hire without AI skills" (2024, vendor, self-reported).
+
+**Slide 5f — The door is narrower. The tool is expected.**
+- **−20%** software developers aged 22–25, employment down nearly 20%, late 2022 → Sep 2025, payroll data; for young workers in AI-exposed jobs the gap widened to 19% by Aug 2026 (Stanford "Canaries")
+- **16.5%** of entry-level job descriptions emphasize AI skills, up from 10.5% in fall 2025; employers say over a third of entry-level jobs require them (NACE spring 2026, 185 employers)
+- **50.5%** of graduating seniors aren't building AI skills at all (NACE student survey 2026)
+Quote: *"The value of 90% of my skills just dropped to $0. The leverage for the remaining 10% went up 1000x."* — Kent Beck, creator of Extreme Programming, April 2023
+Takeaway: *We think: the jobs disappearing are the ones AI does instead of a person. The ones being posted are the reviewer's seat. The checklist teaches the 10%.*
+
+**Notes:** Concede the nearly-20% number completely; it shows exposed young workers lost ground, not that AI skills protect an individual — that half is ours. NACE is small and self-reported; lead with 16.5%.
 
 ---
 
@@ -250,6 +300,7 @@ Repo URL. "Find us at the pits — The Hive 3747." Logo.
 | 3 The problem | 1 |
 | 4 The mentors' week | 4 |
 | 5 Hand-coding vs. AI | 3 |
+| 5b–5f Why this matters | 7 |
 | 6 Is / isn't | 2 |
 | 7 The loop | 2 |
 | 8 Checkpoints | 2 |
@@ -258,9 +309,9 @@ Repo URL. "Find us at the pits — The Hive 3747." Logo.
 | 11 Where it goes wrong | 2 |
 | 12 Running it with a team | 2 |
 | 13 What you need | 1 |
-| **Total** | **30** |
+| **Total** | **37** |
 
-If the demo runs long, drop slide 6.
+If the demo runs long, drop slide 6 (is/isn't) — 5b–5f covers the same ground with evidence.
 
 ---
 

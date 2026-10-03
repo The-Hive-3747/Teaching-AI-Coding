@@ -180,6 +180,111 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addText("The bottleneck moved: from “who can type Java” to “who can describe the robot precisely.”", { x: 0.5, y: 6.25, w: 12.3, h: 0.45, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
+// ================= 5b. Why — seventy years of "not real programming" =================
+{
+  const s = content("Seventy years of “that's not real programming”", "Most new layers of programming tools were called a crutch by the generation before — in the sources we found there's no named 1954 skeptic, only Backus remembering them, so say 'most', not 'every'. Each layer took over the typing; none took over deciding what to build, testing it, or reading what came out. Brooks said it in 1987. Fowler's honest limit (2025): this layer is non-deterministic — the same prompt doesn't give the same code twice — so reading and testing matter MORE than before, not less. Then tell the fake-gamepad story: Gemini drove our mentors' autonomous through a simulated gamepad because nobody said an autonomous was coming. It worked. A human reading the code caught it. That's the whole slide in one bug. Sources are in docs/research-ai-skills-case.md, slide 1 table.");
+  const rows = [
+    ["1954", "FORTRAN", "“the strength of the skepticism about ‘automatic programming’… as it existed in 1954” — John Backus, who led the FORTRAN team, writing in 1978"],
+    ["1983", "Pascal", "“Real Programmers use FORTRAN. Quiche Eaters use PASCAL.” — Ed Post"],
+    ["2005", "IDE autocomplete", "“And I think it's making us dumber.” — Charles Petzold, on IntelliSense"],
+    ["2017", "Stack Overflow", "15.4% of 1.3 M Android apps contained security-related code copied from Stack Overflow; 97.9% of those had an insecure snippet — Fischer et al., IEEE S&P"],
+    ["2026", "AI coding", "Gemini drove our mentors' autonomous through a fake gamepad. It worked. A human reading the code caught it."],
+  ];
+  rows.forEach(([yr, what, q], i) => {
+    const y = 1.45 + i * 0.86;
+    s.addText(yr, { x: 0.5, y, w: 0.9, h: 0.78, ...body({ fontSize: 22, bold: true, color: C.accent1, valign: "middle" }), objectName: "year " + yr });
+    s.addText(what, { x: 1.45, y, w: 1.75, h: 0.78, ...body({ fontSize: 15, bold: true, valign: "middle" }), objectName: "layer " + yr });
+    s.addText(q, { x: 3.3, y, w: 9.5, h: 0.78, ...body({ fontSize: 15, italic: !q.startsWith("15.4") && !q.startsWith("Gemini"), color: C.text2, valign: "middle" }), objectName: "quote " + yr });
+  });
+  s.addText("Every layer took the typing. None took the architecture, the testing, or the reading. — “the hard part of building software [is] the specification, design, and testing of this conceptual construct, not the labor of representing it.” Fred Brooks, 1987", { x: 0.5, y: 5.7, w: 12.3, h: 0.9, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "takeaway" });
+}
+
+// ================= 5c. Why — what the skeptics get right =================
+{
+  const s = content("What the skeptics get right", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse; a hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks; with AI they were 19% slower and believed they'd been 20% faster — the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest — 52 mostly-junior engineers learning a new library, AI group 50% vs 67% on comprehension, only about 2 minutes faster; 'delegation' hurt, asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used — delegate and auto-accept vs ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT': essays, 18 people, criticized stats — don't lean on it either way.");
+  const studies = [
+    ["−17%", "on the exam", "PNAS 2025 · about 1,000 high-school students (math), randomized. Plain ChatGPT: practice +48%, unassisted exam −17%. A hints-only tutor “largely mitigated” the harm."],
+    ["+19%", "longer, not shorter", "METR 2025 · 16 expert maintainers on their own code, 246 tasks. With AI they took 19% longer — and believed they'd been 20% faster."],
+    ["50 vs 67", "comprehension score", "Anthropic, Jan 2026 · their own tool, their own study (not peer-reviewed). 52 mostly-junior engineers: AI group understood less, finished ~2 min faster. Delegating hurt; asking questions didn't."],
+  ];
+  studies.forEach(([big, lbl, t], i) => {
+    const x = 0.5 + i * 4.2;
+    card(s, x, 1.45, 3.9, 4.05, "study " + i);
+    s.addText(big, { x: x + 0.3, y: 1.6, w: 3.3, h: 0.9, ...body({ fontSize: 36, bold: true, color: C.accent4, valign: "middle" }), objectName: "big " + i });
+    s.addText(lbl, { x: x + 0.3, y: 2.5, w: 3.3, h: 0.4, ...body({ fontSize: 14, bold: true, color: C.text2 }), objectName: "lbl " + i });
+    s.addText(t, { x: x + 0.3, y: 3.0, w: 3.3, h: 2.4, ...body({ fontSize: 13 }), objectName: "txt " + i });
+  });
+  s.addText("The harm tracks how you use it. Delegate and auto-accept: you lose understanding. Ask, read the diff, explain it: you don't. That's our rule.", { x: 0.5, y: 5.75, w: 12.3, h: 0.8, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "takeaway" });
+}
+
+// ================= 5d. Why — our rule =================
+{
+  const s = content("Our rule: no AI until you can debug without it", "This is our onboarding checklist, verbatim. Read the whole quote out loud; it is the skeptics' own position, already in our program. Before a Hive programmer is cleared, the mentor checks off, in order, 14 of the 15 chapters of Learn Java for FTC (section 9, analog sensors, is skipped), each read-and-code plus the exercise, typed into our own simulator with a real test harness — then 40 FTCSIM exercises. Then, and only then, AI as a season tool. Say 'we think' on the link between this and the studies: nobody has tested the sequence; it is our reading of them. College Board already requires the same thing for AP CS: students must be prepared to explain their code in detail. And at FTC judging the students answer — an adult may attend but may not interact or coach — so a team that can't explain its code loses the Control Award whether or not AI wrote it.");
+  card(s, 0.5, 1.45, 7.6, 3.2, "quote card");
+  s.addText("“Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works.”", { x: 0.8, y: 1.65, w: 7.0, h: 2.5, ...body({ fontSize: 17, italic: true }), objectName: "checklist quote" });
+  s.addText("— The Hive, 2026 Programming Training Checklist", { x: 0.8, y: 4.15, w: 7.0, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "checklist attribution" });
+  const gate = [
+    ["14", "chapters of Learn Java for FTC, by hand — read, type, do the exercise"],
+    ["40", "FTCSIM exercises — Intro, Movement, Sensors, Puzzles, Grabby"],
+    ["0", "AI until the mentor has checked every box, in order"],
+    ["then", "AI as a season tool — and you still explain the code"],
+  ];
+  gate.forEach(([n, t], i) => {
+    const y = 1.45 + i * 0.82;
+    hex(s, 8.5, y + 0.05, 0.7, n, { fontSize: n.length > 2 ? 12 : 18 });
+    s.addText(t, { x: 9.4, y, w: 3.4, h: 0.8, ...body({ fontSize: 13, valign: "middle" }), objectName: "gate " + i });
+  });
+  s.addText("Same rule as AP Computer Science Principles: “students must be prepared to explain their code in detail.” (College Board) Same rule as FTC judging: students answer; adults may only observe.", { x: 0.5, y: 4.95, w: 12.3, h: 0.7, ...body({ fontSize: 13, color: C.text2 }), objectName: "same rule" });
+  s.addText("Fundamentals first, then AI. We think that's how you get the speed without losing the understanding.", { x: 0.5, y: 5.75, w: 12.3, h: 0.8, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "takeaway" });
+}
+
+// ================= 5e. Why — Lehi, 2026 =================
+{
+  const s = content("Lehi, 2026: it's in the job posting", "Lead with Podium — it's twenty minutes from here, it's an INTERN posting, and it names the tools. All four postings were verified live on Oct 3, 2026; re-open the links the morning of the talk, postings expire. Podium's senior posting uses our exact phrase: a 'genuine force multiplier, not a novelty.' Affirm's line is the sharpest — the job is now 'the reviewer's seat' (note: that posting is for a remote role based in Poland; Affirm is a US company). 1Password is the whole talk in one employer: use it daily, and interview without it. The pay numbers are vendor data and uncontrolled correlation — say 'job ads advertise', never 'you will earn' — and NEVER say 'Lightcast 56%'; that number has no source. Shopify is quoted via press, not the memo itself. Don't use Microsoft's '66% won't hire without AI skills' — 2024, self-reported, by the company selling Copilot.");
+  const posts = [
+    ["Podium · Lehi, Utah · Software Engineering Intern", "“Familiarity with AI-assisted development tools such as Cursor, Claude Code, Codex, GitHub Copilot, or similar.” — alongside “Strong programming fundamentals…”"],
+    ["Podium · Lehi, Utah · Senior Software Engineer", "use AI tooling “as a genuine force multiplier, not a novelty” · “A hands-on, daily relationship with AI coding tools”"],
+    ["Affirm · US fintech (remote role, Poland)", "“every Affirm engineer builds with tools like Claude Code and most PRs are co-authored with AI… excelling in the reviewer's seat… is a core expectation”"],
+    ["1Password · Rust Developer", "“Effective at using AI tooling to accelerate development, testing, debugging…” — and the interview is run without AI"],
+  ];
+  posts.forEach(([h, t], i) => {
+    const y = 1.45 + i * 1.0;
+    card(s, 0.5, y, 7.9, 0.9, "post " + i);
+    s.addText(h, { x: 0.7, y: y + 0.05, w: 7.5, h: 0.3, ...body({ fontSize: 12, bold: true, color: C.accent1 }), objectName: "post head " + i });
+    s.addText(t, { x: 0.7, y: y + 0.33, w: 7.5, h: 0.55, ...body({ fontSize: 11.5, italic: true }), objectName: "post text " + i });
+  });
+  const stats = [
+    ["2.5%", "of all US job postings asked for AI skills in 2025 — up 55% in one year (Stanford AI Index 2026 / Lightcast)"],
+    ["10%", "of 4,820 software-engineering postings required AI coding tools in one Sep 2026 scan; 20% mentioned them; interns highest at 27% (match.dev)"],
+    ["“baseline”", "“Reflexive AI usage is now a baseline expectation at Shopify.” — Tobi Lütke, CEO, Apr 2025 (as quoted in press)"],
+  ];
+  stats.forEach(([big, t], i) => {
+    const y = 1.45 + i * 1.35;
+    s.addText(big, { x: 8.7, y, w: 4.1, h: 0.55, ...body({ fontSize: 26, bold: true, color: C.accent1 }), objectName: "stat big " + i });
+    s.addText(t, { x: 8.7, y: y + 0.55, w: 4.1, h: 0.75, ...body({ fontSize: 11.5, color: C.text2 }), objectName: "stat text " + i });
+  });
+  s.addText("Job ads that ask for AI skills advertise higher pay — PwC 62% within occupation (global, 2025), Lightcast 28% (US, 2024). Vendor data; correlation, not a promise.", { x: 0.5, y: 5.6, w: 12.3, h: 0.7, ...body({ fontSize: 12, color: C.text2 }), objectName: "pay note" });
+}
+
+// ================= 5f. Why — the door is narrower =================
+{
+  const s = content("The door is narrower. The tool is expected.", "Concede the first number completely — it's payroll data, the best in the room: software developers aged 22–25 are down nearly 20% since late 2022 (Stanford 'Canaries', Nov 2025; the gap widened to 19% by Aug 2026), and the decline is where AI AUTOMATES work rather than augments it. Be precise about what it does NOT show: it does not show that having AI skills protects any individual kid. That half is our argument, so say 'we think'. The NACE numbers are a small self-reported employer survey (185 employers, sponsored by Jobscan) — lead with 16.5%, the harder number. The Kent Beck tweet is April 18, 2023, verbatim. This-season loss is an argument from one adult mentor experiment plus studies of professional developers, not evidence on students — say that too if asked.");
+  const facts = [
+    ["−20%", "Software developers aged 22–25: employment down nearly 20%, late 2022 → Sep 2025 (payroll data). For young workers in AI-exposed jobs the gap widened to 19% by Aug 2026. — Stanford “Canaries in the Coal Mine”"],
+    ["16.5%", "of entry-level job descriptions now emphasize AI skills, up from 10.5% in fall 2025; employers say over a third of entry-level jobs require them. — NACE, spring 2026 (185 employers)"],
+    ["50.5%", "of graduating seniors aren't building AI skills at all. — NACE student survey, 2026"],
+  ];
+  facts.forEach(([big, t], i) => {
+    const x = 0.5 + i * 4.2;
+    card(s, x, 1.45, 3.9, 2.6, "fact " + i);
+    s.addText(big, { x: x + 0.3, y: 1.6, w: 3.3, h: 0.9, ...body({ fontSize: 40, bold: true, color: C.accent1, valign: "middle" }), objectName: "fact big " + i });
+    s.addText(t, { x: x + 0.3, y: 2.55, w: 3.3, h: 1.4, ...body({ fontSize: 12.5 }), objectName: "fact text " + i });
+  });
+  s.addText("“The value of 90% of my skills just dropped to $0. The leverage for the remaining 10% went up 1000x.”", { x: 0.5, y: 4.3, w: 12.3, h: 0.8, ...body({ fontSize: 22, italic: true }), objectName: "beck quote" });
+  s.addText("— Kent Beck, creator of Extreme Programming, April 2023", { x: 0.5, y: 5.1, w: 12.3, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "beck attribution" });
+  s.addText("We think: the jobs disappearing are the ones AI does instead of a person. The ones being posted are the reviewer's seat. The checklist teaches the 10%.", { x: 0.5, y: 5.7, w: 12.3, h: 0.85, ...body({ fontSize: 16, bold: true, color: C.accent1 }), objectName: "takeaway" });
+}
+
 // ================= 6. Is / isn't =================
 {
   const s = content("What this is — and isn't", "Coaches worry about this. Say it plainly: you still have to understand what a motor is, which way it spins, what a state machine does. You just don't have to type the Java. Be honest that this hasn't been run with students yet — the mentors ran it on the mentor robot, and we're the first team trying to turn it into something students do. That's why there's a Reader role later. Drop this slide if the demo runs long.");

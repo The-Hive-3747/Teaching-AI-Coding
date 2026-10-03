@@ -80,7 +80,7 @@ Takeaway: *The difference is how you use it. Delegate and auto-accept: you lose 
 **Slide:** The checklist quote in full:
 > *"Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works."* — The Hive, 2026 Programming Training Checklist
 
-The gate: **14** chapters of *Learn Java for FTC* by hand (14 of 15; analog sensors skipped) · **40** FTCSIM exercises · **0** AI until the mentor has checked every box, in order · **then** AI as a season tool, and you still explain the code. Same rule as AP CS Principles ("students must be prepared to explain their code in detail" — College Board) and FTC judging (students answer; adults may only observe).
+The gate: **14** chapters of *Learn Java for FTC* by hand (chapters 1–15 of the book's 25, with 9, analog sensors, skipped; 16–25 are extra credit) · **40** FTCSIM exercises · **0** AI until the mentor has checked every box, in order · **then** AI as a season tool, and you still explain the code. Same rule as AP CS Principles ("students must be prepared to explain their code in detail" — College Board) and FTC judging (students answer; adults may only observe).
 Takeaway: *Fundamentals first, then AI. We think that's how you get the speed without losing the understanding.*
 
 **Notes:** "We think" is deliberate — no study has tested the sequence; it's our reading of the mode findings (5c) plus two studies where prior skill helped (Prather 2024; Kazemitabaar 2023).

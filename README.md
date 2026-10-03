@@ -60,10 +60,10 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 - **Annie** — head coach.
 - **Asim** — mechanical mentor; built the mentor robot and authored most of the later changes in plain English, at the keyboard for eight of them.
 - **Royd** — second coach; mechanical engineer.
-- **Claude** (Anthropic) — drafted the guide, deck, scripts and research from the real transcript; every claim was then refuter-checked against sources.
+- **Claude** (Anthropic) — compiled the transcript, guide, slides and research from the team's material and direction.
 - **Gemini in Android Studio** (Google) — wrote every line of the mentor robot's code from the mentors' descriptions, and its own summary of the week.
 
-This workshop was itself made the way it teaches: described, generated, tested, refined — with the prompts kept.
+This workshop was made the way it teaches: described by the team, generated, tested, refined.
 
 ## Season note
 

@@ -302,9 +302,9 @@ Footer line: *Or bring your robot to a Hive training session. We'll teach your s
 - **Annie — head coach**
 - **Asim — mechanical mentor** — built the mentor robot; authored most of the later changes in plain English, eight at the keyboard
 - **Royd — coach and mechanical engineer** — second coach on The Hive
-- **Claude (Anthropic)** — drafted the guide, deck, scripts and research from the real transcript; every claim refuter-checked against sources
+- **Claude (Anthropic)** — compiled the transcript, guide and slides from the team's material
 - **Gemini in Android Studio (Google)** — wrote every line of the mentor robot's code from the mentors' descriptions
-Takeaway: *This workshop was made the way it teaches: described, generated, tested, refined — with the prompts kept.*
+Takeaway: *Made the way it teaches: described by the team, generated, tested, refined.*
 
 **Notes:** Read the names. The people are named and the AI is named — the same way we're asking every team to credit its code.
 

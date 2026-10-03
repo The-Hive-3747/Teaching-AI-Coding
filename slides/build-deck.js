@@ -473,7 +473,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     ["Annie — head coach", ""],
     ["Asim — mechanical mentor", "Built the mentor robot; authored most of the later changes in plain English, eight of them at the keyboard."],
     ["Royd — coach and mechanical engineer", "Second coach on The Hive."],
-    ["Claude (Anthropic)", "Drafted the guide, deck, scripts and research from the real transcript; every claim refuter-checked against sources."],
+    ["Claude (Anthropic)", "Compiled the transcript, guide and slides from the team's material."],
     ["Gemini in Android Studio (Google)", "Wrote every line of the mentor robot's code from the mentors' descriptions."],
   ];
   people.forEach(([h, t], i) => {
@@ -482,7 +482,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(h, { x, y, w: 6.0, h: 0.38, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "credit head " + i });
     s.addText(t, { x, y: y + 0.4, w: 6.0, h: 0.7, ...body({ fontSize: 13, color: C.text2 }), objectName: "credit text " + i });
   });
-  s.addText("This workshop was made the way it teaches: described, generated, tested, refined — with the prompts kept.", { x: 0.5, y: 6.1, w: 12.3, h: 0.5, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "credits takeaway" });
+  s.addText("Made the way it teaches: described by the team, generated, tested, refined.", { x: 0.5, y: 6.1, w: 12.3, h: 0.5, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "credits takeaway" });
 }
 
 // ================= 14. Close =================

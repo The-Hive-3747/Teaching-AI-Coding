@@ -297,7 +297,7 @@ Footer line: *Or bring your robot to a Hive training session. We'll teach your s
 ## 19. Who made this (1 slide, 1 min)
 
 **Slide:** Names, two columns.
-- **The Hive's students** — hand-coded the team's own robot this season; Tom, Sophi and Sadiqah present this workshop and narrate the videos
+- **Tom, Sophi and Sadiqah — The Hive's programmers** — hand-coded the team's own robot this season; present this workshop and narrate the videos
 - **Ben — coordinator** — described the mentor robot's architecture to Gemini on night one; typed no Java
 - **Annie — head coach**
 - **Asim — mechanical mentor** — built the mentor robot; authored most of the later changes in plain English, eight at the keyboard

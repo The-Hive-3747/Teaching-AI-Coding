@@ -468,7 +468,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 {
   const s = content("Who made this", "Read the names. The point of the slide is that the people are named and the AI is named — the same way we're asking every team to credit its code. Royd is the team's second coach and a mechanical engineer.");
   const people = [
-    ["The Hive's students", "Hand-coded the team's own robot this season. Tom, Sophi and Sadiqah present this workshop and narrate the videos."],
+    ["Tom, Sophi and Sadiqah — The Hive's programmers", "Hand-coded the team's own robot this season. Present this workshop and narrate the videos."],
     ["Ben — coordinator", "Described the mentor robot's architecture to Gemini on night one. Typed no Java."],
     ["Annie — head coach", ""],
     ["Asim — mechanical mentor", "Built the mentor robot; authored most of the later changes in plain English, eight of them at the keyboard."],

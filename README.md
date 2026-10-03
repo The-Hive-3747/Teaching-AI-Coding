@@ -55,7 +55,7 @@ Every deliverable follows the same order. Each checkpoint ends with a test on th
 
 ## Credits
 
-- **The Hive's students** — hand-coded the team's own robot this season, and present this workshop: Tom, Sophi and Sadiqah on stage and narrating the videos.
+- **Tom, Sophi and Sadiqah — The Hive's programmers** — hand-coded the team's own robot this season; present this workshop on stage and narrate the videos.
 - **Ben** — coordinator; described the mentor robot's architecture to Gemini on night one and typed no Java.
 - **Annie** — head coach.
 - **Asim** — mechanical mentor; built the mentor robot and authored most of the later changes in plain English, at the keyboard for eight of them.

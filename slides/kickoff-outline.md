@@ -61,7 +61,7 @@ Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 
 Takeaway: *The programmer gets the big picture back: "What do I want vision to do?" instead of "How do I parse the Limelight result?"*
 
-**Notes:** This is the answer to "AI replaces the programmer" — it doesn't; it moves them up. Both drift examples are verbatim in `docs/verbatim-transcript.md` (the simulated gamepad in `BaseAuto`; prompt 64, "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10–20 minutes of copying boilerplate.
+**Notes:** This is the answer to "AI replaces the programmer" — it doesn't; it moves them up. Both drift examples are verbatim in `docs/verbatim-transcript.md` (the simulated gamepad in `BaseAuto`; prompt 64, "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10–20 minutes of copying boilerplate. If a coach asks for proof that architecture matters, there's a Hive example on hand (`docs/student-experiments.md`, Oct 2026): a new programmer described parts and buttons with no architecture and got one working but tangled OpMode; Tom described the structure and the plan and got readable, commented code. Not on a slide; use it in the answer.
 
 ---
 

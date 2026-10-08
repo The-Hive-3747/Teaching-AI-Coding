@@ -12,6 +12,8 @@ Gemini can only use the names you give it. If your hardware config calls the mot
 
 So before writing any code: get the names right, write them down, and give the whole list to Gemini once.
 
+And describe the *structure*, not just the parts. When one of The Hive's students gave Gemini the motors, the buttons and what turns on when — but no architecture — it worked on the first try and came back as one OpMode with everything tangled together. When another student described the classes and the plan, the code came back structured and commented. The AI gives back the level of thinking you put in; see [`docs/student-experiments.md`](../docs/student-experiments.md). The prompt in 1.5 asks for subsystem classes by name for that reason.
+
 ## 1.2 Get the names from the hardware config
 
 On the Driver Hub: **⋮ menu → Configure Robot → (your config) → Edit**. Go through every port on the Control Hub and Expansion Hub and write down what's there.

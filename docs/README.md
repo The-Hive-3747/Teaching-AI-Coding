@@ -13,6 +13,10 @@ Two places where it disagrees with the code it describes (the code wins):
 
 Gemini summaries are useful and worth asking for (see Checkpoint 9.6) — and this is the reminder to read them against the code.
 
+## `student-experiments.md`
+
+Two trials by The Hive's students (Oct 2026): a new programmer who described parts and buttons but no architecture got one working, tangled OpMode; an experienced programmer who described the structure and the plan got readable, commented code. Kept for when the "architecture still matters" point needs an example.
+
 ## `research-ai-skills-case.md`
 
 Research report (Oct 3, 2026) for the "why AI" section of the kickoff: the abstraction-history argument, quotable job postings naming companies (Podium in Lehi first), labor-market and wage-premium figures with their caveats, the learning-science evidence for and against novice AI use, what FIRST's rules actually say, and a table of numbers and quotes the presenters must not repeat unqualified. Every claim carries its source; a separate refuter pass checked the slide-bound items against primary sources.

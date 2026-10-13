@@ -2,6 +2,16 @@
 
 <img src="docs/images/hive-logo.svg" alt="The Hive 3747" width="320">
 
+## The class
+
+**Don't Get Stung by Your AI: Using AI Effectively for FTC Programming** — an FTC Utah class taught by The Hive's students.
+
+**Saturday, October 24, 2026, 9:30–11:00 AM** · Beehive Academy, common area on the secondary side · or join virtually on Google Meet: `[Google Meet link]` · [add to calendar](https://calendar.google.com/calendar/render?action=TEMPLATE&text=Don%27t+Get+Stung+by+Your+AI%3A+Using+AI+Effectively+for+FTC+Programming&dates=20261024T153000Z/20261024T170000Z&location=Beehive+Academy%2C+common+area%2C+secondary+side+%28or+Google+Meet%29&details=An+FTC+Utah+class+by+The+Hive+%28FTC+3747%29.+Materials%3A+https%3A%2F%2Fgithub.com%2FThe-Hive-3747%2FTeaching-AI-Coding) · [.ics file](docs/class.ics)
+
+Taking the class is optional and, like the choice to use AI at all, has no bearing on judging. FTC Utah's position, from the program's October 2026 update: using AI or not "will have no effect on your judging, just like using or not using CAD software to design your robot"; students who use AI "should be able to explain how it contributed, check its output for accuracy, and credit it appropriately." That is the rule this class teaches. FIRST's own view is on its blog (Chris Rake, COO: "AI is just one more exciting addition to the toolbox") and in the [FTC AI Innovation Corner](https://ftc-docs.firstinspires.org/en/latest/ai/innovation_corner/innovation-corner.html).
+
+## What this is
+
 Materials for teaching FIRST Tech Challenge teams to write their robot code by describing it in plain language to Gemini in Android Studio, then testing and refining it one subsystem at a time.
 
 At The Hive's robot-in-one-week, the students built and coded their robot the traditional way. The mentors entered the mentor competition with a robot of their own — and coded it entirely by describing it to Gemini in Android Studio. Ben, the coordinator, is a Java developer; he described the architecture on night one and typed no Java. After that the changes came from Asim and the mechanical mentors, who don't write Java: sometimes Asim at the keyboard himself, sometimes over the robot calling out the change while Ben typed. Timings, power levels, the park routine, a whole experimental autonomous: described in plain English. The code is in this repo verbatim, and so is every prompt from the week, with its author.

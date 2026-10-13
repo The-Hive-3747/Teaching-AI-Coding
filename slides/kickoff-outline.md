@@ -1,8 +1,12 @@
 # Kickoff Presentation — Outline and Speaker Notes
 
+**The class:** *Don't Get Stung by Your AI: Using AI Effectively for FTC Programming* — an FTC Utah class. Saturday, October 24, 2026, 9:30–11:00 AM, Beehive Academy common area (secondary side), with virtual attendees on Google Meet. Announced in FTC Utah's October 2026 program update, which also states the state's position: AI use or non-use has no effect on judging; students who use it should be able to explain how it contributed, check its output, and credit it. That statement is quoted on the "Our rule" slide.
+
 **Presenters:** The Hive (FTC 3747) students — Tom, Sophi and Sadiqah. The mentors who ran the experiment are quoted on the slides, not on stage.
 **Audience:** FTC teams from across Utah — students and coaches in the same room. Assume some have never opened Android Studio and some have a working TeleOp already.
-**Length:** about 38 minutes, no Q&A (30 before the "why this matters" section was added; Ben's call: don't hold to time, get them the information).
+**Length:** the slot is 90 minutes. The deck is about 38; the rest is the live demo running at its own pace, questions (there's room for them now), and — if a robot and laptops are there — teams trying a prompt themselves. For the Meet audience: share the Android Studio screen and put a phone camera on the robot.
+
+**Length of the deck:** about 38 minutes, no Q&A (30 before the "why this matters" section was added; Ben's call: don't hold to time, get them the information).
 **Goal:** By the end, every team knows what the mentor experiment showed, knows the checkpoint order, and knows where the guide and videos are — and believes they can do this next week.
 
 **The frame, in one sentence:** At Robot in One Week, The Hive coded their robot by hand, the traditional way. The mentors had their own robot for the mentor competition and ran an experiment on it: no hand-written code — everything described to Gemini in Android Studio. The students saw both, and this talk is what they took from it: **hand-coding vs. architecting with AI**, and how any Utah team can use the second one.
@@ -17,7 +21,7 @@ Sourcing for slides 5–7 and 15–16: every quote and number is sourced and fla
 
 ## 1. Title (1 slide, 0 min)
 
-**Slide:** "Describe your robot. Let AI write the code. Test. Repeat."
+**Slide:** "Don't Get Stung by Your AI" — subtitle "Using AI Effectively for FTC Programming" — tagline "Describe your robot. Let AI write the code. Test. Repeat."
 Subtitle: What The Hive learned watching our mentors code a robot in one week with Gemini in Android Studio — and how your team can do it too.
 Footer: The Hive · FTC 3747 · Beehive Academy. Logo.
 
@@ -81,6 +85,8 @@ Takeaway: *The difference is how you use it. Delegate and auto-accept: you lose 
 > *"Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works."* — The Hive, 2026 Programming Training Checklist
 
 The gate: **14** chapters of *Learn Java for FTC* by hand (chapters 1–15 of the book's 25, with 9, analog sensors, skipped; 16–25 are extra credit) · **40** FTCSIM exercises · **0** AI until the mentor has checked every box, in order · **then** AI as a season tool, and you still explain the code. Same rule as AP CS Principles ("students must be prepared to explain their code in detail" — College Board) and FTC judging (students answer; adults may only observe).
+FTC Utah says the same (October 2026 program update): students who use AI *"should be able to explain how it contributed, check its output for accuracy, and credit it appropriately"* — and using it or not *"will have no effect on your judging."* Same rule as AP CS Principles.
+
 Takeaway: *Fundamentals first, then AI. We think that's how you get the speed without losing the understanding.*
 
 **Notes:** "We think" is deliberate — no study has tested the sequence; it's our reading of the mode findings (5c) plus two studies where prior skill helped (Prather 2024; Kazemitabaar 2023).

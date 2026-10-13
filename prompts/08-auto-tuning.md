@@ -1,6 +1,6 @@
-# Checkpoint 8 — under 30 seconds; keeping the LEAVE points
+# Checkpoint 8: under 30 seconds, keeping the LEAVE points
 
-> **RECONSTRUCTED prompts, VERBATIM park prompt** — see the README for what that means.
+> **RECONSTRUCTED prompts, VERBATIM park prompt**. See the README for what that means.
 
 Guide page: `../guide/08-auto-tuning.md`
 
@@ -22,13 +22,13 @@ Guide page: `../guide/08-auto-tuning.md`
 
 > **VERBATIM:** *On the delayed autonomous, we end by bumping into the wall to get park points. However, we get points for not touching the wall. Can we add a backup after the turn and drive forward? I'm thinking 100ms for 0.5 power backwards at the end should move us away.*
 
-**Changed:** new `STATE_5C_PARK_BACK_OFF_WALL` — all four motors at −0.5 for 100 ms — between the park drive and ALL_STOP (Gemini's transcript, Session Iteration 5).
-**Style:** rule, ask, starting number. Gemini's own summary dropped the last sentence; the backend log has it.
+**Changed:** new `STATE_5C_PARK_BACK_OFF_WALL`, all four motors at −0.5 for 100 ms, between the park drive and ALL_STOP (Gemini's transcript, Session Iteration 5).
+**Style:** rule, ask, starting number. Gemini's own summary dropped the last sentence. The backend log has it.
 
 ## The arithmetic
 
-Shoot Delayed as it left Checkpoint 7 totals 32.3 s. The 8.3 s shoot duration in the final code brings it to 30.6, and the back-off step makes it 30.7 on paper. On the field it finished, off the wall — so the timer has some slack. The guide's Checkpoint 8 still walks through cutting it to 28.9, because slack isn't margin.
+Shoot Delayed as it left Checkpoint 7 totals 32.3 s. The 8.3 s shoot duration in the final code brings it to 30.6, and the back-off step makes it 30.7 on paper. On the field it finished, off the wall, so the timer has some slack. The guide's Checkpoint 8 still walks through cutting it to 28.9, because slack isn't margin.
 
 ## Compare
 
-`../example-code/08-auto-tuning/` — final `BaseAuto.java` minus LEDs.
+`../example-code/08-auto-tuning/`: final `BaseAuto.java` minus LEDs.

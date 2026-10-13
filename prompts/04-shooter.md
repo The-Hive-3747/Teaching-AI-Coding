@@ -1,6 +1,6 @@
-# Checkpoint 4 — flywheel startup sequence and pulse feed
+# Checkpoint 4: flywheel startup sequence and pulse feed
 
-> **RECONSTRUCTED** — see the README for what that means.
+> **RECONSTRUCTED**. See the README for what that means.
 
 Guide page: `../guide/04-shooter.md`
 
@@ -21,7 +21,7 @@ Guide page: `../guide/04-shooter.md`
 >   - Give `Intake` a method `setFeed(boolean on)`. While `setFeed(true)` and the flywheel is RUNNING, pulse the intake: 100 ms on at 0.5, 200 ms off, repeating. Reset the pulse timer when feeding first turns on. `update()` calls `setFeed(gamepad.right_bumper)`.
 >   - Otherwise the intake behaves as before (collect / reject / off).
 > - Reject mode (LB/X) also runs the flywheel at −0.5.
-> - All timing with `ElapsedTime`, no `sleep()` — the drive must keep responding through the whole sequence.
+> - All timing with `ElapsedTime`, no `sleep()`, because the drive must keep responding through the whole sequence.
 > - Telemetry: flywheel phase, target power, intake power, whether feeding is active.
 
 ## What it should produce

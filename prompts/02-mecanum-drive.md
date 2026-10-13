@@ -1,6 +1,6 @@
-# Checkpoint 2 — mecanum drive
+# Checkpoint 2: mecanum drive
 
-> **RECONSTRUCTED prompt, VERBATIM fix** — see the README for what that means.
+> **RECONSTRUCTED prompt, VERBATIM fix**. See the README for what that means.
 
 Guide page: `../guide/02-mecanum-drive.md`
 
@@ -8,7 +8,7 @@ Guide page: `../guide/02-mecanum-drive.md`
 
 > **Prompt:**
 >
-> Create a TeleOp OpMode in the TeamCode module called `MecanumTeleOp`. For now, only the drive — no intake, no flywheel yet.
+> Create a TeleOp OpMode in the TeamCode module called `MecanumTeleOp`. For now, only the drive. No intake, no flywheel yet.
 >
 > - Use the iterative `OpMode` style (`init()` and `loop()`), not `LinearOpMode`.
 > - Map the four drive motors by the names I gave you. Reverse `front_left_drive` and `back_left_drive`. Set all four to brake when power is zero.
@@ -26,7 +26,7 @@ Guide page: `../guide/02-mecanum-drive.md`
 
 `MecanumTeleOp.java`: iterative `OpMode`, four `hardwareMap.get` calls in `init()`, left motors reversed, tank + averaged-strafe mix, D-pad overrides, normalize then × 0.8, telemetry. Compare `../example-code/02-mecanum-drive/`.
 
-## What went wrong — and the real fix
+## What went wrong, and the real fix
 
 Strafe was mirrored. The prompt the team typed, verbatim (Gemini's transcript, Session Iteration 3):
 

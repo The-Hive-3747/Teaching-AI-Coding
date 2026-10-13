@@ -21,8 +21,8 @@ const THEME = {
     lt2: "161616", // card background
     accent1: "F9BE14", // Hive gold
     accent2: "FFD75E", // light gold
-    accent3: "3DDC84", // "green LEDs" — used sparingly for "it is / works"
-    accent4: "FF5C5C", // red — "it isn't / broke"
+    accent3: "3DDC84", // "green LEDs", used sparingly for "it is / works"
+    accent4: "FF5C5C", // red: "it isn't / broke"
     accent5: "8AB4F8",
     accent6: "9E9E9E",
     hlink: "F9BE14",
@@ -85,14 +85,14 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addText("Don't Get Stung by Your AI", { x: 0.7, y: 1.9, w: 6.2, h: 1.9, fontSize: 48, bold: true, color: C.accent1, margin: 0, isTextBox: true, valign: "top", objectName: "title" });
   s.addText("Using AI Effectively for FTC Programming", { x: 0.7, y: 3.75, w: 6.2, h: 0.6, fontSize: 22, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: "subtitle line" });
   s.addText("Describe your robot. Let AI write the code. Test. Repeat.", { x: 0.7, y: 4.4, w: 6.2, h: 0.5, fontSize: 16, italic: true, color: C.accent2, margin: 0, isTextBox: true, objectName: "tagline" });
-  s.addText("What The Hive learned watching our mentors code a robot in one week with Gemini in Android Studio — and how your team can do it too.", { x: 0.7, y: 5.0, w: 6.0, h: 1.2, fontSize: 14, color: C.text1, margin: 0, isTextBox: true, objectName: "subtitle" });
+  s.addText("What The Hive learned watching our mentors code a robot in one week with Gemini in Android Studio, and how your team can do it too.", { x: 0.7, y: 5.0, w: 6.0, h: 1.2, fontSize: 14, color: C.text1, margin: 0, isTextBox: true, objectName: "subtitle" });
   s.addText("The Hive · FTC 3747 · Beehive Academy · Saturday, October 24, 2026 · an FTC Utah class", { x: 0.7, y: 6.5, w: 8, h: 0.4, fontSize: 13, color: C.text2, margin: 0, isTextBox: true, objectName: "footer" });
   s.addNotes("On screen while people sit down. No talking needed.");
 }
 
 // ================= 2. Who we are =================
 {
-  const s = content("Who we are, and what this is", "Say every line plainly; this room suspects mentors do our work. Line 1: our students hand-coded our robot this year — no AI. Line 2: the AI experiment was the mentors', on a separate robot, for the mentor competition. Line 3: we're here to hand over what it showed. Don't argue the rumor; state the facts and move on.");
+  const s = content("Who we are, and what this is", "Say every line plainly. This room suspects mentors do our work. Line 1: our students hand-coded our robot this year, with no AI. Line 2: the AI experiment was the mentors', on a separate robot, for the mentor competition. Line 3: we're here to hand over what it showed. Don't argue the rumor. State the facts and move on.");
   const rows = [
     ["1", "We're The Hive, FTC 3747. This year our students built and coded our robot by hand. No AI."],
     ["2", "Our mentors entered the mentor competition with a separate robot, and ran an experiment on it: no hand-written Java. Everything described to Gemini."],
@@ -126,31 +126,31 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 3b. The programmer's new job =================
 {
-  const s = content("The programmer doesn't go away. The job changes.", "This is the answer to 'AI replaces the programmer' — it doesn't; it moves them up. The programmer does the prep that makes the mechanical teammate's English land: the description, the architecture, the process. Then they review every change for drift — the two real examples are on the slide, both from the mentor robot, both verbatim in the transcript: the autonomous that drove the intake through a simulated gamepad because nobody said an autonomous was coming, and the D-pad that was doing slow mode and flywheel tuning at once ('I thought gamepad 1 dpad was slow mode, not tuning the flywheel'). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10–20 minutes of copying boilerplate. That time becomes 'what do I want vision to do,' not 'how do I parse the Limelight result.'");
+  const s = content("The programmer doesn't go away. The job changes.", "This is the answer to 'AI replaces the programmer'. It doesn't. The programmer moves up. The programmer does the prep that makes the mechanical teammate's English land: the description, the architecture, the process. Then they review every change for drift. The two real examples are on the slide, both from the mentor robot and both verbatim in the transcript: the autonomous that drove the intake through a simulated gamepad because nobody said an autonomous was coming, and the D-pad that was doing slow mode and flywheel tuning at once ('I thought gamepad 1 dpad was slow mode, not tuning the flywheel'). What the programmer gets back is the big picture: on our robot, adding one autonomous state was 10 to 20 minutes of copying boilerplate. That time becomes 'what do I want vision to do,' not 'how do I parse the Limelight result.'");
   card(s, 0.5, 1.45, 6.0, 3.9, "before card");
   s.addText("Before anyone else touches it", { x: 0.8, y: 1.6, w: 5.4, h: 0.45, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "before head" });
   s.addText([
-    { text: "Describe", options: { bold: true } }, { text: " the robot — every motor and servo, name, port, direction.", options: { breakLine: true, paraSpaceAfter: 10 } },
-    { text: "Architect", options: { bold: true } }, { text: " it — subsystems, state machines, what the autonomous will need later.", options: { breakLine: true, paraSpaceAfter: 10 } },
-    { text: "Set the process", options: { bold: true } }, { text: " — one change per prompt, test, commit.", options: { breakLine: true, paraSpaceAfter: 14 } },
+    { text: "Describe", options: { bold: true } }, { text: " the robot: every motor and servo, name, port, direction.", options: { breakLine: true, paraSpaceAfter: 10 } },
+    { text: "Architect", options: { bold: true } }, { text: " it: subsystems, state machines, what the autonomous will need later.", options: { breakLine: true, paraSpaceAfter: 10 } },
+    { text: "Set the process", options: { bold: true } }, { text: ": one change per prompt, test, commit.", options: { breakLine: true, paraSpaceAfter: 14 } },
     { text: "That groundwork is what lets a mechanical teammate make a change in English and have it land in the right place.", options: { color: C.text2 } },
   ], { x: 0.8, y: 2.15, w: 5.4, h: 3.1, ...body({ fontSize: 16 }), objectName: "before text" });
   card(s, 6.83, 1.45, 6.0, 3.9, "after card");
   s.addText("After every change", { x: 7.13, y: 1.6, w: 5.4, h: 0.45, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "after head" });
   s.addText([
-    { text: "Review", options: { bold: true } }, { text: " what the AI did — and catch drift.", options: { breakLine: true, paraSpaceAfter: 14 } },
-    { text: "On the mentor robot: the autonomous that drove the intake through a fake gamepad. The D-pad that ended up doing two things — slow mode and flywheel tuning — instead of one.", options: { color: C.text2, breakLine: true, paraSpaceAfter: 14 } },
-    { text: "Both worked. Both were wrong. Only a programmer reading the code saw it.", options: { color: C.text2 } },
+    { text: "Review", options: { bold: true } }, { text: " what the AI did, and catch drift.", options: { breakLine: true, paraSpaceAfter: 14 } },
+    { text: "On the mentor robot: the autonomous that drove the intake through a fake gamepad. The D-pad that ended up doing two things (slow mode and flywheel tuning) instead of one.", options: { color: C.text2, breakLine: true, paraSpaceAfter: 14 } },
+    { text: "Both worked, and both were wrong. Only a programmer reading the code saw it.", options: { color: C.text2 } },
   ], { x: 7.13, y: 2.15, w: 5.4, h: 3.1, ...body({ fontSize: 16 }), objectName: "after text" });
   s.addText("The programmer gets the big picture back: “What do I want vision to do?” instead of “How do I parse the Limelight result?”", { x: 0.5, y: 5.6, w: 12.3, h: 0.9, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
-// ================= 5c. Why — what the skeptics get right =================
+// ================= 5c. Why: what the skeptics get right =================
 {
-  const s = content("AI can shrink your skills. Or multiply them.", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse; a hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks; with AI they were 19% slower and believed they'd been 20% faster — the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest — 52 mostly-junior engineers learning a new library, AI group 50% vs 67% on comprehension, only about 2 minutes faster; 'delegation' hurt, asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used — delegate and auto-accept vs ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT': essays, 18 people, criticized stats — don't lean on it either way.");
+  const s = content("AI can shrink your skills. Or multiply them.", "Say this before they do. These are three of the strongest negative results, including the vendor's own, and all three fit our position. PNAS 2025: about 1,000 high-school students, math, randomized; plain ChatGPT made practice 48% better and the unassisted exam 17% worse. A hints-only tutor 'largely mitigated' the harm. METR 2025: 16 expert open-source maintainers on their own repos, 246 real tasks. With AI they were 19% slower and believed they'd been 20% faster, so the group that gains least couldn't even perceive it. Anthropic Jan 2026: their own tool, their own study, vendor-authored and not peer-reviewed, found harm against their own interest. 52 mostly-junior engineers learning a new library: the AI group scored 50% vs 67% on comprehension and was only about 2 minutes faster. 'Delegation' hurt. Asking conceptual questions didn't. What separates the harm studies from the no-harm studies is HOW the tool was used: delegate and auto-accept, versus ask, read the diff, explain it. That is our rule on the next slide. If someone brings up MIT 'Your Brain on ChatGPT' (essays, 18 people, criticized stats), don't lean on it either way.");
   const studies = [
     ["−17%", "on the exam", "PNAS 2025 · about 1,000 high-school students (math), randomized. Plain ChatGPT: practice +48%, unassisted exam −17%. A hints-only tutor “largely mitigated” the harm."],
-    ["+19%", "longer, not shorter", "METR 2025 · 16 expert maintainers on their own code, 246 tasks. With AI they took 19% longer — and believed they'd been 20% faster."],
+    ["+19%", "longer, not shorter", "METR 2025 · 16 expert maintainers on their own code, 246 tasks. With AI they took 19% longer, and believed they'd been 20% faster."],
     ["50 vs 67", "comprehension score", "Anthropic, Jan 2026 · their own tool, their own study (not peer-reviewed). 52 mostly-junior engineers: AI group understood less, finished ~2 min faster. Delegating hurt; asking questions didn't."],
   ];
   studies.forEach(([big, lbl, t], i) => {
@@ -160,39 +160,39 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(lbl, { x: x + 0.3, y: 2.5, w: 3.3, h: 0.4, ...body({ fontSize: 14, bold: true, color: C.text2 }), objectName: "lbl " + i });
     s.addText(t, { x: x + 0.3, y: 3.0, w: 3.3, h: 2.4, ...body({ fontSize: 13 }), objectName: "txt " + i });
   });
-  s.addText("The difference is how you use it. Delegate and auto-accept: you lose understanding. Ask, read the diff, explain it: you don't. That's our rule — next slide.", { x: 0.5, y: 5.75, w: 12.3, h: 0.8, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "takeaway" });
+  s.addText("The difference is how you use it. Delegate and auto-accept: you lose understanding. Ask, read the diff, explain it: you don't. That's our rule, on the next slide.", { x: 0.5, y: 5.75, w: 12.3, h: 0.8, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
-// ================= 5d. Why — our rule =================
+// ================= 5d. Why: our rule =================
 {
-  const s = content("Our rule: no AI until you can debug without it", "This is our onboarding checklist, verbatim. Read the whole quote out loud; it is the skeptics' own position, already in our program. Before a Hive programmer is cleared, the mentor checks off, in order, 14 of the first 15 chapters of Learn Java for FTC — the book has 25; section 9, analog sensors, is skipped, and 16–25 are extra credit, each read-and-code plus the exercise, typed into our own simulator with a real test harness — then 40 FTCSIM exercises. Then, and only then, AI as a season tool. Say 'we think' on the link between this and the studies: nobody has tested the sequence; it is our reading of them. College Board already requires the same thing for AP CS: students must be prepared to explain their code in detail. And at FTC judging the students answer — an adult may attend but may not interact or coach — so a team that can't explain its code loses the Control Award whether or not AI wrote it. FTC Utah's own statement (PDP email, Oct 2026) is the same rule in their words: no effect on judging either way; students who use AI should be able to explain how it contributed, check its output, and credit it. Quote it; it's the room's own program office saying it.");
+  const s = content("Our rule: no AI until you can debug without it", "This is our onboarding checklist, verbatim. Read the whole quote out loud. It is the skeptics' own position, already in our program. Before a Hive programmer is cleared, the mentor checks off, in order, 14 of the first 15 chapters of Learn Java for FTC, each read-and-code plus the exercise, typed into our own simulator with a real test harness, and then 40 FTCSIM exercises. The book has 25 chapters: section 9, analog sensors, is skipped, and 16 to 25 are extra credit. Then, and only then, AI as a season tool. Say 'we think' on the link between this and the studies. Nobody has tested the sequence. It is our reading of them. College Board already requires the same thing for AP CS: students must be prepared to explain their code in detail. And at FTC judging the students answer (an adult may attend but may not interact or coach), so a team that can't explain its code loses the Control Award whether or not AI wrote it. FTC Utah's own statement (PDP email, Oct 2026) is the same rule in their words: no effect on judging either way, and students who use AI should be able to explain how it contributed, check its output, and credit it. Quote it. It's the room's own program office saying it.");
   card(s, 0.5, 1.45, 7.6, 3.2, "quote card");
   s.addText("“Do not use AI to help you on these assignments. We will probably use AI during the season. However, if you do not understand the basics of programming taught here, you will not be able to debug the code during the season. And, it becomes painfully obvious if you use AI because you cannot answer how your program works.”", { x: 0.8, y: 1.65, w: 7.0, h: 2.5, ...body({ fontSize: 17, italic: true }), objectName: "checklist quote" });
-  s.addText("— The Hive, 2026 Programming Training Checklist", { x: 0.8, y: 4.15, w: 7.0, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "checklist attribution" });
+  s.addText("The Hive, 2026 Programming Training Checklist", { x: 0.8, y: 4.15, w: 7.0, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "checklist attribution" });
   const gate = [
-    ["14", "chapters of Learn Java for FTC, by hand — read, type, do the exercise"],
-    ["40", "FTCSIM exercises — Intro, Movement, Sensors, Puzzles, Grabby"],
+    ["14", "chapters of Learn Java for FTC, by hand: read, type, do the exercise"],
+    ["40", "FTCSIM exercises: Intro, Movement, Sensors, Puzzles, Grabby"],
     ["0", "AI until the mentor has checked every box, in order"],
-    ["then", "AI as a season tool — and you still explain the code"],
+    ["then", "AI as a season tool, and you still explain the code"],
   ];
   gate.forEach(([n, t], i) => {
     const y = 1.45 + i * 0.82;
     hex(s, 8.5, y + 0.05, 0.7, n, { fontSize: n.length > 2 ? 12 : 18 });
     s.addText(t, { x: 9.4, y, w: 3.4, h: 0.8, ...body({ fontSize: 13, valign: "middle" }), objectName: "gate " + i });
   });
-  s.addText("FTC Utah says the same: students who use AI “should be able to explain how it contributed, check its output for accuracy, and credit it appropriately” — and using it or not “will have no effect on your judging.” Same rule as AP CS Principles: “students must be prepared to explain their code in detail.”", { x: 0.5, y: 4.95, w: 12.3, h: 0.75, ...body({ fontSize: 12.5, color: C.text2 }), objectName: "same rule" });
+  s.addText("FTC Utah says the same: students who use AI “should be able to explain how it contributed, check its output for accuracy, and credit it appropriately”, and using it or not “will have no effect on your judging.” Same rule as AP CS Principles: “students must be prepared to explain their code in detail.”", { x: 0.5, y: 4.95, w: 12.3, h: 0.75, ...body({ fontSize: 12.5, color: C.text2 }), objectName: "same rule" });
   s.addText("Fundamentals first, then AI. We think that's how you get the speed without losing the understanding.", { x: 0.5, y: 5.75, w: 12.3, h: 0.8, ...body({ fontSize: 17, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
-// ================= 5b. Why — seventy years of "not real programming" =================
+// ================= 5b. Why: seventy years of "not real programming" =================
 {
-  const s = content("Seventy years of “that's not real programming”", "Most new layers of programming tools were called a crutch by the generation before — in the sources we found there's no named 1954 skeptic, only Backus remembering them, so say 'most', not 'every'. Each layer took over the typing; none took over deciding what to build, testing it, or reading what came out. Brooks said it in 1987. Fowler's honest limit (2025): this layer is non-deterministic — the same prompt doesn't give the same code twice — so reading and testing matter MORE than before, not less. Then tell the fake-gamepad story: Gemini drove our mentors' autonomous through a simulated gamepad because nobody said an autonomous was coming. It worked. A human reading the code caught it. That's the whole slide in one bug. Sources are in docs/research-ai-skills-case.md, slide 1 table.");
+  const s = content("Seventy years of “that's not real programming”", "Most new layers of programming tools were called a crutch by the generation before. In the sources we found there's no named 1954 skeptic, only Backus remembering them, so say 'most', not 'every'. Each layer took over the typing. None took over deciding what to build, testing it, or reading what came out. Brooks said it in 1987. Fowler's honest limit (2025) is that this layer is non-deterministic. The same prompt doesn't give the same code twice, so reading and testing matter MORE than before, not less. Then tell the fake-gamepad story: Gemini drove our mentors' autonomous through a simulated gamepad because nobody said an autonomous was coming. It worked, and a human reading the code caught it. Sources are in docs/research-ai-skills-case.md, slide 1 table.");
   const rows = [
-    ["1954", "FORTRAN", "“the strength of the skepticism about ‘automatic programming’… as it existed in 1954” — John Backus, who led the FORTRAN team, writing in 1978"],
-    ["1983", "Pascal", "“Real Programmers use FORTRAN. Quiche Eaters use PASCAL.” — Ed Post"],
-    ["2005", "IDE autocomplete", "“And I think it's making us dumber.” — Charles Petzold, on IntelliSense"],
-    ["2017", "Stack Overflow", "15.4% of 1.3 M Android apps contained security-related code copied from Stack Overflow; 97.9% of those had an insecure snippet — Fischer et al., IEEE S&P"],
-    ["2026", "AI coding", "Gemini drove our mentors' autonomous through a fake gamepad. It worked. A human reading the code caught it."],
+    ["1954", "FORTRAN", "John Backus, who led the FORTRAN team, writing in 1978: “the strength of the skepticism about ‘automatic programming’… as it existed in 1954”"],
+    ["1983", "Pascal", "Ed Post: “Real Programmers use FORTRAN. Quiche Eaters use PASCAL.”"],
+    ["2005", "IDE autocomplete", "Charles Petzold, on IntelliSense: “And I think it's making us dumber.”"],
+    ["2017", "Stack Overflow", "15.4% of 1.3 M Android apps contained security-related code copied from Stack Overflow, and 97.9% of those had an insecure snippet (Fischer et al., IEEE S&P)"],
+    ["2026", "AI coding", "Gemini drove our mentors' autonomous through a fake gamepad. It worked, and a human reading the code caught it."],
   ];
   rows.forEach(([yr, what, q], i) => {
     const y = 1.45 + i * 0.86;
@@ -200,21 +200,21 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(what, { x: 1.45, y, w: 1.75, h: 0.78, ...body({ fontSize: 15, bold: true, valign: "middle" }), objectName: "layer " + yr });
     s.addText(q, { x: 3.3, y, w: 9.5, h: 0.78, ...body({ fontSize: 15, italic: !q.startsWith("15.4") && !q.startsWith("Gemini"), color: C.text2, valign: "middle" }), objectName: "quote " + yr });
   });
-  s.addText("Every layer took the typing. None took the architecture, the testing, or the reading. — “the hard part of building software [is] the specification, design, and testing of this conceptual construct, not the labor of representing it.” Fred Brooks, 1987", { x: 0.5, y: 5.7, w: 12.3, h: 0.9, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "takeaway" });
+  s.addText("Every layer took the typing. None took the architecture, the testing, or the reading. Fred Brooks, 1987: “the hard part of building software [is] the specification, design, and testing of this conceptual construct, not the labor of representing it.”", { x: 0.5, y: 5.7, w: 12.3, h: 0.9, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
 // ================= 4a. Timeline =================
 {
-  const s = content("What the mentors did — the week", "Tell this as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days — the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair — Asim deciding what to change, Ben typing — plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. Two things make the experiment honest, and say both: Ben CAN write Java, so choosing to describe instead of type was a choice; Asim can't, and made most of the changes anyway. The quotes are verbatim, typos and all. The screenshot is the 'spitting balls out' prompt exactly as typed, with Gemini's answer. If there's time, play docs/video/scrimmage-match3-auto.mp4 from the laptop here.");
+  const s = content("What the mentors did that week", "Tell this as a story, not a list. Be precise about who did what, because coaches will ask: Ben described the architecture on night one and built the TeleOp out over the first two days: the shooter startup sequence, the pulsed feed, the LEDs. The first autonomous was Asim's design, called out at the robot while Ben typed, and from there it was a pair, Asim deciding what to change and Ben typing, plus eight prompts Asim typed himself: tank drive, the strafe fix, the spitting-balls pair, a whole experimental autonomous with three rounds of tuning. The point for the room: the person who understands the robot drives the prompt, whoever's hands are on the keys. Two things make the experiment honest, and say both. Ben CAN write Java, so choosing to describe instead of type was a choice. Asim can't, and made most of the changes anyway. The quotes are verbatim, typos and all. The screenshot is the 'spitting balls out' prompt exactly as typed, with Gemini's answer. If there's time, play docs/video/scrimmage-match3-auto.mp4 from the laptop here.");
   const rows = [
     ["Sep 17, 10:26 PM", "Ben (coordinator) describes the whole robot → working TeleOp that night, subsystem classes (25 minutes, 5 prompts)"],
-    ["Sep 18, ~9:50 PM", "First autonomous state machines, Shoot First / Shoot Delayed — Asim's design, called out at the robot, typed by Ben"],
+    ["Sep 18, ~9:50 PM", "First autonomous state machines, Shoot First / Shoot Delayed. Asim's design, called out at the robot, typed by Ben"],
     ["Sep 19, 8:29 AM", "Asim (mechanical), at the keyboard: “holding both joysticks left made the robot strafe right, and vice versa. please fix”"],
-    ["8:36 AM", "“it is spitting balls out, so i would like to shorten it” — reverse bump 200 → 100 ms"],
+    ["8:36 AM", "“it is spitting balls out, so i would like to shorten it” (reverse bump 200 → 100 ms)"],
     ["8:40 AM", "“we get points for not touching the wall. Can we add a backup after the turn and drive forward?”"],
     ["11:35 AM", "“I thought gamepad 1 dpad was slow mode, not tuning the flywheel.”"],
     ["11:37 AM", "“I don't want the intake to resume. I want the intake to stop (whether it was stopped or running).”"],
-    ["2:57 PM", "“Let's set the default speed to 0.95” — default changed from 1.0"],
+    ["2:57 PM", "“Let's set the default speed to 0.95” (default changed from 1.0)"],
     ["Scrimmage", "Autonomous scored; TeleOp drove."],
   ];
   const y0 = 1.5, dy = 0.58;
@@ -226,7 +226,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(txt, { x: 2.5, y, w: 4.6, h: dy, ...body({ fontSize: 11, italic: txt.startsWith("“"), color: txt.startsWith("“") ? C.text1 : C.text2 }), objectName: "event " + i });
   });
   s.addImage({ path: IMG("android-studio-spitting-balls-prompt.png"), x: 7.4, y: 1.5, w: 5.43, h: 3.22, objectName: "spitting balls screenshot" });
-  s.addText("Sep 19, 8:36 AM, as typed — and Gemini's reply: it reports the numbers (200 ms at −0.5, 300 ms pause), offers two options, then changes both at once. The next prompt put the power back.", { x: 7.4, y: 4.8, w: 5.43, h: 0.8, ...body({ fontSize: 11, color: C.text2 }), objectName: "screenshot caption" });
+  s.addText("Sep 19, 8:36 AM, as typed, with Gemini's reply. It reports the numbers (200 ms at −0.5, 300 ms pause), offers two options, then changes both at once. The next prompt put the power back.", { x: 7.4, y: 4.8, w: 5.43, h: 0.8, ...body({ fontSize: 11, color: C.text2 }), objectName: "screenshot caption" });
   s.addText("67 prompts, two days and an evening. 0 lines of Java typed.", { x: 7.4, y: 5.7, w: 5.43, h: 0.8, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "stat" });
 }
 
@@ -235,23 +235,23 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   const s = pres.addSlide({ masterName: "TITLE" });
   s.addShape(pres.ShapeType.hexagon, { x: -3.0, y: 1.2, w: 5.0, h: 5.2, line: { color: C.accent1, width: 2 }, fill: { color: "000000", transparency: 100 }, objectName: "hex decoration" });
   s.addText("“I've written Java for twenty-five years. I didn't type a line of it. After the first build, the changes came from the mechanical mentors — sometimes typed by them, sometimes called out from over the robot while I typed. They don't write Java.”", { x: 2.6, y: 1.4, w: 9.9, h: 4.0, fontSize: 28, color: C.text1, margin: 0, isTextBox: true, valign: "middle", objectName: "quote" });
-  s.addText("— Ben, our coordinator", { x: 2.6, y: 5.5, w: 10, h: 0.5, fontSize: 18, color: C.accent1, margin: 0, isTextBox: true, objectName: "attribution" });
+  s.addText("Ben, our coordinator", { x: 2.6, y: 5.5, w: 10, h: 0.5, fontSize: 18, color: C.accent1, margin: 0, isTextBox: true, objectName: "attribution" });
   s.addNotes("Put it up and let it sit for a few seconds. Then: the person who understands the robot drives the prompt, whoever's hands are on the keys.");
 }
 
 // ================= 5. Two robots =================
 {
-  const s = content("Hand-coding vs. architecting with AI", "This is the slide that's ours, and the left column is our real week. Four days of coding, three of us who could code the robot, and we were siloed: Tom wrote TeleOp, Sophi wrote autonomous. The bug: an autonomous borrowed from the FtcRobotController samples only powered two wheels, and the other two were set to brake at zero power — so the robot crawled. Tom saw it in testing the morning of the competition, then had to read Sophi's code cold, without knowing what she had done, to find why. Say the thing we'd do differently: AI could have given Tom a summary of the autonomous and he could have questioned it to find the bug. The grunt work: adding one state to the autonomous meant copying the same surrounding code again — 10 to 20 minutes for a new programmer, every time. Our process: the programmer works while a mechanical teammate waits, then sets up the robot and both watch the test; mechanical problems get fixed if quick or go on the to-do list; often it's one programmer doing all of it and kludging around mechanical problems in code. The honest comparison is not 'AI was faster': it's where the bottleneck was. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely — and that's a skill the mechanical people already had. The right column is from the mentor transcript: the Sep 17 session was 25 minutes and 5 prompts, then the 18th and the 19th.");
+  const s = content("Hand-coding vs. architecting with AI", "This is the slide that's ours, and the left column is our real week. Four days of coding, three of us who could code the robot, and we were siloed: Tom wrote TeleOp, Sophi wrote autonomous. The bug: an autonomous borrowed from the FtcRobotController samples only powered two wheels, and the other two were set to brake at zero power, so the robot crawled. Tom saw it in testing the morning of the competition, then had to read Sophi's code cold, without knowing what she had done, to find why. Say the thing we'd do differently: AI could have given Tom a summary of the autonomous and he could have questioned it to find the bug. The grunt work: adding one state to the autonomous meant copying the same surrounding code again, 10 to 20 minutes for a new programmer, every time. Our process: the programmer works while a mechanical teammate waits, then sets up the robot and both watch the test. Mechanical problems get fixed if quick or go on the to-do list. Often it's one programmer doing all of it and kludging around mechanical problems in code. The honest comparison is where the bottleneck was, not whether 'AI was faster'. On our robot every change went through whoever could type Java. On the mentor robot the bottleneck moved to describing precisely, and that's a skill the mechanical people already had. The right column is from the mentor transcript: the Sep 17 session was 25 minutes and 5 prompts, then the 18th and the 19th.");
   const rows = [
-    ["3 of us could code it: Tom, Sophi, Sadiqah. Siloed — Tom wrote TeleOp, Sophi wrote autonomous", "2 people wrote prompts — one writes Java, one doesn't"],
+    ["3 of us could code it: Tom, Sophi, Sadiqah. We were siloed, Tom on TeleOp and Sophi on autonomous", "2 people wrote prompts, one who writes Java and one who doesn't"],
     ["4 days of coding", "67 prompts over two days and an evening; working TeleOp the first night"],
-    ["A borrowed sample autonomous only powered two wheels — the other two were braking. Tom saw the robot crawl in morning testing, then had to read Sophi's code cold to find why", "Mechanical mentor fixed strafe, flywheel bump and controls — in English, no Java"],
-    ["Programmer codes while the mechanical teammate waits; often one programmer does it all and kludges around mechanical problems. One new autonomous state: 10–20 minutes of boilerplate", "Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design"],
-    ["Each of us understood our own file. Nobody could summarize the other's", "Someone still has to read what Gemini wrote — the Reader role"],
+    ["A borrowed sample autonomous only powered two wheels, and the other two were braking. Tom saw the robot crawl in morning testing, then had to read Sophi's code cold to find why", "Mechanical mentor fixed strafe, flywheel bump and controls in English, with no Java"],
+    ["Programmer codes while the mechanical teammate waits. Often one programmer does it all and kludges around mechanical problems. One new autonomous state: 10 to 20 minutes of boilerplate", "Firewheel transfer servos came out Sep 18 (reported 7:50 PM); code reworked that night by describing the new design"],
+    ["Each of us understood our own file. Nobody could summarize the other's", "Someone still has to read what Gemini wrote (the Reader role)"],
   ];
   const colW = 5.9, gap = 0.5, x1 = 0.5, x2 = x1 + colW + gap;
-  s.addText("Our robot — hand-coded by us", { x: x1, y: 1.4, w: colW, h: 0.5, ...body({ fontSize: 20, bold: true, color: C.text1 }), objectName: "col1 head" });
-  s.addText("Mentor robot — described to Gemini", { x: x2, y: 1.4, w: colW, h: 0.5, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "col2 head" });
+  s.addText("Our robot, hand-coded by us", { x: x1, y: 1.4, w: colW, h: 0.5, ...body({ fontSize: 20, bold: true, color: C.text1 }), objectName: "col1 head" });
+  s.addText("Mentor robot, described to Gemini", { x: x2, y: 1.4, w: colW, h: 0.5, ...body({ fontSize: 20, bold: true, color: C.accent1 }), objectName: "col2 head" });
   rows.forEach(([a, b], i) => {
     const y = 2.0 + i * 0.82;
     card(s, x1, y, colW, 0.72, "l" + i); card(s, x2, y, colW, 0.72, "r" + i);
@@ -287,7 +287,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 8. Checkpoints =================
 {
-  const s = content("The checkpoints — one trip around the loop each", "Point out that 'test' comes after every step. The single biggest mistake is asking for everything at once. Small steps mean when something breaks, you know which description caused it. There's a guide page and a video per checkpoint — show the repo URL.");
+  const s = content("The checkpoints, one trip around the loop each", "Point out that 'test' comes after every step. The single biggest mistake is asking for everything at once. Small steps mean when something breaks, you know which description caused it. There's a guide page and a video per checkpoint. Show the repo URL.");
   const cps = [
     ["0", "Install Android Studio + FtcRobotController, sign in to Gemini", false],
     ["1", "Describe the robot: names, ports, purposes, directions", false],
@@ -306,12 +306,12 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     hex(s, x, y, 0.7, k, { fontSize: 18 });
     s.addText([{ text: t, options: {} }, ...(test ? [{ text: "  → test", options: { bold: true, color: C.accent3 } }] : [])], { x: x + 0.9, y, w: 5.1, h: 0.7, ...body({ fontSize: 14, valign: "middle" }), objectName: "cp " + k });
   });
-  s.addText("github.com/The-Hive-3747/Teaching-AI-Coding — a guide page and a video per checkpoint", { x: 0.5, y: 6.35, w: 12.3, h: 0.4, ...body({ fontSize: 13, color: C.accent1 }), objectName: "repo" });
+  s.addText("github.com/The-Hive-3747/Teaching-AI-Coding: a guide page and a video per checkpoint", { x: 0.5, y: 6.35, w: 12.3, h: 0.4, ...body({ fontSize: 13, color: C.accent1 }), objectName: "repo" });
 }
 
 // ================= 9a. Five things =================
 {
-  const s = content("What a good description has", "Read these out. Names: exactly as in the Robot Controller config — 'front_left_drive', not 'the front left motor'. If Gemini has to guess any of the five, it will, and the guess is where the bug comes from.");
+  const s = content("What a good description has", "Read these out. Names go exactly as in the Robot Controller config: 'front_left_drive', not 'the front left motor'. If Gemini has to guess any of the five, it will, and the guess is where the bug comes from.");
   const items = [
     ["Names", "exactly as in the Robot Controller config: front_left_drive, not “the front left motor”"],
     ["Purpose", "what the part does for the robot"],
@@ -330,7 +330,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 9b. Vague vs specific =================
 {
-  const s = content("Vague vs. specific", "Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The third one is verbatim from the Sep 19 session — no code words at all, it describes a sequence — and that's why the fix was a few lines in Intake.java. This is the slide for the mechanical kids in the room.");
+  const s = content("Vague vs. specific", "Read the vague one and ask the room what Gemini would have to guess. Then the specific one: everything it would have guessed is now stated. The third one is verbatim from the Sep 19 session. No code words at all, it describes a sequence, and that's why the fix was a few lines in Intake.java. This is the slide for the mechanical kids in the room.");
   card(s, 0.5, 1.45, 3.4, 4.9, "vague card");
   s.addText("Vague", { x: 0.75, y: 1.65, w: 3, h: 0.45, ...body({ fontSize: 18, bold: true, color: C.accent4 }), objectName: "vague head" });
   s.addText("“Add a shooter.”", { x: 0.75, y: 2.3, w: 2.9, h: 1.0, ...body({ fontSize: 22, italic: true }), objectName: "vague text" });
@@ -341,14 +341,14 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addText("“One motor named flywheel, reversed. Pressing B runs the flywheel and intake backward at −0.5 for 200 ms to clear a jammed ball, stops everything for 300 ms, then runs the flywheel forward at full power and keeps it there. Pressing B again stops it. While it's running and right bumper is held, pulse the intake 100 ms on at 0.5, 200 ms off, so balls feed one at a time.”", { x: 4.45, y: 2.05, w: 8.15, h: 1.9, ...body({ fontSize: 12.5, italic: true }), objectName: "spec text" });
 
   card(s, 4.2, 4.2, 8.63, 2.15, "real card");
-  s.addText("Real — Sep 19 session, verbatim", { x: 4.45, y: 4.33, w: 8, h: 0.4, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "real head" });
+  s.addText("Real: Sep 19 session, verbatim", { x: 4.45, y: 4.33, w: 8, h: 0.4, ...body({ fontSize: 18, bold: true, color: C.accent1 }), objectName: "real head" });
   s.addText("“When I start up the flywheel, I want the process to continue to do the reverse function. But then I don't want the intake to resume. I want the intake to stop (whether it was stopped or running). Does that make sense?”", { x: 4.45, y: 4.78, w: 8.15, h: 1.1, ...body({ fontSize: 13.5, italic: true }), objectName: "real text" });
-  s.addText("No code words. A sequence. A few lines changed in Intake.java.", { x: 4.45, y: 5.9, w: 8, h: 0.35, ...body({ fontSize: 12, color: C.text2 }), objectName: "real note" });
+  s.addText("No code words, just a sequence, and a few lines changed in Intake.java.", { x: 4.45, y: 5.9, w: 8, h: 0.35, ...body({ fontSize: 12, color: C.text2 }), objectName: "real note" });
 }
 
 // ================= 10. Live demo =================
 {
-  const s = content("Now watch it happen", "Switch to Android Studio. One of you drives the laptop, one narrates, one handles the robot. Virtual attendees are on Google Meet: share the Android Studio screen, and point a phone camera at the robot for the drive test. 1) Show the Gemini panel with the robot description already there. 2) Type the mecanum drive prompt live and send it; narrate what you asked for while it generates. 3) Show the generated OpMode — point at the hardware names, they match the config. 4) Build, deploy, drive. 5) Type the real refinement: \"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix\" — deploy, drive again. 6) Stop there: \"That's the whole method. Everything else is more trips around the loop.\" If it breaks, that's the method too: say what you see, paste the error into the panel, let the room watch the refine step. Don't apologize — a live fix is a better demo than a clean run.");
+  const s = content("Now watch it happen", "Switch to Android Studio. One of you drives the laptop, one narrates, one handles the robot. Virtual attendees are on Google Meet: share the Android Studio screen, and point a phone camera at the robot for the drive test. 1) Show the Gemini panel with the robot description already there. 2) Type the mecanum drive prompt live and send it; narrate what you asked for while it generates. 3) Show the generated OpMode and point at the hardware names, which match the config. 4) Build, deploy, drive. 5) Type the real refinement: \"hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix\", then deploy and drive again. 6) Stop there: \"That's the whole method. Everything else is more trips around the loop.\" If it breaks, that's the method too: say what you see, paste the error into the panel, let the room watch the refine step. Don't apologize. A live fix is a better demo than a clean run.");
   s.addImage({ path: IMG("android-studio-tank-drive-prompt.png"), x: 0.5, y: 1.45, w: 8.4, h: 4.99, objectName: "tank drive screenshot" });
   s.addText("The mentors' tank-drive prompt, as typed, and the code it produced. You're about to see the same thing live.", { x: 9.2, y: 1.45, w: 3.63, h: 1.6, ...body({ fontSize: 15 }), objectName: "demo caption" });
   s.addText(bullets(["Description already sent", "Drive prompt, live", "Read the code: names match", "Build, deploy, drive", "Refine: the real strafe fix", "Deploy, drive again"], { paraSpaceAfter: 6 }), { x: 9.2, y: 3.2, w: 3.63, h: 3.0, ...body({ fontSize: 14, color: C.text2 }), objectName: "demo steps" });
@@ -356,7 +356,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 11. Where it goes wrong =================
 {
-  const s = content("Where it goes wrong — and the fix", "The italic rows and the fake-gamepad row happened on the mentor robot. The compile-error and over-30-seconds rows are the ones you'll hit first that the mentors got lucky on — their delayed auto adds up to 30.7 s on paper and the field timer let it finish. The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.");
+  const s = content("Where it goes wrong, and the fix", "The italic rows and the fake-gamepad row happened on the mentor robot. The compile-error and over-30-seconds rows are the ones you'll hit first that the mentors got lucky on. Their delayed auto adds up to 30.7 s on paper and the field timer let it finish. The pattern: when it's wrong, the description was missing something. Say the missing thing. The fake-gamepad row is the one Ben cares most about: the auto worked, but it was tied to the TeleOp button map because nobody said an auto was coming.");
   const hdr = (t) => ({ text: t, options: { bold: true, color: GOLD, fill: { color: THEME.colors.lt2 }, fontSize: 15 } });
   const c = (t, it) => ({ text: t, options: { fontSize: 13, color: "FFFFFF", italic: !!it } });
   const rows = [
@@ -365,7 +365,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     [c("Strafe is mirrored"), c("Mecanum mixing signs"), c("“holding both joysticks left made the robot strafe right, and vice versa. please fix”", 1)],
     [c("Flywheel startup spits balls out"), c("Reverse bump too long"), c("“what is the current time of spinning the motors back…? it is spitting balls out, so i would like to shorten it”", 1)],
     [c("Two controls on one button"), c("Control scheme drifted"), c("“I thought gamepad 1 dpad was slow mode, not tuning the flywheel.”", 1)],
-    [c("Auto drives the intake through a fake gamepad"), c("Nobody told Gemini an autonomous was coming"), c("Say it up front: “An autonomous will use this class later — put the behavior in plain methods.” Gemini takes the expedient route unless you say what's coming.")],
+    [c("Auto drives the intake through a fake gamepad"), c("Nobody told Gemini an autonomous was coming"), c("Say it up front: “An autonomous will use this class later, so put the behavior in plain methods.” Gemini takes the expedient route unless you say what's coming.")],
     [c("Auto runs over 30 s"), c("Gemini was told the limit; nobody saw the sum"), c("“Add up every state's duration and tell me the worst-case run time.” Then cut one number.")],
     [c("Gemini rewrote everything, broke what worked"), c("Didn't say “only change X”"), c("“Only change the intake section. Leave the drive code as is.”")],
   ];
@@ -373,14 +373,14 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addText("When it's wrong, the description was missing something. Say the missing thing.", { x: 0.5, y: 6.35, w: 12.3, h: 0.4, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
-// ================= 5e. Why — Lehi, 2026 =================
+// ================= 5e. Why: Lehi, 2026 =================
 {
-  const s = content("Lehi, 2026: it's in the job posting", "Lead with Podium — it's twenty minutes from here, it's an INTERN posting, and it names the tools. All four postings were verified live on Oct 3, 2026; re-open the links the morning of the talk, postings expire. Podium's senior posting uses our exact phrase: a 'genuine force multiplier, not a novelty.' Affirm's line is the sharpest — the job is now 'the reviewer's seat' (note: that posting is for a remote role based in Poland; Affirm is a US company). 1Password is the whole talk in one employer: use it daily, and interview without it. The pay numbers are vendor data and uncontrolled correlation — say 'job ads advertise', never 'you will earn' — and NEVER say 'Lightcast 56%'; that number has no source. Shopify is quoted via press, not the memo itself. Don't use Microsoft's '66% won't hire without AI skills' — 2024, self-reported, by the company selling Copilot.");
+  const s = content("Lehi, 2026: it's in the job posting", "Lead with Podium. It's twenty minutes from here, it's an INTERN posting, and it names the tools. All four postings were verified live on Oct 3, 2026; re-open the links the morning of the talk, postings expire. Podium's senior posting uses our exact phrase: a 'genuine force multiplier, not a novelty.' Affirm's line is the sharpest: the job is now 'the reviewer's seat' (note: that posting is for a remote role based in Poland; Affirm is a US company). 1Password asks for both: use it daily, and interview without it. The pay numbers are vendor data and uncontrolled correlation, so say 'job ads advertise', never 'you will earn'. And NEVER say 'Lightcast 56%'. That number has no source. Shopify is quoted via press, not the memo itself. Don't use Microsoft's '66% won't hire without AI skills' (2024, self-reported, by the company selling Copilot).");
   const posts = [
-    ["Podium · Lehi, Utah · Software Engineering Intern", "“Familiarity with AI-assisted development tools such as Cursor, Claude Code, Codex, GitHub Copilot, or similar.” — alongside “Strong programming fundamentals…”"],
+    ["Podium · Lehi, Utah · Software Engineering Intern", "“Familiarity with AI-assisted development tools such as Cursor, Claude Code, Codex, GitHub Copilot, or similar.” Listed alongside “Strong programming fundamentals…”"],
     ["Podium · Lehi, Utah · Senior Software Engineer", "use AI tooling “as a genuine force multiplier, not a novelty” · “A hands-on, daily relationship with AI coding tools”"],
     ["Affirm · US fintech (remote role, Poland)", "“every Affirm engineer builds with tools like Claude Code and most PRs are co-authored with AI… excelling in the reviewer's seat… is a core expectation”"],
-    ["1Password · Rust Developer", "“Effective at using AI tooling to accelerate development, testing, debugging…” — and the interview is run without AI"],
+    ["1Password · Rust Developer", "“Effective at using AI tooling to accelerate development, testing, debugging…” and the interview is run without AI"],
   ];
   posts.forEach(([h, t], i) => {
     const y = 1.45 + i * 1.0;
@@ -389,25 +389,25 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(t, { x: 0.7, y: y + 0.33, w: 7.5, h: 0.55, ...body({ fontSize: 11.5, italic: true }), objectName: "post text " + i });
   });
   const stats = [
-    ["2.5%", "of all US job postings asked for AI skills in 2025 — up 55% in one year (Stanford AI Index 2026 / Lightcast)"],
+    ["2.5%", "of all US job postings asked for AI skills in 2025, up 55% in one year (Stanford AI Index 2026 / Lightcast)"],
     ["10%", "of 4,820 software-engineering postings required AI coding tools in one Sep 2026 scan; 20% mentioned them; interns highest at 27% (match.dev)"],
-    ["“baseline”", "“Reflexive AI usage is now a baseline expectation at Shopify.” — Tobi Lütke, CEO, Apr 2025 (as quoted in press)"],
+    ["“baseline”", "Tobi Lütke, CEO, Apr 2025 (as quoted in press): “Reflexive AI usage is now a baseline expectation at Shopify.”"],
   ];
   stats.forEach(([big, t], i) => {
     const y = 1.45 + i * 1.35;
     s.addText(big, { x: 8.7, y, w: 4.1, h: 0.55, ...body({ fontSize: 26, bold: true, color: C.accent1 }), objectName: "stat big " + i });
     s.addText(t, { x: 8.7, y: y + 0.55, w: 4.1, h: 0.75, ...body({ fontSize: 11.5, color: C.text2 }), objectName: "stat text " + i });
   });
-  s.addText("Job ads that ask for AI skills advertise higher pay — PwC 62% within occupation (global, 2025), Lightcast 28% (US, 2024). Vendor data; correlation, not a promise.", { x: 0.5, y: 5.6, w: 12.3, h: 0.7, ...body({ fontSize: 12, color: C.text2 }), objectName: "pay note" });
+  s.addText("Job ads that ask for AI skills advertise higher pay: PwC 62% within occupation (global, 2025), Lightcast 28% (US, 2024). This is vendor data and a correlation, not a promise.", { x: 0.5, y: 5.6, w: 12.3, h: 0.7, ...body({ fontSize: 12, color: C.text2 }), objectName: "pay note" });
 }
 
-// ================= 5f. Why — the door is narrower =================
+// ================= 5f. Why: the door is narrower =================
 {
-  const s = content("The door is narrower. The tool is expected.", "Concede the first number completely — it's payroll data, the best in the room: software developers aged 22–25 are down nearly 20% since late 2022 (Stanford 'Canaries', Nov 2025; the gap widened to 19% by Aug 2026), and the decline is where AI AUTOMATES work rather than augments it. Be precise about what it does NOT show: it does not show that having AI skills protects any individual kid. That half is our argument, so say 'we think'. The NACE numbers are a small self-reported employer survey (185 employers, sponsored by Jobscan) — lead with 16.5%, the harder number. The Kent Beck tweet is April 18, 2023, verbatim. This-season loss is an argument from one adult mentor experiment plus studies of professional developers, not evidence on students — say that too if asked.");
+  const s = content("The door is narrower. The tool is expected.", "Concede the first number completely. It's payroll data, the best in the room: software developers aged 22 to 25 are down nearly 20% since late 2022 (Stanford 'Canaries', Nov 2025, and the gap widened to 19% by Aug 2026), and the decline is where AI AUTOMATES work rather than augments it. Be precise about what it does NOT show: it does not show that having AI skills protects any individual kid. That half is our argument, so say 'we think'. The NACE numbers are a small self-reported employer survey (185 employers, sponsored by Jobscan), so lead with 16.5%, the harder number. The Kent Beck tweet is April 18, 2023, verbatim. This-season loss is an argument from one adult mentor experiment plus studies of professional developers, not evidence on students. Say that too if asked.");
   const facts = [
-    ["−20%", "Software developers aged 22–25: employment down nearly 20%, late 2022 → Sep 2025 (payroll data). For young workers in AI-exposed jobs the gap widened to 19% by Aug 2026. — Stanford “Canaries in the Coal Mine”"],
-    ["16.5%", "of entry-level job descriptions now emphasize AI skills, up from 10.5% in fall 2025; employers say over a third of entry-level jobs require them. — NACE, spring 2026 (185 employers)"],
-    ["50.5%", "of graduating seniors aren't building AI skills at all. — NACE student survey, 2026"],
+    ["−20%", "Software developers aged 22 to 25: employment down nearly 20%, late 2022 → Sep 2025 (payroll data). For young workers in AI-exposed jobs the gap widened to 19% by Aug 2026. (Stanford “Canaries in the Coal Mine”)"],
+    ["16.5%", "of entry-level job descriptions now emphasize AI skills, up from 10.5% in fall 2025; employers say over a third of entry-level jobs require them. (NACE, spring 2026, 185 employers)"],
+    ["50.5%", "of graduating seniors aren't building AI skills at all. (NACE student survey, 2026)"],
   ];
   facts.forEach(([big, t], i) => {
     const x = 0.5 + i * 4.2;
@@ -416,15 +416,15 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(t, { x: x + 0.3, y: 2.55, w: 3.3, h: 1.4, ...body({ fontSize: 12.5 }), objectName: "fact text " + i });
   });
   s.addText("“The value of 90% of my skills just dropped to $0. The leverage for the remaining 10% went up 1000x.”", { x: 0.5, y: 4.3, w: 12.3, h: 0.8, ...body({ fontSize: 22, italic: true }), objectName: "beck quote" });
-  s.addText("— Kent Beck, creator of Extreme Programming, April 2023", { x: 0.5, y: 5.1, w: 12.3, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "beck attribution" });
+  s.addText("Kent Beck, creator of Extreme Programming, April 2023", { x: 0.5, y: 5.1, w: 12.3, h: 0.35, ...body({ fontSize: 12, color: C.accent1 }), objectName: "beck attribution" });
   s.addText("We think: the jobs disappearing are the ones AI does instead of a person. The ones being posted are the reviewer's seat. The checklist teaches the 10%.", { x: 0.5, y: 5.7, w: 12.3, h: 0.85, ...body({ fontSize: 16, bold: true, color: C.accent1 }), objectName: "takeaway" });
 }
 
 // ================= 12. Roles & rules =================
 {
-  const s = content("Running this with your team", "The Reader role is the answer to 'aren't they just cheating.' If a student can explain what the state machine does and why the timings are what they are, they learned it. Tell the room which of these roles each of you would take on The Hive. The Describer on the mentor robot was Asim, the mechanical mentor — he can't write Java, and he made most of the changes.");
+  const s = content("Running this with your team", "The Reader role is the answer to 'aren't they just cheating.' If a student can explain what the state machine does and why the timings are what they are, they learned it. Tell the room which of these roles each of you would take on The Hive. The Describer on the mentor robot was Asim, the mechanical mentor. He can't write Java, and he made most of the changes.");
   const roles = [
-    ["Describer", "Whoever knows the robot best says what to change. They can type it or someone else can — what matters is whose words they are."],
+    ["Describer", "Whoever knows the robot best says what to change. They can type it or someone else can. What matters is whose words they are."],
     ["Tester", "Deploys and drives. Says exactly what happened."],
     ["Reader", "Reads the generated code aloud and explains it. This is where the learning happens."],
     ["Coach", "Asks “what did you tell it?” when something breaks. Doesn't type."],
@@ -441,12 +441,12 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
 
 // ================= 13. What you need =================
 {
-  const s = content("What you need to start", "The hardware list is the one thing to do BEFORE opening Gemini. For anyone installing tonight: during the first Gradle sync, Android Studio pops up three things. Accept the Daemon JVM toolchain migration. DECLINE the Gradle/AGP upgrade — it breaks the FTC project. On Windows, accept the Defender exclusion or builds crawl. Checkpoint 0 in the guide has all three.");
+  const s = content("What you need to start", "The hardware list is the one thing to do BEFORE opening Gemini. For anyone installing tonight: during the first Gradle sync, Android Studio pops up three things. Accept the Daemon JVM toolchain migration. DECLINE the Gradle/AGP upgrade. It breaks the FTC project. On Windows, accept the Defender exclusion or builds crawl. Checkpoint 0 in the guide has all three.");
   const items = [
     "A laptop that runs Android Studio (Windows, Mac or Linux)",
     "A Google account signed in to Gemini in Android Studio",
     "The FtcRobotController project cloned",
-    "Your robot's hardware config done on the Driver Hub — names and ports",
+    "Your robot's hardware config done on the Driver Hub, with names and ports",
     "A written list of every motor and servo: name, port, purpose, direction",
     "The guide and videos: github.com/The-Hive-3747/Teaching-AI-Coding",
   ];
@@ -456,25 +456,25 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
     s.addText(t, { x: 1.15, y, w: 7.6, h: 0.66, ...body({ fontSize: 16, valign: "middle" }), objectName: "need " + i });
   });
   card(s, 9.2, 1.5, 3.63, 4.6, "popups card");
-  s.addText("First Gradle sync — three pop-ups", { x: 9.4, y: 1.65, w: 3.3, h: 0.7, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "popups head" });
+  s.addText("First Gradle sync: three pop-ups", { x: 9.4, y: 1.65, w: 3.3, h: 0.7, ...body({ fontSize: 15, bold: true, color: C.accent1 }), objectName: "popups head" });
   s.addText([
     { text: "Accept", options: { bold: true, color: C.accent3 } }, { text: " the Daemon JVM toolchain migration", options: { breakLine: true, paraSpaceAfter: 10 } },
-    { text: "Decline", options: { bold: true, color: C.accent4 } }, { text: " the Gradle / AGP upgrade — it breaks the FTC project", options: { breakLine: true, paraSpaceAfter: 10 } },
+    { text: "Decline", options: { bold: true, color: C.accent4 } }, { text: " the Gradle / AGP upgrade, which breaks the FTC project", options: { breakLine: true, paraSpaceAfter: 10 } },
     { text: "Accept", options: { bold: true, color: C.accent3 } }, { text: " the Windows Defender exclusion, or builds crawl", options: {} },
   ], { x: 9.4, y: 2.4, w: 3.3, h: 3.5, ...body({ fontSize: 14 }), objectName: "popups" });
   s.addText("Checkpoint 0 has all three.", { x: 9.4, y: 5.6, w: 3.3, h: 0.4, ...body({ fontSize: 12, color: C.text2 }), objectName: "popups note" });
-  s.addText("Or bring your robot to a Hive training session. We'll teach your students to prompt. You leave with a driving robot — maybe more.", { x: 0.5, y: 6.25, w: 8.3, h: 0.5, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "training offer" });
+  s.addText("Or bring your robot to a Hive training session. We'll teach your students to prompt, and you leave with a driving robot, maybe more.", { x: 0.5, y: 6.25, w: 8.3, h: 0.5, ...body({ fontSize: 14, bold: true, color: C.accent1 }), objectName: "training offer" });
 }
 
 // ================= 13b. Credits =================
 {
-  const s = content("Who made this", "Read the names. The point of the slide is that the people are named and the AI is named — the same way we're asking every team to credit its code. Royd is the team's second coach and a mechanical engineer.");
+  const s = content("Who made this", "Read the names. The point of the slide is that the people are named and the AI is named, the same way we're asking every team to credit its code. Royd is the team's second coach and a mechanical engineer.");
   const people = [
-    ["Tom, Sophi and Sadiqah — The Hive's programmers", "Hand-coded the team's own robot this season. Present this workshop and narrate the videos."],
-    ["Ben — coordinator", "Described the mentor robot's architecture to Gemini on night one. Typed no Java."],
-    ["Annie — head coach", ""],
-    ["Asim — mechanical mentor", "Built the mentor robot; authored most of the later changes in plain English, eight of them at the keyboard."],
-    ["Royd — coach and mechanical engineer", "Second coach on The Hive."],
+    ["Tom, Sophi and Sadiqah, The Hive's programmers", "Hand-coded the team's own robot this season. Present this workshop and narrate the videos."],
+    ["Ben, coordinator", "Described the mentor robot's architecture to Gemini on night one. Typed no Java."],
+    ["Annie, head coach", ""],
+    ["Asim, mechanical mentor", "Built the mentor robot and authored most of the later changes in plain English, eight of them at the keyboard."],
+    ["Royd, coach and mechanical engineer", "Second coach on The Hive."],
     ["Claude (Anthropic)", "Compiled the transcript, guide and slides from the team's material."],
     ["Gemini in Android Studio (Google)", "Wrote every line of the mentor robot's code from the mentors' descriptions."],
   ];
@@ -493,7 +493,7 @@ const bullets = (items, extra = {}) => items.map((t, i) => ({ text: t, options: 
   s.addImage({ path: IMG("hive-logo.png"), x: 8.2, y: 4.3, w: 4.8, h: 2.7, objectName: "logo" });
   s.addText("Start small.\nTest every step.\nWhen it's wrong, describe what was missing.", { x: 0.7, y: 1.2, w: 11.5, h: 3.6, fontSize: 40, bold: true, color: C.accent1, margin: 0, isTextBox: true, valign: "middle", objectName: "close" });
   s.addText("github.com/The-Hive-3747/Teaching-AI-Coding", { x: 0.7, y: 5.1, w: 7.5, h: 0.5, fontSize: 20, color: C.text1, margin: 0, isTextBox: true, objectName: "repo" });
-  s.addText("Guide, videos, every real prompt, and the code — all of it.\nTraining sessions: bring your robot, leave with it driving. Find us at the pits: The Hive, FTC 3747.", { x: 0.7, y: 5.7, w: 7.5, h: 1.2, fontSize: 16, color: C.text2, margin: 0, isTextBox: true, objectName: "find us" });
+  s.addText("Guide, videos, every real prompt, and the code. All of it.\nTraining sessions: bring your robot, leave with it driving. Find us at the pits: The Hive, FTC 3747.", { x: 0.7, y: 5.7, w: 7.5, h: 1.2, fontSize: 16, color: C.text2, margin: 0, isTextBox: true, objectName: "find us" });
   s.addNotes("No Q&A slot, so say where people can find you afterward.");
 }
 
@@ -512,13 +512,13 @@ function sourcesSlide(title, items, notes) {
 }
 {
   const S1 = [
-    ["Bastani et al., PNAS 2025", "Generative AI can harm learning \u2014 ~1,000 HS students", "https://scale.stanford.edu/publications/generative-ai-can-harm-learning"],
+    ["Bastani et al., PNAS 2025", "Generative AI can harm learning (~1,000 HS students)", "https://scale.stanford.edu/publications/generative-ai-can-harm-learning"],
     ["Becker et al., METR, Jul 2025", "16 expert developers 19% slower with AI", "https://arxiv.org/abs/2507.09089"],
     ["Anthropic, Jan 2026", "AI assistance and coding skill formation (vendor study)", "https://www.anthropic.com/news/AI-assistance-coding-skills"],
-    ["FTC Utah \u2014 Team A.I. Use", "PDP email, Oct 2026: no effect on judging; explain, check, credit", "https://www.firstinspires.org/robotics/ftc"],
+    ["FTC Utah: Team A.I. Use", "PDP email, Oct 2026: no effect on judging; explain, check, credit", "https://www.firstinspires.org/robotics/ftc"],
     ["FTC AI Innovation Corner", "FIRST Tech Challenge Docs", "https://ftc-docs.firstinspires.org/en/latest/ai/innovation_corner/innovation-corner.html"],
-    ["College Board, AP CS Principles", "Create task directions \u2014 AI use and attribution", "https://apcentral.collegeboard.org/media/pdf/ap-csp-student-task-directions.pdf"],
-    ["FTC Competition Manual 2026\u201327", "Awards section: A201, A204, A208", "https://ftc-resources.firstinspires.org/ftc/game/manual-06"],
+    ["College Board, AP CS Principles", "Create task directions: AI use and attribution", "https://apcentral.collegeboard.org/media/pdf/ap-csp-student-task-directions.pdf"],
+    ["FTC Competition Manual 2026-27", "Awards section: A201, A204, A208", "https://ftc-resources.firstinspires.org/ftc/game/manual-06"],
     ["FIRST blog: Expanding the toolbox with AI", "Chris Rake, COO: \u201cAI is just one more exciting addition to the toolbox\u201d", "https://community.firstinspires.org/expanding-the-first-toolbox-with-artificial-intelligence"],
     ["Learn Java for FTC (Alan Smith)", "The textbook in The Hive's checklist", "https://raw.githubusercontent.com/alan412/LearnJavaForFTC/master/LearnJavaForFTC.pdf"],
     ["Backus, 1978", "The History of FORTRAN I, II, and III (HOPL)", "https://softwarepreservation.computerhistory.org/FORTRAN/paper/p165-backus.pdf"],
@@ -528,14 +528,14 @@ function sourcesSlide(title, items, notes) {
     ["Brooks, 1987", "No Silver Bullet", "http://worrydream.com/refs/Brooks-NoSilverBullet.pdf"],
     ["Fowler, 2025", "LLMs bring new nature of abstraction", "https://martinfowler.com/articles/2025-nature-abstraction.html"],
   ];
-  sourcesSlide("Sources — studies, rules, history", S1, "Slides 5–7. Every title is a live link in the PDF and the .pptx. The caveats on each item are in docs/research-ai-skills-case.md; the 'must not repeat' table there is the one to read before you present.");
+  sourcesSlide("Sources: studies, rules, history", S1, "Slides 5 to 7. Every title is a live link in the PDF and the .pptx. The caveats on each item are in docs/research-ai-skills-case.md; the 'must not repeat' table there is the one to read before you present.");
 }
 {
   const S2 = [
-    ["Podium \u2014 Software Engineering Intern (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/7939921"],
-    ["Podium \u2014 Senior Software Engineer (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/6637207"],
-    ["Affirm \u2014 Senior Software Engineer", "remote, Poland; verified Oct 3, 2026", "https://job-boards.greenhouse.io/affirm/jobs/7806681003"],
-    ["1Password \u2014 Rust Developer", "verified Oct 3, 2026", "https://jobs.ashbyhq.com/1password/c247ea98-bf31-45f0-a38b-1fe255909538"],
+    ["Podium: Software Engineering Intern (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/7939921"],
+    ["Podium: Senior Software Engineer (Lehi)", "verified Oct 3, 2026", "https://job-boards.greenhouse.io/podium81/jobs/6637207"],
+    ["Affirm: Senior Software Engineer", "remote, Poland; verified Oct 3, 2026", "https://job-boards.greenhouse.io/affirm/jobs/7806681003"],
+    ["1Password: Rust Developer", "verified Oct 3, 2026", "https://jobs.ashbyhq.com/1password/c247ea98-bf31-45f0-a38b-1fe255909538"],
     ["Shopify memo, as quoted in Business Today", "Apr 2025 (secondary)", "https://www.businesstoday.in/technology/news/story/ai-use-is-no-longer-optional-at-shopify-declares-ceo-tobi-lutke-in-internal-memo-471211-2025-04-08"],
     ["Stanford AI Index 2026 / Lightcast", "2.5% of US postings, +55%", "https://lightcast.io/resources/research/stanford-ai-index-2026"],
     ["match.dev, Sep 2026", "AI coding tools in 4,820 SWE postings (one scan)", "https://www.match.dev/post/ai-coding-tools-in-job-postings/data/"],
@@ -546,9 +546,9 @@ function sourcesSlide(title, items, notes) {
     ["NACE, spring 2026", "AI skills in entry-level jobs (185 employers)", "https://www.naceweb.org/job-market/trends-and-predictions/demand-for-ai-skills-in-entry-level-jobs-nearly-triples-since-fall-2025"],
     ["NACE student survey, 2026", "50.5% not building AI skills", "https://www.naceweb.org/about-us/press/2026/ready-or-reluctant-employer-expectations-for-ai-skills-meet-student-skepticism"],
     ["Kent Beck, Apr 2023", "90% of my skills are now worth $0", "https://tidyfirst.substack.com/p/90-of-my-skills-are-now-worth-0"],
-    ["The Hive \u2014 verbatim transcript and research report", "every prompt, every number, with its caveats", "https://github.com/The-Hive-3747/Teaching-AI-Coding"],
+    ["The Hive: verbatim transcript and research report", "every prompt, every number, with its caveats", "https://github.com/The-Hive-3747/Teaching-AI-Coding"],
   ];
-  sourcesSlide("Sources — employers and the market", S2, "Slides 15–16 and the team's own records. Job postings expire: re-open the Podium links the morning of the talk. PwC and Lightcast sell AI-related services; their wage figures are advertised-pay correlations, not controlled comparisons.");
+  sourcesSlide("Sources: employers and the market", S2, "Slides 15 and 16 and the team's own records. Job postings expire: re-open the Podium links the morning of the talk. PwC and Lightcast sell AI-related services; their wage figures are advertised-pay correlations, not controlled comparisons.");
 }
 
 (async () => {

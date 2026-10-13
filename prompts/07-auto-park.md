@@ -1,6 +1,6 @@
-# Checkpoint 7 — two autos; the delayed one parks
+# Checkpoint 7: two autos, and the delayed one parks
 
-> **RECONSTRUCTED** — see the README for what that means.
+> **RECONSTRUCTED**. See the README for what that means.
 
 Guide page: `../guide/07-auto-park.md`
 
@@ -15,9 +15,9 @@ Guide page: `../guide/07-auto-park.md`
 > - `AutoShootFirst extends BaseAuto` returns 0.0 and keeps its `@Autonomous(name = "Auto: Shoot First")`. `AutoShootDelayed extends BaseAuto` returns 15.0, annotated `@Autonomous(name = "Auto: Shoot Delayed (15s)")`.
 > - Add a method `shouldParkTurnAndDrive()` that returns true only when the delay is greater than 0. After `STATE_4_STOP_SHOOTING`, if it's true go to the park states below; otherwise go to `STATE_6_ALL_STOP` as before.
 > - Park states, in order:
->   - `STATE_4B_PARK_BACK_UP` — all four drive motors at −0.3 for 0.45 seconds.
->   - `STATE_5_PARK_TURN_LEFT` — turn left in place: left motors −0.5, right motors +0.5, both scaled by the 0.8 drive cap, for 0.55 seconds.
->   - `STATE_5B_PARK_DRIVE_FORWARD` — all four at 0.4 scaled by 0.8, for 3.0 seconds.
+>   - `STATE_4B_PARK_BACK_UP`: all four drive motors at −0.3 for 0.45 seconds.
+>   - `STATE_5_PARK_TURN_LEFT`: turn left in place: left motors −0.5, right motors +0.5, both scaled by the 0.8 drive cap, for 0.55 seconds.
+>   - `STATE_5B_PARK_DRIVE_FORWARD`: all four at 0.4 scaled by 0.8, for 3.0 seconds.
 >   - then `STATE_6_ALL_STOP`.
 > - Same timer reset on every transition. Add the new states to telemetry.
 

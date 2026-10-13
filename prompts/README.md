@@ -1,14 +1,14 @@
 # Prompts
 
-The prompts that built the mentor robot's code (The Hive's mentors' robot-in-one-week entry — see the root README), mapped to the guide's checkpoints.
+The prompts that built the mentor robot's code (The Hive's mentors' robot-in-one-week entry, described in the root README), mapped to the guide's checkpoints.
 
 ## Two kinds of prompt in here
 
-**Verbatim** — prompts the team actually typed, quoted exactly, typos and all. Six were first recovered from Gemini's own summary of the build ([`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md)); then the plugin's backend log and finally the agent session file turned up with **every prompt from the week, complete**, in [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md) (74 prompts, with Gemini's full replies) — and the code after each one in [`docs/code-history/`](../docs/code-history/). The six are still the ones the guide builds its checkpoints around, and they're the most valuable thing in this repo: they show what "describe the change in plain words" looks like when the person describing is the one standing over the robot. Who was at the keyboard varied — Asim (the mechanical mentor) typed eight of the week's prompts himself, including the tank-drive request, the strafe fix, the spitting-balls pair, and the whole `ExperimentalParkShootFirst` autonomous with its tuning; for the Sep 18 autonomous session and several Sep 19 fixes he called the changes from the robot and Ben typed. Every prompt in `docs/verbatim-transcript.md` is tagged.
+**Verbatim**: prompts the team actually typed, quoted exactly, typos and all. Six were first recovered from Gemini's own summary of the build ([`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md)). Then the plugin's backend log, and finally the agent session file, turned up **every prompt from the week, complete**, in [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md) (74 prompts, with Gemini's full replies), with the code after each one in [`docs/code-history/`](../docs/code-history/). The six are still the ones the guide builds its checkpoints around, and they're the most valuable thing in this repo. They show what "describe the change in plain words" looks like when the person describing is the one standing over the robot. Who was at the keyboard varied. Asim (the mechanical mentor) typed eight of the week's prompts himself, including the tank-drive request, the strafe fix, the spitting-balls pair, and the whole `ExperimentalParkShootFirst` autonomous with its tuning. For the Sep 18 autonomous session and several Sep 19 fixes he called the changes from the robot and Ben typed. Every prompt in `docs/verbatim-transcript.md` is tagged.
 
-**Reconstructed** — the guide teaches in a checkpoint order the team didn't follow (they asked for the whole TeleOp at once on night one). So the checkpoint prompts here are written to produce the code the team ended up with, one subsystem at a time, and marked `RECONSTRUCTED`. Where the real prompt for the same step exists, it's quoted alongside.
+**Reconstructed**: the guide teaches in a checkpoint order the team didn't follow (they asked for the whole TeleOp at once on night one). So the checkpoint prompts here are written to produce the code the team ended up with, one subsystem at a time, and marked `RECONSTRUCTED`. Where the real prompt for the same step exists, it's quoted alongside.
 
-**Read the full log.** It has things the six don't: Gemini asking five clarifying questions on the first prompt and getting a one-line answer; a 15-query search spree for an LED datasheet that failed; the firewheels going in at 5:17 PM and coming out at 7:50 PM the same day; the park routine going from "strafe right 3 s" to "turn left and drive" to "It worked!" over ninety minutes; and the delay being set to 1 second for testing and back to 15 afterward.
+**Read the full log.** It has things the six don't. Gemini asked five clarifying questions on the first prompt and got a one-line answer. A 15-query search spree for an LED datasheet failed. The firewheels went in at 5:17 PM and came out at 7:50 PM the same day. The park routine went from "strafe right 3 s" to "turn left and drive" to "It worked!" over ninety minutes. And the delay was set to 1 second for testing and back to 15 afterward.
 
 ## The six verbatim prompts
 
@@ -27,7 +27,7 @@ The prompts that built the mentor robot's code (The Hive's mentors' robot-in-one
 
 - **None mention code.** No variable names, no files, no Java.
 - **All name the symptom** in the words a driver would use: "spitting balls out," "strafe right," "I don't want the intake to resume."
-- **Two ask before changing** ("what is the current time…"; "Can we add…"). Asking first got the team an explanation *and* the change.
+- **Two ask before changing** ("what is the current time…" and "Can we add…"). Asking first got the team an explanation *and* the change.
 - **One explains the rule and gives a starting number** ("we get points for not touching the wall… I'm thinking 100ms for 0.5 power"). Rule, ask, number: nothing left to guess.
 - **One states an expectation** ("I thought gamepad 1 dpad was slow mode"). Stating what you expected is a complete bug report.
 
@@ -35,7 +35,7 @@ The prompts that built the mentor robot's code (The Hive's mentors' robot-in-one
 
 | File | Checkpoint |
 |---|---|
-| `01-describe-the-robot.md` | Checkpoint 1 — the one-time description of the robot: hardware, names, purposes, controls, sequences |
+| `01-describe-the-robot.md` | Checkpoint 1, the one-time description of the robot: hardware, names, purposes, controls, sequences |
 | `02-mecanum-drive.md` | First TeleOp; the strafe fix |
 | `03-intake.md` | Adding the intake |
 | `04-shooter.md` | Adding the flywheel startup sequence and pulse feed |

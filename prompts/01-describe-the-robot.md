@@ -1,6 +1,6 @@
-# Checkpoint 1 — the one-time robot description
+# Checkpoint 1: the one-time robot description
 
-> **RECONSTRUCTED** — see the README for what that means.
+> **RECONSTRUCTED**. See the README for what that means.
 
 Guide page: `../guide/01-describe-the-robot.md`
 
@@ -30,7 +30,7 @@ Guide page: `../guide/01-describe-the-robot.md`
 
 *(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
-A restatement of the robot. No code — the last line asks for confirmation first.
+A restatement of the robot. No code, because the last line asks for confirmation first.
 
 ## The real one
 
@@ -46,7 +46,7 @@ Three follow-ups the same night, all verbatim:
 
 > *Let's turn the driving power max down to 0.8*
 
-(That first one is why every class in the final code declares its working variables as fields.) The log clips the middle of the first prompt; the version above is the guide's reconstruction, reordered for the checkpoint sequence.
+(That first one is why every class in the final code declares its working variables as fields.) The log clips the middle of the first prompt. The version above is the guide's reconstruction, reordered for the checkpoint sequence.
 
 ## What to watch for in the reply
 

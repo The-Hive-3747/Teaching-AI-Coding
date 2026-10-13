@@ -1,12 +1,12 @@
-# Checkpoint 9 — Extras
+# Checkpoint 9: Extras
 
-Everything else the mentors described into existence during the week. None of it is required to compete; all of it is worth seeing, because each one shows the same method applied to something new.
+Everything else the mentors described into existence during the week. None of it is required to compete, but all of it is worth seeing, because each one shows the same method applied to something new.
 
 ---
 
 ## 9.1 LED status lights
 
-![Green undercarriage LEDs during a match — Collect mode](../docs/images/match-closeup-green-leds.jpg)
+![Green undercarriage LEDs during a match, Collect mode](../docs/images/match-closeup-green-leds.jpg)
 
 *Green means Collect is on. From across the field, that's all the driver needs to know.*
 
@@ -14,7 +14,7 @@ The robot has two goBILDA LED modules on servo ports (`led_left`, `led_right`). 
 
 > **Prompt (reconstructed):**
 >
-> Add goBILDA LED indicators on servo ports `led_left` (Control Hub 3) and `led_right` (Expansion Hub 3). They're driven as servos with an expanded 500–2500 µs PWM range; color is the servo position: red 0.00, orange 0.17, yellow 0.33, green 0.50, blue 0.67, purple 0.83, white 1.00. Make a `LedController` class with `init(hardwareMap)` and `setColor(position)`.
+> Add goBILDA LED indicators on servo ports `led_left` (Control Hub 3) and `led_right` (Expansion Hub 3). They're driven as servos with an expanded 500 to 2500 µs PWM range; color is the servo position: red 0.00, orange 0.17, yellow 0.33, green 0.50, blue 0.67, purple 0.83, white 1.00. Make a `LedController` class with `init(hardwareMap)` and `setColor(position)`.
 >
 > In TeleOp, set the color every loop by priority:
 > - white while feeding (RB held with flywheel running)
@@ -25,9 +25,9 @@ The robot has two goBILDA LED modules on servo ports (`led_left`, `led_right`). 
 > - blue otherwise (driving)
 > Yellow during init, green when init completes.
 
-Why bother: the driver can see at a glance, from across the field, whether the flywheel is up to speed (purple) before pulling the feed trigger. That's a real match-time advantage from a "describe what you want" prompt.
+The payoff is that the driver can see at a glance, from across the field, whether the flywheel is up to speed (purple) before pulling the feed trigger. That's a real match-time advantage from a "describe what you want" prompt.
 
-**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java). One thing to check on your robot: that "feeding" really means feeding (`isFeeding` in the shipped code is just "RB held", so the white shows whenever RB is down — the team never noticed because nobody holds RB with the flywheel off).
+**Code:** [`example-code/final/LedController.java`](../example-code/final/LedController.java) and the LED block in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java). One thing to check on your robot is that "feeding" really means feeding. `isFeeding` in the shipped code is just "RB held", so the white shows whenever RB is down. The team never noticed because nobody holds RB with the flywheel off.
 
 ## 9.2 Endgame warnings
 
@@ -35,7 +35,7 @@ Why bother: the driver can see at a glance, from across the field, whether the f
 >
 > Add a match timer that starts when START is pressed. At 90 seconds (30 s left in a 120 s TeleOp) rumble gamepad 1 twice and flash the LEDs orange at 1 Hz for 4 seconds. At 110 seconds (10 s left) rumble for one second and flash red at 1 Hz for 4 seconds. Show time remaining on telemetry.
 
-The 1 Hz flash rate is deliberate — the FTC robot rules (R203 in the 2025–26 manual) say lights flashing faster than 2 Hz invite extra scrutiny and may have to be disabled. If you add flashing lights, say the rate in the prompt, and check the current season's manual.
+The 1 Hz flash rate is deliberate. The FTC robot rules (R203 in the 2025-26 manual) say lights flashing faster than 2 Hz invite extra scrutiny and may have to be disabled. If you add flashing lights, say the rate in the prompt, and check the current season's manual.
 
 **Code:** sections 4 and 5 of `loop()` in [`MecanumTeleOp.java`](../example-code/final/MecanumTeleOp.java).
 
@@ -48,22 +48,22 @@ The Checkpoint 5 fix ("I thought gamepad 1 dpad was slow mode") moved flywheel t
 
 ## 9.4 The 4-ball experiment
 
-the mentor robot's `BaseAutoExperimental` tries something clever: shoot the three preloaded balls, then scoop a fourth that was dropped in front of the robot at the start, back it away from the flywheel, spool, and shoot it. Seventeen states, counting the delay. Gemini's log describes it step by step (Session Iteration 2).
+The mentor robot's `BaseAutoExperimental` tries something clever. It shoots the three preloaded balls, then scoops a fourth that was dropped in front of the robot at the start, backs it away from the flywheel, spools, and shoots it. Seventeen states, counting the delay. Gemini's log describes it step by step (Session Iteration 2).
 
 Two things it teaches:
 - **A state machine can get long and stay readable** as long as every state does one thing. Seventeen one-thing states beat five do-three-things states.
 - **Experiments get their own files.** `BaseAutoExperimental` and its subclasses live next to the working autos, so trying the trick never risked the match code. Ask for that: "Make a copy called `BaseAutoExperimental` and change only the copy."
-- **And they can be wrong.** The step that's supposed to back the 4th ball away by reversing the intake sets a gamepad button the `Intake` class never reads, so the intake runs forward instead (details in [`example-code/README.md`](../example-code/README.md)). It's a clean example of a description Gemini implemented literally — "press left bumper" — when the code path needed something else. The fix prompt: "In STATE_6 the intake should run in reverse. `Intake.update` doesn't read the left bumper; pass a reverse flag instead."
+- **And they can be wrong.** The step that's supposed to back the 4th ball away by reversing the intake sets a gamepad button the `Intake` class never reads, so the intake runs forward instead (details in [`example-code/README.md`](../example-code/README.md)). It's a clean example of a description ("press left bumper") that Gemini implemented literally when the code path needed something else. The fix prompt: "In STATE_6 the intake should run in reverse. `Intake.update` doesn't read the left bumper; pass a reverse flag instead."
 
 **Code:** [`example-code/final/BaseAutoExperimental.java`](../example-code/final/BaseAutoExperimental.java) and its two subclasses.
 
 ## 9.5 Backups by asking
 
-Gemini's own summary of the week lists "Maintain Field Backups: always ask the AI to save backup snapshots before major architectural refactors" as a top-four principle. The `backup/` folder in `example-code/final/` is the result. The real prompt that made it (Sep 19, before a risky new OpMode), verbatim — note the backup request comes first, then the risky change:
+Gemini's own summary of the week lists "Maintain Field Backups: always ask the AI to save backup snapshots before major architectural refactors" as a top-four principle. The `backup/` folder in `example-code/final/` is the result. The real prompt that made it (Sep 19, before a risky new OpMode), verbatim. Note the backup request comes first, then the risky change:
 
 > *create backup copies of the existing operation modes. we are now going to create a separate, autonomous mode. it is going to be the shoot without delay program, then turn 45 degrees left. drive backwards for 1.5 seconds, turn 45 degrees right to correct, then drive forward for 3 seconds. name this ExperimentalParkShootFirst. before you do this, remove the power adjustment for the flywheel from the dpad, and move the up power adjustment to the right trigger on the gamepad (NOT THE BUMPER), and the down power adjustment to the left trigger.*
 
-(That prompt also explains a thing the repo puzzled over: `backup/FlywheelBackup.java` has trigger-based tuning because the triggers were asked for in the same breath as the backup. Two prompts later — *"Do not change the functionality of gamepad 1. I want gamepad 2 to also change the speed of the flywheel using the dpad up/down"* — and then *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* It took three prompts to land tuning where it stayed.)
+(That prompt also explains a thing the repo puzzled over. `backup/FlywheelBackup.java` has trigger-based tuning because the triggers were asked for in the same breath as the backup. Two prompts later came *"Do not change the functionality of gamepad 1. I want gamepad 2 to also change the speed of the flywheel using the dpad up/down"*, and then *"I thought gamepad 1 dpad was slow mode, not tuning the flywheel."* It took three prompts to land tuning where it stayed.)
 
 Git does this better (see Rule 3 in the [README](README.md)), but if your team isn't using Git yet, this works today.
 
@@ -73,17 +73,17 @@ The tuning log in Checkpoint 5 doesn't have to be kept by hand. At the end of a 
 
 > "Write a markdown file `docs/BUILD_LOG.md` summarizing every change you made today: the prompt I gave, what you changed, and which file. Add to it, don't overwrite."
 
-That's how [`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md) came to exist — Gemini wrote it, and it's the source for the real prompts quoted in this guide.
+That's how [`docs/AI_Development_Transcript_And_Guide.md`](../docs/AI_Development_Transcript_And_Guide.md) came to exist. Gemini wrote it, and it's the source for the real prompts quoted in this guide.
 
 ## 9.7 Two things that happened that aren't in the transcript
 
-**The robot changed under the code.** On Sep 18 the transfer mechanism — two CR servos (`firewheel_left`, `firewheel_right`) that carried balls from the intake to the flywheel — went in at 5:17 PM and came out at 7:50 PM: *"We removed the firewheels. They interfered with the flywheel."* The team recoded quickly: the intake now feeds the flywheel directly, which is the design in this guide. `Firewheel.java` in [`example-code/final/`](../example-code/final/) is the class that was left behind. The prompt for that kind of change is a Checkpoint 1 update plus a Checkpoint 5 fix: "We removed the transfer servos. The intake now feeds the flywheel directly. Remove `Firewheel` from the OpModes and make the right bumper pulse the intake instead."
+**The robot changed under the code.** On Sep 18 the transfer mechanism, two CR servos (`firewheel_left`, `firewheel_right`) that carried balls from the intake to the flywheel, went in at 5:17 PM and came out at 7:50 PM: *"We removed the firewheels. They interfered with the flywheel."* The team recoded quickly. The intake now feeds the flywheel directly, which is the design in this guide. `Firewheel.java` in [`example-code/final/`](../example-code/final/) is the class that was left behind. The prompt for that kind of change is a Checkpoint 1 update plus a Checkpoint 5 fix: "We removed the transfer servos. The intake now feeds the flywheel directly. Remove `Firewheel` from the OpModes and make the right bumper pulse the intake instead."
 
-**The AI took the expedient route.** The autonomous drives the subsystems through a simulated gamepad (Checkpoint 6 explains). It works, but it ties the auto to the TeleOp button mapping, and it happened because nobody told Gemini an autonomous was coming when it wrote `Intake` and `Flywheel`. Gemini will make it work; it won't always make it work the way you'd choose. Tell it what the code will be used for, not just what it does now.
+**The AI took the expedient route.** The autonomous drives the subsystems through a simulated gamepad (Checkpoint 6 explains). It works, but it ties the auto to the TeleOp button mapping, and it happened because nobody told Gemini an autonomous was coming when it wrote `Intake` and `Flywheel`. Gemini will make it work, but it won't always make it work the way you'd choose. Tell it what the code will be used for, not just what it does now.
 
 ## 9.8 Next season
 
-The prompting method carries over; the hardware doesn't. When the new game is announced:
+The prompting method carries over. The hardware doesn't. When the new game is announced:
 
 1. Redo Checkpoint 1 for the new robot. Everything else follows.
 2. Reuse the subsystem pattern: `Flywheel`, `Intake` become whatever the new mechanisms are.

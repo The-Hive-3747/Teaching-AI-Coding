@@ -1,14 +1,14 @@
-# Checkpoint 4 — Shooter
+# Checkpoint 4: Shooter
 
-**At the end of this checkpoint:** B starts the flywheel through its three-phase startup and leaves it running; holding right bumper pulse-feeds balls into it; B again stops it.
+**At the end of this checkpoint:** B starts the flywheel through its three-phase startup and leaves it running. Holding right bumper pulse-feeds balls into it. B again stops it.
 
-**Time:** 30–45 minutes. This is the first checkpoint with timing, so expect two or three trips around the loop.
+**Time:** 30 to 45 minutes. This is the first checkpoint with timing, so expect two or three trips around the loop.
 
 ---
 
 ## 4.1 Why timing matters here
 
-A flywheel takes time to reach speed, and a ball pressed against a stopped flywheel jams it. So the shooter isn't "turn on a motor" — it's a sequence:
+A flywheel takes time to reach speed, and a ball pressed against a stopped flywheel jams it. So the shooter is a sequence, not just a motor switch:
 
 ```
   ┌──────────────┐
@@ -17,12 +17,12 @@ A flywheel takes time to reach speed, and a ball pressed against a stopped flywh
          │  B pressed
          ▼
   ┌──────────────┐   flywheel AND intake backward at -0.5
-  │ REVERSE_BUMP │   for 200 ms — pushes a jammed ball off the wheel
+  │ REVERSE_BUMP │   for 200 ms, pushes a jammed ball off the wheel
   └──────┬───────┘
          │  200 ms passed
          ▼
   ┌──────────────┐   everything stopped
-  │    PAUSE     │   for 300 ms — so the motor isn't fighting itself
+  │    PAUSE     │   for 300 ms, so the motor isn't fighting itself
   └──────┬───────┘
          │  300 ms passed
          ▼
@@ -34,7 +34,7 @@ A flywheel takes time to reach speed, and a ball pressed against a stopped flywh
        back to IDLE
 ```
 
-Describe it as a sequence with those state names, and Gemini will write it as one — and the code will match the picture.
+Describe it as a sequence with those state names and Gemini will write it as one, so the code will match the picture.
 
 This sequence is the mentors', and it arrived in three prompts on the evening of Sep 18, all verbatim. First the process, with a request for a design rather than code:
 
@@ -48,7 +48,7 @@ Then a correction to Gemini's proposal (*"For the A button, let's not execute th
 
 > *When we start the flywheel, let's have it go back at .3 power with the intake to reject any stuck balls, stop for 300ms and then go forward at power.*
 
-"Propose to me a control scheme" is worth stealing: describe the physical process, ask for the design, then correct the design. Code comes after.
+"Propose to me a control scheme" is worth stealing. Describe the physical process, ask for the design, then correct the design. Code comes after.
 
 ## 4.2 Ask for it
 
@@ -67,14 +67,14 @@ Then a correction to Gemini's proposal (*"For the A button, let's not execute th
 >   - Give `Intake` a method `setFeed(boolean on)`. While `setFeed(true)` and the flywheel is RUNNING, pulse the intake: 100 ms on at 0.5, 200 ms off, repeating. Reset the pulse timer when feeding first turns on. `update()` calls `setFeed(gamepad.right_bumper)`.
 >   - Otherwise the intake behaves as before (collect / reject / off).
 > - Reject mode (LB/X) also runs the flywheel at −0.5.
-> - All timing with `ElapsedTime`, no `sleep()` — the drive must keep responding through the whole sequence.
+> - All timing with `ElapsedTime`, no `sleep()`, because the drive must keep responding through the whole sequence.
 > - Telemetry: flywheel phase, target power, intake power, whether feeding is active.
 
 `[SCREENSHOT: Gemini panel with the shooter prompt and its reply summarizing the state logic]`
 
-The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during the startup sequence and you can't drive. If you don't know what that means, that's fine — just include the line. (Gemini's own summary of the mentors' build lists this as the number one lesson.)
+The `ElapsedTime` line matters. If Gemini uses `sleep()`, the whole robot freezes during the startup sequence and you can't drive. If you don't know what that means, that's fine. Just include the line. (Gemini's own summary of the mentors' build lists this as the number one lesson.)
 
-The D-pad tuning line reproduces a conflict from the mentors' build (the transcript's Session 6: "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). It collides with the D-pad precision drive from Checkpoint 2 — hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in: fixing it is a Checkpoint 5 exercise, with the real prompt.
+The D-pad tuning line reproduces a conflict from the mentors' build (the transcript's Session 6: "I thought gamepad 1 dpad was slow mode, not tuning the flywheel"). It collides with the D-pad precision drive from Checkpoint 2. Hold D-pad up to creep forward and you also nudge the flywheel target. Leave it in. Fixing it is a Checkpoint 5 exercise, with the real prompt.
 
 ## 4.3 Read what it wrote
 
@@ -84,11 +84,11 @@ In `Flywheel.java`, find:
 3. The phase transitions: `if (phaseTimer.seconds() >= 0.200)` → PAUSE; `>= 0.300` → RUNNING. Ask the Reader to find both.
 4. The power decision: −0.5 during REVERSE_BUMP or reject, 0 during PAUSE, target during RUNNING.
 
-In `Intake.java`: the new parameters on `update(...)`, and the pulse — a timer, `% 0.300`, and `< 0.100` picking on vs. off.
+In `Intake.java`, find the new parameters on `update(...)` and the pulse (a timer, `% 0.300`, and `< 0.100` picking on vs. off).
 
 In `MecanumTeleOp.java`: `flywheel.update(...)` runs *before* `intake.update(...)`, because the intake needs the flywheel's state from this loop.
 
-**Compare with:** [`../example-code/04-shooter/`](../example-code/04-shooter/) — the mentor robot's `Flywheel` and `Intake`, rolled back to before the Checkpoint 5 fixes.
+**Compare with:** [`../example-code/04-shooter/`](../example-code/04-shooter/), the mentor robot's `Flywheel` and `Intake`, rolled back to before the Checkpoint 5 fixes.
 
 ## 4.4 Build, deploy, test
 
@@ -96,10 +96,10 @@ In `MecanumTeleOp.java`: `flywheel.update(...)` runs *before* `intake.update(...
 
 | Try | Expected | Actual |
 |---|---|---|
-| Press B (no balls) — **watch the flywheel** | Brief backward twitch, brief stop, then spins up forward and stays | |
+| Press B (no balls) and **watch the flywheel** | Brief backward twitch, brief stop, then spins up forward and stays | |
 | Telemetry during that | Phase shows REVERSE_BUMP → PAUSE → RUNNING | |
-| Hold RB while RUNNING | Intake pulses — you can hear it tick | |
-| Release RB | Pulsing stops; flywheel keeps running | |
+| Hold RB while RUNNING | Intake pulses (you can hear it tick) | |
+| Release RB | Pulsing stops, flywheel keeps running | |
 | Press B again | Flywheel stops | |
 | Load balls, B, wait for RUNNING, hold RB | Balls launch one at a time | |
 | Drive during all of the above | Drive keeps working | |
@@ -113,7 +113,7 @@ In `MecanumTeleOp.java`: `flywheel.update(...)` runs *before* `intake.update(...
 | Balls dribble out | Target too low or not spun up. "Raise the flywheel target to 1.0." If already 1.0: mechanical, or add spool time before feeding in auto. |
 | Two balls launch together | Pulse on-time too long. "Shorten the feed pulse from 100 ms on to 80 ms on. Keep 200 ms off." |
 | Nothing feeds | Pulse too short for the intake to move a ball. "Lengthen the feed pulse to 150 ms on." |
-| Flywheel startup spits a ball out the front | Reverse bump too long. This is the real Checkpoint 5 prompt — see there. |
+| Flywheel startup spits a ball out the front | Reverse bump too long. This is the real Checkpoint 5 prompt. See there. |
 | Can't drive during startup | Gemini used `sleep()`. "You used sleep() in the flywheel sequence. Replace it with ElapsedTime so loop() keeps running." |
 | B doesn't stop it | "Pressing B while the flywheel is in any phase other than IDLE should stop it and return to IDLE." |
 | Holding RB with the flywheel IDLE runs the intake | "Right bumper should only pulse the intake when the flywheel is RUNNING. Otherwise ignore it." |
@@ -127,7 +127,7 @@ Write down what you tried:
 
 ## 4.6 Save it
 
-Commit: "Shooter works — bump 200 ms, target 1.0, pulse 100/200" (put your real numbers in).
+Commit: "Shooter works: bump 200 ms, target 1.0, pulse 100/200" (put your real numbers in).
 
 ## Checkpoint 4 test
 
@@ -137,4 +137,4 @@ Commit: "Shooter works — bump 200 ms, target 1.0, pulse 100/200" (put your rea
 - [ ] Your tuning numbers are written down
 - [ ] Saved
 
-Go to [Checkpoint 5 — Refine](05-refine.md).
+Go to [Checkpoint 5: Refine](05-refine.md).

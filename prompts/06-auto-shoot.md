@@ -1,6 +1,6 @@
-# Checkpoint 6 — autonomous: back off the wall and shoot
+# Checkpoint 6: autonomous, back off the wall and shoot
 
-> **RECONSTRUCTED** — see the README for what that means.
+> **RECONSTRUCTED**. See the README for what that means.
 
 Guide page: `../guide/06-auto-shoot.md`
 
@@ -8,26 +8,26 @@ Guide page: `../guide/06-auto-shoot.md`
 
 > **Prompt:**
 >
-> Create an Autonomous OpMode in TeamCode called `AutoShootFirst`, iterative `OpMode` style like `MecanumTeleOp`. Annotate it `@Autonomous(name = "Auto: Shoot First")`. Same four drive motors, same reversals and brake settings as `MecanumTeleOp` — read them from that file. Reuse the existing `Flywheel` and `Intake` classes; don't modify them.
+> Create an Autonomous OpMode in TeamCode called `AutoShootFirst`, iterative `OpMode` style like `MecanumTeleOp`. Annotate it `@Autonomous(name = "Auto: Shoot First")`. Same four drive motors, same reversals and brake settings as `MecanumTeleOp`. Read them from that file. Reuse the existing `Flywheel` and `Intake` classes; don't modify them.
 >
 > The robot starts with the shooter facing the goal and its back against the wall. Preloaded balls are already in the intake.
 >
 > Implement a state machine with an enum and `ElapsedTime`:
 >
-> 1. `STATE_1_BACK_UP` — all four drive motors at −0.3 for 0.30 seconds, to back away from the wall to shooting distance.
-> 2. `STATE_1B_SETTLE_1000MS` — drive motors at 0 for 1.0 second so the robot stops rocking.
-> 3. `STATE_2_START_FLYWHEEL` — add a `startDirect()` method to `Flywheel` that goes straight to RUNNING at target power, skipping the reverse bump (balls are preloaded; reversing would eject them). Call it, and wait 2.0 seconds.
-> 4. `STATE_3_PULSE_SHOOTING` — call `intake.setFeed(true)` so the intake pulses exactly as in TeleOp. Stay here 10 seconds. On exit, `intake.setFeed(false)`.
-> 5. `STATE_4_STOP_SHOOTING` — `flywheel.stop()`, `intake.stop()`.
-> 6. `STATE_6_ALL_STOP` — everything at zero. Stay here.
+> 1. `STATE_1_BACK_UP`: all four drive motors at −0.3 for 0.30 seconds, to back away from the wall to shooting distance.
+> 2. `STATE_1B_SETTLE_1000MS`: drive motors at 0 for 1.0 second so the robot stops rocking.
+> 3. `STATE_2_START_FLYWHEEL`: add a `startDirect()` method to `Flywheel` that goes straight to RUNNING at target power, skipping the reverse bump (balls are preloaded; reversing would eject them). Call it, and wait 2.0 seconds.
+> 4. `STATE_3_PULSE_SHOOTING`: call `intake.setFeed(true)` so the intake pulses exactly as in TeleOp. Stay here 10 seconds. On exit, `intake.setFeed(false)`.
+> 5. `STATE_4_STOP_SHOOTING`: `flywheel.stop()`, `intake.stop()`.
+> 6. `STATE_6_ALL_STOP`: everything at zero. Stay here.
 >
-> Reset the state timer on every transition. Don't use the gamepad `update()` methods or a fake `Gamepad` — call the subsystem methods directly. If the subsystems need a per-loop tick to run their timers, add a `tick()` method that does that without a gamepad, and call it every loop after the switch. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
+> Reset the state timer on every transition. Don't use the gamepad `update()` methods or a fake `Gamepad`. Call the subsystem methods directly. If the subsystems need a per-loop tick to run their timers, add a `tick()` method that does that without a gamepad, and call it every loop after the switch. Show the current state, state time, total time, and flywheel phase on telemetry. No `sleep()`.
 
 ## What it should produce
 
 *(Snapshot derived from the team's final code. This reconstructed prompt has not been run; Gemini's output will differ in names and layout.)*
 
-`AutoShootFirst.java` with a six-state machine calling `intake.setFeed(true)` and a new `Flywheel.startDirect()` directly. Compare `../example-code/06-auto-shoot/` — **with one difference:** The Hive's real code drives the subsystems through a simulated `Gamepad` instead. The guide's Checkpoint 6 explains why that shipped and why the prompt here asks for direct calls ("the AI takes the most expedient route unless you tell it what's coming").
+`AutoShootFirst.java` with a six-state machine calling `intake.setFeed(true)` and a new `Flywheel.startDirect()` directly. Compare `../example-code/06-auto-shoot/`, **with one difference:** The Hive's real code drives the subsystems through a simulated `Gamepad` instead. The guide's Checkpoint 6 explains why that shipped and why the prompt here asks for direct calls ("the AI takes the most expedient route unless you tell it what's coming").
 
 ## Why reconstructed
 

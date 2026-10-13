@@ -1,6 +1,6 @@
-# Episode 1 — Install Android Studio and FtcRobotController
+# Episode 1: Install Android Studio and FtcRobotController
 
-**Length:** 8–10 minutes (long download waits time-lapsed)
+**Length:** 8 to 10 minutes (long download waits time-lapsed)
 **Format:** Screen recording, voice-over
 **Narrator:** Student (Tom)
 **Guide page:** `guide/00-install.md`
@@ -10,7 +10,7 @@
 
 ## Script
 
-**[TITLE CARD: Episode 1 — Install]**
+**[TITLE CARD: Episode 1, Install]**
 
 **[SCREEN: browser at developer.android.com/studio]**
 
@@ -18,9 +18,9 @@ Before we can describe anything to Gemini, we need Android Studio, the FTC proje
 
 Go to developer.android.com/studio and download the installer for your system.
 
-**[SCREEN: installer running, "Standard" selected — time-lapse the rest]**
+**[SCREEN: installer running, "Standard" selected, time-lapse the rest]**
 
-Run it, accept the defaults, and pick Standard. Then it downloads the Android SDK. This is the slow part — I've sped it up here. On school Wi-Fi, expect ten to twenty minutes.
+Run it, accept the defaults, and pick Standard. Then it downloads the Android SDK. This is the slow part, so I've sped it up here. On school Wi-Fi, expect ten to twenty minutes.
 
 **[SCREEN: Android Studio welcome screen]**
 
@@ -30,37 +30,37 @@ When you see this welcome screen, Android Studio is installed. Now the FTC proje
 
 Click "Get from VCS." In the URL box, paste the FtcRobotController address.
 
-**[TEXT CARD: `https://github.com/FIRST-Tech-Challenge/FtcRobotController` — hold 3 s]**
+**[TEXT CARD: `https://github.com/FIRST-Tech-Challenge/FtcRobotController`, hold 3 s]**
 
 Pick a folder you'll remember and click Clone. Using Git this way means you can save a working version after every step, and go back if something breaks. We'll do that a lot.
 
-**[SCREEN: Gradle sync progress bar — time-lapse]**
+**[SCREEN: Gradle sync progress bar, time-lapse]**
 
-Now it syncs. Another wait — sped up again. If this fails with a network error, school Wi-Fi is usually the reason. A phone hotspot for this one step gets you past it.
+Now it syncs. Another wait, sped up again. If this fails with a network error, school Wi-Fi is usually the reason. A phone hotspot for this one step gets you past it.
 
 **[SCREEN: the three pop-ups, shown one at a time as they appear]**
 
 While it syncs, you'll get three pop-ups. Two yes, one no. Watch carefully, because getting these wrong is the number one reason a fresh install won't build.
 
-**[SCREEN: Daemon JVM toolchain migration prompt — pause on it]**
+**[SCREEN: Daemon JVM toolchain migration prompt, pause on it]**
 
 First: "Migrate to the Gradle Daemon JVM toolchain." Yes. Accept it. This just tells Gradle which Java to use.
 
-**[SCREEN: Gradle / AGP upgrade prompt — pause on it, red X overlay]**
+**[SCREEN: Gradle / AGP upgrade prompt, pause on it, red X overlay]**
 
 Second: "A newer version of Gradle is available. Upgrade?" **No.** Never. The FTC project is pinned to the versions it's tested with. If you click Upgrade, the build breaks and the fastest fix is to delete everything and clone again. Click "Don't ask again" if it offers.
 
-**[SCREEN: Windows Defender notification — pause on it]**
+**[SCREEN: Windows Defender notification, pause on it]**
 
-Third, Windows only: "Windows Defender might be impacting your build performance." Yes — click the automatic exclusion. Without it, Defender scans every file Gradle touches and your builds take two to five times longer. If you missed it, the guide has the four folders to add by hand under Windows Security.
+Third, Windows only: "Windows Defender might be impacting your build performance." Yes. Click the automatic exclusion. Without it, Defender scans every file Gradle touches and your builds take two to five times longer. If you missed it, the guide has the four folders to add by hand under Windows Security.
 
-**[TEXT CARD: "Toolchain: YES · Gradle upgrade: NO · Defender exclusion: YES" — hold 4 s]**
+**[TEXT CARD: "Toolchain: YES · Gradle upgrade: NO · Defender exclusion: YES", hold 4 s]**
 
 Toolchain yes. Upgrade no. Defender yes.
 
 **[SCREEN: Project panel, Android view, two modules visible]**
 
-When the sync finishes, look at the Project panel on the left. Two modules. FtcRobotController is FIRST's code — we never edit it. TeamCode is ours. Every OpMode we write goes in here.
+When the sync finishes, look at the Project panel on the left. Two modules. FtcRobotController is FIRST's code, and we never edit it. TeamCode is ours. Every OpMode we write goes in here.
 
 **[SCREEN: expand TeamCode down to the teamcode package]**
 
@@ -70,9 +70,9 @@ That's the folder: TeamCode, src, main, java, org, firstinspires, ftc, teamcode.
 
 One thing before Gemini. FIRST's module has dozens of sample programs. If Gemini reads all of those, it gets confused about which robot it's writing for. So we tell it to ignore them.
 
-Switch to Project view, right-click the top folder, New, File. Name it dot-a-i-exclude — with the dot at the front.
+Switch to Project view, right-click the top folder, New, File. Name it dot-a-i-exclude, with the dot at the front.
 
-**[TEXT CARD: `.aiexclude` contents — the samples path — hold 3 s]**
+**[TEXT CARD: `.aiexclude` contents, the samples path, hold 3 s]**
 
 Paste in the path to the samples folder and save. Now Gemini only looks at our code.
 
@@ -82,13 +82,13 @@ Paste in the path to the samples folder and save. Now Gemini only looks at our c
 
 Now Gemini. View, Tool Windows, Gemini. Sign in with the Google account your coach set up.
 
-**[SCREEN: Gemini asks about project context — click yes]**
+**[SCREEN: Gemini asks about project context, click yes]**
 
 It'll ask whether it can use your project as context. Say yes. That's what lets it see your hardware names and edit your files directly.
 
 **[SCREEN: the mode selector in the Gemini panel, switching to Agent]**
 
-One more thing: the mode. We use Agent mode, where Gemini creates and edits files in the project itself. If your panel only has a chat mode, it'll show you code and you paste it in — same method, more copying. If you don't see Agent mode, update Android Studio.
+One more thing: the mode. We use Agent mode, where Gemini creates and edits files in the project itself. If your panel only has a chat mode, it'll show you code and you paste it in. Same method, more copying. If you don't see Agent mode, update Android Studio.
 
 **[SCREEN: empty Gemini panel, signed in, Agent mode]**
 
@@ -104,13 +104,13 @@ Last step: prove the whole chain works before we write anything. Plug in the Con
 
 **[PIP: Driver Hub reconnecting, then showing the Robot Controller version]**
 
-On the Driver Hub, the robot controller restarts and reconnects. The TeleOp and Autonomous lists are empty — that's expected. The Utility menu has two test OpModes the SDK ships enabled; TestHardware is handy for checking which way each motor spins. FIRST's sample programs are all disabled, so nothing shows until we write our own. The version number matching what we just built is the proof.
+On the Driver Hub, the robot controller restarts and reconnects. The TeleOp and Autonomous lists are empty, and that's expected. The Utility menu has two test OpModes the SDK ships enabled. TestHardware is handy for checking which way each motor spins. FIRST's sample programs are all disabled, so nothing shows until we write our own. The version number matching what we just built is the proof.
 
 **[TEXT CARD: Checkpoint 0 checklist, 6 items]**
 
 Checkpoint zero: Android Studio open, sync finished, the three pop-ups answered right, dot-a-i-exclude in place, Gemini signed in, one successful deploy. Six checks. If they're all green, you're ready.
 
-**[END CARD: "Next: Episode 2 — Describe your robot" + repo URL]**
+**[END CARD: "Next: Episode 2, Describe your robot" + repo URL]**
 
 ---
 

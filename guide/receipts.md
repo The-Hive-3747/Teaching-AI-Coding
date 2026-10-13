@@ -1,8 +1,8 @@
-# Receipts — How to Prove Your Students Wrote It
+# Receipts: How to Prove Your Students Wrote It
 
-When a mentor types Java, nothing records who decided what. When a student describes a change to Gemini, every decision is a timestamped sentence in that student's own words. That makes AI-assisted code *more* provable than hand-written code — if you keep the log.
+When a mentor types Java, nothing records who decided what. When a student describes a change to Gemini, every decision is a timestamped sentence in that student's own words. That makes AI-assisted code *more* provable than hand-written code, if you keep the log.
 
-This page is how to keep it. It's what The Hive does, and it's how this repo's [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md) came to exist: every prompt from the mentors' build, exactly as typed, tagged with who said it.
+This page is how to keep it. It's what The Hive does, and it's how this repo's [`docs/verbatim-transcript.md`](../docs/verbatim-transcript.md) came to exist. That file has every prompt from the mentors' build, exactly as typed, tagged with who said it.
 
 ---
 
@@ -14,17 +14,17 @@ The simplest receipt needs no export at all. After every change that works:
 2. Put the prompt in the commit message, and the name of the student who wrote the prompt.
 
 ```
-Strafe fix — prompted by Sophi:
+Strafe fix, prompted by Sophi:
 "hey, in the latest push, holding both joysticks left made the robot strafe right, and vice versa. please fix"
 ```
 
-Git already records the date and time. Over a season that's a log anyone can read in the GitHub history — a judge, a coach, a parent — and it shows the robot was changed one described step at a time, by named students.
+Git already records the date and time. Over a season that's a log anyone can read in the GitHub history (a judge, a coach, a parent), and it shows the robot was changed one described step at a time, by named students.
 
 Set the Git author to the student at the keyboard (Android Studio: **Git → Settings → Git → Author** per commit, or `git config user.name` on each student's login). If one laptop is shared, the prompt line in the message does the job.
 
 ## 2. Export the actual conversation
 
-Android Studio keeps the full agent session on disk — every prompt, every reply, every file Gemini wrote. There's no export button, but the file is plain text (JSON lines).
+Android Studio keeps the full agent session on disk, including every prompt, every reply, and every file Gemini wrote. There's no export button, but the file is plain text (JSON lines).
 
 **Where it is (Windows):**
 
@@ -36,7 +36,7 @@ Search that folder (and below) for `steps.jsonl`. Each agent conversation has it
 
 **Mac:** the same `projects` folder lives under `~/Library/Application Support/Google/AndroidStudio<version>/` (or `~/Library/Caches/Google/AndroidStudio<version>/` on some versions). Spotlight for `steps.jsonl`.
 
-> **Ben:** confirm the Mac path, and the Windows sub-folder under `projects\…` where `steps.jsonl` sits — the repo only has the Windows path from your machine.
+> **Ben:** confirm the Mac path, and the Windows sub-folder under `projects\…` where `steps.jsonl` sits. The repo only has the Windows path from your machine.
 
 **Lighter alternative:** `gemini-backend.log` in Android Studio's log folder (**Help → Show Log in Explorer / Finder**) records every prompt with a timestamp. It clips long prompts to the first 150 and last 149 characters, so it's a timeline, not a transcript. [`docs/gemini-log-transcript.md`](../docs/gemini-log-transcript.md) is what that looks like.
 
@@ -60,7 +60,7 @@ or, for a change called out while someone else typed:
 > Author: Tom's request, typed by Sophi
 ```
 
-Do this the same week; memory fades. In this repo the author tags were worked out from writing style and then confirmed by the people who were there — it worked, but it was harder than writing them down at the time.
+Do this the same week, while people still remember. In this repo the author tags were worked out from writing style and then confirmed by the people who were there. It worked, but it was harder than writing them down at the time.
 
 ## 4. Credit it where FIRST and the College Board already ask you to
 

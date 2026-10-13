@@ -4,9 +4,9 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 
 ## Format
 
-- **Length:** 3–6 minutes each. Install is the exception (8–10 min, mostly time-lapsed).
+- **Length:** 3 to 6 minutes each. Install is the exception (8 to 10 min, mostly time-lapsed).
 - **Style:** Screen recording of Android Studio with a picture-in-picture of the robot when it's being tested. Narrator voice-over. No talking-head sections except the intro.
-- **Narrator:** The Hive's students — Tom, Sophi and Sadiqah — the same three who present the kickoff. One narrator per episode for consistency; split the series between them however they like (one suggestion below). Ben and Asim are quoted on cards, not heard. The students didn't run the experiment, so every script says so in the open: *our mentors did this on their robot; here's how.*
+- **Narrator:** The Hive's students, Tom, Sophi and Sadiqah, the same three who present the kickoff. One narrator per episode for consistency. Split the series between them however they like (one suggestion below). Ben and Asim are quoted on cards, not heard. The students didn't run the experiment, so every script says so in the open: *our mentors did this on their robot; here's how.*
 - **On screen:** Every prompt typed is shown in full, and paused on for 3 seconds so viewers can read it. Every test is shown on the real robot.
 - **Captions:** Burned-in captions for the prompts. Auto-captions for the narration.
 
@@ -14,8 +14,8 @@ Nine short videos, one per checkpoint, plus a 2-minute intro. Each video follows
 
 | # | Title | Length | Guide page | Narrator |
 |---|---|---|---|---|
-| 0 | Why we're doing this | 2 min | — | Student, on camera (suggestion: Tom) |
-| 1 | Install Android Studio and FtcRobotController | 8–10 min | 00-install.md | Student (Tom) |
+| 0 | Why we're doing this | 2 min | none | Student, on camera (suggestion: Tom) |
+| 1 | Install Android Studio and FtcRobotController | 8-10 min | 00-install.md | Student (Tom) |
 | 2 | Describe your robot | 4 min | 01-describe-the-robot.md | Student (Tom) |
 | 3 | Mecanum drive in one prompt | 5 min | 02-mecanum-drive.md | Student (Sophi) |
 | 4 | Add the intake | 3 min | 03-intake.md | Student (Sophi) |
@@ -42,12 +42,12 @@ Checkpoint 9 (extras: LEDs, endgame rumble, the 4-ball experiment) has no episod
 - Lower-third title at the start: episode number and name.
 - When a prompt is typed: cut to a full-screen text card of the prompt, hold 3 s, then back to the recording.
 - When a test runs: split screen, Driver Hub telemetry on one side, robot on the other.
-- When something goes wrong (and it will — keep those takes): red "What went wrong" card, then the fix prompt as a text card.
+- When something goes wrong (and it will, so keep those takes): red "What went wrong" card, then the fix prompt as a text card.
 - End card: "Next: [episode name]" and the repo URL.
 
 ## Series-wide assets
 
-- [ ] Intro/outro bumper with The Hive logo (5 s) — `docs/images/hive-logo.png`, already 16:9 on black; fade in/out, nothing else needed
+- [ ] Intro/outro bumper with The Hive logo (5 s): `docs/images/hive-logo.png`, already 16:9 on black. Fade in/out, nothing else needed
 - [ ] Text-card template for prompts
 - [ ] "Sped up 4×" label
 - [ ] "What went wrong" card
